@@ -16,3 +16,6 @@ API.interceptors.request.use((req) => {
 
 export const signin = (formData) => API.post('/user/signin', formData);
 export const signup = (formData) => API.post('/user/signup', formData);
+
+export const updatePoints = (id, updatedPoints) => API.patch(`/user/${id}`, updatedPoints);
+export const getPoints = (id) => API.get(`/user/${id}`);

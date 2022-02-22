@@ -2,36 +2,37 @@ import React, {useState, useEffect} from 'react';
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './styles';
 import {Link} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch ,useSelector} from 'react-redux';
 import {useNavigate, useLocation} from 'react-router-dom';
 import Home from '@material-ui/icons/Home';
+import {getPoints} from '../../actions/userActions';
 
 const Navbar = () => {
     const classes = useStyles();
+    const localUser = JSON.parse(localStorage.getItem('profile'));
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [level, setLevel] = useState(0);
+    const userInfo = useSelector((state) => state.userReducer);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const logout = () => {
-
-
-        navigate("/");
+        navigate("/game");
         dispatch({type: "LOGOUT"});
-
         setUser(null);
-
 
     };
 
-    useEffect(() => {
-        // const token = user?.token;
+    const convertPointsToLevel = (points) => {
+        const calculatedLevel = Math.round(points / 100);
+        setLevel(calculatedLevel);
+    };
 
-        // if(token){  
-        //     const decodedToken = decode(token);
-        //     if(decodedToken.exp * 1000 < new Date().getTime()) logout();
-        // }
+    useEffect(() => {
+        if(localUser) dispatch(getPoints(localUser?.result?._id));
         setUser(JSON.parse(localStorage.getItem('profile')));
-    }, [location])
+        convertPointsToLevel(user?.result?.points);
+    }, [location, localUser?.result?.points, user?.result?.points])
 
     return (
         <AppBar className= {classes.appBar} position='static' color='inherit'>
@@ -41,10 +42,16 @@ const Navbar = () => {
         <Toolbar className={classes.toolbar}>
             {user ? (
                 <div className={classes.profile}>
-                    <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}></Avatar>
-                        <Typography className={classes.userName} variant="h6">
+                        <Typography variant="h4" className={classes.userName}>
+                            Level: {level}
+                        </Typography>
+                        <Typography variant="h4" className={classes.userName}>
+                            XP: {user.result.points}
+                        </Typography>
+                        <Typography className={classes.userName} variant="h4">
                             {user.result.name}
                         </Typography>
+                        <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}></Avatar>
                         <Button variant='contained' className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                     
                 </div>
