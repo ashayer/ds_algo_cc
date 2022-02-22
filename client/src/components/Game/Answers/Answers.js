@@ -12,7 +12,7 @@ const Answers = ({answers, createGame}) => {
 
 
     const correctAnswer = () => {
-        let randomPoints = Math.floor(Math.random() * 500);
+        let randomPoints = Math.floor(Math.random() * 100);
         const updatePointsBy = randomPoints;
         const tempPoints = userInfo.points + updatePointsBy;
         let user = JSON.parse(localStorage.getItem('profile'));
@@ -36,22 +36,20 @@ const Answers = ({answers, createGame}) => {
     }, [newPoints, dispatch, userInfo._id])
 
     return (
-            <Grid>
-                <Typography variant="h4"></Typography>
+            <>
                 {
                     answers.map((answer, index) => (
                         <Button key={index} 
                         variant="contained" 
-                        color={`${answer}` === "Right" ? "primary" : "secondary"}
-                        onClick={`${answer}` === "Right" ? correctAnswer : wrongAnswer}
+                        color={`${answer[0]}` === "Right" ? "primary" : "secondary"}
+                        onClick={`${answer[0]}` === "Right" ? correctAnswer : wrongAnswer}
                         >
-                            {answer}
+                            {answer[1]}
                         </Button>
 
                     ))
                 }
-            </Grid>
-
+            </>
 
     );
 

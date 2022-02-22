@@ -23,11 +23,12 @@ const Home = () => {
     return (
     <Grow in>
         <Container maxWidth="xl">
-            <Grid container className={classes.gridContainer} justifyContent='space-between' alignItems='stretch' spacing = {3}>       
-                {(user?.result?.googleId || user?.result?._id) && (
-                    <Game/>
-                )}
-            </Grid>
+            <Paper className={classes.paper} elevation={9}>
+                    {(user?.result?.googleId || user?.result?._id) && (
+                        <Game/>
+                    )}
+            </Paper>
+                
         </Container>
 
     </Grow>
