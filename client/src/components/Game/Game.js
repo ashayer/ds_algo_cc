@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Button, Container } from '@material-ui/core/';
+import { Grid, Button, Container, Paper, ButtonBase, Grow } from '@material-ui/core/';
 import Answers from './Answers/Answers';
 import Question from './Question/Question';
 import useStyles from './styles';
@@ -12,6 +12,7 @@ import {shuffle} from 'd3-array';
 const Game = () => {
     const [answers, setAnswers] = useState([]);
     const [question, setQuestion] = useState('');
+    const [content, setContent] = useState('');
     const [gameStarted, setGameStarted] = useState(true);
     const [timer, setTimer] = React.useState(1);
     const classes = useStyles();
@@ -20,11 +21,10 @@ const Game = () => {
     const createGame = () => {
         setTimer(1);
         let randomIndex = Math.floor(Math.random() * 4);
-        //createRandomQuestion(randomIndex);
-        createSetQuestion(randomIndex);
+        createRandomQuestion(randomIndex);
+        //createSetQuestion(randomIndex);
         if(!gameStarted) setGameStarted(true);
     };
-
     const endGame = () => setGameStarted(false);
     const createRandomQuestion = (correctIndex) => {
         let answers = insertionSortHandler();
@@ -42,9 +42,9 @@ const Game = () => {
                 wrongIndex += 1;
             }
         }
-        console.log(auxAnswers);
+        setContent(arrayString);
         setAnswers(auxAnswers);
-        setQuestion("Using insertion sort, what is the state of the array after " + answers.swaps + " iterations. [" + arrayString + "]");
+        setQuestion("Using insertion sort, what is the state of the array after " + answers.swaps + " swaps.");
 
     };
 
@@ -59,10 +59,11 @@ const Game = () => {
                 auxAnswers[i] = "Wrong";
             }
         }
-        setQuestion("Click answer " + (correctIndex + 1));
+        let questionString = (correctIndex+1).toString();
+        setContent(questionString)
+        setQuestion("Click answer position matching number below");
         setAnswers(auxAnswers);
     }
-
     const CountdownTimer = () => (
         <CountdownCircleTimer
           isPlaying
@@ -82,15 +83,42 @@ const Game = () => {
     
             gameStarted ? 
             (
-                <Container maxWidth="xs">
-                    <CountdownTimer />
-                    <Question answers={answers} question={question}/>
-                        <Answers answers={answers} createGame={createGame}/>
-                    <Button color="secondary" variant="contained" onClick = {endGame}>END GAME</Button>
-                    
-                </Container>
+                <Grid container align="center" justifyContent="center" direction="row">
+                    <Paper className={classes.paperQuestion}>
+                        <Grid 
+                        container
+                        justifyContent="space-around"
+                        alignItems="center">
+                            <Grid item>
+                                <Typography variant="h3">Streak</Typography>
+                            </Grid>
+                            <Grid item>
+                                 <Question answers={answers} question={question}/>
+                            </Grid>
+                            <Grid item>
+                                <CountdownTimer />
+                            </Grid>
+                            <Grid item>
+                                <Button variant="contained" onClick = {endGame}>END GAME</Button>
+                            </Grid>
+                        </Grid>
+                    </Paper>
+                    <Paper className={classes.paperContent}>
+                        <Container maxWidth="xl">
+                            <Typography variant="h1" align="center" className={classes.textContent}>
+                                {content}
+                            </Typography>
+                        </Container>
+                    </Paper>
+                    <Paper className={classes.paperAnswers} >
+                        <Grid container sx={{ display: 'flex'}}>
+                            <Answers answers={answers} createGame={createGame}/>
+                        </Grid>
+                    </Paper>
+                </Grid>
+
             ):(
-                <Button color="secondary" variant="contained" onClick = {createGame}>START GAME</Button>
+                <Button variant="contained" onClick = {createGame}>START GAME</Button>
             )
     
 

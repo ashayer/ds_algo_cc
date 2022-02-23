@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {updatePoints} from '../../../actions/userActions';
-import { Grid, Button} from '@material-ui/core/';
+import { Grid, Button, ButtonBase, Container } from '@material-ui/core/';
 import {Typography} from '@material-ui/core';
-
+import useStyles from './styles'
 //create aux array in game component? then pass into here as prop?
 const Answers = ({answers, createGame}) => {
     const dispatch = useDispatch();
     const userInfo = useSelector((state) => state.userReducer);
     const [newPoints, setNewPoints] = useState(userInfo.points);
+    const classes = useStyles();
 
 
     const correctAnswer = () => {
@@ -33,23 +34,34 @@ const Answers = ({answers, createGame}) => {
 
         dispatch(updatePoints(userInfo._id, {points: newPoints}));
         
-    }, [newPoints, dispatch, userInfo._id])
+    }, [newPoints, dispatch, userInfo._id]);
+
+
 
     return (
-            <>
+            <Grid container align="center" justifyContent="center" direction="row" spacing={2} className={classes.answerGrid}>
                 {
                     answers.map((answer, index) => (
-                        <Button key={index} 
-                        variant="contained" 
-                        color={`${answer[0]}` === "Right" ? "primary" : "secondary"}
-                        onClick={`${answer[0]}` === "Right" ? correctAnswer : wrongAnswer}
-                        >
-                            {answer[1]}
-                        </Button>
+                        <Grid item key={index}> 
+                            <ButtonBase 
+                                onClick={`${answer[0]}` === "Right" ? correctAnswer : wrongAnswer}
+                                style={{
+                                    width: 750,
+                                    height: 195
+                                }}
+                                className={`${answer[0]}` === "Right" ? classes.rightAnswer : classes.wrongAnswer}
+                            >
+
+                                {answer[1]}
+                            </ButtonBase>
+
+                        </Grid>
+
+                        
 
                     ))
                 }
-            </>
+            </Grid>
 
     );
 

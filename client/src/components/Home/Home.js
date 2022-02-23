@@ -21,17 +21,18 @@ const Home = () => {
 
 
     return (
-    <Grow in>
-        <Container maxWidth="xl">
-            <Paper className={classes.paper} elevation={9}>
-                    {(user?.result?.googleId || user?.result?._id) && (
-                        <Game/>
-                    )}
-            </Paper>
+        (user?.result?.googleId || user?.result?._id) && (
+            <Grow in>
+            <Container maxWidth="xl" align="center" direction="row">
                 
-        </Container>
+               
+            <Game/>
+                    
+            </Container>
+    
+            </Grow>
+        )
 
-    </Grow>
   );
 };
 
