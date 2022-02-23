@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Grow, Grid, Paper, AppBar, TextField, Button, Chip} from '@material-ui/core';
+import {Container, Grow, Typography} from '@material-ui/core';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
@@ -21,17 +21,21 @@ const Home = () => {
 
 
     return (
-        (user?.result?.googleId || user?.result?._id) && (
+        
             <Grow in>
-            <Container maxWidth="xl" align="center" direction="row">
-                
-               
-            <Game/>
+                <Container maxWidth="xl" align="center" direction="row">
                     
-            </Container>
+                {
+                    (user?.result?.googleId || user?.result?._id) ? (
+                    <Game/>
+                ): (
+                    <Typography>
+                        Sign In To View
+                    </Typography>
+                )}
+                </Container>
     
             </Grow>
-        )
 
   );
 };

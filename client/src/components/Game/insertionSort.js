@@ -1,7 +1,7 @@
 import {shuffle} from 'd3-array';
 
 function insertionSortHandler(){
-    let arrayToBeSorted = shuffle([1,2,3,4,5,6]);
+    let arrayToBeSorted = shuffle([1,8,3,9,5,6]);
 
     let sortedArrayObject = insertionSort(arrayToBeSorted);
 

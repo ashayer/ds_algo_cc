@@ -19,7 +19,8 @@ export default makeStyles((theme) => ({
     color: "blue", 
     padding: '0vh',
   },
-  question: {
-    
+  contentArrayContainer: {
+    width: "700px",
+
   }
 }));

@@ -8,18 +8,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import insertionSortHandler from './insertionSort';
 import {shuffle} from 'd3-array';
+import './game.css';
 
 const Game = () => {
+    const timeLeft = 5;
     const [answers, setAnswers] = useState([]);
     const [question, setQuestion] = useState('');
-    const [content, setContent] = useState('');
+    const [content, setContent] = useState([]);
     const [gameStarted, setGameStarted] = useState(true);
-    const [timer, setTimer] = React.useState(1);
+    const [timer, setTimer] = React.useState(timeLeft);
     const classes = useStyles();
 
 
     const createGame = () => {
-        setTimer(1);
+        setTimer(timeLeft);
         let randomIndex = Math.floor(Math.random() * 4);
         createRandomQuestion(randomIndex);
         //createSetQuestion(randomIndex);
@@ -30,9 +32,9 @@ const Game = () => {
         let answers = insertionSortHandler();
         let arrayString = answers.original.toString();
         let auxAnswers = [];
+        let wrongIndex = 0;
         for (let i = 0; i < 4; i++)
         {   
-            let wrongIndex = 0;
             if(i===correctIndex) {
 
                 auxAnswers[i] = ["Right", answers.right];
@@ -42,48 +44,59 @@ const Game = () => {
                 wrongIndex += 1;
             }
         }
-        setContent(arrayString);
+        setContent(answers.original);
         setAnswers(auxAnswers);
         setQuestion("Using insertion sort, what is the state of the array after " + answers.swaps + " swaps.");
 
     };
 
-    const createSetQuestion = (correctIndex) =>{
-        let auxAnswers = [];
-        for (let i = 0; i < 4; i++)
-        {
-            if(i===correctIndex) {
-                auxAnswers[i] = "Right";
-            }
-            else{
-                auxAnswers[i] = "Wrong";
-            }
-        }
-        let questionString = (correctIndex+1).toString();
-        setContent(questionString)
-        setQuestion("Click answer position matching number below");
-        setAnswers(auxAnswers);
-    }
+    // const createSetQuestion = (correctIndex) =>{
+    //     let auxAnswers = [];
+    //     for (let i = 0; i < 4; i++)
+    //     {
+    //         if(i===correctIndex) {
+    //             auxAnswers[i] = "Right";
+    //         }
+    //         else{
+    //             auxAnswers[i] = "Wrong";
+    //         }
+    //     }
+    //     let questionString = (correctIndex+1).toString();
+    //     setContent(questionString)
+    //     setQuestion("Click answer position matching number below");
+    //     setAnswers(auxAnswers);
+    // }
     const CountdownTimer = () => (
         <CountdownCircleTimer
           isPlaying
           duration={timer}
           colors={['#F7B801']}
           rotation="counterclockwise"
-          size = {100}
-          trailStrokeWidth="2"
+          size = {80}
+          trailStrokeWidth="5"
           onComplete={createGame}
         >
           {({ remainingTime }) => remainingTime + "s"}
         </CountdownCircleTimer>
     )
 
+    const ContentBars = () => {
+        
+
+        return (
+            content.map((value, index) => (
+                <Grid item key={index}>
+                    <div className="contentArrayBars"   style={{height: (value*2) + "vh"}}>{value}</div>
+                </Grid>
+            ))
+        );
+    }
+
     return (
         
-    
             gameStarted ? 
             (
-                <Grid container align="center" justifyContent="center" direction="row">
+                <Grid container>
                     <Paper className={classes.paperQuestion}>
                         <Grid 
                         container
@@ -104,14 +117,16 @@ const Game = () => {
                         </Grid>
                     </Paper>
                     <Paper className={classes.paperContent}>
-                        <Container maxWidth="xl">
-                            <Typography variant="h1" align="center" className={classes.textContent}>
-                                {content}
-                            </Typography>
+                        <Container maxWidth="xl" className={classes.contentArrayContainer}>
+                            
+                                <Grid container justifyContent='space-evenly' width= "100px"> 
+                                    {(answers.length > 0) ? <ContentBars/> : null}
+                                </Grid>
+                            
                         </Container>
                     </Paper>
                     <Paper className={classes.paperAnswers} >
-                        <Grid container sx={{ display: 'flex'}}>
+                        <Grid container>
                             <Answers answers={answers} createGame={createGame}/>
                         </Grid>
                     </Paper>

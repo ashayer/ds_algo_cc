@@ -52,7 +52,9 @@ const Answers = ({answers, createGame}) => {
                                 className={`${answer[0]}` === "Right" ? classes.rightAnswer : classes.wrongAnswer}
                             >
 
-                                {answer[1]}
+                                <Typography variant="h1">
+                                    {answer[1]}
+                                </Typography>
                             </ButtonBase>
 
                         </Grid>
