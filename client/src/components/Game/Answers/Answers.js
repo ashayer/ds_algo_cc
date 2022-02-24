@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {updatePoints} from '../../../actions/userActions';
 import { Grid, Button, ButtonBase, Container } from '@material-ui/core/';
 import {Typography} from '@material-ui/core';
-import useStyles from './styles'
+import useStyles from './styles';
+import './answers.css'
 //create aux array in game component? then pass into here as prop?
 const Answers = ({answers, createGame}) => {
     const dispatch = useDispatch();
@@ -52,9 +53,17 @@ const Answers = ({answers, createGame}) => {
                                 className={`${answer[0]}` === "Right" ? classes.rightAnswer : classes.wrongAnswer}
                             >
 
-                                <Typography variant="h1">
-                                    {answer[1]}
-                                </Typography>
+                                <Grid container justifyContent='space-evenly' margin="0px"> 
+                                {
+                                answer[1].map((value, index) => (
+                                        <Grid item key={index}>
+                                            <div className="answerArrayBars" style={{height: (value*2.5) + "vh"}}>
+                                                <Typography variant="h5">{value}</Typography>
+                                            </div>
+                                        </Grid>
+                                    ))
+                                }
+                                </Grid>
                             </ButtonBase>
 
                         </Grid>

@@ -1,12 +1,12 @@
 import {shuffle} from 'd3-array';
 
 function insertionSortHandler(){
-    let arrayToBeSorted = shuffle([1,8,3,9,5,6]);
+    let arrayToBeSorted = shuffle([2,3,5,8,6,7]);
 
     let sortedArrayObject = insertionSort(arrayToBeSorted);
 
     while(sortedArrayObject.swaps < 4 || sortedArrayObject.swaps > 11){
-        arrayToBeSorted = shuffle([1,2,3,4,5,6]);
+        arrayToBeSorted = shuffle([2,3,5,8,6,7]);
         sortedArrayObject = insertionSort(arrayToBeSorted);
     }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Button, Container, Paper, ButtonBase, Grow } from '@material-ui/core/';
+import { Grid, Button, Container, Paper, Grow } from '@material-ui/core/';
 import Answers from './Answers/Answers';
 import Question from './Question/Question';
 import useStyles from './styles';
@@ -81,12 +81,12 @@ const Game = () => {
     )
 
     const ContentBars = () => {
-        
-
         return (
             content.map((value, index) => (
                 <Grid item key={index}>
-                    <div className="contentArrayBars"   style={{height: (value*2) + "vh"}}>{value}</div>
+                    <div className="contentArrayBars"  style={{height: (value*3) + "vh"}}>
+                        <Typography variant="h4">{value}</Typography>
+                    </div>
                 </Grid>
             ))
         );
@@ -98,10 +98,7 @@ const Game = () => {
             (
                 <Grid container>
                     <Paper className={classes.paperQuestion}>
-                        <Grid 
-                        container
-                        justifyContent="space-around"
-                        alignItems="center">
+                        <Grid container justifyContent="space-around" alignItems="center">
                             <Grid item>
                                 <Typography variant="h3">Streak</Typography>
                             </Grid>
@@ -118,17 +115,13 @@ const Game = () => {
                     </Paper>
                     <Paper className={classes.paperContent}>
                         <Container maxWidth="xl" className={classes.contentArrayContainer}>
-                            
-                                <Grid container justifyContent='space-evenly' width= "100px"> 
+                                <Grid container justifyContent='space-between' > 
                                     {(answers.length > 0) ? <ContentBars/> : null}
                                 </Grid>
-                            
                         </Container>
                     </Paper>
-                    <Paper className={classes.paperAnswers} >
-                        <Grid container>
-                            <Answers answers={answers} createGame={createGame}/>
-                        </Grid>
+                    <Paper className={classes.paperAnswers}>
+                        <Answers answers={answers} createGame={createGame}/>
                     </Paper>
                 </Grid>
 

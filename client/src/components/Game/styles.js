@@ -5,6 +5,10 @@ export default makeStyles((theme) => ({
     height: '11vh',
     width: "2000px",
     marginLeft: "0",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   paperAnswers: {
     width: "2000px",
@@ -14,6 +18,10 @@ export default makeStyles((theme) => ({
     width: "2000px",
     margin: '10px 0',
     height: '25vh',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   textContent:{
     color: "blue", 
@@ -21,6 +29,7 @@ export default makeStyles((theme) => ({
   },
   contentArrayContainer: {
     width: "700px",
-
+    position: 'relative',
+    top: "12.5vh"
   }
 }));
