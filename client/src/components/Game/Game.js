@@ -41,7 +41,7 @@ const algorithmInfoArray = [
 ];
 
 const Game = () => {
-    const timeLeft = 3;
+    const timeLeft = 15;
     const [answers, setAnswers] = useState([]);
     const [question, setQuestion] = useState('');
     const [content, setContent] = useState(null);
@@ -53,7 +53,7 @@ const Game = () => {
 
     const classes = useStyles();
     const createGame = () => {
-        setTimer(timeLeft);
+        
         createRandomGame();
         if(!gameStarted) setGameStarted(true);
     };
@@ -63,19 +63,23 @@ const Game = () => {
     const createQuestion = () => {
         switch(questionType) {
             case 0:
+                setTimer(timeLeft);
                 setQuestion("Using " + questionTopic + " sort, what is the state of the array after " + object?.swaps + " swaps.");
                 setContent(object.original);
                 break;
             case 1:
+                setTimer(9);
                 setQuestion("What is the time complexity of the algorithm below?");
                 setContent([questionTopic]);
                 break;
             case 2:
+                setTimer(9);
                 setQuestion("What is the space complexity of the algorithm below?");
                 setContent([questionTopic]);
                 break;
             case 3:
-                setQuestion("Fill in the missing pseudo-code of " + questionTopic + " sort");
+                setTimer(12);
+                setQuestion("Fill in the missing pseudo-code of the algorithm below");
                 setContent([questionTopic]);
                 break;
             default:
@@ -89,7 +93,7 @@ const Game = () => {
         //let topicIndex = Math.floor(Math.random() * 4);
         //let typeIndex = Math.floor(Math.random() * 4);
         let topicIndex = 0;
-        let typeIndex = Math.floor(Math.random() * 3);
+        let typeIndex = Math.floor(Math.random() * 4);
        
         let gameObject = questionHandler(topicIndex, typeIndex);
         
