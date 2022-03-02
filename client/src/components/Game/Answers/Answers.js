@@ -45,7 +45,7 @@ const Answers = ({answers, createGame, questionType}) => {
                     <ButtonBase 
                         onClick={answer[0] ? correctAnswer : wrongAnswer}
                         style={{
-                            width: "80vh",
+                            width: "70vh",
                             height: "20.5vh"
                         }}
                         className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}>

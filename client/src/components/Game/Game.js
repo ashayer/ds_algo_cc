@@ -58,7 +58,7 @@ const Game = () => {
         if(!gameStarted) setGameStarted(true);
     };
     const endGame = () => setGameStarted(false);
-
+//!to generate random psudeo code get character placement of start and end of each line
 
     const createQuestion = () => {
         switch(questionType) {
@@ -90,13 +90,13 @@ const Game = () => {
 
     const createRandomGame = () => {
         let correctIndex = Math.floor(Math.random() * 4);
-        //let topicIndex = Math.floor(Math.random() * 4);
-        //let typeIndex = Math.floor(Math.random() * 4);
-        let topicIndex = 0;
+        let topicIndex = Math.floor(Math.random() * 2);
         let typeIndex = Math.floor(Math.random() * 4);
+        // let topicIndex = 1;
+        // let typeIndex = 0;
        
         let gameObject = questionHandler(topicIndex, typeIndex);
-        
+        console.log(gameObject);
         let answerOptions = [];
         let wrongIndex = 0;
         for (let i = 0; i < 4; i++)
@@ -123,7 +123,6 @@ const Game = () => {
 
     
     const ContentBars = () => {
-        console.log(content);
         return (
             <Grid container justifyContent="space-between" className={classes.contentArrayContainer}>
                 {content?.map((value, index) => (
