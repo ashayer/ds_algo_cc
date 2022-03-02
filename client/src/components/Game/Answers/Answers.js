@@ -6,7 +6,7 @@ import {Typography} from '@material-ui/core';
 import useStyles from './styles';
 import './answers.css'
 //create aux array in game component? then pass into here as prop?
-const Answers = ({answers, createGame}) => {
+const Answers = ({answers, createGame, questionType}) => {
     const dispatch = useDispatch();
     const userInfo = useSelector((state) => state.userReducer);
     const [newPoints, setNewPoints] = useState(userInfo.points);
@@ -19,15 +19,15 @@ const Answers = ({answers, createGame}) => {
         const tempPoints = userInfo.points + updatePointsBy;
         let user = JSON.parse(localStorage.getItem('profile'));
         user.result.points = tempPoints;
-
         localStorage.setItem('profile',JSON.stringify(user));
         setNewPoints(tempPoints);
         createGame();
+
     };
 
     
     const wrongAnswer = () => {
-   
+        createGame();
     };
 
 
@@ -38,22 +38,18 @@ const Answers = ({answers, createGame}) => {
     }, [newPoints, dispatch, userInfo._id]);
 
 
-
-    return (
-            <Grid container align="center" justifyContent="center" direction="row" spacing={2} className={classes.answerGrid}>
-                {
-                    answers.map((answer, index) => (
-                        <Grid item key={index}> 
-                            <ButtonBase 
-                                onClick={`${answer[0]}` === "Right" ? correctAnswer : wrongAnswer}
-                                style={{
-                                    width: 750,
-                                    height: 195
-                                }}
-                                className={`${answer[0]}` === "Right" ? classes.rightAnswer : classes.wrongAnswer}
-                            >
-
-                                <Grid container justifyContent='space-evenly' margin="0px"> 
+    const AnswerBars = () => {
+        return (
+            answers.map((answer, index) => (
+                <Grid item key={index}> 
+                    <ButtonBase 
+                        onClick={answer[0] ? correctAnswer : wrongAnswer}
+                        style={{
+                            width: "80vh",
+                            height: "20.5vh"
+                        }}
+                        className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}>
+                         <Grid container justifyContent='space-evenly' margin="0px"> 
                                 {
                                 answer[1].map((value, index) => (
                                         <Grid item key={index}>
@@ -63,15 +59,80 @@ const Answers = ({answers, createGame}) => {
                                         </Grid>
                                     ))
                                 }
-                                </Grid>
-                            </ButtonBase>
+                        </Grid> 
+                    </ButtonBase>
+                </Grid>
+            ))
+        )
+    };
 
-                        </Grid>
 
-                        
 
-                    ))
-                }
+    const AnswerTime = () => {
+        return (
+            answers.map((answer, index) => (
+                <Grid item key={index}> 
+                    <ButtonBase 
+                        onClick={answer[0] ? correctAnswer : wrongAnswer}
+                        style={{
+                            width: "80vh",
+                            height: "20.5vh"
+                        }}
+                        className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}>
+                    <Typography variant="h1">{answer[1]}</Typography>
+                    </ButtonBase>
+                </Grid>
+            ))
+
+        )
+    }
+
+    const AnswerSpace = () => {
+        return (
+            answers.map((answer, index) => (
+                <Grid item key={index}> 
+                    <ButtonBase 
+                        onClick={answer[0] ? correctAnswer : wrongAnswer}
+                        style={{
+                            width: "80vh",
+                            height: "20.5vh"
+                        }}
+                        className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}>
+                    <Typography variant="h1">{answer[1]}</Typography>
+                    </ButtonBase>
+                </Grid>
+            ))
+
+        )
+    }
+
+    const AnswerCode = () => {
+        return (
+            answers.map((answer, index) => (
+                <Grid item key={index}> 
+                    <ButtonBase 
+                        onClick={answer[0] ? correctAnswer : wrongAnswer}
+                        style={{
+                            width: "80vh",
+                            height: "20.5vh"
+                        }}
+                        className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}>
+                    <Typography variant="h1">{answer[1]}</Typography>
+                    </ButtonBase>
+                </Grid>
+            ))
+
+        )
+    }
+
+
+    return (
+            <Grid container align="center" justifyContent="center" direction="row" spacing={2} className={classes.answerGrid}>
+                    {(questionType === 0) ? <AnswerBars/>: 
+                        (questionType === 1) ? <AnswerTime/>:
+                        (questionType === 2) ? <AnswerSpace/> :
+                        (questionType === 3) ? <AnswerCode/> : null
+                    } 
             </Grid>
 
     );

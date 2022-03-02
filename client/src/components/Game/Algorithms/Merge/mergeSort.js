@@ -1,18 +1,13 @@
 import {shuffle} from 'd3-array';
 
-function insertionSortHandler(){
+function mergeSortHandler(){
     let arrayToBeSorted = shuffle([2,3,5,8,6,7]);
-
-    let sortedArrayObject = insertionSort(arrayToBeSorted);
-
+    let sortedArrayObject = mergeSort(arrayToBeSorted);
     while(sortedArrayObject.swaps < 4 || sortedArrayObject.swaps > 11){
         arrayToBeSorted = shuffle([2,3,5,8,6,7]);
-        sortedArrayObject = insertionSort(arrayToBeSorted);
+        sortedArrayObject = mergeSort(arrayToBeSorted);
     }
-
-    
     let correctSwapNumber = Math.floor(Math.random() * ((sortedArrayObject.swaps+1) - 3) + 3);
-
     let wrongSwaps = []
     for(let i = 0; i < 3; i++) {
         let wrongSwapNumber = Math.floor(Math.random() * ((sortedArrayObject.swaps+1) - 0) + 0);
@@ -23,11 +18,7 @@ function insertionSortHandler(){
     
     }
     let rightAnswer = generateCorrectSwapArray(correctSwapNumber, sortedArrayObject.arrayUnsorted, sortedArrayObject.swaps);
-
     let wrongAnswers = generateWrongSwapArrays(wrongSwaps, sortedArrayObject.arrayUnsorted);
-        
-    
-    
     let answers = {
         right: rightAnswer,
         wrong: wrongAnswers,
@@ -82,18 +73,11 @@ function generateWrongSwapArrays(swapArray, originalArray){
             }
             wrongSwapSorted[i] = swapSorted;
         }
-        
-
-        
     }
-
     return wrongSwapSorted;
 }
 
-
-
-function insertionSort(array){
-
+function mergeSort(array){
     let unSortedArray = array.slice();
     let swapCounter = 0;
     for (let i = 1; i < array.length; i++) {
@@ -117,20 +101,4 @@ function insertionSort(array){
 
 
 
-export default insertionSortHandler;
-
-/*
-
-shuffle array of size 6 of numbers 1-10 no repeats
-https://www.npmjs.com/package/d3-array
-sort using insertion sort and track number of swaps
-if swaps > 3 and < 12 than continue otherwise generate another array and sort again
-generate 1 correctSwaps greater than 3 and less than or equal to max swaps needed to sort entire array
-generate 3 other numbers < || > correctSwaps <= max swaps and >= 0 and != correctIndex
-run insertion sort using correctSwaps and get array
-run insertion sort using wrongSwaps and get 3 arrays 
-store in object and return to game component
-pass to answer component and generate answers based on array values
-
-
-*/
+export default mergeSortHandler;

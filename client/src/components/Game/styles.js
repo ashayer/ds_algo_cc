@@ -9,6 +9,7 @@ export default makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    
   },
   paperAnswers: {
     width: "2000px",
@@ -22,14 +23,17 @@ export default makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    transition: "all 0.25s ease",
   },
   textContent:{
     color: "blue", 
     padding: '0vh',
+    transition: "all 0.25s ease",
   },
   contentArrayContainer: {
     width: "700px",
     position: 'relative',
-    top: "12.5vh"
+    top: "12.5vh",
+    transition: "all 0.25s ease",
   }
 }));
