@@ -19,6 +19,7 @@ const Navbar = () => {
     dispatch(logout());
     dispatch(reset());
     navigate("/");
+    
   };
 
   return (
