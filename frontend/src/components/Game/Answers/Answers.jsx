@@ -59,41 +59,7 @@ const Answers = ({ answers, createGame, questionType}) => {
     ));
   };
 
-  const AnswerTime = () => {
-    return answers.map((answer, index) => (
-      <Grid item key={index}>
-        <ButtonBase
-          onClick={answer[0] ? correctAnswer : wrongAnswer}
-          style={{
-            width: "35vw",
-            height: "20.5vh",
-          }}
-          className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
-        >
-          <Typography variant="h1">{answer[1]}</Typography>
-        </ButtonBase>
-      </Grid>
-    ));
-  };
-
-  const AnswerSpace = () => {
-    return answers.map((answer, index) => (
-      <Grid item key={index}>
-        <ButtonBase
-          onClick={answer[0] ? correctAnswer : wrongAnswer}
-          style={{
-            width:"35vw",
-            height: "20.5vh",
-          }}
-          className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
-        >
-          <Typography variant="h1">{answer[1]}</Typography>
-        </ButtonBase>
-      </Grid>
-    ));
-  };
-
-  const AnswerCode = () => {
+  const AnswerText = () => {
     return answers.map((answer, index) => (
       <Grid item key={index}>
         <ButtonBase
@@ -118,12 +84,8 @@ const Answers = ({ answers, createGame, questionType}) => {
     >
       {questionType === 0 ? (
         <AnswerBars />
-      ) : questionType === 1 ? (
-        <AnswerTime />
-      ) : questionType === 2 ? (
-        <AnswerSpace />
-      ) : questionType === 3 ? (
-        <AnswerCode />
+      ) : (questionType > 0 && questionType < 4) ? (
+        <AnswerText />
       ) : null}
     </Grid>
   );

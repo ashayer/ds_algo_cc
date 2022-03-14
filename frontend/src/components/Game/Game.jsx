@@ -12,7 +12,6 @@ import "./game.css";
 import useStyles from "./styles";
 
 const Game = () => {
-  //! useRef instead of state
   const timeLeft = 1;
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState("");
@@ -68,7 +67,7 @@ const Game = () => {
 
   const createRandomGame = () => {
     let correctIndex = Math.floor(Math.random() * 4);
-    let topicIndex = Math.floor(Math.random() * 2);
+    let topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
     let typeIndex = Math.floor(Math.random() * 4);
 
     let gameObject = questionHandler(topicIndex, typeIndex);
