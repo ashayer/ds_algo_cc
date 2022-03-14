@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 import useStyles from "./styles";
 import "./answers.css";
 //create aux array in game component? then pass into here as prop?
-const Answers = ({ answers, createGame, questionType }) => {
+const Answers = ({ answers, createGame, questionType}) => {
   //const userInfo = useSelector((state) => state.userReducer);
   //const [newPoints, setNewPoints] = useState(userInfo.points);
   const classes = useStyles();
@@ -18,6 +18,7 @@ const Answers = ({ answers, createGame, questionType }) => {
     // localStorage.setItem('profile',JSON.stringify(user));
     // setNewPoints(tempPoints);
     createGame();
+
   };
 
   const wrongAnswer = () => {

@@ -21,6 +21,7 @@ export default makeStyles((theme) => ({
     transition: "all 0.25s ease",
   },
   contentArrayContainer: {
+    width: "55vw",
     position: 'relative',
     top: "12.5vh",
     transition: "all 0.25s ease",
