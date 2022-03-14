@@ -62,9 +62,6 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-export const getUser = asyncHandler(async (req, res) => {
-  res.status(200).json(req.user);
-});
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -72,17 +69,22 @@ const generateToken = (id) => {
   });
 };
 
+//req body is {points: points-value}
+//! add error catches
 export const updatePoints = asyncHandler(async (req, res) => {
+  console.log("Updated points are " + req.body.points);
+  const user = await User.findByIdAndUpdate(req.params.id, {
+    points: req.body.points
+  });
+});
+
+
+export const getPoints = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  console.log("The user current has " + user.points + " points");
+  res.status(200).json(user.points)
   
 })
-
-// export const updatePoints = async (req, res) => {
-// change to req.params.id
-//   const { id } = req.params;
-//   const newPoints = req.body;
-//   const updatedPoints = await User.findByIdAndUpdate(id, newPoints);
-//   res.json(updatedPoints);
-// };
 
 // export const getPoints = async (req, res) => {
 //   const { id } = req.params;

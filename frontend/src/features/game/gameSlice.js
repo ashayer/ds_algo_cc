@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import authService from "./authService";
+import gameService from "./gameService";
 
 const user = JSON.parse(sessionStorage.getItem("user"));
 
@@ -8,14 +8,19 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  message: ""
+  message: "",
 };
 
-export const register = createAsyncThunk(
-  "auth/register",
-  async (user, thunkAPI) => {
+//updatePoints({
+//       userId: user._id,
+//       userPoints: 2554,
+//     })
+export const updatePoints = createAsyncThunk(
+  "game/update",
+  async (userInfo, thunkAPI) => {
+    const { userId, userPoints } = userInfo;
     try {
-      return await authService.register(user);
+      return await gameService.updatePoints(userId, userPoints);
     } catch (error) {
       const message =
         (error.response &&
@@ -29,25 +34,26 @@ export const register = createAsyncThunk(
   }
 );
 
-export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
-  try {
-    return await authService.login(user);
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
+export const getPoints = createAsyncThunk(
+  "game/getPoints",
+  async (userId, thunkAPI) => {
+    try {
+      return await gameService.getPoints(userId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
 
-    return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const logout = createAsyncThunk("auth/logout", async () => {
-  await authService.logout();
-});
-
-export const authSlice = createSlice({
-  name: "auth",
+export const gameSlice = createSlice({
+  name: "game",
   initialState,
   reducers: {
     reset: (state) => {
@@ -59,39 +65,36 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(register.pending, (state) => {
+      .addCase(updatePoints.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(register.fulfilled, (state, action) => {
+      .addCase(updatePoints.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = action.payload;
+        state.user.points = action.payload;
       })
-      .addCase(register.rejected, (state, action) => {
+      .addCase(updatePoints.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
         state.user = null;
       })
-      .addCase(login.pending, (state) => {
+      .addCase(getPoints.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(login.fulfilled, (state, action) => {
+      .addCase(getPoints.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(getPoints.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.user = null;
-      })
-      .addCase(logout.fulfilled, (state) => {
         state.user = null;
       });
   },
 });
 
-export const { reset } = authSlice.actions;
-export default authSlice.reducer;
+export const { reset } = gameSlice.actions;
+export default gameSlice.reducer;
