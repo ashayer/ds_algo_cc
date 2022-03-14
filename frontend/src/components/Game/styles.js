@@ -2,11 +2,9 @@ import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   paperQuestion: {
-    height: '11vh',
+    
     width: "2000px",
-    marginLeft: "0",
     display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     

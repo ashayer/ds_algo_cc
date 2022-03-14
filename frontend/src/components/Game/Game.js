@@ -1,5 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Grid, Button, Container, Paper, Grow } from "@mui/material/";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  TableHead,
+} from "@mui/material";
 import Answers from "./Answers/Answers";
 import Question from "./Question/Question";
 import useStyles from "./styles";
@@ -36,9 +44,8 @@ const algorithmInfoArray = [
   },
 ];
 
-
 const Game = () => {
-  //! useRef instead of state 
+  //! useRef instead of state
   const timeLeft = 15;
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState("");
@@ -48,7 +55,6 @@ const Game = () => {
   const [questionType, setQuestionType] = useState(0);
   const [timer, setTimer] = React.useState(timeLeft);
   const [object, setObject] = useState({});
-  
 
   const classes = useStyles();
   const createGame = () => {
@@ -99,7 +105,7 @@ const Game = () => {
     // let typeIndex = 0;
 
     let gameObject = questionHandler(topicIndex, typeIndex);
-    
+
     let answerOptions = [];
     let wrongIndex = 0;
     for (let i = 0; i < 4; i++) {
@@ -171,12 +177,32 @@ const Game = () => {
   return gameStarted ? (
     <Grow in>
       <Grid container>
-
         <Paper className={classes.paperQuestion}>
           <Grid container justifyContent="space-around" alignItems="center">
-          <Grid item>
-            <Typography variant="h3">Streak</Typography>
-          </Grid>
+            <Grid item>
+              <TableContainer>
+                <Table>
+                  <TableBody>
+                    <TableRow >
+                      <TableCell align="left">Response Time:</TableCell>
+                      <TableCell align="left">test</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="left">Streak:</TableCell>
+                      <TableCell align="left">test</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="left">Points:</TableCell>
+                      <TableCell align="left">test</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="left">Level:</TableCell>
+                      <TableCell align="left">test</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
             <Grid item>
               <Question answers={answers} question={question} />
             </Grid>
@@ -213,12 +239,12 @@ const Game = () => {
       </Grid>
     </Grow>
   ) : (
-      <>
+    <>
       <Navbar />
       <Button variant="contained" onClick={createGame}>
         START GAME
       </Button>
-      </>
+    </>
   );
 };
 

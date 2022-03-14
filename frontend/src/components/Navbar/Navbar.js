@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 import useStyles from "./styles";
 import { Link } from "react-router-dom";
@@ -8,7 +8,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import { logout, reset } from "../../features/auth/authSlice";
 
 const Navbar = () => {
-  const [points, setPoints] = useState(0);
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
