@@ -114,9 +114,6 @@ const Answers = ({ answers, createGame, questionType }) => {
       container
       align="center"
       justifyContent="center"
-      direction="row"
-      spacing={2}
-      className={classes.answerGrid}
     >
       {questionType === 0 ? (
         <AnswerBars />

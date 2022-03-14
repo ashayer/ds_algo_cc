@@ -6,7 +6,6 @@ import {
   TableCell,
   TableContainer,
   TableRow,
-  TableHead,
 } from "@mui/material";
 import Answers from "./Answers/Answers";
 import Question from "./Question/Question";
@@ -46,7 +45,7 @@ const algorithmInfoArray = [
 
 const Game = () => {
   //! useRef instead of state
-  const timeLeft = 15;
+  const timeLeft = 150;
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState("");
   const [content, setContent] = useState(null);
@@ -131,7 +130,6 @@ const Game = () => {
     return (
       <Grid
         container
-        justifyContent="space-between"
         className={classes.contentArrayContainer}
       >
         {content?.map((value, index) => (
@@ -183,7 +181,7 @@ const Game = () => {
               <TableContainer>
                 <Table>
                   <TableBody>
-                    <TableRow >
+                    <TableRow>
                       <TableCell align="left">Response Time:</TableCell>
                       <TableCell align="left">test</TableCell>
                     </TableRow>

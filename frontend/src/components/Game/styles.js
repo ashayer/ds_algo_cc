@@ -2,16 +2,8 @@ import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   paperQuestion: {
-    
     width: "2000px",
-    display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    
-  },
-  paperAnswers: {
-    width: "2000px",
-    height: '45vh',
   },
   paperContent: {
     width: "2000px",
@@ -29,9 +21,9 @@ export default makeStyles((theme) => ({
     transition: "all 0.25s ease",
   },
   contentArrayContainer: {
-    width: "700px",
     position: 'relative',
     top: "12.5vh",
     transition: "all 0.25s ease",
+    justifyContent: 'space-evenly'
   }
 }));
