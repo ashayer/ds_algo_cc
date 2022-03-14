@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid, ButtonBase } from "@material-ui/core/";
-import { Typography } from "@material-ui/core";
+import { Grid, ButtonBase } from "@mui/material/";
+import { Typography } from "@mui/material";
 import useStyles from "./styles";
 import "./answers.css";
 //create aux array in game component? then pass into here as prop?

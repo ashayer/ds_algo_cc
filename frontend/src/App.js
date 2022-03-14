@@ -1,6 +1,5 @@
 import React from "react";
-import { Container } from "@material-ui/core";
-import Navbar from "./components/Navbar/Navbar";
+import { Container } from "@mui/material";
 import Home from "./components/Home/Home";
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Register from "./components/Auth/Register";
@@ -11,7 +10,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Container maxWidth="xl">
-        <Navbar />
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={!user ? <Register /> : <Home />} />

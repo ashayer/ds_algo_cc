@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Grid, Button, Container, Paper, Grow } from "@material-ui/core/";
+import { Grid, Button, Container, Paper, Grow } from "@mui/material/";
 import Answers from "./Answers/Answers";
 import Question from "./Question/Question";
 import useStyles from "./styles";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import questionHandler from "./Algorithms/handler";
+import Navbar from "../Navbar/Navbar";
 import "./game.css";
 
 const algorithmInfoArray = [
@@ -35,6 +36,7 @@ const algorithmInfoArray = [
   },
 ];
 
+
 const Game = () => {
   //! useRef instead of state 
   const timeLeft = 15;
@@ -46,6 +48,7 @@ const Game = () => {
   const [questionType, setQuestionType] = useState(0);
   const [timer, setTimer] = React.useState(timeLeft);
   const [object, setObject] = useState({});
+  
 
   const classes = useStyles();
   const createGame = () => {
@@ -96,7 +99,7 @@ const Game = () => {
     // let typeIndex = 0;
 
     let gameObject = questionHandler(topicIndex, typeIndex);
-    console.log(gameObject);
+    
     let answerOptions = [];
     let wrongIndex = 0;
     for (let i = 0; i < 4; i++) {
@@ -168,11 +171,12 @@ const Game = () => {
   return gameStarted ? (
     <Grow in>
       <Grid container>
+
         <Paper className={classes.paperQuestion}>
           <Grid container justifyContent="space-around" alignItems="center">
-            <Grid item>
-              <Typography variant="h3">Streak</Typography>
-            </Grid>
+          <Grid item>
+            <Typography variant="h3">Streak</Typography>
+          </Grid>
             <Grid item>
               <Question answers={answers} question={question} />
             </Grid>
@@ -209,9 +213,12 @@ const Game = () => {
       </Grid>
     </Grow>
   ) : (
-    <Button variant="contained" onClick={createGame}>
-      START GAME
-    </Button>
+      <>
+      <Navbar />
+      <Button variant="contained" onClick={createGame}>
+        START GAME
+      </Button>
+      </>
   );
 };
 

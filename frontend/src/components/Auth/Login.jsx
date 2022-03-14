@@ -6,7 +6,7 @@ import {
   Typography,
   Container,
   CircularProgress,
-} from "@material-ui/core";
+} from "@mui/material";
 import useStyles from "./styles";
 import Input from "./Input";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,6 @@ import { login, reset } from "../../features/auth/authSlice";
 
 const Auth = () => {
   const classes = useStyles();
-  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -55,8 +54,6 @@ const Auth = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleShowPassword = () =>
-    setShowPassword((prevShowPassword) => !prevShowPassword);
 
   if (isLoading) {
     return <CircularProgress />;
@@ -77,8 +74,7 @@ const Auth = () => {
               name="password"
               label="Password"
               handleChange={handleChange}
-              type={showPassword ? "text" : "password"}
-              handleShowPassword={handleShowPassword}
+              type="password"
             />
           </Grid>
           <Button
@@ -89,6 +85,15 @@ const Auth = () => {
             className={classes.submit}
           >
             Sign In
+          </Button>
+          <Button
+            type="button"
+            variant="contained"
+            fullWidth
+            onClick = {() => {navigate('/register')}}
+            className={classes.submit}
+          >
+            Register Account
           </Button>
         </form>
       </Paper>

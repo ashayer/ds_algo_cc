@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react";
-import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 import useStyles from "./styles";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Home from "@material-ui/icons/Home";
+import HomeIcon from '@mui/icons-material/Home';
 import { logout, reset } from "../../features/auth/authSlice";
 
 const Navbar = () => {
@@ -31,13 +31,13 @@ const Navbar = () => {
           className={classes.heading}
           variant="h2"
         >
-          <Home fontSize="large" />
+          <HomeIcon fontSize="large" />
         </Typography>
       </div>
       <Toolbar className={classes.toolbar}>
         {user || localUser ? (
           <div className={classes.profile}>
-            <Typography variant="h4" className={classes.userName}>{points}</Typography>
+            <Typography variant="h4" className={classes.userName}></Typography>
             <Typography variant="h4" className={classes.userName}></Typography>
             <Typography className={classes.userName} variant="h4"></Typography>
             <Button
