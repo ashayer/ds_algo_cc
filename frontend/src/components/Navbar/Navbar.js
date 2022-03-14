@@ -13,13 +13,13 @@ const Navbar = () => {
   const [level, setLevel] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const localUser = JSON.parse(sessionStorage.getItem("user"));
   const {user} = useSelector((state) => state.auth);
-  console.log(user);
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    navigate("/");
-    
+
+    navigate('/');
   };
 
   return (
@@ -37,7 +37,7 @@ const Navbar = () => {
         </Typography>
       </div>
       <Toolbar className={classes.toolbar}>
-        {user ? (
+        {user || localUser ? (
           <div className={classes.profile}>
             <Typography variant="h4" className={classes.userName}></Typography>
             <Typography variant="h4" className={classes.userName}></Typography>

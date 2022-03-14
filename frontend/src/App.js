@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 const App = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem("user"));
 
   return (
     <BrowserRouter>
