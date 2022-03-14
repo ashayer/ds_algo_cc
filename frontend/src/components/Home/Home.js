@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Grow, Typography } from "@material-ui/core";
-import useStyles from "./styles";
 import Game from "../Game/Game";
 import { useSelector } from "react-redux";
 const Home = () => {

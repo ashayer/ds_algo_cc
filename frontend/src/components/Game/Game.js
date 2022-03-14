@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Grid, Button, Container, Paper, Grow, Zoom } from "@material-ui/core/";
+import { Grid, Button, Container, Paper, Grow } from "@material-ui/core/";
 import Answers from "./Answers/Answers";
 import Question from "./Question/Question";
 import useStyles from "./styles";
 import { Typography } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import questionHandler from "./Algorithms/handler";
 import "./game.css";

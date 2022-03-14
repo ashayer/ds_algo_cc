@@ -8,15 +8,6 @@ function selectionSortHandler(){
         arrayToBeSorted = shuffle([2,3,5,8,6,7]);
         sortedArrayObject = selectionSort(arrayToBeSorted);
     }
-    let test = [];
-
-    // for(let i =0; i< 100000; i++){
-    //     let arrayToBeSorted = shuffle([2,3,5,8,6,7]);
-    //     let sortedArrayObject = selectionSort(arrayToBeSorted);
-    //     if(!test[sortedArrayObject.swaps]) test[sortedArrayObject.swaps] = 1;
-    //     test[sortedArrayObject.swaps] += 1; 
-    // }
-    //console.log(test);
 
     let correctSwapNumber = Math.floor(Math.random() * ((sortedArrayObject.swaps+1) - 1) + 1);
     let wrongSwaps = []
@@ -124,6 +115,16 @@ function selectionSort(array){
     return sortedArrayObject;
 }
 
+// function selectionTest(){
+//     let test = [];
 
+//     for(let i =0; i< 100000; i++){
+//         let arrayToBeSorted = shuffle([2,3,5,8,6,7]);
+//         let sortedArrayObject = selectionSort(arrayToBeSorted);
+//         if(!test[sortedArrayObject.swaps]) test[sortedArrayObject.swaps] = 1;
+//         test[sortedArrayObject.swaps] += 1; 
+//     }
+//     console.log(test);
+// }
 
 export default selectionSortHandler;

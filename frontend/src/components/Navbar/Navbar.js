@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
+import React from "react";
+import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
 import useStyles from "./styles";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import Home from "@material-ui/icons/Home";
 import {logout, reset} from "../../features/auth/authSlice";
 // import {getPoints} from '../../actions/userActions';
 
 const Navbar = () => {
   const classes = useStyles();
-  const [level, setLevel] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const localUser = JSON.parse(sessionStorage.getItem("user"));

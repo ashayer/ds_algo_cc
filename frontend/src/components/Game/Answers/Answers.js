@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Grid, Button, ButtonBase, Container } from "@material-ui/core/";
+import React from "react";
+import { Grid, ButtonBase } from "@material-ui/core/";
 import { Typography } from "@material-ui/core";
 import useStyles from "./styles";
 import "./answers.css";
 //create aux array in game component? then pass into here as prop?
 const Answers = ({ answers, createGame, questionType }) => {
-  const dispatch = useDispatch();
   //const userInfo = useSelector((state) => state.userReducer);
   //const [newPoints, setNewPoints] = useState(userInfo.points);
   const classes = useStyles();

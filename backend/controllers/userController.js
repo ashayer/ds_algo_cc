@@ -72,6 +72,10 @@ const generateToken = (id) => {
   });
 };
 
+export const updatePoints = asyncHandler(async (req, res) => {
+  
+})
+
 // export const updatePoints = async (req, res) => {
 // change to req.params.id
 //   const { id } = req.params;

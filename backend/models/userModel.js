@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//model for user document in database
 const userSchema = mongoose.Schema(
   {
     name: { type: String, required: true },

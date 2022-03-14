@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 
-import { Grid, Button, Typography, Card} from '@material-ui/core/';
+
+import { Typography} from '@material-ui/core/';
 
 
 const Question = ({answers, question}) => {

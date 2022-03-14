@@ -2,6 +2,8 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 
+
+//prevents unauthorized access to users without a valid token
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 
