@@ -31,7 +31,7 @@ const Game = () => {
   const [object, setObject] = useState({}); //! change name
   const classes = useStyles();
   const dispatch = useDispatch();
-  const createGame = () => {
+  const startGame = () => {
     createRandomGame();
     if (!gameStarted) {
       localUser.numCorrect = 0;
@@ -43,7 +43,7 @@ const Game = () => {
     }
   };
 
-  const createGameOnTimeEnd = () => {
+  const startGameOnTimeEnd = () => {
     localUser.numWrong = localUser.numWrong + 1;
     localUser.streak = 0;
     sessionStorage.setItem("user", JSON.stringify(localUser));
@@ -51,23 +51,51 @@ const Game = () => {
   };
 
   const endGame = () => {
-    //!send points to server from sessionStorage
-    localUser.numCorrect = 0;
-    localUser.numWrong = 0;
-    localUser.streak = 0;
-    sessionStorage.setItem("user", JSON.stringify(localUser));
+
+    const totalQuestions = localUser.numCorrect + localUser.numWrong;
+    const averageResponseTime = ((localUser.responseTime / totalQuestions));
+    
 
     dispatch(
       updatePoints({
         userId: localUser._id,
         userPoints: localUser.points,
-        userResponseTime: localUser.responseTime,
+        userResponseTime: averageResponseTime,
       })
     );
+
+    localUser.numCorrect = 0;
+    localUser.numWrong = 0;
+    localUser.streak = 0;
+    sessionStorage.setItem("user", JSON.stringify(localUser));
 
     setGameStarted(false);
   };
 
+  const createRandomGame = () => {
+    let correctIndex = Math.floor(Math.random() * 4);
+    let topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
+    let typeIndex = Math.floor(Math.random() * 4);
+
+    let gameObject = questionHandler(topicIndex, typeIndex);
+
+    let answerOptions = [];
+    let wrongIndex = 0;
+    for (let i = 0; i < 4; i++) {
+      if (i === correctIndex) {
+        answerOptions[i] = [true, gameObject.right];
+      } else {
+        answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
+        wrongIndex += 1;
+      }
+    }
+
+    setQuestionTopic(algorithmInfoArray[topicIndex].name);
+    setQuestionType(typeIndex);
+    setAnswers(answerOptions);
+    setObject(gameObject);
+  };
+  
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
@@ -101,29 +129,7 @@ const Game = () => {
     }
   }, [object.original, object?.swaps, questionTopic, questionType]);
 
-  const createRandomGame = () => {
-    let correctIndex = Math.floor(Math.random() * 4);
-    let topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
-    let typeIndex = Math.floor(Math.random() * 4);
 
-    let gameObject = questionHandler(topicIndex, typeIndex);
-
-    let answerOptions = [];
-    let wrongIndex = 0;
-    for (let i = 0; i < 4; i++) {
-      if (i === correctIndex) {
-        answerOptions[i] = [true, gameObject.right];
-      } else {
-        answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
-        wrongIndex += 1;
-      }
-    }
-
-    setQuestionTopic(algorithmInfoArray[topicIndex].name);
-    setQuestionType(typeIndex);
-    setAnswers(answerOptions);
-    setObject(gameObject);
-  };
 
   useEffect(() => {
     createQuestion();
@@ -137,7 +143,7 @@ const Game = () => {
       rotation="counterclockwise"
       size={80}
       trailStrokeWidth="5"
-      onComplete={createGameOnTimeEnd}
+      onComplete={startGameOnTimeEnd}
     >
       {({ remainingTime }) => remainingTime + "s"}
     </CountdownCircleTimer>
@@ -178,7 +184,7 @@ const Game = () => {
         <Paper className={classes.paperAnswers}>
           <Answers
             answers={answers}
-            createGame={createGame}
+            startGame={startGame}
             questionType={questionType}
             questionStartTime={questionStartTime}
           />
@@ -188,7 +194,7 @@ const Game = () => {
   ) : (
     <>
       <Navbar />
-      <Button variant="contained" onClick={createGame}>
+      <Button variant="contained" onClick={startGame}>
         START GAME
       </Button>
     </>

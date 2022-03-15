@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 import useStyles from "./styles";
 import "./answers.css";
 
-const Answers = ({ answers, createGame, questionType, questionStartTime }) => {
+const Answers = ({ answers, startGame, questionType, questionStartTime }) => {
   const classes = useStyles();
 
   const correctAnswer = () => {
@@ -20,7 +20,7 @@ const Answers = ({ answers, createGame, questionType, questionStartTime }) => {
     localUser.responseTime = localUser.responseTime + calculatedResponseTime;
     sessionStorage.setItem("user", JSON.stringify(localUser));
 
-    createGame();
+    startGame();
   };
 
   const wrongAnswer = () => {
@@ -34,7 +34,7 @@ const Answers = ({ answers, createGame, questionType, questionStartTime }) => {
 
     sessionStorage.setItem("user", JSON.stringify(localUser));
 
-    createGame();
+    startGame();
   };
 
   const AnswerBars = () => {

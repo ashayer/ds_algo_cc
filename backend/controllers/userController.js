@@ -82,7 +82,7 @@ const generateToken = (id) => {
   });
 };
 
-//req body is {points: points-value}
+//req body is {points: points, responseTime: time}
 //! add error catches
 export const updatePoints = asyncHandler(async (req, res) => {
   const user = await User.findByIdAndUpdate(req.params.id, {
@@ -99,13 +99,3 @@ export const getPoints = asyncHandler(async (req, res) => {
   
 })
 
-// export const getPoints = async (req, res) => {
-//   const { id } = req.params;
-
-//   try {
-//     const points = await User.findById(id);
-//     res.status(200).json(points);
-//   } catch (error) {
-//     res.status(404).json({ message: error.message });
-//   }
-// };
