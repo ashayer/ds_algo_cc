@@ -16,6 +16,9 @@ import { useDispatch } from "react-redux";
 
 const Game = () => {
   const timeLeft = 10;
+
+  let questionStartTime = new Date();
+
   let localUser = JSON.parse(sessionStorage.getItem("user"));
 
   const [answers, setAnswers] = useState([]);
@@ -39,6 +42,14 @@ const Game = () => {
       setGameStarted(true);
     }
   };
+
+  const createGameOnTimeEnd = () => {
+    localUser.numWrong = localUser.numWrong + 1;
+    localUser.streak = 0;
+    sessionStorage.setItem("user", JSON.stringify(localUser));
+    createRandomGame();
+  };
+
   const endGame = () => {
     //!send points to server from sessionStorage
     localUser.numCorrect = 0;
@@ -126,7 +137,7 @@ const Game = () => {
       rotation="counterclockwise"
       size={80}
       trailStrokeWidth="5"
-      onComplete={createGame}
+      onComplete={createGameOnTimeEnd}
     >
       {({ remainingTime }) => remainingTime + "s"}
     </CountdownCircleTimer>
@@ -169,6 +180,7 @@ const Game = () => {
             answers={answers}
             createGame={createGame}
             questionType={questionType}
+            questionStartTime={questionStartTime}
           />
         </Paper>
       </Grid>

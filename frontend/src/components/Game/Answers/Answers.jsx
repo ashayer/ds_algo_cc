@@ -4,26 +4,36 @@ import { Typography } from "@mui/material";
 import useStyles from "./styles";
 import "./answers.css";
 
-const Answers = ({ answers, createGame, questionType}) => {
+const Answers = ({ answers, createGame, questionType, questionStartTime }) => {
   const classes = useStyles();
 
-  
   const correctAnswer = () => {
+    let questionEndTime = new Date();
+
+    let calculatedResponseTime = questionEndTime - questionStartTime;
+
     const updatePointsBy = Math.floor(Math.random() * 100);
-    let localUser = JSON.parse(sessionStorage.getItem('user'));
+    let localUser = JSON.parse(sessionStorage.getItem("user"));
     localUser.points = localUser.points + updatePointsBy;
     localUser.numCorrect = localUser.numCorrect + 1;
     localUser.streak = localUser.streak + 1;
-    sessionStorage.setItem('user',JSON.stringify(localUser));
+    localUser.responseTime = localUser.responseTime + calculatedResponseTime;
+    sessionStorage.setItem("user", JSON.stringify(localUser));
+
     createGame();
-    
   };
 
   const wrongAnswer = () => {
-    let localUser = JSON.parse(sessionStorage.getItem('user'));
+    let questionEndTime = new Date();
+
+    let calculatedResponseTime = questionEndTime - questionStartTime;
+    let localUser = JSON.parse(sessionStorage.getItem("user"));
     localUser.numWrong = localUser.numWrong + 1;
     localUser.streak = 0;
-    sessionStorage.setItem('user',JSON.stringify(localUser));
+    localUser.responseTime = localUser.responseTime + calculatedResponseTime;
+
+    sessionStorage.setItem("user", JSON.stringify(localUser));
+
     createGame();
   };
 
@@ -73,14 +83,10 @@ const Answers = ({ answers, createGame, questionType}) => {
   };
 
   return (
-    <Grid
-      container
-      align="center"
-      justifyContent="center"
-    >
+    <Grid container align="center" justifyContent="center">
       {questionType === 0 ? (
         <AnswerBars />
-      ) : (questionType > 0 && questionType < 4) ? (
+      ) : questionType > 0 && questionType < 4 ? (
         <AnswerText />
       ) : null}
     </Grid>
