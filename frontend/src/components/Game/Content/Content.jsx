@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material/";
+import { Grid, Typography, Container } from "@mui/material/";
 import useStyles from "./styles";
 
 const Content = ({ content, questionTopic, questionType }) => {
@@ -25,10 +25,21 @@ const Content = ({ content, questionTopic, questionType }) => {
     return <Typography variant="h1">{questionTopic}</Typography>;
   };
 
+  const ContentCode = () => {
+    console.log({content});
+    return (
+      <Container className={classes.codeContainer}>
+              <Typography variant="body1" style={{ whiteSpace: "break-spaces"  }}>{content}</Typography>
+      </Container>
+    )
+  }
+
   return questionType === 0 ? (
     <ContentBars />
-  ) : questionType > 0 && questionType < 4 ? (
+  ) : questionType > 0 && questionType < 3 ? (
     <ContentText />
+  ) : questionType === 3  ? (
+    <ContentCode/>
   ) : null;
 };
 

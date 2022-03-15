@@ -7,5 +7,8 @@ export default makeStyles((theme) => ({
     top: "12.5vh",
     transition: "all 0.25s ease",
     justifyContent: 'space-evenly'
+  },
+  codeContainer: {
+    width: "20vw",
   }
 }));

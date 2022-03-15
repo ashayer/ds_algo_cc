@@ -72,14 +72,15 @@ const Game = () => {
 
   const createRandomGame = () => {
     let correctIndex = Math.floor(Math.random() * 4);
-    let topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
-    let typeIndex = Math.floor(Math.random() * 4);
-
-    while (questionTopic === algorithmInfoArray[topicIndex].name) {
-      topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
-    }
+    //let typeIndex = Math.floor(Math.random() * 4);
+    // let topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
+    // while (questionTopic === algorithmInfoArray[topicIndex].name) {
+    //   topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
+    // }
+    let topicIndex = 0;
+    let typeIndex = 3;
     let gameObject = questionHandler(topicIndex, typeIndex);
-
+    console.log(gameObject);
     let answerOptions = [];
     let wrongIndex = 0;
     for (let i = 0; i < 4; i++) {
@@ -121,8 +122,8 @@ const Game = () => {
         break;
       case 3:
         setTimer(timeLeft);
-        setQuestion("Fill in the missing pseudo-code of the algorithm below");
-        setContent([questionTopic]);
+        setQuestion("Fill in the missing pseudo-code of " + questionTopic + " sort");
+        setContent(object.original);
         break;
       default:
         console.log("Something went wrong");
