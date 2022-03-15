@@ -18,9 +18,9 @@ const initialState = {
 export const updatePoints = createAsyncThunk(
   "auth/update",
   async (userInfo, thunkAPI) => {
-    const { userId, userPoints } = userInfo;
+    const { userId, userPoints, userResponseTime } = userInfo;
     try {
-      return await gameService.updatePoints(userId, userPoints);
+      return await gameService.updatePoints(userId, userPoints, userResponseTime);
     } catch (error) {
       const message =
         (error.response &&

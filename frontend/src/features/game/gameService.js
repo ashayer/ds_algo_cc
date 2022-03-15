@@ -2,10 +2,11 @@ import axios from "axios";
 
 const API_URL = "/api/users/";
 
-const updatePoints = async (userId, userPoints) => {
+const updatePoints = async (userId, userPoints, userResponseTime) => {
 
     const response = await axios.patch(API_URL + "user/" + userId, {
     points: userPoints,
+    responseTime: userResponseTime,
   });
 
   return response.data;

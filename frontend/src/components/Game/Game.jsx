@@ -55,13 +55,13 @@ const Game = () => {
     localUser.numCorrect = 0;
     localUser.numWrong = 0;
     localUser.streak = 0;
-    localUser.responseTime = 0;
     sessionStorage.setItem("user", JSON.stringify(localUser));
 
     dispatch(
       updatePoints({
         userId: localUser._id,
         userPoints: localUser.points,
+        userResponseTime: localUser.responseTime,
       })
     );
 
