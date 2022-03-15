@@ -10,12 +10,14 @@ import Navbar from "../Navbar/Navbar";
 import Content from "./Content/Content";
 import "./game.css";
 import useStyles from "./styles";
+import { updatePoints } from "../../features/game/gameSlice";
+import { useDispatch } from "react-redux";
 //!to generate random psudeo code get character placement of start and end of each line
 
 const Game = () => {
   const timeLeft = 10;
-  let localUser = JSON.parse(sessionStorage.getItem('user'));
-    
+  let localUser = JSON.parse(sessionStorage.getItem("user"));
+
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState("");
   const [content, setContent] = useState(null);
@@ -23,14 +25,35 @@ const Game = () => {
   const [questionTopic, setQuestionTopic] = useState("");
   const [questionType, setQuestionType] = useState(0);
   const [timer, setTimer] = useState(timeLeft);
-  const [object, setObject] = useState({}); //! change name 
+  const [object, setObject] = useState({}); //! change name
   const classes = useStyles();
+  const dispatch = useDispatch();
   const createGame = () => {
     createRandomGame();
-    if (!gameStarted) setGameStarted(true);
+    if (!gameStarted) {
+      localUser.numCorrect = 0;
+      localUser.numWrong = 0;
+      localUser.streak = 0;
+      localUser.responseTime = 0;
+      sessionStorage.setItem("user", JSON.stringify(localUser));
+      setGameStarted(true);
+    }
   };
   const endGame = () => {
     //!send points to server from sessionStorage
+    localUser.numCorrect = 0;
+    localUser.numWrong = 0;
+    localUser.streak = 0;
+    localUser.responseTime = 0;
+    sessionStorage.setItem("user", JSON.stringify(localUser));
+
+    dispatch(
+      updatePoints({
+        userId: localUser._id,
+        userPoints: localUser.points,
+      })
+    );
+
     setGameStarted(false);
   };
 
@@ -115,7 +138,7 @@ const Game = () => {
         <Paper className={classes.paperQuestion}>
           <Grid container justifyContent="space-around" alignItems="center">
             <Grid item>
-              <UserStatsTable localUser={localUser}/>
+              <UserStatsTable localUser={localUser} />
             </Grid>
             <Grid item>
               <Question answers={answers} question={question} />

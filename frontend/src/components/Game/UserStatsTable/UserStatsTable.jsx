@@ -15,7 +15,7 @@ const UserStatsTable = ({localUser}) => {
           </TableRow>
           <TableRow>
             <TableCell>Total Points:</TableCell>
-            <TableCell>{localUser.points}</TableCell>.
+            <TableCell>{localUser.points}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Right:</TableCell>

@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React from "react";
 import { Grid, ButtonBase } from "@mui/material/";
 import { Typography } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./styles";
 import "./answers.css";
-//create aux array in game component? then pass into here as prop?
+
 const Answers = ({ answers, createGame, questionType}) => {
   const classes = useStyles();
+
+  
   const correctAnswer = () => {
     const updatePointsBy = Math.floor(Math.random() * 100);
     let localUser = JSON.parse(sessionStorage.getItem('user'));
@@ -25,12 +26,6 @@ const Answers = ({ answers, createGame, questionType}) => {
     sessionStorage.setItem('user',JSON.stringify(localUser));
     createGame();
   };
-
-  // useEffect(() => {
-
-  //dispatch(updatePoints(userInfo._id, {points: newPoints}));
-
-  // }, [newPoints, dispatch, userInfo._id]);
 
   const AnswerBars = () => {
     return answers.map((answer, index) => (
