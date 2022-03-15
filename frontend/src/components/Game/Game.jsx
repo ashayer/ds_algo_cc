@@ -28,7 +28,7 @@ const Game = () => {
   const [questionTopic, setQuestionTopic] = useState("");
   const [questionType, setQuestionType] = useState(0);
   const [timer, setTimer] = useState(timeLeft);
-  const [object, setObject] = useState({}); //! change name
+  const [object, setObject] = useState({}); //! change name to something more descriptive
   const classes = useStyles();
   const dispatch = useDispatch();
   const startGame = () => {
@@ -51,10 +51,8 @@ const Game = () => {
   };
 
   const endGame = () => {
-
     const totalQuestions = localUser.numCorrect + localUser.numWrong;
-    const averageResponseTime = ((localUser.responseTime / totalQuestions));
-    
+    const averageResponseTime = localUser.responseTime / totalQuestions;
 
     dispatch(
       updatePoints({
@@ -77,6 +75,9 @@ const Game = () => {
     let topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
     let typeIndex = Math.floor(Math.random() * 4);
 
+    while (questionTopic === algorithmInfoArray[topicIndex].name) {
+      topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
+    }
     let gameObject = questionHandler(topicIndex, typeIndex);
 
     let answerOptions = [];
@@ -89,13 +90,12 @@ const Game = () => {
         wrongIndex += 1;
       }
     }
-
     setQuestionTopic(algorithmInfoArray[topicIndex].name);
     setQuestionType(typeIndex);
     setAnswers(answerOptions);
     setObject(gameObject);
   };
-  
+
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
@@ -128,8 +128,6 @@ const Game = () => {
         console.log("Something went wrong");
     }
   }, [object.original, object?.swaps, questionTopic, questionType]);
-
-
 
   useEffect(() => {
     createQuestion();
