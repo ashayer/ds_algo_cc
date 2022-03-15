@@ -5,7 +5,8 @@ import User from "../models/userModel.js";
 import mongoose from "mongoose";
 
 export const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, points } = req.body;
+  const { name, email, password } = req.body;
+  console.log(req.body);
   if (!name || !email || !password) {
     res.status(400);
     throw new Error("Missing field");
@@ -27,6 +28,10 @@ export const registerUser = asyncHandler(async (req, res) => {
     email,
     password: hashedPassword,
     points: 0,
+    responseTime: 0,
+    streak: 0, 
+    numCorrect: 0, 
+    numWrong: 0
   });
 
   if (user) {
@@ -35,6 +40,10 @@ export const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       points: user.points,
+      responseTime: user.responseTime,
+      streak: user.streak,
+      numCorrect: user.numCorrect, 
+      numWrong: user.numWrong,
       token: generateToken(user._id),
     });
   } else {
@@ -54,6 +63,10 @@ export const loginUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       points: user.points,
+      responseTime: user.responseTime,
+      streak: user.streak,
+      numCorrect: user.numCorrect, 
+      numWrong: user.numWrong,
       token: generateToken(user._id),
     });
   } else {

@@ -8,6 +8,11 @@ const userSchema = mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     points: { type: Number, required: true },
+    responseTime: { type: Number, required: true},
+    streak: { type: Number, required: true},
+    numCorrect: { type: Number, required: true},
+    numWrong: { type: Number, required: true}
+    
   },
   {
     timestamps: true,

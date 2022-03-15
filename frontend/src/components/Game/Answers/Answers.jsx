@@ -1,27 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import { Grid, ButtonBase } from "@mui/material/";
 import { Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./styles";
 import "./answers.css";
 //create aux array in game component? then pass into here as prop?
 const Answers = ({ answers, createGame, questionType}) => {
-  //const userInfo = useSelector((state) => state.userReducer);
-  //const [newPoints, setNewPoints] = useState(userInfo.points);
   const classes = useStyles();
-
   const correctAnswer = () => {
-    // let randomPoints = Math.floor(Math.random() * 100);
-    // const updatePointsBy = randomPoints;
-    // const tempPoints = userInfo.points + updatePointsBy;
-    // let user = JSON.parse(localStorage.getItem('profile'));
-    // user.result.points = tempPoints;
-    // localStorage.setItem('profile',JSON.stringify(user));
-    // setNewPoints(tempPoints);
+    const updatePointsBy = Math.floor(Math.random() * 100);
+    let localUser = JSON.parse(sessionStorage.getItem('user'));
+    localUser.points = localUser.points + updatePointsBy;
+    localUser.numCorrect = localUser.numCorrect + 1;
+    localUser.streak = localUser.streak + 1;
+    sessionStorage.setItem('user',JSON.stringify(localUser));
     createGame();
-
+    
   };
 
   const wrongAnswer = () => {
+    let localUser = JSON.parse(sessionStorage.getItem('user'));
+    localUser.numWrong = localUser.numWrong + 1;
+    localUser.streak = 0;
+    sessionStorage.setItem('user',JSON.stringify(localUser));
     createGame();
   };
 

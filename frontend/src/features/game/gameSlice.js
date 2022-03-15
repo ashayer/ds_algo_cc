@@ -16,7 +16,7 @@ const initialState = {
 //       userPoints: 2554,
 //     })
 export const updatePoints = createAsyncThunk(
-  "game/update",
+  "auth/update",
   async (userInfo, thunkAPI) => {
     const { userId, userPoints } = userInfo;
     try {
@@ -35,7 +35,7 @@ export const updatePoints = createAsyncThunk(
 );
 
 export const getPoints = createAsyncThunk(
-  "game/getPoints",
+  "auth/getPoints",
   async (userId, thunkAPI) => {
     try {
       return await gameService.getPoints(userId);
@@ -53,7 +53,7 @@ export const getPoints = createAsyncThunk(
 );
 
 export const gameSlice = createSlice({
-  name: "game",
+  name: "auth",
   initialState,
   reducers: {
     reset: (state) => {

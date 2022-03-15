@@ -3,16 +3,19 @@ import { Grid, Button, Container, Paper, Grow } from "@mui/material/";
 import Answers from "./Answers/Answers";
 import Question from "./Question/Question";
 import { algorithmInfoArray } from "../../Algorithms/infoArray";
-import UserTable from "./UserStatsTable/UserStatsTable";
+import UserStatsTable from "./UserStatsTable/UserStatsTable";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import questionHandler from "../../Algorithms/handler";
 import Navbar from "../Navbar/Navbar";
 import Content from "./Content/Content";
 import "./game.css";
 import useStyles from "./styles";
+//!to generate random psudeo code get character placement of start and end of each line
 
 const Game = () => {
-  const timeLeft = 1;
+  const timeLeft = 10;
+  let localUser = JSON.parse(sessionStorage.getItem('user'));
+    
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState("");
   const [content, setContent] = useState(null);
@@ -20,7 +23,7 @@ const Game = () => {
   const [questionTopic, setQuestionTopic] = useState("");
   const [questionType, setQuestionType] = useState(0);
   const [timer, setTimer] = useState(timeLeft);
-  const [object, setObject] = useState({});
+  const [object, setObject] = useState({}); //! change name 
   const classes = useStyles();
   const createGame = () => {
     createRandomGame();
@@ -30,7 +33,6 @@ const Game = () => {
     //!send points to server from sessionStorage
     setGameStarted(false);
   };
-  //!to generate random psudeo code get character placement of start and end of each line
 
   const createQuestion = useCallback(() => {
     switch (questionType) {
@@ -107,14 +109,13 @@ const Game = () => {
     </CountdownCircleTimer>
   );
 
-
   return gameStarted ? (
     <Grow in>
       <Grid container>
         <Paper className={classes.paperQuestion}>
           <Grid container justifyContent="space-around" alignItems="center">
             <Grid item>
-              <UserTable />
+              <UserStatsTable localUser={localUser}/>
             </Grid>
             <Grid item>
               <Question answers={answers} question={question} />
