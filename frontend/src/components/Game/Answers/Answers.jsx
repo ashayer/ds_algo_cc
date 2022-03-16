@@ -39,7 +39,7 @@ const Answers = ({ answers, startGame, questionType, questionStartTime }) => {
 
   const AnswerBars = () => {
     return answers.map((answer, index) => (
-      <Grid item key={index} style={{border: "1px solid black"}}>
+      <Grid item key={index} style={{ border: "1px solid black" }}>
         <ButtonBase
           onClick={answer[0] ? correctAnswer : wrongAnswer}
           style={{
@@ -67,26 +67,33 @@ const Answers = ({ answers, startGame, questionType, questionStartTime }) => {
 
   const AnswerText = () => {
     return answers.map((answer, index) => (
-      <Grid item key={index} style={{border: "1px solid black"}}>
+      <Grid item key={index} style={{ border: "1px solid black" }}>
         <ButtonBase
           onClick={answer[0] ? correctAnswer : wrongAnswer}
           style={{
             width: "35vw",
             height: "20.5vh",
-            border: "5px solid orange"
+            border: "5px solid orange",
           }}
           className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
         >
-          <Typography variant="h1">{answer[1]}</Typography>
+          <Typography variant={questionType < 3 ? "h1" : "h4"}>
+            {answer[1]}
+          </Typography>
         </ButtonBase>
       </Grid>
     ));
   };
 
   return (
-    <Grid container align="center" justifyContent="center" style={{border: "3px solid red"}}>
+    <Grid
+      container
+      align="center"
+      justifyContent="center"
+      style={{ border: "3px solid red" }}
+    >
       {questionType === 0 ? (
-        <AnswerBars/>
+        <AnswerBars />
       ) : questionType > 0 && questionType < 4 ? (
         <AnswerText />
       ) : null}

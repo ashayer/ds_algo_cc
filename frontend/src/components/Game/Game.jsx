@@ -122,7 +122,9 @@ const Game = () => {
         break;
       case 3:
         setTimer(timeLeft);
-        setQuestion("Fill in the missing pseudo-code of " + questionTopic + " sort");
+        setQuestion(
+          "Fill in the missing pseudo-code of " + questionTopic + " sort"
+        );
         setContent(object.original);
         break;
       default:
@@ -143,7 +145,6 @@ const Game = () => {
       size={80}
       trailStrokeWidth="5"
       onComplete={startGameOnTimeEnd}
-      
     >
       {({ remainingTime }) => remainingTime + "s"}
     </CountdownCircleTimer>
@@ -154,18 +155,18 @@ const Game = () => {
       <Grid container>
         <Paper className={classes.paperQuestion}>
           <Grid container className={classes.topRow}>
-            <Grid item style={{border: '2px solid purple'}}>
+            <Grid item style={{ border: "2px solid purple" }}>
               <UserStatsTable localUser={localUser} />
             </Grid>
-            <Grid item style={{border: '2px solid purple'}}>
+            <Grid item style={{ border: "2px solid purple" }}>
               <Question answers={answers} question={question} />
             </Grid>
-            <Grid item style={{border: '2px solid purple'}}>
+            <Grid item style={{ border: "2px solid purple" }}>
               <CountdownTimer />
               <Button
                 variant="contained"
                 onClick={endGame}
-                style={{ margin: "10px"}}
+                style={{ margin: "10px" }}
               >
                 END GAME
               </Button>
@@ -173,7 +174,7 @@ const Game = () => {
           </Grid>
         </Paper>
         <Paper className={classes.paperContent}>
-          <Container maxWidth="xl" style={{border: '2px solid red'}}>
+          <Container maxWidth="xl" style={{ border: "2px solid red" }}>
             <Content
               content={content}
               questionType={questionType}
