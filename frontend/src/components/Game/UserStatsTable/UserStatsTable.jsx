@@ -5,7 +5,7 @@ import { TableContainer, TableCell } from "@mui/material";
 const UserStatsTable = ({localUser}) => {
   return (
     <TableContainer>
-      <Table sx={{ maxWidth: 15 }}>
+      <Table sx={{ maxWidth: 15}}>
         <TableBody>
           <TableRow>
             <TableCell>Avg Response Time:</TableCell>

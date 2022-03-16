@@ -1,9 +1,15 @@
 import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
+  topRow: {
+    justifyContent: "space-around",
+    alignItems:"center",
+    border: "3px solid red"
+  },
   paperQuestion: {
     width: "2000px",
     justifyContent: 'space-between',
+    border: '4px solid blue',
   },
   paperContent: {
     width: "2000px",
@@ -14,6 +20,10 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     transition: "all 0.25s ease",
+    border: '4px solid blue',
+  },
+  paperAnswers: {
+    border: '4px solid blue',
   },
   textContent:{
     color: "blue", 

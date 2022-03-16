@@ -9,6 +9,12 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-evenly'
   },
   codeContainer: {
-    width: "20vw",
+    border: "2px solid blue",
+  },
+  codeText: {
+    border: "2px solid green",
+    width: "15vw",
+    textAlign: "left",
+
   }
 }));

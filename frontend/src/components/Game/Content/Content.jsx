@@ -26,20 +26,22 @@ const Content = ({ content, questionTopic, questionType }) => {
   };
 
   const ContentCode = () => {
-    console.log({content});
+    //console.log({content});
     return (
       <Container className={classes.codeContainer}>
-              <Typography variant="body1" style={{ whiteSpace: "break-spaces"  }}>{content}</Typography>
+        <Typography variant="body1" style={{whiteSpace: "break-spaces"}} className={classes.codeText}>
+          {content}
+        </Typography>
       </Container>
-    )
-  }
+    );
+  };
 
   return questionType === 0 ? (
     <ContentBars />
   ) : questionType > 0 && questionType < 3 ? (
     <ContentText />
-  ) : questionType === 3  ? (
-    <ContentCode/>
+  ) : questionType === 3 ? (
+    <ContentCode />
   ) : null;
 };
 

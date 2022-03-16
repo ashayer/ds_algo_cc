@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 //!to generate random psudeo code get character placement of start and end of each line
 
 const Game = () => {
-  const timeLeft = 10;
+  const timeLeft = 1;
 
   let questionStartTime = new Date();
 
@@ -80,7 +80,7 @@ const Game = () => {
     let topicIndex = 0;
     let typeIndex = 3;
     let gameObject = questionHandler(topicIndex, typeIndex);
-    console.log(gameObject);
+    //console.log(gameObject);
     let answerOptions = [];
     let wrongIndex = 0;
     for (let i = 0; i < 4; i++) {
@@ -143,6 +143,7 @@ const Game = () => {
       size={80}
       trailStrokeWidth="5"
       onComplete={startGameOnTimeEnd}
+      
     >
       {({ remainingTime }) => remainingTime + "s"}
     </CountdownCircleTimer>
@@ -152,19 +153,19 @@ const Game = () => {
     <Grow in>
       <Grid container>
         <Paper className={classes.paperQuestion}>
-          <Grid container justifyContent="space-around" alignItems="center">
-            <Grid item>
+          <Grid container className={classes.topRow}>
+            <Grid item style={{border: '2px solid purple'}}>
               <UserStatsTable localUser={localUser} />
             </Grid>
-            <Grid item>
+            <Grid item style={{border: '2px solid purple'}}>
               <Question answers={answers} question={question} />
             </Grid>
-            <Grid item>
+            <Grid item style={{border: '2px solid purple'}}>
               <CountdownTimer />
               <Button
                 variant="contained"
                 onClick={endGame}
-                style={{ margin: "10px" }}
+                style={{ margin: "10px"}}
               >
                 END GAME
               </Button>
@@ -172,7 +173,7 @@ const Game = () => {
           </Grid>
         </Paper>
         <Paper className={classes.paperContent}>
-          <Container maxWidth="xl">
+          <Container maxWidth="xl" style={{border: '2px solid red'}}>
             <Content
               content={content}
               questionType={questionType}
