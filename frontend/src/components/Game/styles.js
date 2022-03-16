@@ -2,13 +2,12 @@ import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   topRow: {
-    justifyContent: "space-around",
+    justifyContent: 'space-between',
     alignItems:"center",
     border: "3px solid red"
   },
   paperQuestion: {
     width: "2000px",
-    justifyContent: 'space-between',
     border: '4px solid blue',
   },
   paperContent: {

@@ -6,8 +6,6 @@ import { shuffle } from "d3-array";
 //answer.original is the entire pseudo code with the missing line replaced with emptyspace character
 
 function generateEmptyLine(string) {
-  console.log(string);
-  console.log(string.length);
   let emptyString = "";
   for (let i = 0; i < string.length; i++) {
     emptyString = emptyString + " ";
