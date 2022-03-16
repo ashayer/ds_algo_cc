@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 //!to generate random psudeo code get character placement of start and end of each line
 
 const Game = () => {
-  const timeLeft = 15;
+  const timeLeft = 150;
 
   let questionStartTime = new Date();
 
@@ -77,8 +77,8 @@ const Game = () => {
     // while (questionTopic === algorithmInfoArray[topicIndex].name) {
     //   topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
     // }
-    let topicIndex = 1;
-    let typeIndex = 3;
+    let topicIndex = 2;
+    let typeIndex = 0;
     let gameObject = questionHandler(topicIndex, typeIndex);
     //console.log(gameObject);
     let answerOptions = [];
