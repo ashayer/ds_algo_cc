@@ -17,7 +17,7 @@ import "./game.css";
 
 
 const Game = () => {
-  const timeLeft = 150;
+  const timeLeft = 1;
 
   const questionStartTime = new Date();
 
@@ -133,6 +133,20 @@ const Game = () => {
     createQuestion();
   }, [createQuestion]);
 
+  const CountdownTimer = () => (
+    <CountdownCircleTimer
+      isPlaying
+      duration={timer}
+      colors={["#F7B801"]}
+      rotation="counterclockwise"
+      size={80}
+      trailStrokeWidth="5"
+      onComplete={startGameOnTimeEnd}
+    >
+      {({ remainingTime }) => remainingTime + "s"}
+    </CountdownCircleTimer>
+  );
+
   return gameStarted ? (
     <Grow in={true}>
       <Grid container={true}>
@@ -145,17 +159,7 @@ const Game = () => {
               <Question answers={answers} question={question} />
             </Grid>
             <Grid item={true} style={{ border: "2px solid purple" }}>
-              <CountdownCircleTimer
-                isPlaying={true}
-                duration={timer}
-                colors={["#F7B801"]}
-                rotation="counterclockwise"
-                size={80}
-                trailStrokeWidth="5"
-                onComplete={startGameOnTimeEnd}
-              >
-                {({ remainingTime }) => `${remainingTime}s`}
-              </CountdownCircleTimer>
+            <CountdownTimer />
               <Button
                 variant="contained"
                 onClick={endGame}
