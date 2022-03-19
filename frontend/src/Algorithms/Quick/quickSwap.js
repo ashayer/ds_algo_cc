@@ -144,34 +144,6 @@ function partition(arr, start, end) {
   return pivotIndex;
 }
 
-// function partition(arr, start, end) {
-//   // Taking the last element as the pivot
-//   let pivotIndex = start;
-//   for (let i = start; i < end; i++) {
-//     if (arr[i] < arr[end]) {
-//       //add to swap counter if swapped values are different
-//       console.log(pivotIndex, i);
-//       if (arr[pivotIndex] !== arr[i]) {
-//         swapCounter++;
-//       }
-//       // Swapping elements
-//       [arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
-//       // Moving to next element
-//       pivotIndex++;
-//     }
-//   }
-//   //add to swap counter if swapped values are different
-//   console.log(pivotIndex, end);
-//   if (arr[pivotIndex] !== arr[end]) {
-
-//     swapCounter++;
-//   }
-//   // Putting the pivot value in the middle
-//   [arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]];
-
-//   return pivotIndex;
-// }
-
 //generates an array where the value at index n is the number of times it takes n swaps to sort array of size 6
 // function quickTest() {
 //   let swapCounterArray = [];

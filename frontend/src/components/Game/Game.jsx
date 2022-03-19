@@ -81,7 +81,7 @@ const Game = () => {
     //   topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
     // }
     const topicIndex = 3;
-    const typeIndex = 0;
+    const typeIndex = 3;
     const gameObject = questionHandler(topicIndex, typeIndex);
     //console.log(gameObject);
     const answerOptions = [];

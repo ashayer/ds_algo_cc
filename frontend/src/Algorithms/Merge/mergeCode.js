@@ -99,11 +99,7 @@ function generateCode() {
   const answersOptionsObjectArrayForMergeSort = [
     {
       right: mSortLine1,
-      wrong: [
-        "if(left < right)",
-        "if(left > right)",
-        "if(middle < right)",
-      ],
+      wrong: ["if(left < right)", "if(left > right)", "if(middle < right)"],
     },
     {
       right: mSortLine3,
@@ -129,17 +125,16 @@ function generateCode() {
         "merge(array, middle, right, left)",
       ],
     },
-    
   ];
 
-  const mergeORmergeSort = Math.floor(Math.random() * 2); //random number 0-1 - 0 means merge 1 means mergeSort
-  const randomLineNumber = Math.floor(Math.random() * 4); //random number 0-3
+  const isMerge = Math.floor(Math.random() * 2); //random number 0-1 - 0 means merge 1 means mergeSort
   //console.log(pseudoCodeStringArray[randomLineNumber].length, pseudoCodeStringArray[randomLineNumber]);
 
   let mergePseudo = "";
   let mergeSortPseudo = "";
 
-  if(mergeORmergeSort === 0){
+  if (isMerge === 0) {
+    const randomLineNumber = Math.floor(Math.random() * answersOptionsObjectArrayForMerge.length); //random number 0-3
     for (let i = 0; i < mergeStringArray.length; i++) {
       if (i === randomLineNumber) {
         mergePseudo = mergePseudo + generateEmptyLine(mergeStringArray[i]);
@@ -147,33 +142,35 @@ function generateCode() {
         mergePseudo = mergePseudo + mergeStringArray[i];
       }
     }
-  
+
     let answers = {
       right: answersOptionsObjectArrayForMerge[randomLineNumber].right,
       wrong: shuffle(answersOptionsObjectArrayForMerge[randomLineNumber].wrong),
       original: mergePseudo,
     };
-  
+
     return answers;
-  }
-  else{
+  } else {
+    const randomLineNumber = Math.floor(Math.random() * answersOptionsObjectArrayForMergeSort.length); //random number 0-3
     for (let i = 0; i < mergeSortStringArray.length; i++) {
       if (i === randomLineNumber) {
-        mergeSortPseudo = mergeSortPseudo + generateEmptyLine(mergeSortStringArray[i]);
+        mergeSortPseudo =
+          mergeSortPseudo + generateEmptyLine(mergeSortStringArray[i]);
       } else {
         mergeSortPseudo = mergeSortPseudo + mergeSortStringArray[i];
       }
     }
-  
+
     let answers = {
       right: answersOptionsObjectArrayForMergeSort[randomLineNumber].right,
-      wrong: shuffle(answersOptionsObjectArrayForMergeSort[randomLineNumber].wrong),
+      wrong: shuffle(
+        answersOptionsObjectArrayForMergeSort[randomLineNumber].wrong
+      ),
       original: mergeSortPseudo,
     };
-  
+
     return answers;
   }
-
 }
 
 export default generateCode;

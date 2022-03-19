@@ -29,7 +29,7 @@ const Content = ({ content, questionTopic, questionType }) => {
     //console.log({content});
     return (
       <Container className={classes.codeContainer}>
-        <Typography variant="h5" style={{whiteSpace: "break-spaces"}} className={classes.codeText}>
+        <Typography variant="h6" style={{whiteSpace: "break-spaces"}} className={classes.codeText}>
           {content}
         </Typography>
       </Container>

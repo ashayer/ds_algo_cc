@@ -15,99 +15,163 @@ function generateEmptyLine(string) {
 }
 
 function generateCode() {
-  const quickLine1 = "int i = low, j = middle+1\n";
-  const quickLine2 = "for(int k = low; k <= high; k++)\n";
-  const quickLine3 = "  if(i > mid) {aux[k] = array[j++]}\n";
-  const quickLine4 = "  else if (j > high) {aux[k] = array[i++]}\n";
-  const quickLine5 = "  else if(array[j] < array[i]){aux[k] = array[j++]}\n";
-  const quickLine6 = "  else {aux[k] = a[i++]}\n";
+  const partitionLine1 = "int pivotValue = arr[low]\n";
+  const partitionLine2 = "int pivotIndex = low\n";
+  const partitionLine3 = "for(int i = low + 1; i<=high; i++)\n";
+  const partitionLine4 = "  if(arr[i] < pivotValue)\n";
+  const partitionLine5 = "  swap(arr[i], arr[++pivotIndex])\n";
+  const partitionLine6 = "swap(arr[low], arr[pivotIndex])\n";
+  const partitionLine7 = "return pivotIndex\n";
 
-  const quickStringArray = [
-    quickLine1,
-    quickLine2,
-    quickLine3,
-    quickLine4,
-    quickLine5,
-    quickLine6,
+  const qSortLine1 = "if (low < high)\n";
+  const qSortLine2 = "int index = partition(arr, low, high)\n";
+  const qSortLine3 = "quickSort(arr, low, index -1)\n";
+  const qSortLine4 = "quickSort(arr, index + 1, high)\n";
+
+  const partitionStringArray = [
+    partitionLine1,
+    partitionLine2,
+    partitionLine3,
+    partitionLine4,
+    partitionLine5,
+    partitionLine6,
+    partitionLine7,
   ];
 
-  const answersOptionsObjectArrayForquick = [
+  const quickSortStringArray = [qSortLine1, qSortLine2, qSortLine3, qSortLine4];
+
+  const answersOptionsObjectArrayForPartition = [
     {
-      right: quickLine1,
+      right: partitionLine1,
       wrong: [
-        "",
-        "",
-        "",
+        "int pivotValue = arr[low + 1]",
+        "int pivotValue = arr[high - 1]",
+        "int pivotValue = arr[0]",
       ],
     },
     {
-      right: quickLine2,
+      right: partitionLine2,
       wrong: [
-        "",
-        "",
-        "",
+        "int pivotIndex = 0",
+        "int pivotIndex = high - 1",
+        "int pivotIndex = low + 1",
       ],
     },
     {
-      right: quickLine3,
+      right: partitionLine3,
       wrong: [
-        "",
-        "",
-        "",
+        "for(int i = low + 1; i<high; i++)",
+        "for(int i = low; i<=high; i++)",
+        "for(int i = 0; i<=high; i++)",
       ],
     },
     {
-      right: quickLine4,
+      right: partitionLine4,
       wrong: [
-        "",
-        "",
-        "",
+        "if(arr[low] < pivotValue)",
+        "if(arr[0] < pivotValue)",
+        "if(arr[high] > pivotValue)",
       ],
     },
     {
-      right: quickLine5,
+      right: partitionLine5,
       wrong: [
-        "",
-        "",
-        "",
+        "swap(arr[high], arr[i++])",
+        "swap(arr[++pivotIndex], arr[high])",
+        "swap(arr[0], arr[++pivotIndex])",
       ],
     },
     {
-      right: quickLine6,
+      right: partitionLine6,
       wrong: [
-        "",
-        "",
-        "",
+        "swap(arr[0], arr[pivotIndex])",
+        "swap(arr[high], arr[pivotIndex])",
+        "swap(arr[i], arr[low])",
       ],
     },
   ];
 
-  
+  const answersOptionsObjectArrayForQuickSort = [
+    {
+      right: qSortLine1,
+      wrong: ["if (low == high)", "if (high > low)", "if (low > 0)"],
+    },
+    {
+      right: qSortLine2,
+      wrong: [
+        "int index = partition(arr, 0, low)",
+        "int index = partition(arr, low + 1, high)",
+        "int index = partition(arr, low - 1, high)",
+      ],
+    },
+    {
+      right: qSortLine3,
+      wrong: [
+        "quickSort(arr, low, high)",
+        "quickSort(arr, low, index)",
+        "quickSort(arr, 0, index -1)",
+      ],
+    },
+    {
+      right: qSortLine4,
+      wrong: [
+        "quickSort(arr, 0, low)",
+        "quickSort(arr, index, high)",
+        "quickSort(arr, low, high)",
+      ],
+    },
+  ];
 
-  const quickORquickSort = Math.floor(Math.random() * 2); //random number 0-1 - 0 means quick 1 means quickSort
-  const randomLineNumber = Math.floor(Math.random() * 4); //random number 0-3
-  //console.log(pseudoCodeStringArray[randomLineNumber].length, pseudoCodeStringArray[randomLineNumber]);
+  const isPartition = Math.floor(Math.random() * 2);
 
-  let quickPseudo = "";
+  let partitionPseudo = "";
+  let quickSortPseudo = "";
 
-  if(quickORquickSort === 0){
-    for (let i = 0; i < quickStringArray.length; i++) {
+  if (isPartition === 0) {
+    const randomLineNumber = Math.floor(
+      Math.random() * answersOptionsObjectArrayForPartition.length
+    ); //random number 0-7
+    for (let i = 0; i < partitionStringArray.length; i++) {
       if (i === randomLineNumber) {
-        quickPseudo = quickPseudo + generateEmptyLine(quickStringArray[i]);
+        partitionPseudo =
+          partitionPseudo + generateEmptyLine(partitionStringArray[i]);
       } else {
-        quickPseudo = quickPseudo + quickStringArray[i];
+        partitionPseudo = partitionPseudo + partitionStringArray[i];
       }
     }
-  
+
     let answers = {
-      right: answersOptionsObjectArrayForquick[randomLineNumber].right,
-      wrong: shuffle(answersOptionsObjectArrayForquick[randomLineNumber].wrong),
-      original: quickPseudo,
+      right: answersOptionsObjectArrayForPartition[randomLineNumber].right,
+      wrong: shuffle(
+        answersOptionsObjectArrayForPartition[randomLineNumber].wrong
+      ),
+      original: partitionPseudo,
     };
-  
+
+    return answers;
+  } else {
+    const randomLineNumber = Math.floor(
+      Math.random() * answersOptionsObjectArrayForQuickSort.length
+    ); //random number 0-3
+    for (let i = 0; i < quickSortStringArray.length; i++) {
+      if (i === randomLineNumber) {
+        quickSortPseudo =
+          quickSortPseudo + generateEmptyLine(quickSortStringArray[i]);
+      } else {
+        quickSortPseudo = quickSortPseudo + quickSortStringArray[i];
+      }
+    }
+
+    let answers = {
+      right: answersOptionsObjectArrayForQuickSort[randomLineNumber].right,
+      wrong: shuffle(
+        answersOptionsObjectArrayForQuickSort[randomLineNumber].wrong
+      ),
+      original: quickSortPseudo,
+    };
+
     return answers;
   }
-
 }
 
 export default generateCode;
