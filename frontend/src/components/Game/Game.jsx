@@ -17,7 +17,7 @@ import "./game.css";
 
 
 const Game = () => {
-  const timeLeft = 1;
+  const timeLeft = 15;
 
   const questionStartTime = new Date();
 
@@ -75,13 +75,11 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    //let typeIndex = Math.floor(Math.random() * 4);
-    // let topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
-    // while (questionTopic === algorithmInfoArray[topicIndex].name) {
-    //   topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
-    // }
-    const topicIndex = 3;
-    const typeIndex = 3;
+    let typeIndex = Math.floor(Math.random() * 4);
+    let topicIndex = Math.floor(Math.random() * 4); 
+    while (questionTopic === algorithmInfoArray[topicIndex].name) {
+      topicIndex = Math.floor(Math.random() * 2);
+    }
     const gameObject = questionHandler(topicIndex, typeIndex);
     //console.log(gameObject);
     const answerOptions = [];
@@ -103,26 +101,26 @@ const Game = () => {
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
+        setContent(object.original);
         setTimer(timeLeft);
         setQuestion(
           `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps`
         );
-        setContent(object.original);
         break;
       case 1:
+        setContent([questionTopic]);
         setTimer(timeLeft);
         setQuestion("What is the time complexity of the algorithm below?");
-        setContent([questionTopic]);
         break;
       case 2:
+        setContent([questionTopic]);
         setTimer(timeLeft);
         setQuestion("What is the space complexity of the algorithm below?");
-        setContent([questionTopic]);
         break;
       case 3:
+        setContent([object.original]);
         setTimer(timeLeft);
         setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
-        setContent(object.original);
         break;
       default:
         console.log("Something went wrong");

@@ -3,7 +3,7 @@ import { shuffle } from "d3-array";
 function generateSwap() {
   let arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]); //array with values that are used
   let sortedArrayObject = insertionSort(arrayToBeSorted); //returned sorted object with swaps, the sorted array, and original unsorted array
-  console.log(sortedArrayObject);
+  //console.log(sortedArrayObject);
   while (sortedArrayObject.swaps < 4 || sortedArrayObject.swaps > 11) {
     //while the swaps are not between two common values found by running insertion sort sort again
     arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]);

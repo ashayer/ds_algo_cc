@@ -4,6 +4,18 @@ import useStyles from "./styles";
 
 const Content = ({ content, questionTopic, questionType }) => {
   const classes = useStyles();
+  console.log("Content: ", content);
+  console.log("questionTopic: ", questionTopic);
+  let test =
+    questionType === 0
+      ? "Array Swap"
+      : questionType > 0 && questionType < 3
+      ? "Space or Time"
+      : questionType === 3
+      ? "Pseudo-code"
+      : null;
+
+  console.log("questionType: ", test);
   const ContentBars = () => {
     return (
       <Grid container className={classes.contentArrayContainer}>
@@ -29,7 +41,11 @@ const Content = ({ content, questionTopic, questionType }) => {
     //console.log({content});
     return (
       <Container className={classes.codeContainer}>
-        <Typography variant="h6" style={{whiteSpace: "break-spaces"}} className={classes.codeText}>
+        <Typography
+          variant="h6"
+          style={{ whiteSpace: "break-spaces" }}
+          className={classes.codeText}
+        >
           {content}
         </Typography>
       </Container>

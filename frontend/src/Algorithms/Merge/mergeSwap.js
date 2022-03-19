@@ -28,8 +28,8 @@ function generateSwap() {
       wrongAnswers[i] = shuffle([2, 3, 5, 8, 6, 7]);
     }
   }
-  console.log(wrongAnswers);
-  console.log(rightAnswer);
+  // console.log(wrongAnswers);
+  // console.log(rightAnswer);
 
   let answers = {
     right: rightAnswer,
