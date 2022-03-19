@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
   },
   codeText: {
     border: "2px solid green",
-    width: "25vw",
+    width: "40vw",
     textAlign: "left",
 
   }

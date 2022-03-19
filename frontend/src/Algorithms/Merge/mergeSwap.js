@@ -1,4 +1,3 @@
-import { current } from "@reduxjs/toolkit";
 import { shuffle } from "d3-array";
 
 function generateSwap() {

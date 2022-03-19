@@ -1,25 +1,27 @@
-import React, { useCallback, useEffect, useState } from "react";
 import { Grid, Button, Container, Paper, Grow } from "@mui/material/";
-import Answers from "./Answers/Answers";
-import Question from "./Question/Question";
-import { algorithmInfoArray } from "../../Algorithms/infoArray";
-import UserStatsTable from "./UserStatsTable/UserStatsTable";
+import { useCallback, useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import questionHandler from "../../Algorithms/handler";
-import Navbar from "../Navbar/Navbar";
-import Content from "./Content/Content";
-import "./game.css";
-import useStyles from "./styles";
-import { updatePoints } from "../../features/game/gameSlice";
 import { useDispatch } from "react-redux";
-//!to generate random psudeo code get character placement of start and end of each line
+import questionHandler from "../../Algorithms/handler";
+import { algorithmInfoArray } from "../../Algorithms/infoArray";
+import { updatePoints } from "../../features/game/gameSlice";
+import Navbar from "../Navbar/Navbar";
+import Answers from "./Answers/Answers";
+import Content from "./Content/Content";
+import Question from "./Question/Question";
+import useStyles from "./styles";
+import UserStatsTable from "./UserStatsTable/UserStatsTable";
+import "./game.css";
+
+
+
 
 const Game = () => {
   const timeLeft = 150;
 
-  let questionStartTime = new Date();
+  const questionStartTime = new Date();
 
-  let localUser = JSON.parse(sessionStorage.getItem("user"));
+  const localUser = JSON.parse(sessionStorage.getItem("user"));
 
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState("");
@@ -31,6 +33,7 @@ const Game = () => {
   const [object, setObject] = useState({}); //! change name to something more descriptive
   const classes = useStyles();
   const dispatch = useDispatch();
+
   const startGame = () => {
     createRandomGame();
     if (!gameStarted) {
@@ -44,7 +47,7 @@ const Game = () => {
   };
 
   const startGameOnTimeEnd = () => {
-    localUser.numWrong = localUser.numWrong + 1;
+    localUser.numWrong += 1;
     localUser.streak = 0;
     sessionStorage.setItem("user", JSON.stringify(localUser));
     createRandomGame();
@@ -71,17 +74,17 @@ const Game = () => {
   };
 
   const createRandomGame = () => {
-    let correctIndex = Math.floor(Math.random() * 4);
+    const correctIndex = Math.floor(Math.random() * 4);
     //let typeIndex = Math.floor(Math.random() * 4);
     // let topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
     // while (questionTopic === algorithmInfoArray[topicIndex].name) {
     //   topicIndex = Math.floor(Math.random() * 2); //! only insertion and selection sort currently
     // }
-    let topicIndex = 2;
-    let typeIndex = 0;
-    let gameObject = questionHandler(topicIndex, typeIndex);
+    const topicIndex = 3;
+    const typeIndex = 0;
+    const gameObject = questionHandler(topicIndex, typeIndex);
     //console.log(gameObject);
-    let answerOptions = [];
+    const answerOptions = [];
     let wrongIndex = 0;
     for (let i = 0; i < 4; i++) {
       if (i === correctIndex) {
@@ -102,11 +105,7 @@ const Game = () => {
       case 0:
         setTimer(timeLeft);
         setQuestion(
-          "Using " +
-            questionTopic +
-            " sort, what is the state of the array after " +
-            object?.swaps +
-            " swaps."
+          `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps`
         );
         setContent(object.original);
         break;
@@ -122,9 +121,7 @@ const Game = () => {
         break;
       case 3:
         setTimer(timeLeft);
-        setQuestion(
-          "Fill in the missing pseudo-code of " + questionTopic + " sort"
-        );
+        setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
         setContent(object.original);
         break;
       default:
@@ -136,33 +133,29 @@ const Game = () => {
     createQuestion();
   }, [createQuestion]);
 
-  const CountdownTimer = () => (
-    <CountdownCircleTimer
-      isPlaying
-      duration={timer}
-      colors={["#F7B801"]}
-      rotation="counterclockwise"
-      size={80}
-      trailStrokeWidth="5"
-      onComplete={startGameOnTimeEnd}
-    >
-      {({ remainingTime }) => remainingTime + "s"}
-    </CountdownCircleTimer>
-  );
-
   return gameStarted ? (
-    <Grow in>
-      <Grid container>
+    <Grow in={true}>
+      <Grid container={true}>
         <Paper className={classes.paperQuestion}>
-          <Grid container className={classes.topRow}>
-            <Grid item style={{ border: "2px solid purple" }}>
+          <Grid container={true} className={classes.topRow}>
+            <Grid item={true} style={{ border: "2px solid purple" }}>
               <UserStatsTable localUser={localUser} />
             </Grid>
-            <Grid item style={{ border: "2px solid purple" }}>
+            <Grid item={true} style={{ border: "2px solid purple" }}>
               <Question answers={answers} question={question} />
             </Grid>
-            <Grid item style={{ border: "2px solid purple" }}>
-              <CountdownTimer />
+            <Grid item={true} style={{ border: "2px solid purple" }}>
+              <CountdownCircleTimer
+                isPlaying={true}
+                duration={timer}
+                colors={["#F7B801"]}
+                rotation="counterclockwise"
+                size={80}
+                trailStrokeWidth="5"
+                onComplete={startGameOnTimeEnd}
+              >
+                {({ remainingTime }) => `${remainingTime}s`}
+              </CountdownCircleTimer>
               <Button
                 variant="contained"
                 onClick={endGame}
