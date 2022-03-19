@@ -1,7 +1,7 @@
 import { shuffle } from "d3-array";
 
 function generateSpace() {
-  let answers = {
+  const answers = {
     right: "1",
     wrong: shuffle(["nlogn", "n", "logn"]),
   };

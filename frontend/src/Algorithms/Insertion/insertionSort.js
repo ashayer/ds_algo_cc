@@ -14,7 +14,7 @@ function insertionSortHandler(randomType) {
     case 3:
       return generateCode();
     default:
-      console.log("Something went wrong");
+      return null;
   }
 }
 

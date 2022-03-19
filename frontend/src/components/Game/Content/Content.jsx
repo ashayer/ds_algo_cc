@@ -4,23 +4,11 @@ import useStyles from "./styles";
 
 const Content = ({ content, questionTopic, questionType }) => {
   const classes = useStyles();
-  console.log("Content: ", content);
-  console.log("questionTopic: ", questionTopic);
-  let test =
-    questionType === 0
-      ? "Array Swap"
-      : questionType > 0 && questionType < 3
-      ? "Space or Time"
-      : questionType === 3
-      ? "Pseudo-code"
-      : null;
-
-  console.log("questionType: ", test);
   const ContentBars = () => {
     return (
       <Grid container className={classes.contentArrayContainer}>
-        {content?.map((value, index) => (
-          <Grid item key={index}>
+        {content?.map((value) => (
+          <Grid item key={value}>
             <div
               className="contentArrayBars"
               style={{ height: value * 3 + "vh" }}

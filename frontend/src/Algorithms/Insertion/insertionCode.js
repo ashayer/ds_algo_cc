@@ -1,16 +1,11 @@
 import { shuffle } from "d3-array";
-//to generate a random question that asks about pseudo-code pick a line with meaningful logic
-//get the character number in string or make its own variable
-//generate similar answers with minor incorrect changes
-//put correct string into answer.right and three wrong string into answer.wrong
-//answer.original is the entire pseudo code with the missing line replaced with emptyspace character
 
 function generateEmptyLine(string) {
   let emptyString = "";
-  for (let i = 0; i < string.length; i++) {
-    emptyString = emptyString + " ";
+  for (let i = 0; i < string.length; i += 1) {
+    emptyString += " ";
   }
-  return emptyString + "\n";
+  return `${emptyString}\n`;
 }
 
 function generateCode() {
@@ -57,21 +52,19 @@ function generateCode() {
     },
   ];
 
-  const randomLineNumber = Math.floor(Math.random() * 4); //random number 0-3
-  //console.log(pseudoCodeStringArray[randomLineNumber].length, pseudoCodeStringArray[randomLineNumber]);
+  const randomLineNumber = Math.floor(Math.random() * 4); // random number 0-3
 
   let insertionPseudo = "";
 
-  for (let i = 0; i < pseudoCodeStringArray.length; i++) {
+  for (let i = 0; i < pseudoCodeStringArray.length; i += 1) {
     if (i === randomLineNumber) {
-      insertionPseudo =
-        insertionPseudo + generateEmptyLine(pseudoCodeStringArray[i]);
+      insertionPseudo += generateEmptyLine(pseudoCodeStringArray[i]);
     } else {
-      insertionPseudo = insertionPseudo + pseudoCodeStringArray[i];
+      insertionPseudo += pseudoCodeStringArray[i];
     }
   }
 
-  let answers = {
+  const answers = {
     right: answersOptionsObjectArray[randomLineNumber].right,
     wrong: shuffle(answersOptionsObjectArray[randomLineNumber].wrong),
     original: insertionPseudo,

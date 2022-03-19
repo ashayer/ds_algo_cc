@@ -1,56 +1,11 @@
 import { shuffle } from "d3-array";
 
-function generateSwap() {
-  let arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]); //array with values that are used
-  let sortedArrayObject = insertionSort(arrayToBeSorted); //returned sorted object with swaps, the sorted array, and original unsorted array
-  //console.log(sortedArrayObject);
-  while (sortedArrayObject.swaps < 4 || sortedArrayObject.swaps > 11) {
-    //while the swaps are not between two common values found by running insertion sort sort again
-    arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]);
-    sortedArrayObject = insertionSort(arrayToBeSorted);
-  }
-  let correctSwapNumber = Math.floor(
-    Math.random() * (sortedArrayObject.swaps + 1 - 3) + 3 //the swap number used for correct answer
-  );
-  let wrongSwaps = []; //array to hold the 3 wrongly swapped array
-  for (let i = 0; i < 3; i++) {
-    let wrongSwapNumber = Math.floor(
-      Math.random() * (sortedArrayObject.swaps + 1 - 0) + 0 //three wrong swaps in range of max swaps and 0
-    );
-    while (
-      wrongSwapNumber === correctSwapNumber || //if the wrong swap number = correct swap generate another or as already been used
-      wrongSwaps.includes(wrongSwapNumber)
-    ) {
-      wrongSwapNumber = Math.floor(
-        Math.random() * (sortedArrayObject.swaps + 1 - 0) + 0
-      );
-    }
-    wrongSwaps[i] = wrongSwapNumber;
-  }
-  let rightAnswer = generateCorrectSwapArray(
-    correctSwapNumber,
-    sortedArrayObject.arrayUnsorted
-  );
-  let wrongAnswers = generateWrongSwapArrays(
-    wrongSwaps,
-    sortedArrayObject.arrayUnsorted
-  );
-  let answers = {
-    right: rightAnswer,
-    wrong: wrongAnswers,
-    original: sortedArrayObject.arrayUnsorted,
-    swaps: correctSwapNumber,
-  };
-
-  return answers;
-}
-
 function generateCorrectSwapArray(swaps, originalArray) {
-  let array = originalArray.slice();
+  const array = originalArray.slice();
   let currentSwaps = 0;
   let swapSorted = [];
-  for (let i = 0; i < array.length; i++) {
-    for (let j = i; j > 0; j--) {
+  for (let i = 0; i < array.length; i += 1) {
+    for (let j = i; j > 0; j -= 1) {
       if (array[j] < array[j - 1]) {
         [array[j], array[j - 1]] = [array[j - 1], array[j]];
         currentSwaps += 1;
@@ -64,18 +19,18 @@ function generateCorrectSwapArray(swaps, originalArray) {
 }
 
 function generateWrongSwapArrays(swapArray, originalArray) {
-  let wrongSwapSorted = [];
-  for (let i = 0; i < 3; i++) {
-    let wrongSwap = swapArray[i];
-    let array = originalArray.slice();
+  const wrongSwapSorted = [];
+  for (let i = 0; i < 3; i += 1) {
+    const wrongSwap = swapArray[i];
+    const array = originalArray.slice();
     let currentSwaps = 0;
     let swapSorted = [];
     if (wrongSwap === 0) {
       swapSorted = array.slice();
       wrongSwapSorted[i] = swapSorted;
     } else {
-      for (let i = 0; i < array.length; i++) {
-        for (let j = i; j > 0; j--) {
+      for (let k = 0; k < array.length; k += 1) {
+        for (let j = k; j > 0; j -= 1) {
           if (array[j] < array[j - 1]) {
             [array[j], array[j - 1]] = [array[j - 1], array[j]];
             currentSwaps += 1;
@@ -92,25 +47,60 @@ function generateWrongSwapArrays(swapArray, originalArray) {
 }
 
 function insertionSort(array) {
-  let unSortedArray = array.slice();
+  const currentArray = array;
+  const unSortedArray = array.slice();
   let swapCounter = 0;
-  for (let i = 1; i < array.length; i++) {
-    let current = array[i];
+  for (let i = 1; i < array.length; i += 1) {
+    const current = array[i];
     let j = i - 1;
     while (j > -1 && current < array[j]) {
-      array[j + 1] = array[j];
+      currentArray[j + 1] = array[j];
       swapCounter += 1;
-      j--;
+      j -= 1;
     }
-    array[j + 1] = current;
+    currentArray[j + 1] = current;
   }
-  let sortedArrayObject = {
-    arraySorted: array,
+  const sortedArrayObject = {
+    arraySorted: currentArray,
     arrayUnsorted: unSortedArray,
     swaps: swapCounter,
   };
 
   return sortedArrayObject;
+}
+
+function generateSwap() {
+  let arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]); // array with values that are used
+  // returned sorted object with swaps, the sorted array, and original unsorted array
+  let sortedArrayObject = insertionSort(arrayToBeSorted);
+  // console.log(sortedArrayObject);
+  while (sortedArrayObject.swaps < 4 || sortedArrayObject.swaps > 11) {
+    // while the swaps are not between two common values found by running insertion sort sort again
+    arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]);
+    sortedArrayObject = insertionSort(arrayToBeSorted);
+  }
+  // the swap number used for correct answer
+  const correctSwapNumber = Math.floor(Math.random() * (sortedArrayObject.swaps + 1 - 3 + 3));
+  const wrongSwaps = []; //  array to hold the 3 wrongly swapped array
+  for (let i = 0; i < 3; i += 1) {
+    // three wrong swaps in range of max swaps and 0
+    let wrongSwapNumber = Math.floor(Math.random() * (sortedArrayObject.swaps + 1 - 0) + 0);
+    // if the wrong swap number = correct swap generate another or as already been used
+    while (wrongSwapNumber === correctSwapNumber || wrongSwaps.includes(wrongSwapNumber)) {
+      wrongSwapNumber = Math.floor(Math.random() * (sortedArrayObject.swaps + 1 - 0) + 0);
+    }
+    wrongSwaps[i] = wrongSwapNumber;
+  }
+  const rightAnswer = generateCorrectSwapArray(correctSwapNumber, sortedArrayObject.arrayUnsorted);
+  const wrongAnswers = generateWrongSwapArrays(wrongSwaps, sortedArrayObject.arrayUnsorted);
+  const answers = {
+    right: rightAnswer,
+    wrong: wrongAnswers,
+    original: sortedArrayObject.arrayUnsorted,
+    swaps: correctSwapNumber,
+  };
+
+  return answers;
 }
 
 export default generateSwap;

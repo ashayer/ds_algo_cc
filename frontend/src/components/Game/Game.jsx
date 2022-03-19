@@ -78,7 +78,10 @@ const Game = () => {
     let typeIndex = Math.floor(Math.random() * 4);
     let topicIndex = Math.floor(Math.random() * 4); 
     while (questionTopic === algorithmInfoArray[topicIndex].name) {
-      topicIndex = Math.floor(Math.random() * 2);
+      topicIndex = Math.floor(Math.random() * 4);
+    }
+    while(typeIndex === questionType){
+      typeIndex = Math.floor(Math.random() * 4);
     }
     const gameObject = questionHandler(topicIndex, typeIndex);
     //console.log(gameObject);
@@ -133,7 +136,7 @@ const Game = () => {
 
   const CountdownTimer = () => (
     <CountdownCircleTimer
-      isPlaying
+      isPlaying={true}
       duration={timer}
       colors={["#F7B801"]}
       rotation="counterclockwise"
@@ -141,7 +144,7 @@ const Game = () => {
       trailStrokeWidth="5"
       onComplete={startGameOnTimeEnd}
     >
-      {({ remainingTime }) => remainingTime + "s"}
+      {({ remainingTime }) => `${remainingTime}s`}
     </CountdownCircleTimer>
   );
 
