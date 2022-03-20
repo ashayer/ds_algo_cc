@@ -73,14 +73,12 @@ function generateSwap() {
   let arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]); // array with values that are used
   // returned sorted object with swaps, the sorted array, and original unsorted array
   let sortedArrayObject = insertionSort(arrayToBeSorted);
-  // console.log(sortedArrayObject);
   while (sortedArrayObject.swaps < 4 || sortedArrayObject.swaps > 11) {
-    // while the swaps are not between two common values found by running insertion sort sort again
     arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]);
     sortedArrayObject = insertionSort(arrayToBeSorted);
   }
   // the swap number used for correct answer
-  const correctSwapNumber = Math.floor(Math.random() * (sortedArrayObject.swaps + 1 - 3 + 3));
+  const correctSwapNumber = Math.floor(Math.random() * (sortedArrayObject.swaps + 1 - 3) + 3);
   const wrongSwaps = []; //  array to hold the 3 wrongly swapped array
   for (let i = 0; i < 3; i += 1) {
     // three wrong swaps in range of max swaps and 0
