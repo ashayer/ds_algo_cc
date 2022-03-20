@@ -112,22 +112,24 @@ const Game = () => {
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
+        setTimer(30);
         setContent(object.original);
         setQuestion(
           `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps`,
         );
         break;
       case 1:
+        setTimer(15);
         setContent([questionTopic]);
         setQuestion("What is the time complexity of the algorithm below?");
         break;
       case 2:
-        setTimer(timeLeft);
+        setTimer(15);
         setContent([questionTopic]);
         setQuestion("What is the space complexity of the algorithm below?");
         break;
       case 3:
-        setTimer(timeLeft);
+        setTimer(20);
         setContent([object.original]);
         setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
         break;
