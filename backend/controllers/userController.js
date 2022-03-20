@@ -6,7 +6,6 @@ import mongoose from "mongoose";
 
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password, skill, qTypeCount, qTopicCount } = req.body;
-  console.log(req.body);
   if (!name || !email || !password || !skill) {
     res.status(400);
     throw new Error("Missing field");
@@ -33,8 +32,8 @@ export const registerUser = asyncHandler(async (req, res) => {
     streak: 0,
     numCorrect: 0,
     numWrong: 0,
-    qTypeCount: [],
-    qTopicCount: [],
+    qTypeCount: [0,0,0,0],
+    qTopicCount: [0,0,0,0],
   });
 
   if (user) {
@@ -93,9 +92,15 @@ const generateToken = (id) => {
 //req body is {points: points, responseTime: time}
 //! add error catches
 export const updatePoints = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const user = await User.findByIdAndUpdate(req.params.id, {
     points: req.body.points,
     responseTime: req.body.responseTime,
+    streak: req.body.streak,
+    numCorrect: req.body.numCorrect,
+    numWrong: req.body.numWrong,
+    qTypeCount: req.body.qTypeCount,
+    qTopicCount: req.body.qTopicCount,
   });
 });
 

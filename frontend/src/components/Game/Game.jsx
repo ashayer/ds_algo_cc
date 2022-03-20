@@ -14,7 +14,7 @@ import UserStatsTable from "./UserStatsTable/UserStatsTable";
 import "./game.css";
 
 const Game = () => {
-  const timeLeft = 1;
+  const timeLeft = 15;
 
   const questionStartTime = new Date();
 
@@ -67,6 +67,8 @@ const Game = () => {
       localUser.numWrong = 0;
       localUser.streak = 0;
       localUser.responseTime = 0;
+      localUser.qTopicCount = [0, 0, 0, 0];
+      localUser.qTypeCount = [0, 0, 0, 0];
       sessionStorage.setItem("user", JSON.stringify(localUser));
       setGameStarted(true);
     }
@@ -75,27 +77,28 @@ const Game = () => {
   const startGameOnTimeEnd = () => {
     localUser.numWrong += 1;
     localUser.streak = 0;
+    localUser.qTopicCount[questionTopicNum] += 1;
+    localUser.qTypeCount[questionType] += 1;
     sessionStorage.setItem("user", JSON.stringify(localUser));
     createRandomGame();
   };
 
   const endGame = () => {
     const totalQuestions = localUser.numCorrect + localUser.numWrong;
-    const averageResponseTime = localUser.responseTime / totalQuestions;
-
+    const averageResponseTime = Math.floor(localUser.responseTime / totalQuestions);
+    //! could change to just pass the local user
     dispatch(
       updatePoints({
         userId: localUser._id,
         userPoints: localUser.points,
         userResponseTime: averageResponseTime,
+        userNumCorrect: localUser.numCorrect,
+        userNumWrong: localUser.numWrong,
+        userQTopicCount: localUser.qTopicCount,
+        userQTypeCount: localUser.qTypeCount,
+        userStreak: localUser.streak,
       }),
     );
-
-    localUser.numCorrect = 0;
-    localUser.numWrong = 0;
-    localUser.streak = 0;
-    sessionStorage.setItem("user", JSON.stringify(localUser));
-
     setGameStarted(false);
   };
 
@@ -132,7 +135,7 @@ const Game = () => {
 
   const CountdownTimer = () => (
     <CountdownCircleTimer
-      isPlaying={true}
+      isPlaying
       duration={timer}
       colors={["#F7B801"]}
       rotation="counterclockwise"
@@ -174,6 +177,7 @@ const Game = () => {
             startGame={startGame}
             questionType={questionType}
             questionStartTime={questionStartTime}
+            questionTopicNum={questionTopicNum}
           />
         </Paper>
       </Grid>

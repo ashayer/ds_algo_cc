@@ -1,6 +1,5 @@
 import React from "react";
-import { Grid, ButtonBase } from "@mui/material/";
-import { Typography } from "@mui/material";
+import { Grid, ButtonBase, Typography } from "@mui/material/";
 import useStyles from "./styles";
 import "./answers.css";
 
@@ -8,30 +7,31 @@ const Answers = ({ answers, startGame, questionType, questionTopicNum, questionS
   const classes = useStyles();
 
   const correctAnswer = () => {
-    let questionEndTime = new Date();
-
-    let calculatedResponseTime = questionEndTime - questionStartTime;
-
+    const questionEndTime = new Date();
+    const calculatedResponseTime = questionEndTime - questionStartTime;
     const updatePointsBy = Math.floor(Math.random() * 100);
-    let localUser = JSON.parse(sessionStorage.getItem("user"));
-    localUser.points = localUser.points + updatePointsBy;
-    localUser.numCorrect = localUser.numCorrect + 1;
-    localUser.streak = localUser.streak + 1;
-    localUser.responseTime = localUser.responseTime + calculatedResponseTime;
+    const localUser = JSON.parse(sessionStorage.getItem("user"));
+    localUser.points += updatePointsBy;
+    localUser.numCorrect += 1;
+    localUser.streak += 1;
+    localUser.responseTime += calculatedResponseTime;
+    localUser.qTopicCount[questionTopicNum] += 1;
+    localUser.qTypeCount[questionType] += 1;
     sessionStorage.setItem("user", JSON.stringify(localUser));
 
     startGame();
   };
 
   const wrongAnswer = () => {
-    let questionEndTime = new Date();
+    const questionEndTime = new Date();
 
-    let calculatedResponseTime = questionEndTime - questionStartTime;
-    let localUser = JSON.parse(sessionStorage.getItem("user"));
-    localUser.numWrong = localUser.numWrong + 1;
+    const calculatedResponseTime = questionEndTime - questionStartTime;
+    const localUser = JSON.parse(sessionStorage.getItem("user"));
+    localUser.numWrong += 1;
     localUser.streak = 0;
-    localUser.responseTime = localUser.responseTime + calculatedResponseTime;
-
+    localUser.responseTime += calculatedResponseTime;
+    localUser.qTopicCount[questionTopicNum] += 1;
+    localUser.qTypeCount[questionType] += 1;
     sessionStorage.setItem("user", JSON.stringify(localUser));
 
     startGame();
@@ -49,9 +49,9 @@ const Answers = ({ answers, startGame, questionType, questionTopicNum, questionS
           className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
         >
           <Grid container justifyContent="space-evenly" margin="0px">
-            {answer[1].map((value, index) => (
-              <Grid item key={index}>
-                <div className="answerArrayBars" style={{ height: value * 2.5 + "vh" }}>
+            {answer[1].map((value, indexA) => (
+              <Grid item key={indexA}>
+                <div className="answerArrayBars" style={{ height: `${value * 2.5}vh` }}>
                   <Typography variant="h5">{value}</Typography>
                 </div>
               </Grid>

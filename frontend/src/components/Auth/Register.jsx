@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Button, Paper, Grid, Typography, Container, CircularProgress } from "@mui/material";
-import { FormControl, FormLabel, FormControlLabel } from "@mui/material";
-import { Radio, RadioGroup } from "@mui/material";
+import {
+  Button,
+  Paper,
+  Grid,
+  Typography,
+  Container,
+  CircularProgress,
+  FormControl,
+  FormLabel,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./styles";
@@ -20,7 +30,7 @@ const Auth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { name, email, password, confirmPassword, skill} = formData;
+  const { name, email, password, confirmPassword, skill } = formData;
 
   const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
@@ -35,9 +45,8 @@ const Auth = () => {
         email,
         password,
         skill,
-        qTypeCount: [],
-        qTopicCount: [],
-
+        qTypeCount: [0, 0, 0, 0],
+        qTopicCount: [0, 0, 0, 0],
       };
       console.log(userData);
       dispatch(register(userData));
