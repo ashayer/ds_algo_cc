@@ -5,7 +5,7 @@ import User from "../models/userModel.js";
 import mongoose from "mongoose";
 
 export const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, skill } = req.body;
+  const { name, email, password, skill, qTypeCount, qTopicCount } = req.body;
   console.log(req.body);
   if (!name || !email || !password || !skill) {
     res.status(400);
@@ -33,6 +33,8 @@ export const registerUser = asyncHandler(async (req, res) => {
     streak: 0,
     numCorrect: 0,
     numWrong: 0,
+    qTypeCount: [],
+    qTopicCount: [],
   });
 
   if (user) {
@@ -46,6 +48,8 @@ export const registerUser = asyncHandler(async (req, res) => {
       streak: user.streak,
       numCorrect: user.numCorrect,
       numWrong: user.numWrong,
+      qTypeCount: user.qTypeCount,
+      qTopicCount: user.qTopicCount,
       token: generateToken(user._id),
     });
   } else {
@@ -70,6 +74,8 @@ export const loginUser = asyncHandler(async (req, res) => {
       streak: user.streak,
       numCorrect: user.numCorrect,
       numWrong: user.numWrong,
+      qTypeCount: user.qTypeCount,
+      qTopicCount: user.qTopicCount,
       token: generateToken(user._id),
     });
   } else {

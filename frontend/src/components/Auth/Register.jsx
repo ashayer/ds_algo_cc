@@ -35,7 +35,11 @@ const Auth = () => {
         email,
         password,
         skill,
+        qTypeCount: [],
+        qTopicCount: [],
+
       };
+      console.log(userData);
       dispatch(register(userData));
     }
   };

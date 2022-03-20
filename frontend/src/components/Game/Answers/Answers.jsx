@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 import useStyles from "./styles";
 import "./answers.css";
 
-const Answers = ({ answers, startGame, questionType, questionStartTime }) => {
+const Answers = ({ answers, startGame, questionType, questionTopicNum, questionStartTime }) => {
   const classes = useStyles();
 
   const correctAnswer = () => {
@@ -51,10 +51,7 @@ const Answers = ({ answers, startGame, questionType, questionStartTime }) => {
           <Grid container justifyContent="space-evenly" margin="0px">
             {answer[1].map((value, index) => (
               <Grid item key={index}>
-                <div
-                  className="answerArrayBars"
-                  style={{ height: value * 2.5 + "vh" }}
-                >
+                <div className="answerArrayBars" style={{ height: value * 2.5 + "vh" }}>
                   <Typography variant="h5">{value}</Typography>
                 </div>
               </Grid>
@@ -77,21 +74,14 @@ const Answers = ({ answers, startGame, questionType, questionStartTime }) => {
           }}
           className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
         >
-          <Typography variant={questionType < 3 ? "h1" : "h4"}>
-            {answer[1]}
-          </Typography>
+          <Typography variant={questionType < 3 ? "h1" : "h4"}>{answer[1]}</Typography>
         </ButtonBase>
       </Grid>
     ));
   };
 
   return (
-    <Grid
-      container
-      align="center"
-      justifyContent="center"
-      style={{ border: "3px solid red" }}
-    >
+    <Grid container align="center" justifyContent="center" style={{ border: "3px solid red" }}>
       {questionType === 0 ? (
         <AnswerBars />
       ) : questionType > 0 && questionType < 4 ? (

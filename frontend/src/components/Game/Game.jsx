@@ -26,6 +26,7 @@ const Game = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [questionTopic, setQuestionTopic] = useState("");
   const [questionType, setQuestionType] = useState(0);
+  const [questionTopicNum, setQuestionTopicNum] = useState(0);
   const [timer, setTimer] = useState(timeLeft);
   const [object, setObject] = useState({}); // ! change name to something more descriptive
   const classes = useStyles();
@@ -34,12 +35,13 @@ const Game = () => {
     const correctIndex = Math.floor(Math.random() * 4);
     let typeIndex = Math.floor(Math.random() * 4);
     let topicIndex = Math.floor(Math.random() * 4);
-    // while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
-    //   topicIndex = Math.floor(Math.random() * 4);
-    // }
-    // while (typeIndex === questionType) {
-    //   typeIndex = Math.floor(Math.random() * 4);
-    // }
+    while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
+      topicIndex = Math.floor(Math.random() * 4);
+    }
+    while (typeIndex === questionType) {
+      typeIndex = Math.floor(Math.random() * 4);
+    }
+    setQuestionTopicNum(topicIndex);
     const gameObject = questionHandler(topicIndex, typeIndex);
     // console.log(gameObject);
     const answerOptions = [];
