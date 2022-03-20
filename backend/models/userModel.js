@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema(
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    skill: {type: Number, required: true},
+    skill: {type: String, required: true},
     points: { type: Number, required: true },
     responseTime: { type: Number, required: true },
     streak: { type: Number, required: true },

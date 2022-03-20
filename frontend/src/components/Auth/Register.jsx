@@ -25,13 +25,13 @@ const Auth = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    skill: 0,
+    skill: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { name, email, password, confirmPassword, skill } = formData;
-
+  console.log(formData);
   const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
@@ -91,9 +91,9 @@ const Auth = () => {
           <FormControl>
             <FormLabel>What is your skill level with data structures and algorithms?</FormLabel>
             <RadioGroup row onChange={handleChange} name="skill">
-              <FormControlLabel value="0" control={<Radio />} label="Beginner" />
-              <FormControlLabel value="1" control={<Radio />} label="Intermediate" />
-              <FormControlLabel value="2" control={<Radio />} label="Expert" />
+              <FormControlLabel value={0} control={<Radio />} label="Beginner" />
+              <FormControlLabel value={1} control={<Radio />} label="Intermediate" />
+              <FormControlLabel value={2} control={<Radio />} label="Expert" />
             </RadioGroup>
           </FormControl>
           <Button

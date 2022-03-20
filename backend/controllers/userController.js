@@ -26,7 +26,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashedPassword,
-    skill: 0,
+    skill,
     points: 0,
     responseTime: 0,
     streak: 0,

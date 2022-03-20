@@ -79,7 +79,6 @@ const Game = () => {
     if (localUser.streak > highestStreak) {
       highestStreak = localUser.streak;
     }
-    console.log(highestStreak, localUser.streak);
   };
 
   const startGameOnTimeEnd = () => {
@@ -95,7 +94,6 @@ const Game = () => {
     const totalQuestions = localUser.numCorrect + localUser.numWrong;
     const averageResponseTime = Math.floor(localUser.responseTime / totalQuestions);
     //! could change to just pass the local user
-    console.log(highestStreak);
     dispatch(
       updatePoints({
         userId: localUser._id,
