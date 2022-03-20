@@ -7,6 +7,7 @@ const register = async (userData) => {
 
   if (response.data) {
     sessionStorage.setItem("user", JSON.stringify(response.data));
+    localStorage.setItem("visited", false);
   }
 
   return response.data;

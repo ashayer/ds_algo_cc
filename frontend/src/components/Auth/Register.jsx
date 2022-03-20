@@ -31,7 +31,6 @@ const Auth = () => {
   const navigate = useNavigate();
 
   const { name, email, password, confirmPassword, skill } = formData;
-  console.log(formData);
   const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
