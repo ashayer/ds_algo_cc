@@ -5,9 +5,9 @@ import User from "../models/userModel.js";
 import mongoose from "mongoose";
 
 export const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, skill } = req.body;
   console.log(req.body);
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !skill) {
     res.status(400);
     throw new Error("Missing field");
   }
@@ -27,11 +27,12 @@ export const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashedPassword,
+    skill: 0,
     points: 0,
     responseTime: 0,
-    streak: 0, 
-    numCorrect: 0, 
-    numWrong: 0
+    streak: 0,
+    numCorrect: 0,
+    numWrong: 0,
   });
 
   if (user) {
@@ -39,10 +40,11 @@ export const registerUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
+      skill: user.skill,
       points: user.points,
       responseTime: user.responseTime,
       streak: user.streak,
-      numCorrect: user.numCorrect, 
+      numCorrect: user.numCorrect,
       numWrong: user.numWrong,
       token: generateToken(user._id),
     });
@@ -62,10 +64,11 @@ export const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
+      skill: user.skill,
       points: user.points,
       responseTime: user.responseTime,
       streak: user.streak,
-      numCorrect: user.numCorrect, 
+      numCorrect: user.numCorrect,
       numWrong: user.numWrong,
       token: generateToken(user._id),
     });
@@ -74,7 +77,6 @@ export const loginUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid credentials");
   }
 });
-
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -91,11 +93,8 @@ export const updatePoints = asyncHandler(async (req, res) => {
   });
 });
 
-
 export const getPoints = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
   console.log("The user current has " + user.points + " points");
-  res.status(200).json(user.points)
-  
-})
-
+  res.status(200).json(user.points);
+});

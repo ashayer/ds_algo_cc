@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Paper, Grid, Typography, Container, CircularProgress } from "@mui/material";
+import { FormControl, FormLabel, FormControlLabel } from "@mui/material";
+import { Radio, RadioGroup } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./styles";
@@ -13,11 +15,12 @@ const Auth = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    skill: 0,
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { name, email, password, confirmPassword } = formData;
+  const { name, email, password, confirmPassword, skill} = formData;
 
   const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
@@ -31,6 +34,7 @@ const Auth = () => {
         name,
         email,
         password,
+        skill,
       };
       dispatch(register(userData));
     }
@@ -71,6 +75,14 @@ const Auth = () => {
               type="password"
             />
           </Grid>
+          <FormControl>
+            <FormLabel>What is your skill level with data structures and algorithms?</FormLabel>
+            <RadioGroup row onChange={handleChange} name="skill">
+              <FormControlLabel value="0" control={<Radio />} label="Beginner" />
+              <FormControlLabel value="1" control={<Radio />} label="Intermediate" />
+              <FormControlLabel value="2" control={<Radio />} label="Expert" />
+            </RadioGroup>
+          </FormControl>
           <Button
             type="submit"
             fullWidth

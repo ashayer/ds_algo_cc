@@ -7,16 +7,18 @@ const userSchema = mongoose.Schema(
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    skill: {type: Number, required: true},
     points: { type: Number, required: true },
-    responseTime: { type: Number, required: true},
-    streak: { type: Number, required: true},
-    numCorrect: { type: Number, required: true},
-    numWrong: { type: Number, required: true}
-    
+    responseTime: { type: Number, required: true },
+    streak: { type: Number, required: true },
+    numCorrect: { type: Number, required: true },
+    numWrong: { type: Number, required: true },
+    qTypeCount: [Number],
+    qTopicCount: [Number]
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const User = mongoose.model("User", userSchema);
