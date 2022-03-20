@@ -1,21 +1,20 @@
 import { shuffle } from "d3-array";
-//to generate a random question that asks about pseudo-code pick a line with meaningful logic
-//get the character number in string or make its own variable
-//generate similar answers with minor incorrect changes
-//put correct string into answer.right and three wrong string into answer.wrong
-//answer.original is the entire pseudo code with the missing line replaced with emptyspace character
+// to generate a random question that asks about pseudo-code pick a line with meaningful logic
+// get the character number in string or make its own variable
+// generate similar answers with minor incorrect changes
+// put correct string into answer.right and three wrong string into answer.wrong
 function generateEmptyLine(string) {
   let emptyString = "";
-  for (let i = 0; i < string.length; i++) {
-    emptyString = emptyString + " ";
+  for (let i = 0; i < string.length; i += 1) {
+    emptyString += " ";
   }
-  return emptyString + "\n";
+  return `${emptyString}\n`;
 }
 
 function generateCode() {
-  const Line1 = "for(int i = 0; i < arr.len; i++)\n";
+  const Line1 = "for(int i = 0; i < arr.len; i += 1)\n";
   const Line2 = "  int min = i\n";
-  const Line3 = "    for(int j = i+1; j < arr.len; j++)\n";
+  const Line3 = "    for(int j = i+1; j < arr.len; j += 1)\n";
   const Line4 = "      if (arr[j] < arr[min])\n";
   const Line5 = "        min = j\n";
   const Line6 = "     swap (arr[i],arr[min])";
@@ -26,7 +25,7 @@ function generateCode() {
     {
       right: Line1,
       wrong: [
-        "for(int i = 1; i < arr.len; i++)",
+        "for(int i = 1; i < arr.len; i += 1)",
         "for(int i = arr.len; i > 0; i--)",
         "for(int i = arr.len; i > 0; i--)",
       ],
@@ -42,9 +41,9 @@ function generateCode() {
     {
       right: Line3,
       wrong: [
-        "for(int j = 0; j < arr.len; j++)",
-        "for(int j = i; j < arr.len; j++)",
-        "for(int j = 1; j < arr.len; j++)"
+        "for(int j = 0; j < arr.len; j += 1)",
+        "for(int j = i; j < arr.len; j += 1)",
+        "for(int j = 1; j < arr.len; j += 1)",
       ],
     },
     {
@@ -73,19 +72,18 @@ function generateCode() {
     },
   ];
 
-  const randomLineNumber = Math.floor(Math.random() * 6); //random number 0-5
+  const randomLineNumber = Math.floor(Math.random() * 6); // random number 0-5
   let selectionPseudo = "";
 
-  for (let i = 0; i < pseudoCodeStringArray.length; i++) {
+  for (let i = 0; i < pseudoCodeStringArray.length; i += 1) {
     if (i === randomLineNumber) {
-      selectionPseudo =
-        selectionPseudo + generateEmptyLine(pseudoCodeStringArray[i]);
+      selectionPseudo += generateEmptyLine(pseudoCodeStringArray[i]);
     } else {
-      selectionPseudo = selectionPseudo + pseudoCodeStringArray[i];
+      selectionPseudo += pseudoCodeStringArray[i];
     }
   }
 
-  let answers = {
+  const answers = {
     right: answersOptionsObjectArray[randomLineNumber].right,
     wrong: shuffle(answersOptionsObjectArray[randomLineNumber].wrong),
     original: selectionPseudo,

@@ -1,6 +1,6 @@
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 
-export default makeStyles((theme) => ({
+export default makeStyles(() => ({
   rightAnswer: {
     backgroundColor: "green",
     color: "white",
@@ -9,10 +9,10 @@ export default makeStyles((theme) => ({
     borderRadius: "10px",
   },
   wrongAnswer: {
-      backgroundColor: "red",
-      color: "white",
-      transition: "all 0.25s ease",
-      margin: "10px 10px",
-      borderRadius: "10px",
+    backgroundColor: "red",
+    color: "white",
+    transition: "all 0.25s ease",
+    margin: "10px 10px",
+    borderRadius: "10px",
   },
 }));

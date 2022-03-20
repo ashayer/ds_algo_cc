@@ -1,12 +1,12 @@
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 
-export default makeStyles((theme) => ({
+export default makeStyles(() => ({
   contentArrayContainer: {
     width: "55vw",
-    position: 'relative',
+    position: "relative",
     top: "12.5vh",
     transition: "all 0.25s ease",
-    justifyContent: 'space-evenly'
+    justifyContent: "space-evenly",
   },
   codeContainer: {
     border: "2px solid blue",
@@ -15,6 +15,5 @@ export default makeStyles((theme) => ({
     border: "2px solid green",
     width: "40vw",
     textAlign: "left",
-
-  }
+  },
 }));

@@ -1,9 +1,9 @@
+import React, { useCallback, useEffect, useState } from "react";
 import { Grid, Button, Container, Paper, Grow } from "@mui/material/";
-import { useCallback, useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { useDispatch } from "react-redux";
 import questionHandler from "../../Algorithms/handler";
-import { algorithmInfoArray } from "../../Algorithms/infoArray";
+import algorithmInfoArray from "../../Algorithms/infoArray";
 import { updatePoints } from "../../features/game/gameSlice";
 import Navbar from "../Navbar/Navbar";
 import Answers from "./Answers/Answers";
@@ -13,11 +13,8 @@ import useStyles from "./styles";
 import UserStatsTable from "./UserStatsTable/UserStatsTable";
 import "./game.css";
 
-
-
-
 const Game = () => {
-  const timeLeft = 15;
+  const timeLeft = 1;
 
   const questionStartTime = new Date();
 
@@ -30,9 +27,36 @@ const Game = () => {
   const [questionTopic, setQuestionTopic] = useState("");
   const [questionType, setQuestionType] = useState(0);
   const [timer, setTimer] = useState(timeLeft);
-  const [object, setObject] = useState({}); //! change name to something more descriptive
+  const [object, setObject] = useState({}); // ! change name to something more descriptive
   const classes = useStyles();
   const dispatch = useDispatch();
+  const createRandomGame = () => {
+    const correctIndex = Math.floor(Math.random() * 4);
+    let typeIndex = Math.floor(Math.random() * 4);
+    let topicIndex = Math.floor(Math.random() * 4);
+    // while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
+    //   topicIndex = Math.floor(Math.random() * 4);
+    // }
+    // while (typeIndex === questionType) {
+    //   typeIndex = Math.floor(Math.random() * 4);
+    // }
+    const gameObject = questionHandler(topicIndex, typeIndex);
+    // console.log(gameObject);
+    const answerOptions = [];
+    let wrongIndex = 0;
+    for (let i = 0; i < 4; i += 1) {
+      if (i === correctIndex) {
+        answerOptions[i] = [true, gameObject.right];
+      } else {
+        answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
+        wrongIndex += 1;
+      }
+    }
+    setQuestionTopic(algorithmInfoArray[0][topicIndex].name);
+    setQuestionType(typeIndex);
+    setAnswers(answerOptions);
+    setObject(gameObject);
+  };
 
   const startGame = () => {
     createRandomGame();
@@ -62,7 +86,7 @@ const Game = () => {
         userId: localUser._id,
         userPoints: localUser.points,
         userResponseTime: averageResponseTime,
-      })
+      }),
     );
 
     localUser.numCorrect = 0;
@@ -73,56 +97,26 @@ const Game = () => {
     setGameStarted(false);
   };
 
-  const createRandomGame = () => {
-    const correctIndex = Math.floor(Math.random() * 4);
-    let typeIndex = Math.floor(Math.random() * 4);
-    let topicIndex = Math.floor(Math.random() * 4); 
-    while (questionTopic === algorithmInfoArray[topicIndex].name) {
-      topicIndex = Math.floor(Math.random() * 4);
-    }
-    while(typeIndex === questionType){
-      typeIndex = Math.floor(Math.random() * 4);
-    }
-    const gameObject = questionHandler(topicIndex, typeIndex);
-    //console.log(gameObject);
-    const answerOptions = [];
-    let wrongIndex = 0;
-    for (let i = 0; i < 4; i++) {
-      if (i === correctIndex) {
-        answerOptions[i] = [true, gameObject.right];
-      } else {
-        answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
-        wrongIndex += 1;
-      }
-    }
-    setQuestionTopic(algorithmInfoArray[topicIndex].name);
-    setQuestionType(typeIndex);
-    setAnswers(answerOptions);
-    setObject(gameObject);
-  };
-
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
         setContent(object.original);
-        setTimer(timeLeft);
         setQuestion(
-          `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps`
+          `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps`,
         );
         break;
       case 1:
         setContent([questionTopic]);
-        setTimer(timeLeft);
         setQuestion("What is the time complexity of the algorithm below?");
         break;
       case 2:
-        setContent([questionTopic]);
         setTimer(timeLeft);
+        setContent([questionTopic]);
         setQuestion("What is the space complexity of the algorithm below?");
         break;
       case 3:
-        setContent([object.original]);
         setTimer(timeLeft);
+        setContent([object.original]);
         setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
         break;
       default:
@@ -149,23 +143,19 @@ const Game = () => {
   );
 
   return gameStarted ? (
-    <Grow in={true}>
-      <Grid container={true}>
+    <Grow in>
+      <Grid container>
         <Paper className={classes.paperQuestion}>
-          <Grid container={true} className={classes.topRow}>
-            <Grid item={true} style={{ border: "2px solid purple" }}>
+          <Grid container className={classes.topRow}>
+            <Grid item style={{ border: "2px solid purple" }}>
               <UserStatsTable localUser={localUser} />
             </Grid>
-            <Grid item={true} style={{ border: "2px solid purple" }}>
-              <Question answers={answers} question={question} />
+            <Grid item style={{ border: "2px solid purple" }}>
+              <Question question={question} />
             </Grid>
-            <Grid item={true} style={{ border: "2px solid purple" }}>
-            <CountdownTimer />
-              <Button
-                variant="contained"
-                onClick={endGame}
-                style={{ margin: "10px" }}
-              >
+            <Grid item style={{ border: "2px solid purple" }}>
+              <CountdownTimer />
+              <Button variant="contained" onClick={endGame} style={{ margin: "10px" }}>
                 END GAME
               </Button>
             </Grid>
@@ -173,11 +163,7 @@ const Game = () => {
         </Paper>
         <Paper className={classes.paperContent}>
           <Container maxWidth="xl" style={{ border: "2px solid red" }}>
-            <Content
-              content={content}
-              questionType={questionType}
-              questionTopic={questionTopic}
-            />
+            <Content content={content} questionType={questionType} questionTopic={questionTopic} />
           </Container>
         </Paper>
         <Paper className={classes.paperAnswers}>

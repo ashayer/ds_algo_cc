@@ -1,17 +1,14 @@
 import { shuffle } from "d3-array";
-//to generate a random question that asks about pseudo-code pick a line with meaningful logic
-//get the character number in string or make its own variable
-//generate similar answers with minor incorrect changes
-//put correct string into answer.right and three wrong string into answer.wrong
-//answer.original is the entire pseudo code with the missing line replaced with empty space character
-
-//! may need to create separate function for
+// to generate a random question that asks about pseudo-code pick a line with meaningful logic
+// get the character number in string or make its own variable
+// generate similar answers with minor incorrect changes
+// put correct string into answer.right and three wrong string into answer.wrong
 function generateEmptyLine(string) {
   let emptyString = "";
-  for (let i = 0; i < string.length; i++) {
-    emptyString = emptyString + " ";
+  for (let i = 0; i < string.length; i += 1) {
+    emptyString = `${emptyString} `;
   }
-  return emptyString + "\n";
+  return `${emptyString}\n`;
 }
 
 function generateCode() {
@@ -23,36 +20,19 @@ function generateCode() {
   const MergeLine6 = "  else {aux[k] = a[i++]}\n";
 
   const mSortLine1 = "if(left < right)\n";
-  const mSortLine2 = "int middle = left + (right - left)/2;\n";
-  const mSortLine3 = "mergeSort(array, left, middle)\n";
-  const mSortLine4 = "mergeSort(array, middle + 1, right)\n";
-  const mSortLine5 = "merge(array, left, middle, right)\n";
+  const mSortLine2 = "  int middle = left + (right - left)/2;\n";
+  const mSortLine3 = "  mergeSort(array, left, middle)\n";
+  const mSortLine4 = "  mergeSort(array, middle + 1, right)\n";
+  const mSortLine5 = "  merge(array, left, middle, right)\n";
 
-  const mergeSortStringArray = [
-    mSortLine1,
-    mSortLine2,
-    mSortLine3,
-    mSortLine4,
-    mSortLine5,
-  ];
+  const mergeSortStringArray = [mSortLine1, mSortLine2, mSortLine3, mSortLine4, mSortLine5];
 
-  const mergeStringArray = [
-    MergeLine1,
-    MergeLine2,
-    MergeLine3,
-    MergeLine4,
-    MergeLine5,
-    MergeLine6,
-  ];
+  const mergeStringArray = [MergeLine1, MergeLine2, MergeLine3, MergeLine4, MergeLine5, MergeLine6];
 
-  const answersOptionsObjectArrayForMerge = [
+  const answersObjectArrayForMerge = [
     {
       right: MergeLine1,
-      wrong: [
-        "int i = 0, j = middle+1",
-        "int i = 1, j = middle",
-        "int i = high, j = low",
-      ],
+      wrong: ["int i = 0, j = middle+1", "int i = 1, j = middle", "int i = high, j = low"],
     },
     {
       right: MergeLine2,
@@ -88,15 +68,11 @@ function generateCode() {
     },
     {
       right: MergeLine6,
-      wrong: [
-        "else {aux[k] = a[j++]}",
-        "else {aux[k] = a[k++]}",
-        "else {aux[k] = a[low++]}",
-      ],
+      wrong: ["else {aux[k] = a[j++]}", "else {aux[k] = a[k++]}", "else {aux[k] = a[low++]}"],
     },
   ];
 
-  const answersOptionsObjectArrayForMergeSort = [
+  const answersObjectArrayForMergeSort = [
     {
       right: mSortLine1,
       wrong: ["if(left < right)", "if(left > right)", "if(middle < right)"],
@@ -126,51 +102,47 @@ function generateCode() {
       ],
     },
   ];
-
-  const isMerge = Math.floor(Math.random() * 2); //random number 0-1 - 0 means merge 1 means mergeSort
-  //console.log(pseudoCodeStringArray[randomLineNumber].length, pseudoCodeStringArray[randomLineNumber]);
-
+  // random number 0-1 - 0 means merge 1 means mergeSort
+  const isMerge = Math.floor(Math.random() * 2);
   let mergePseudo = "";
   let mergeSortPseudo = "";
 
   if (isMerge === 0) {
-    const randomLineNumber = Math.floor(Math.random() * answersOptionsObjectArrayForMerge.length); //random number 0-3
-    for (let i = 0; i < mergeStringArray.length; i++) {
+    // random number 0-3
+    const randomLineNumber = Math.floor(Math.random() * answersObjectArrayForMerge.length);
+    for (let i = 0; i < mergeStringArray.length; i += 1) {
       if (i === randomLineNumber) {
-        mergePseudo = mergePseudo + generateEmptyLine(mergeStringArray[i]);
+        mergePseudo += generateEmptyLine(mergeStringArray[i]);
       } else {
-        mergePseudo = mergePseudo + mergeStringArray[i];
+        mergePseudo += mergeStringArray[i];
       }
     }
 
-    let answers = {
-      right: answersOptionsObjectArrayForMerge[randomLineNumber].right,
-      wrong: shuffle(answersOptionsObjectArrayForMerge[randomLineNumber].wrong),
+    const answers = {
+      right: answersObjectArrayForMerge[randomLineNumber].right,
+      wrong: shuffle(answersObjectArrayForMerge[randomLineNumber].wrong),
       original: mergePseudo,
     };
 
     return answers;
-  } else {
-    const randomLineNumber = Math.floor(Math.random() * answersOptionsObjectArrayForMergeSort.length); //random number 0-3
-    for (let i = 0; i < mergeSortStringArray.length; i++) {
-      if (i === randomLineNumber) {
-        mergeSortPseudo =
-          mergeSortPseudo + generateEmptyLine(mergeSortStringArray[i]);
-      } else {
-        mergeSortPseudo = mergeSortPseudo + mergeSortStringArray[i];
-      }
-    }
-
-    let answers = {
-      right: answersOptionsObjectArrayForMergeSort[randomLineNumber].right,
-      wrong: shuffle(
-        answersOptionsObjectArrayForMergeSort[randomLineNumber].wrong
-      ),
-      original: mergeSortPseudo,
-    };
-
-    return answers;
   }
+  // random number 0-3
+  const randomLineNumber = Math.floor(Math.random() * answersObjectArrayForMergeSort.length);
+  for (let i = 0; i < mergeSortStringArray.length; i += 1) {
+    if (i === randomLineNumber) {
+      mergeSortPseudo += generateEmptyLine(mergeSortStringArray[i]);
+    } else {
+      mergeSortPseudo += mergeSortStringArray[i];
+    }
+  }
+
+  const answers = {
+    right: answersObjectArrayForMergeSort[randomLineNumber].right,
+    wrong: shuffle(answersObjectArrayForMergeSort[randomLineNumber].wrong),
+    original: mergeSortPseudo,
+  };
+
+  return answers;
 }
 
 export default generateCode;

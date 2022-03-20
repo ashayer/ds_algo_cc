@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Container, Grow } from "@mui/material";
-import Game from "../Game/Game";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Game from "../Game/Game";
 
 const Home = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));

@@ -1,7 +1,7 @@
 import { shuffle } from "d3-array";
 
 function generateTime() {
-  let answers = {
+  const answers = {
     right: "nlogn",
     wrong: shuffle(["n", "logn", "n\u00B2"]),
   };

@@ -1,18 +1,9 @@
-import React from 'react';
+import React from "react";
 
+import { Typography } from "@mui/material/";
 
-import { Typography} from '@mui/material/';
-
-
-const Question = ({answers, question}) => {
-
-    return (
-        <Typography variant="h4">
-            {question}
-        </Typography>
-        
-    );
-
-}
+const Question = ({ question }) => {
+  return <Typography variant="h4">{question}</Typography>;
+};
 
 export default Question;

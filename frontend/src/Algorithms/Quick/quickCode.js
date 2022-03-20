@@ -1,17 +1,16 @@
 import { shuffle } from "d3-array";
-//to generate a random question that asks about pseudo-code pick a line with meaningful logic
-//get the character number in string or make its own variable
-//generate similar answers with minor incorrect changes
-//put correct string into answer.right and three wrong string into answer.wrong
-//answer.original is the entire pseudo code with the missing line replaced with empty space character
+// to generate a random question that asks about pseudo-code pick a line with meaningful logic
+// get the character number in string or make its own variable
+// generate similar answers with minor incorrect changes
+// put correct string into answer.right and three wrong string into answer.wrong
 
 //! may need to create separate function for
 function generateEmptyLine(string) {
   let emptyString = "";
-  for (let i = 0; i < string.length; i++) {
-    emptyString = emptyString + " ";
+  for (let i = 0; i < string.length; i += 1) {
+    emptyString = `${emptyString} `;
   }
-  return emptyString + "\n";
+  return `${emptyString}\n`;
 }
 
 function generateCode() {
@@ -24,9 +23,9 @@ function generateCode() {
   const partitionLine7 = "return pivotIndex\n";
 
   const qSortLine1 = "if (low < high)\n";
-  const qSortLine2 = "int index = partition(arr, low, high)\n";
-  const qSortLine3 = "quickSort(arr, low, index -1)\n";
-  const qSortLine4 = "quickSort(arr, index + 1, high)\n";
+  const qSortLine2 = "  int index = partition(arr, low, high)\n";
+  const qSortLine3 = "  quickSort(arr, low, index -1)\n";
+  const qSortLine4 = "  quickSort(arr, index + 1, high)\n";
 
   const partitionStringArray = [
     partitionLine1,
@@ -51,11 +50,7 @@ function generateCode() {
     },
     {
       right: partitionLine2,
-      wrong: [
-        "int pivotIndex = 0",
-        "int pivotIndex = high - 1",
-        "int pivotIndex = low + 1",
-      ],
+      wrong: ["int pivotIndex = 0", "int pivotIndex = high - 1", "int pivotIndex = low + 1"],
     },
     {
       right: partitionLine3,
@@ -67,11 +62,7 @@ function generateCode() {
     },
     {
       right: partitionLine4,
-      wrong: [
-        "if(arr[low] < pivotValue)",
-        "if(arr[0] < pivotValue)",
-        "if(arr[high] > pivotValue)",
-      ],
+      wrong: ["if(arr[low] < pivotValue)", "if(arr[0] < pivotValue)", "if(arr[high] > pivotValue)"],
     },
     {
       right: partitionLine5,
@@ -91,7 +82,7 @@ function generateCode() {
     },
   ];
 
-  const answersOptionsObjectArrayForQuickSort = [
+  const answersObjectArrayForQuickSort = [
     {
       right: qSortLine1,
       wrong: ["if (low == high)", "if (high > low)", "if (low > 0)"],
@@ -114,11 +105,7 @@ function generateCode() {
     },
     {
       right: qSortLine4,
-      wrong: [
-        "quickSort(arr, 0, low)",
-        "quickSort(arr, index, high)",
-        "quickSort(arr, low, high)",
-      ],
+      wrong: ["quickSort(arr, 0, low)", "quickSort(arr, index, high)", "quickSort(arr, low, high)"],
     },
   ];
 
@@ -129,49 +116,41 @@ function generateCode() {
 
   if (isPartition === 0) {
     const randomLineNumber = Math.floor(
-      Math.random() * answersOptionsObjectArrayForPartition.length
-    ); //random number 0-7
-    for (let i = 0; i < partitionStringArray.length; i++) {
+      Math.random() * answersOptionsObjectArrayForPartition.length,
+    ); // random number 0-7
+    for (let i = 0; i < partitionStringArray.length; i += 1) {
       if (i === randomLineNumber) {
-        partitionPseudo =
-          partitionPseudo + generateEmptyLine(partitionStringArray[i]);
+        partitionPseudo += generateEmptyLine(partitionStringArray[i]);
       } else {
-        partitionPseudo = partitionPseudo + partitionStringArray[i];
+        partitionPseudo += partitionStringArray[i];
       }
     }
 
-    let answers = {
+    const answers = {
       right: answersOptionsObjectArrayForPartition[randomLineNumber].right,
-      wrong: shuffle(
-        answersOptionsObjectArrayForPartition[randomLineNumber].wrong
-      ),
+      wrong: shuffle(answersOptionsObjectArrayForPartition[randomLineNumber].wrong),
       original: partitionPseudo,
     };
 
     return answers;
-  } else {
-    const randomLineNumber = Math.floor(
-      Math.random() * answersOptionsObjectArrayForQuickSort.length
-    ); //random number 0-3
-    for (let i = 0; i < quickSortStringArray.length; i++) {
-      if (i === randomLineNumber) {
-        quickSortPseudo =
-          quickSortPseudo + generateEmptyLine(quickSortStringArray[i]);
-      } else {
-        quickSortPseudo = quickSortPseudo + quickSortStringArray[i];
-      }
-    }
-
-    let answers = {
-      right: answersOptionsObjectArrayForQuickSort[randomLineNumber].right,
-      wrong: shuffle(
-        answersOptionsObjectArrayForQuickSort[randomLineNumber].wrong
-      ),
-      original: quickSortPseudo,
-    };
-
-    return answers;
   }
+  // random number 0-3
+  const randomLineNumber = Math.floor(Math.random() * answersObjectArrayForQuickSort.length);
+  for (let i = 0; i < quickSortStringArray.length; i += 1) {
+    if (i === randomLineNumber) {
+      quickSortPseudo += generateEmptyLine(quickSortStringArray[i]);
+    } else {
+      quickSortPseudo += quickSortStringArray[i];
+    }
+  }
+
+  const answers = {
+    right: answersObjectArrayForQuickSort[randomLineNumber].right,
+    wrong: shuffle(answersObjectArrayForQuickSort[randomLineNumber].wrong),
+    original: quickSortPseudo,
+  };
+
+  return answers;
 }
 
 export default generateCode;

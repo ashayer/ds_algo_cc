@@ -1,10 +1,11 @@
 import React from "react";
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
-import useStyles from "./styles";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
+import {
+  AppBar, Button, Toolbar, Typography,
+} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import useStyles from "./styles";
 import { logout, reset } from "../../features/auth/authSlice";
 
 const Navbar = () => {
@@ -21,20 +22,14 @@ const Navbar = () => {
 
   return (
     <AppBar className={classes.appBar} position="static">
-      <Typography
-        component={Link}
-        to="/"
-        variant="h2"
-      >
+      <Typography component={Link} to="/" variant="h2">
         <HomeIcon fontSize="large" />
       </Typography>
       <Toolbar className={classes.toolbar}>
         {user || localUser ? (
-          <>
-            <Button variant="contained" onClick={onLogout}>
-              Logout
-            </Button>
-          </>
+          <Button variant="contained" onClick={onLogout}>
+            Logout
+          </Button>
         ) : null}
       </Toolbar>
     </AppBar>

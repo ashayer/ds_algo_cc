@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Paper,
-  Grid,
-  Typography,
-  Container,
-  CircularProgress,
-} from "@mui/material";
-import useStyles from "./styles";
-import Input from "./Input";
+import { Button, Paper, Grid, Typography, Container, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import useStyles from "./styles";
+import Input from "./Input";
 import { login, reset } from "../../features/auth/authSlice";
 
 const Auth = () => {
@@ -24,9 +17,7 @@ const Auth = () => {
 
   const { email, password } = formData;
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,7 +45,6 @@ const Auth = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
   if (isLoading) {
     return <CircularProgress />;
   }
@@ -64,18 +54,8 @@ const Auth = () => {
         <Typography variant="h5">Sign In</Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Input
-              name="email"
-              label="Email Address"
-              handleChange={handleChange}
-              type="email"
-            />
-            <Input
-              name="password"
-              label="Password"
-              handleChange={handleChange}
-              type="password"
-            />
+            <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
+            <Input name="password" label="Password" handleChange={handleChange} type="password" />
           </Grid>
           <Button
             type="submit"
@@ -90,7 +70,9 @@ const Auth = () => {
             type="button"
             variant="contained"
             fullWidth
-            onClick = {() => {navigate('/register')}}
+            onClick={() => {
+              navigate("/register");
+            }}
             className={classes.submit}
           >
             Register Account
