@@ -13,13 +13,13 @@ import useStyles from "./styles";
 import UserStatsTable from "./UserStatsTable/UserStatsTable";
 import "./game.css";
 
+let highestStreak = 0;
 const Game = () => {
   const timeLeft = 15;
 
   const questionStartTime = new Date();
 
   const localUser = JSON.parse(sessionStorage.getItem("user"));
-
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState("");
   const [content, setContent] = useState(null);
@@ -63,6 +63,7 @@ const Game = () => {
   const startGame = () => {
     createRandomGame();
     if (!gameStarted) {
+      highestStreak = 0;
       localUser.numCorrect = 0;
       localUser.numWrong = 0;
       localUser.streak = 0;
@@ -72,6 +73,13 @@ const Game = () => {
       sessionStorage.setItem("user", JSON.stringify(localUser));
       setGameStarted(true);
     }
+  };
+
+  const isHighestStreak = () => {
+    if (localUser.streak > highestStreak) {
+      highestStreak = localUser.streak;
+    }
+    console.log(highestStreak, localUser.streak);
   };
 
   const startGameOnTimeEnd = () => {
@@ -87,6 +95,7 @@ const Game = () => {
     const totalQuestions = localUser.numCorrect + localUser.numWrong;
     const averageResponseTime = Math.floor(localUser.responseTime / totalQuestions);
     //! could change to just pass the local user
+    console.log(highestStreak);
     dispatch(
       updatePoints({
         userId: localUser._id,
@@ -96,7 +105,7 @@ const Game = () => {
         userNumWrong: localUser.numWrong,
         userQTopicCount: localUser.qTopicCount,
         userQTypeCount: localUser.qTypeCount,
-        userStreak: localUser.streak,
+        userStreak: highestStreak + 1, //! need to add one for some reason
       }),
     );
     setGameStarted(false);
@@ -178,6 +187,7 @@ const Game = () => {
             questionType={questionType}
             questionStartTime={questionStartTime}
             questionTopicNum={questionTopicNum}
+            isHighestStreak={isHighestStreak}
           />
         </Paper>
       </Grid>

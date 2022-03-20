@@ -3,7 +3,14 @@ import { Grid, ButtonBase, Typography } from "@mui/material/";
 import useStyles from "./styles";
 import "./answers.css";
 
-const Answers = ({ answers, startGame, questionType, questionTopicNum, questionStartTime }) => {
+const Answers = ({
+  answers,
+  startGame,
+  questionType,
+  questionTopicNum,
+  questionStartTime,
+  isHighestStreak,
+}) => {
   const classes = useStyles();
 
   const correctAnswer = () => {
@@ -18,6 +25,8 @@ const Answers = ({ answers, startGame, questionType, questionTopicNum, questionS
     localUser.qTopicCount[questionTopicNum] += 1;
     localUser.qTypeCount[questionType] += 1;
     sessionStorage.setItem("user", JSON.stringify(localUser));
+
+    isHighestStreak();
 
     startGame();
   };
