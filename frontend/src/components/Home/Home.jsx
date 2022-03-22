@@ -49,7 +49,7 @@ const Home = () => {
 
           <Typography variant="h6">
             After reading all of this you will be playing a multiple choice quiz game that covers
-            some data structures and sorting algorithms.
+            some sorting algorithms.
           </Typography>
 
           <Typography variant="h6">Just imagine Kahoot except with CS41 questions.</Typography>
