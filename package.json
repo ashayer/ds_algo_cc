@@ -9,17 +9,10 @@
     "client": "npm start --prefix frontend",
     "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ashayer/ds_algo_cc.git"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2"
-  },
-  "bugs": {
-    "url": "https://github.com/ashayer/ds_algo_cc/issues"
-  },
-  "homepage": "https://github.com/ashayer/ds_algo_cc#readme"
+  }
+
 }
