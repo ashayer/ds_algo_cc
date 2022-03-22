@@ -47,7 +47,6 @@ const Auth = () => {
         qTypeCount: [0, 0, 0, 0],
         qTopicCount: [0, 0, 0, 0],
       };
-      console.log(userData);
       dispatch(register(userData));
     }
   };
@@ -88,7 +87,7 @@ const Auth = () => {
             />
           </Grid>
           <FormControl>
-            <FormLabel>What is your skill level with data structures and algorithms?</FormLabel>
+            <FormLabel>What is your knowledge level with sorting algorithms?</FormLabel>
             <RadioGroup row onChange={handleChange} name="skill">
               <FormControlLabel value={0} control={<Radio />} label="Beginner" />
               <FormControlLabel value={1} control={<Radio />} label="Intermediate" />

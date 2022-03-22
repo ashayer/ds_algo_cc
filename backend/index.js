@@ -7,8 +7,8 @@ import { connectDB } from "./config/db.js";
 import { URL } from "url";
 import path from "path";
 import cors from "cors";
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 //! use cors
@@ -32,20 +32,19 @@ app.use("/api/users", userRoutes);
 //uses errorHandler middleware
 app.use(errorHandler);
 
-// app.use(express.static('../frontend/build/'));
-// app.get("/*", (req, res) => {
-//   res.sendFile("index.html", { root: path.join("../frontend", "/build/") });
+// app.use(express.static(path.join(__dirname, '../frontend/build/')));
+// app.use(express.static('public'));
+
+// app.use((req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
 // });
 
-
-app.use(express.static(path.join(__dirname, '../frontend/build/')));
-app.use(express.static('public'));
-// app.get("/*", (req, res) => {
-//   res.sendFile("index.html", { root: path.join(__dirname, '../frontend/build/') });
-// });
-
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "../frontend/public/index.html"), function (err) {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

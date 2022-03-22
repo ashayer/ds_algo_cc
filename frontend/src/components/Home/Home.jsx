@@ -34,11 +34,11 @@ const Home = () => {
     } else {
       handleClickOpen();
     }
-  }, [user, localUser, navigate]);
+  }, [user, localUser, navigate, visited]);
 
   return !visited ? (
     <div>
-      <Dialog open={open} onClose={handleClose} maxWidth="lg">
+      <Dialog open={open} maxWidth="lg">
         <DialogTitle id="alert-dialog-title" sx={{ fontSize: 50 }}>
           Welcome!
         </DialogTitle>
@@ -52,20 +52,18 @@ const Home = () => {
             some sorting algorithms.
           </Typography>
 
-          <Typography variant="h6">Just imagine Kahoot except with CS41 questions.</Typography>
-
           <Typography variant="h6">
             First you will have to create an account, but please DO NOT use any of your actual
             details. Just put whatever you can that works.
           </Typography>
 
           <Typography variant="h6">
-            You will also be asked your experience with data structures and algorithms.
+            You will also be asked your skill level with sorting algorithms.
           </Typography>
 
           <Typography variant="h6">
             Then you will see a start game button that will begin the quiz game. You will have to
-            try to answer at least 25 of them.
+            try to answer at least 20 of them.
           </Typography>
           <Typography variant="h6">
             Assuming everything works, it will end the game and log you out.
@@ -78,7 +76,7 @@ const Home = () => {
           <Typography variant="h6">Thanks again!</Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleAgree} autoFocus variant="contained">
+          <Button onClick={handleAgree} variant="contained">
             GOT IT
           </Button>
         </DialogActions>
