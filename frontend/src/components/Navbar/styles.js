@@ -9,7 +9,6 @@ export default makeStyles(() => ({
     justifyContent: "space-between",
     alignItems: "center",
     padding: "5px 15px",
-    border: "2px solid red",
   },
   toolbar: {
     display: "flex",

@@ -52,34 +52,38 @@ const Auth = () => {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container className={classes.formContainer} maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
         <Typography variant="h5">Sign In</Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
+        <form onSubmit={handleSubmit}>
+          <Grid container sx={{ padding: "25px" }} spacing={4}>
             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
             <Input name="password" label="Password" handleChange={handleChange} type="password" />
+            <Grid item>
+              <Button
+                fullWidth
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{ padding: "10px" }}
+              >
+                Sign In
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                fullWidth
+                type="button"
+                variant="contained"
+                onClick={() => {
+                  navigate("/register");
+                }}
+                sx={{ padding: "10px" }}
+              >
+                Register Instead
+              </Button>
+            </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Button
-            type="button"
-            variant="contained"
-            fullWidth
-            onClick={() => {
-              navigate("/register");
-            }}
-            className={classes.submit}
-          >
-            Register Account
-          </Button>
         </form>
       </Paper>
     </Container>

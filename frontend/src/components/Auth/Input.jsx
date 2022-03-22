@@ -8,9 +8,9 @@ const Input = ({ name, handleChange, label, type }) => (
       onChange={handleChange}
       variant="outlined"
       required
-      fullWidth
       label={label}
       type={type}
+      fullWidth
     />
   </Grid>
 );
