@@ -29,11 +29,11 @@ app.use(errorHandler);
 
 const __dirname = new URL('.', import.meta.url).pathname;
 
-app.use(express.static('../frontend/build/'));
+// app.use(express.static('../frontend/build/'));
 
 
-app.get('/', (req, res) => {
-    res.sendFile('index.html', {root: path.join("../frontend", "/build/")});
+app.get('/*', (req, res) => {
+    res.sendFile('index.html', {root: path.join("../frontend", "/public/")});
 });
 
 
