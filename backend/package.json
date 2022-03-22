@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "server": "nodemon index.jsx",
-    "start": "node index.jsx",
-    "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
+    "start": "node index.jsx"
   },
   "keywords": [],
   "author": "",
