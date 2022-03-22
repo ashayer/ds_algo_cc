@@ -13,10 +13,24 @@ const Answers = ({
 }) => {
   const classes = useStyles();
 
+  const calculatePoints = () => {
+    const localUser = JSON.parse(sessionStorage.getItem("user"));
+
+    // if streak over 3 then add 10 to (streak - 3) * 1.67
+    let updatePointsBy = 0;
+    if (localUser.streak > 3) {
+      updatePointsBy = 10 + (localUser.streak - 3) * 1.67;
+    } else {
+      updatePointsBy = 10;
+    }
+
+    return Math.floor(updatePointsBy);
+  };
+
   const correctAnswer = () => {
     const questionEndTime = new Date();
     const calculatedResponseTime = questionEndTime - questionStartTime;
-    const updatePointsBy = Math.floor(Math.random() * 100);
+    const updatePointsBy = calculatePoints();
     const localUser = JSON.parse(sessionStorage.getItem("user"));
     localUser.points += updatePointsBy;
     localUser.numCorrect += 1;

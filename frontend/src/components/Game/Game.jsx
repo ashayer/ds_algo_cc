@@ -46,7 +46,7 @@ const Game = () => {
         userNumWrong: localUser.numWrong,
         userQTopicCount: localUser.qTopicCount,
         userQTypeCount: localUser.qTypeCount,
-        userStreak: highestStreak + 1, //! need to add one for some reason
+        userStreak: highestStreak, //! need to add one for some reason
       }),
     );
     setGameStarted(false);
@@ -55,7 +55,7 @@ const Game = () => {
   };
 
   const createRandomGame = () => {
-    if (localUser.numCorrect + localUser.numWrong < 19) {
+    if (localUser.numCorrect + localUser.numWrong < 20) {
       const correctIndex = Math.floor(Math.random() * 4);
       let typeIndex = Math.floor(Math.random() * 4);
       let topicIndex = Math.floor(Math.random() * 4);
