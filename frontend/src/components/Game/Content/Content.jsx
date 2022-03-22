@@ -11,7 +11,7 @@ const Content = ({ content, questionTopic, questionType }) => {
           <Grid item key={value}>
             <div
               className="contentArrayBars"
-              style={{ height: value * 3 + "vh" }}
+              style={{ height: `${value * 3}vh` }}
             >
               <Typography variant="h4">{value}</Typography>
             </div>
@@ -26,7 +26,7 @@ const Content = ({ content, questionTopic, questionType }) => {
   };
 
   const ContentCode = () => {
-    //console.log({content});
+    //  console.log({content});
     return (
       <Container className={classes.codeContainer}>
         <Typography
