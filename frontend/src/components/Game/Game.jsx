@@ -15,7 +15,7 @@ import "./game.css";
 
 let highestStreak = 0;
 const Game = () => {
-  const timeLeft = 15;
+  const timeLeft = 300;
 
   const questionStartTime = new Date();
 
@@ -161,13 +161,13 @@ const Game = () => {
       <Grid container>
         <Paper className={classes.paperQuestion}>
           <Grid container className={classes.topRow}>
-            <Grid item style={{ border: "2px solid purple" }}>
+            <Grid item>
               <UserStatsTable localUser={localUser} />
             </Grid>
-            <Grid item style={{ border: "2px solid purple" }}>
+            <Grid item>
               <Question question={question} />
             </Grid>
-            <Grid item style={{ border: "2px solid purple" }}>
+            <Grid item>
               <CountdownTimer />
               <Button variant="contained" onClick={endGame} style={{ margin: "10px" }}>
                 END GAME
@@ -176,7 +176,7 @@ const Game = () => {
           </Grid>
         </Paper>
         <Paper className={classes.paperContent}>
-          <Container maxWidth="xl" style={{ border: "2px solid red" }}>
+          <Container maxWidth="xl">
             <Content content={content} questionType={questionType} questionTopic={questionTopic} />
           </Container>
         </Paper>

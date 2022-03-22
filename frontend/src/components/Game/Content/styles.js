@@ -9,10 +9,8 @@ export default makeStyles(() => ({
     justifyContent: "space-evenly",
   },
   codeContainer: {
-    border: "2px solid blue",
   },
   codeText: {
-    border: "2px solid green",
     width: "40vw",
     textAlign: "left",
   },

@@ -4,11 +4,9 @@ export default makeStyles(() => ({
   topRow: {
     justifyContent: "space-between",
     alignItems: "center",
-    border: "3px solid red",
   },
   paperQuestion: {
     width: "2000px",
-    border: "4px solid blue",
   },
   paperContent: {
     width: "2000px",
@@ -19,11 +17,8 @@ export default makeStyles(() => ({
     justifyContent: "space-between",
     alignItems: "center",
     transition: "all 0.25s ease",
-    border: "4px solid blue",
   },
-  paperAnswers: {
-    border: "4px solid blue",
-  },
+  paperAnswers: {},
   textContent: {
     color: "blue",
     padding: "0vh",

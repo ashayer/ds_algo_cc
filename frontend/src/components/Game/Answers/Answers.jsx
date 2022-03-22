@@ -73,13 +73,12 @@ const Answers = ({
 
   const AnswerText = () => {
     return answers.map((answer, index) => (
-      <Grid item key={index} style={{ border: "1px solid black" }}>
+      <Grid item key={index}>
         <ButtonBase
           onClick={answer[0] ? correctAnswer : wrongAnswer}
           style={{
             width: "35vw",
             height: "20.5vh",
-            border: "5px solid orange",
           }}
           className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
         >
@@ -90,7 +89,7 @@ const Answers = ({
   };
 
   return (
-    <Grid container align="center" justifyContent="center" style={{ border: "3px solid red" }}>
+    <Grid container align="center" justifyContent="center">
       {questionType === 0 ? (
         <AnswerBars />
       ) : questionType > 0 && questionType < 4 ? (
