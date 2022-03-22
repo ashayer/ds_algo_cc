@@ -7,6 +7,10 @@ import { connectDB } from "./config/db.js";
 import { URL } from "url";
 import path from "path";
 import cors from "cors";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 //! use cors
 
 connectDB();
@@ -34,9 +38,14 @@ app.use(errorHandler);
 // });
 
 
-app.use(express.static('../frontend/build/'));
-app.get("/*", (req, res) => {
-  res.sendFile("index.html", { root: path.join("../frontend", "/build/") });
+app.use(express.static(path.join(__dirname, '../frontend/build/')));
+app.use(express.static('public'));
+// app.get("/*", (req, res) => {
+//   res.sendFile("index.html", { root: path.join(__dirname, '../frontend/build/') });
+// });
+
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
