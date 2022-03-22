@@ -45,12 +45,12 @@ const Home = () => {
         </DialogTitle>
         <DialogContent>
           <Typography variant="h6">
-            Thanks for taking your time to help me collect some data!
+            Thanks for taking your time to help me collect some data.
           </Typography>
 
           <Typography variant="h6">
             After reading all of this you will be playing a multiple choice quiz game that covers
-            some sorting algorithms.
+            some basic sorting algorithms.
           </Typography>
 
           <Typography variant="h6">
