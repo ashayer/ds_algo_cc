@@ -48,7 +48,7 @@ const Answers = ({
 
   const AnswerBars = () => {
     return answers.map((answer, index) => (
-      <Grid item key={index} style={{ border: "1px solid black" }}>
+      <Grid item key={index}>
         <ButtonBase
           onClick={answer[0] ? correctAnswer : wrongAnswer}
           style={{

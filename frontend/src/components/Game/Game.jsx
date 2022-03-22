@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Grid, Button, Container, Paper, Grow } from "@mui/material/";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { useDispatch } from "react-redux";
+import { logout, reset } from "../../features/auth/authSlice";
 import questionHandler from "../../Algorithms/handler";
 import algorithmInfoArray from "../../Algorithms/infoArray";
 import { updatePoints } from "../../features/game/gameSlice";
@@ -12,7 +13,7 @@ import Question from "./Question/Question";
 import useStyles from "./styles";
 import UserStatsTable from "./UserStatsTable/UserStatsTable";
 import "./game.css";
-
+//! countdown timer causing memory leak
 let highestStreak = 0;
 const Game = () => {
   const timeLeft = 300;
@@ -31,33 +32,59 @@ const Game = () => {
   const [object, setObject] = useState({}); // ! change name to something more descriptive
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const endGame = () => {
+    const totalQuestions = localUser.numCorrect + localUser.numWrong;
+    const averageResponseTime = Math.floor(localUser.responseTime / totalQuestions);
+    //! could change to just pass the local user
+    dispatch(
+      updatePoints({
+        userId: localUser._id,
+        userPoints: localUser.points,
+        userResponseTime: averageResponseTime,
+        userNumCorrect: localUser.numCorrect,
+        userNumWrong: localUser.numWrong,
+        userQTopicCount: localUser.qTopicCount,
+        userQTypeCount: localUser.qTypeCount,
+        userStreak: highestStreak + 1, //! need to add one for some reason
+      }),
+    );
+    setGameStarted(false);
+    dispatch(logout());
+    dispatch(reset());
+  };
+
   const createRandomGame = () => {
-    const correctIndex = Math.floor(Math.random() * 4);
-    let typeIndex = Math.floor(Math.random() * 4);
-    let topicIndex = Math.floor(Math.random() * 4);
-    while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
-      topicIndex = Math.floor(Math.random() * 4);
-    }
-    while (typeIndex === questionType) {
-      typeIndex = Math.floor(Math.random() * 4);
-    }
-    setQuestionTopicNum(topicIndex);
-    const gameObject = questionHandler(topicIndex, typeIndex);
-    // console.log(gameObject);
-    const answerOptions = [];
-    let wrongIndex = 0;
-    for (let i = 0; i < 4; i += 1) {
-      if (i === correctIndex) {
-        answerOptions[i] = [true, gameObject.right];
-      } else {
-        answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
-        wrongIndex += 1;
+    if (localUser.numCorrect + localUser.numWrong < 19) {
+      const correctIndex = Math.floor(Math.random() * 4);
+      let typeIndex = Math.floor(Math.random() * 4);
+      let topicIndex = Math.floor(Math.random() * 4);
+      while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
+        topicIndex = Math.floor(Math.random() * 4);
       }
+      while (typeIndex === questionType) {
+        typeIndex = Math.floor(Math.random() * 4);
+      }
+      setQuestionTopicNum(topicIndex);
+      const gameObject = questionHandler(topicIndex, typeIndex);
+      // console.log(gameObject);
+      const answerOptions = [];
+      let wrongIndex = 0;
+      for (let i = 0; i < 4; i += 1) {
+        if (i === correctIndex) {
+          answerOptions[i] = [true, gameObject.right];
+        } else {
+          answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
+          wrongIndex += 1;
+        }
+      }
+      setQuestionTopic(algorithmInfoArray[0][topicIndex].name);
+      setQuestionType(typeIndex);
+      setAnswers(answerOptions);
+      setObject(gameObject);
+    } else {
+      endGame();
     }
-    setQuestionTopic(algorithmInfoArray[0][topicIndex].name);
-    setQuestionType(typeIndex);
-    setAnswers(answerOptions);
-    setObject(gameObject);
   };
 
   const startGame = () => {
@@ -88,25 +115,6 @@ const Game = () => {
     localUser.qTypeCount[questionType] += 1;
     sessionStorage.setItem("user", JSON.stringify(localUser));
     createRandomGame();
-  };
-
-  const endGame = () => {
-    const totalQuestions = localUser.numCorrect + localUser.numWrong;
-    const averageResponseTime = Math.floor(localUser.responseTime / totalQuestions);
-    //! could change to just pass the local user
-    dispatch(
-      updatePoints({
-        userId: localUser._id,
-        userPoints: localUser.points,
-        userResponseTime: averageResponseTime,
-        userNumCorrect: localUser.numCorrect,
-        userNumWrong: localUser.numWrong,
-        userQTopicCount: localUser.qTopicCount,
-        userQTypeCount: localUser.qTypeCount,
-        userStreak: highestStreak + 1, //! need to add one for some reason
-      }),
-    );
-    setGameStarted(false);
   };
 
   const createQuestion = useCallback(() => {
