@@ -1,9 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
-import {
-  AppBar, Button, Toolbar, Typography,
-} from "@mui/material";
+import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./styles";
 import { logout, reset } from "../../features/auth/authSlice";
@@ -23,7 +21,7 @@ const Navbar = () => {
   return (
     <AppBar className={classes.appBar} position="static">
       <Typography component={Link} to="/" variant="h2">
-        <HomeIcon fontSize="large" />
+        <HomeIcon fontSize="large" sx={{ color: "black" }} />
       </Typography>
       <Toolbar className={classes.toolbar}>
         {user || localUser ? (
