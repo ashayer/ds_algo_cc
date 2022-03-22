@@ -1,10 +1,8 @@
 import express from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
 import { errorHandler } from "./middleware/errorMiddle.js";
 import { connectDB } from "./config/db.js";
-import { URL } from "url";
 import path from "path";
 import cors from "cors";
 import { dirname } from "path";
@@ -32,19 +30,22 @@ app.use("/api/users", userRoutes);
 //uses errorHandler middleware
 app.use(errorHandler);
 
-// app.use(express.static(path.join(__dirname, '../frontend/build/')));
-// app.use(express.static('public'));
-
-// app.use((req, res) => {
-//   res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
-// });
-
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "../frontend/public/index.html"), function (err) {
-    if (err) {
-      res.status(500).send(err);
-    }
+//if in development use public index otherwise use build
+if (process.env.DEV === "true") {
+  app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, "../frontend/public/index.html"), function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    });
   });
-});
+} else {
+  app.use(express.static(path.join(__dirname, "../frontend/build/")));
+  app.use(express.static("public"));
+
+  app.use((req, res) => {
+    res.sendFile(path.join(__dirname, "..", "frontend", "build", "index.html"));
+  });
+}
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

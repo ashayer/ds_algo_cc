@@ -8,11 +8,13 @@ import { login, reset } from "../../features/auth/authSlice";
 
 const Auth = () => {
   const classes = useStyles();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const { email, password } = formData;
@@ -48,6 +50,7 @@ const Auth = () => {
   if (isLoading) {
     return <CircularProgress />;
   }
+
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>

@@ -1,6 +1,5 @@
 import React from "react";
 import { Table, TableBody, TableRow, TableContainer, TableCell } from "@mui/material";
-import PropTypes from "prop-types";
 
 const UserStatsTable = ({ localUser }) => (
   <TableContainer>
@@ -34,25 +33,5 @@ const UserStatsTable = ({ localUser }) => (
     </Table>
   </TableContainer>
 );
-
-UserStatsTable.propTypes = {
-  localUser: PropTypes.shape({
-    responseTime: PropTypes.number.isRequired,
-    streak: PropTypes.number.isRequired,
-    numCorrect: PropTypes.number.isRequired,
-    numWrong: PropTypes.number.isRequired,
-    points: PropTypes.number.isRequired,
-  }),
-};
-
-UserStatsTable.defaultProps = {
-  localUser: PropTypes.shape({
-    responseTime: 0,
-    streak: 0,
-    numCorrect: 0,
-    numWrong: 0,
-    points: 0,
-  }),
-};
 
 export default UserStatsTable;
