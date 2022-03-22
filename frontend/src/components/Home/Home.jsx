@@ -8,6 +8,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Game from "../Game/Game";
+import Login from "../Auth/Login";
 
 const Home = () => {
   const [open, setOpen] = React.useState(false);
@@ -85,7 +86,7 @@ const Home = () => {
   ) : (
     <Grow in>
       <Container maxWidth="xl" align="center">
-        {user || localUser ? <Game /> : null}
+        {user || localUser ? <Game /> : <Login />}
       </Container>
     </Grow>
   );
