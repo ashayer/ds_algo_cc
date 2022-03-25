@@ -22,7 +22,7 @@ const Navbar = () => {
       <Typography component={Link} to="/" variant="h2" />
       <Toolbar className={classes.toolbar}>
         {user || localUser ? (
-          <Button variant="contained" onClick={onLogout}>
+          <Button variant="contained" onClick={onLogout} className={classes.logoutButton}>
             Logout
           </Button>
         ) : null}

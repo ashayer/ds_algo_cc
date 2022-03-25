@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, ButtonBase, Typography } from "@mui/material/";
 import useStyles from "./styles";
+import "./answers.css";
 
 const Answers = ({
   answers,
@@ -72,10 +73,6 @@ const Answers = ({
       <Grid item key={index}>
         <ButtonBase
           onClick={answer[0] ? correctAnswer : wrongAnswer}
-          style={{
-            width: "35vw",
-            height: "20.5vh",
-          }}
           className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
         >
           <Grid container justifyContent="space-evenly" margin="0px">
@@ -97,10 +94,6 @@ const Answers = ({
       <Grid item key={index}>
         <ButtonBase
           onClick={answer[0] ? correctAnswer : wrongAnswer}
-          style={{
-            width: "35vw",
-            height: "20.5vh",
-          }}
           className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
         >
           <Typography variant={questionType < 3 ? "h1" : "h4"}>{answer[1]}</Typography>

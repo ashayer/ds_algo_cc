@@ -15,4 +15,12 @@ export default makeStyles(() => ({
     display: "flex",
     justifyContent: "flex-end",
   },
+  logoutButton: {
+    backgroundColor: "#cf3c02",
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: "#fff",
+      color: "#3c52b2",
+    },
+  },
 }));

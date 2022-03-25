@@ -33,4 +33,12 @@ export default makeStyles(() => ({
     transition: "all 0.25s ease",
     justifyContent: "space-evenly",
   },
+  startButton: {
+    backgroundColor: "#358a04",
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: "black",
+      color: "white",
+    },
+  },
 }));

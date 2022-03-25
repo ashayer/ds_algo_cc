@@ -209,7 +209,7 @@ const Game = () => {
   ) : (
     <>
       <Navbar />
-      <Button variant="contained" onClick={startGame}>
+      <Button variant="contained" onClick={startGame} className={classes.startButton}>
         START GAME
       </Button>
     </>
