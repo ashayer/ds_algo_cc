@@ -1,7 +1,6 @@
 import React from "react";
 import { Grid, ButtonBase, Typography } from "@mui/material/";
 import useStyles from "./styles";
-import "./answers.css";
 
 const Answers = ({
   answers,

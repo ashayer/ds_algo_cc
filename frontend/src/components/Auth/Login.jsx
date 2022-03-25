@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Paper, Grid, Typography, Container, CircularProgress, Grow } from "@mui/material";
+import { Button, Paper, Grid, Container, CircularProgress, Grow } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -64,7 +64,6 @@ const Auth = () => {
     <Grow in>
       <Container className={classes.formContainer} maxWidth="xs">
         <Paper className={classes.paper} elevation={3}>
-          <Typography variant="h5">Sign In</Typography>
           <form onSubmit={handleSubmit}>
             <Grid container sx={{ padding: "25px", justifyContent: "space-between" }} spacing={4}>
               <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
@@ -72,9 +71,9 @@ const Auth = () => {
               <Grid item>
                 <Button
                   fullWidth
+                  className={classes.formSubmitButton}
                   type="submit"
                   variant="contained"
-                  color="success"
                   sx={{ padding: "10px" }}
                 >
                   Sign In
@@ -82,10 +81,9 @@ const Auth = () => {
               </Grid>
               <Grid item>
                 <Button
-                  fullWidth
+                  className={classes.formButton}
                   type="button"
                   variant="contained"
-                  color="warning"
                   onClick={() => {
                     navigate("/register");
                   }}

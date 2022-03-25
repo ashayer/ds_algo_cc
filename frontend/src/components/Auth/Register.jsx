@@ -3,7 +3,6 @@ import {
   Button,
   Paper,
   Grid,
-  Typography,
   Container,
   CircularProgress,
   FormControl,
@@ -91,7 +90,6 @@ const Auth = () => {
     <Grow in>
       <Container className={classes.formContainer} maxWidth="xs">
         <Paper className={classes.paper} elevation={3}>
-          <Typography variant="h5">Sign Up</Typography>
           <form onSubmit={handleSubmit}>
             <Grid container sx={{ padding: "25px", justifyContent: "space-between" }} spacing={4}>
               <Input name="name" label="Name" handleChange={handleChange} autoFocus type="text" />
@@ -117,10 +115,9 @@ const Auth = () => {
 
               <Grid item>
                 <Button
+                  className={classes.formSubmitButton}
                   type="submit"
-                  fullWidth
                   variant="contained"
-                  color="success"
                   sx={{ padding: "10px" }}
                 >
                   Sign Up
@@ -128,10 +125,9 @@ const Auth = () => {
               </Grid>
               <Grid item>
                 <Button
+                  className={classes.formButton}
                   type="button"
                   variant="contained"
-                  color="warning"
-                  fullWidth
                   onClick={() => {
                     navigate("/login");
                   }}

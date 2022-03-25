@@ -14,4 +14,7 @@ export default makeStyles(() => ({
     width: "40vw",
     textAlign: "left",
   },
+  contentArrayBars: {
+    backgroundColor: "#fbae66",
+  },
 }));

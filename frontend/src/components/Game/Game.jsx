@@ -160,7 +160,7 @@ const Game = () => {
     <CountdownCircleTimer
       isPlaying
       duration={timer}
-      colors={["#F7B801"]}
+      colors={["#fbae66"]}
       rotation="counterclockwise"
       size={80}
       trailStrokeWidth="5"
