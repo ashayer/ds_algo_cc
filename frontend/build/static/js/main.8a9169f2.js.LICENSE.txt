@@ -94,6 +94,4 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-//! could change to just pass the local user
-
 //! may need to create separate function for
