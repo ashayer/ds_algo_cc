@@ -127,7 +127,7 @@ function generateCode() {
     }
 
     const answers = {
-      right: answersOptionsObjectArrayForPartition[randomLineNumber].right,
+      right: answersOptionsObjectArrayForPartition[randomLineNumber].right.slice(2),
       wrong: shuffle(answersOptionsObjectArrayForPartition[randomLineNumber].wrong),
       original: partitionPseudo,
     };
@@ -145,7 +145,7 @@ function generateCode() {
   }
 
   const answers = {
-    right: answersObjectArrayForQuickSort[randomLineNumber].right,
+    right: answersObjectArrayForQuickSort[randomLineNumber].right.slice(2),
     wrong: shuffle(answersObjectArrayForQuickSort[randomLineNumber].wrong),
     original: quickSortPseudo,
   };

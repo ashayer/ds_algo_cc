@@ -65,7 +65,7 @@ function generateCode() {
   }
 
   const answers = {
-    right: answersOptionsObjectArray[randomLineNumber].right,
+    right: answersOptionsObjectArray[randomLineNumber].right.slice(2),
     wrong: shuffle(answersOptionsObjectArray[randomLineNumber].wrong),
     original: insertionPseudo,
   };

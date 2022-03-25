@@ -55,14 +55,14 @@ const Game = () => {
   const createRandomGame = () => {
     if (localUser.numCorrect + localUser.numWrong < 20) {
       const correctIndex = Math.floor(Math.random() * 4);
-      let typeIndex = Math.floor(Math.random() * 4);
+      const typeIndex = 3;
       let topicIndex = Math.floor(Math.random() * 4);
       while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
         topicIndex = Math.floor(Math.random() * 4);
       }
-      while (typeIndex === questionType) {
-        typeIndex = Math.floor(Math.random() * 4);
-      }
+      // while (typeIndex === questionType) {
+      //   typeIndex = Math.floor(Math.random() * 4);
+      // }
       setQuestionTopicNum(topicIndex);
       const gameObject = questionHandler(topicIndex, typeIndex);
       // console.log(gameObject);

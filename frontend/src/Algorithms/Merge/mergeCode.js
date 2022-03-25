@@ -119,7 +119,7 @@ function generateCode() {
     }
 
     const answers = {
-      right: answersObjectArrayForMerge[randomLineNumber].right,
+      right: answersObjectArrayForMerge[randomLineNumber].right.slice(2),
       wrong: shuffle(answersObjectArrayForMerge[randomLineNumber].wrong),
       original: mergePseudo,
     };
@@ -137,7 +137,7 @@ function generateCode() {
   }
 
   const answers = {
-    right: answersObjectArrayForMergeSort[randomLineNumber].right,
+    right: answersObjectArrayForMergeSort[randomLineNumber].right.slice(2),
     wrong: shuffle(answersObjectArrayForMergeSort[randomLineNumber].wrong),
     original: mergeSortPseudo,
   };
