@@ -56,7 +56,7 @@ const Auth = () => {
       <Paper className={classes.paper} elevation={3}>
         <Typography variant="h5">Sign In</Typography>
         <form onSubmit={handleSubmit}>
-          <Grid container sx={{ padding: "25px" }} spacing={4}>
+          <Grid container sx={{ padding: "25px", justifyContent: "space-between" }} spacing={4}>
             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
             <Input name="password" label="Password" handleChange={handleChange} type="password" />
             <Grid item>
@@ -64,7 +64,7 @@ const Auth = () => {
                 fullWidth
                 type="submit"
                 variant="contained"
-                color="primary"
+                color="success"
                 sx={{ padding: "10px" }}
               >
                 Sign In
@@ -75,6 +75,7 @@ const Auth = () => {
                 fullWidth
                 type="button"
                 variant="contained"
+                color="warning"
                 onClick={() => {
                   navigate("/register");
                 }}

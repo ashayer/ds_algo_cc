@@ -10,8 +10,8 @@ export default makeStyles(() => ({
   },
   paperContent: {
     width: "2000px",
-    margin: "10px 0",
     height: "25vh",
+    margin: "10px 0",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

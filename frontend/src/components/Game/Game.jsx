@@ -36,7 +36,6 @@ const Game = () => {
   const endGame = () => {
     const totalQuestions = localUser.numCorrect + localUser.numWrong;
     const averageResponseTime = Math.floor(localUser.responseTime / totalQuestions);
-    //! could change to just pass the local user
     dispatch(
       updatePoints({
         userId: localUser._id,
@@ -191,7 +190,7 @@ const Game = () => {
           </Grid>
         </Paper>
         <Paper className={classes.paperContent}>
-          <Container maxWidth="xl">
+          <Container>
             <Content content={content} questionType={questionType} questionTopic={questionTopic} />
           </Container>
         </Paper>
