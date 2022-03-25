@@ -88,6 +88,16 @@ const Auth = () => {
                   Register Instead
                 </Button>
               </Grid>
+              <Grid item>
+                <Button
+                  href="https://forms.gle/sX8YTNmbmZZngrjn9"
+                  type="button"
+                  variant="contained"
+                  sx={{ padding: "10px" }}
+                >
+                  Feedback form
+                </Button>
+              </Grid>
             </Grid>
           </form>
         </Paper>

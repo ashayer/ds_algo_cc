@@ -54,8 +54,8 @@ const Home = () => {
         </Typography>
 
         <Typography variant="h6">
-          First you will have to create an account, but please DO NOT use any of your actual
-          details. Just put whatever you can that works.
+          You will have to create an account, but please DO NOT use any of your actual
+          details. Put anything that works.
         </Typography>
 
         <Typography variant="h6">
@@ -63,15 +63,15 @@ const Home = () => {
         </Typography>
 
         <Typography variant="h6">
-          Then you will see a start game button that will begin the quiz game. You will have to try
-          to answer at least 20 of them.
+          Then you will see a start game button that will begin the quiz game. You will have to
+          answer 20 questions.
         </Typography>
         <Typography variant="h6">
-          Assuming everything works, it will end the game and log you out.
+          Assuming everything works, it will end the game and log you out. You will also see a
+          button to a form to give feedback.
         </Typography>
         <Typography variant="h6">
-          You only have to play it once. Send this url to anyone else you think has some time to do
-          this. To begin click the button in the bottom right corner.
+          Send this url to anyone else you think has some time to do this.
         </Typography>
 
         <Typography variant="h6">Thanks again!</Typography>
