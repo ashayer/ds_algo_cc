@@ -183,9 +183,9 @@ const Game = () => {
             </Grid>
             <Grid item>
               <CountdownTimer />
-              <Button variant="contained" onClick={endGame} style={{ margin: "10px" }}>
+              {/* <Button variant="contained" onClick={endGame} style={{ margin: "10px" }}>
                 END GAME
-              </Button>
+              </Button> */}
             </Grid>
           </Grid>
         </Paper>
