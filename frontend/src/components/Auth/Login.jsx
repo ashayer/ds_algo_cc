@@ -91,6 +91,7 @@ const Auth = () => {
               <Grid item>
                 <Button
                   href="https://forms.gle/sX8YTNmbmZZngrjn9"
+                  target="_blank"
                   type="button"
                   variant="contained"
                   sx={{ padding: "10px" }}
