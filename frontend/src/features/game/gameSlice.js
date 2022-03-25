@@ -18,9 +18,8 @@ export const updatePoints = createAsyncThunk("game/update", async (userInfo, thu
     userResponseTime,
     userNumCorrect,
     userNumWrong,
-    userQTopicCount,
-    userQTypeCount,
     userStreak,
+    userHistory,
   } = userInfo;
   try {
     return await gameService.updatePoints(
@@ -29,9 +28,8 @@ export const updatePoints = createAsyncThunk("game/update", async (userInfo, thu
       userResponseTime,
       userNumCorrect,
       userNumWrong,
-      userQTopicCount,
-      userQTypeCount,
       userStreak,
+      userHistory,
     );
   } catch (error) {
     const message =

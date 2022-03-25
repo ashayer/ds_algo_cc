@@ -8,9 +8,8 @@ const updatePoints = async (
   userResponseTime,
   userNumCorrect,
   userNumWrong,
-  userQTopicCount,
-  userQTypeCount,
   userStreak,
+  userHistory,
 ) => {
   const response = await axios.patch(`${API_URL}user/${userId}`, {
     points: userPoints,
@@ -18,8 +17,7 @@ const updatePoints = async (
     streak: userStreak,
     numCorrect: userNumCorrect,
     numWrong: userNumWrong,
-    qTypeCount: userQTypeCount,
-    qTopicCount: userQTopicCount,
+    qHistory: userHistory,
   });
 
   return response.data;

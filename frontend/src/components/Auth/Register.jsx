@@ -44,8 +44,7 @@ const Auth = () => {
         email,
         password,
         skill,
-        qTypeCount: [0, 0, 0, 0],
-        qTopicCount: [0, 0, 0, 0],
+        qHistory: [],
       };
       dispatch(register(userData));
     }
