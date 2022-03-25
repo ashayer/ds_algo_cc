@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import useStyles from "./styles";
 import Input from "./Input";
 import { register, reset } from "../../features/auth/authSlice";
@@ -38,7 +39,15 @@ const Auth = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("password do not match");
+      toast.error("Passwords do not match!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       const userData = {
         name,
@@ -53,7 +62,15 @@ const Auth = () => {
 
   useEffect(() => {
     if (isError) {
-      alert(message);
+      toast.error(message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
 
     if (isSuccess || user) {

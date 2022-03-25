@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Paper, Grid, Typography, Container, CircularProgress, Grow } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import useStyles from "./styles";
 import Input from "./Input";
 import { login, reset } from "../../features/auth/authSlice";
@@ -33,7 +34,15 @@ const Auth = () => {
 
   useEffect(() => {
     if (isError) {
-      alert(message);
+      toast.error(message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
 
     if (isSuccess || user) {
