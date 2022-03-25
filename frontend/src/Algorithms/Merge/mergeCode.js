@@ -3,8 +3,8 @@ import { shuffle } from "d3-array";
 // get the character number in string or make its own variable
 // generate similar answers with minor incorrect changes
 // put correct string into answer.right and three wrong string into answer.wrong
-function generateEmptyLine(string) {
-  let emptyString = "";
+function generateEmptyLine(string, lineNum) {
+  let emptyString = lineNum.toString();
   for (let i = 0; i < string.length; i += 1) {
     emptyString = `${emptyString} `;
   }
@@ -12,18 +12,18 @@ function generateEmptyLine(string) {
 }
 
 function generateCode() {
-  const MergeLine1 = "int i = low, j = middle+1\n";
-  const MergeLine2 = "for(int k = low; k <= high; k++)\n";
-  const MergeLine3 = "  if(i > mid) {aux[k] = array[j++]}\n";
-  const MergeLine4 = "  else if (j > high) {aux[k] = array[i++]}\n";
-  const MergeLine5 = "  else if(array[j] < array[i]){aux[k] = array[j++]}\n";
-  const MergeLine6 = "  else {aux[k] = a[i++]}\n";
+  const MergeLine1 = "1 int i = low, j = middle+1\n";
+  const MergeLine2 = "2 for(int k = low; k <= high; k++)\n";
+  const MergeLine3 = "3   if(i > mid) {aux[k] = array[j++]}\n";
+  const MergeLine4 = "4   else if (j > high) {aux[k] = array[i++]}\n";
+  const MergeLine5 = "5   else if(array[j] < array[i]){aux[k] = array[j++]}\n";
+  const MergeLine6 = "6   else {aux[k] = a[i++]}\n";
 
-  const mSortLine1 = "if(left < right)\n";
-  const mSortLine2 = "  int middle = left + (right - left)/2;\n";
-  const mSortLine3 = "  mergeSort(array, left, middle)\n";
-  const mSortLine4 = "  mergeSort(array, middle + 1, right)\n";
-  const mSortLine5 = "  merge(array, left, middle, right)\n";
+  const mSortLine1 = "1 if(left < right)\n";
+  const mSortLine2 = "2   int middle = left + (right - left)/2;\n";
+  const mSortLine3 = "3   mergeSort(array, left, middle)\n";
+  const mSortLine4 = "4   mergeSort(array, middle + 1, right)\n";
+  const mSortLine5 = "5   merge(array, left, middle, right)\n";
 
   const mergeSortStringArray = [mSortLine1, mSortLine2, mSortLine3, mSortLine4, mSortLine5];
 
@@ -112,7 +112,7 @@ function generateCode() {
     const randomLineNumber = Math.floor(Math.random() * answersObjectArrayForMerge.length);
     for (let i = 0; i < mergeStringArray.length; i += 1) {
       if (i === randomLineNumber) {
-        mergePseudo += generateEmptyLine(mergeStringArray[i]);
+        mergePseudo += generateEmptyLine(mergeStringArray[i], randomLineNumber + 1);
       } else {
         mergePseudo += mergeStringArray[i];
       }
@@ -130,7 +130,7 @@ function generateCode() {
   const randomLineNumber = Math.floor(Math.random() * answersObjectArrayForMergeSort.length);
   for (let i = 0; i < mergeSortStringArray.length; i += 1) {
     if (i === randomLineNumber) {
-      mergeSortPseudo += generateEmptyLine(mergeSortStringArray[i]);
+      mergeSortPseudo += generateEmptyLine(mergeSortStringArray[i], randomLineNumber + 1);
     } else {
       mergeSortPseudo += mergeSortStringArray[i];
     }

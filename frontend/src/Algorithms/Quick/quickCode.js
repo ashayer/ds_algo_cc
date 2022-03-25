@@ -5,8 +5,8 @@ import { shuffle } from "d3-array";
 // put correct string into answer.right and three wrong string into answer.wrong
 
 //! may need to create separate function for
-function generateEmptyLine(string) {
-  let emptyString = "";
+function generateEmptyLine(string, lineNum) {
+  let emptyString = lineNum.toString();
   for (let i = 0; i < string.length; i += 1) {
     emptyString = `${emptyString} `;
   }
@@ -14,18 +14,18 @@ function generateEmptyLine(string) {
 }
 
 function generateCode() {
-  const partitionLine1 = "int pivotValue = arr[low]\n";
-  const partitionLine2 = "int pivotIndex = low\n";
-  const partitionLine3 = "for(int i = low + 1; i<=high; i++)\n";
-  const partitionLine4 = "  if(arr[i] < pivotValue)\n";
-  const partitionLine5 = "  swap(arr[i], arr[++pivotIndex])\n";
-  const partitionLine6 = "swap(arr[low], arr[pivotIndex])\n";
-  const partitionLine7 = "return pivotIndex\n";
+  const partitionLine1 = "1 int pivotValue = arr[low]\n";
+  const partitionLine2 = "2 int pivotIndex = low\n";
+  const partitionLine3 = "3 for(int i = low + 1; i<=high; i++)\n";
+  const partitionLine4 = "4   if(arr[i] < pivotValue)\n";
+  const partitionLine5 = "5   swap(arr[i], arr[++pivotIndex])\n";
+  const partitionLine6 = "6 swap(arr[low], arr[pivotIndex])\n";
+  const partitionLine7 = "7  + 1return pivotIndex\n";
 
-  const qSortLine1 = "if (low < high)\n";
-  const qSortLine2 = "  int index = partition(arr, low, high)\n";
-  const qSortLine3 = "  quickSort(arr, low, index -1)\n";
-  const qSortLine4 = "  quickSort(arr, index + 1, high)\n";
+  const qSortLine1 = "1 if (low < high)\n";
+  const qSortLine2 = "2   int index = partition(arr, low, high)\n";
+  const qSortLine3 = "3   quickSort(arr, low, index -1)\n";
+  const qSortLine4 = "4   quickSort(arr, index + 1, high)\n";
 
   const partitionStringArray = [
     partitionLine1,
@@ -120,7 +120,7 @@ function generateCode() {
     ); // random number 0-7
     for (let i = 0; i < partitionStringArray.length; i += 1) {
       if (i === randomLineNumber) {
-        partitionPseudo += generateEmptyLine(partitionStringArray[i]);
+        partitionPseudo += generateEmptyLine(partitionStringArray[i], randomLineNumber + 1);
       } else {
         partitionPseudo += partitionStringArray[i];
       }
@@ -138,7 +138,7 @@ function generateCode() {
   const randomLineNumber = Math.floor(Math.random() * answersObjectArrayForQuickSort.length);
   for (let i = 0; i < quickSortStringArray.length; i += 1) {
     if (i === randomLineNumber) {
-      quickSortPseudo += generateEmptyLine(quickSortStringArray[i]);
+      quickSortPseudo += generateEmptyLine(quickSortStringArray[i], randomLineNumber + 1);
     } else {
       quickSortPseudo += quickSortStringArray[i];
     }

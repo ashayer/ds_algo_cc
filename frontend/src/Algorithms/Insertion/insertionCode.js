@@ -1,7 +1,7 @@
 import { shuffle } from "d3-array";
 
-function generateEmptyLine(string) {
-  let emptyString = "";
+function generateEmptyLine(string, lineNum) {
+  let emptyString = lineNum.toString();
   for (let i = 0; i < string.length; i += 1) {
     emptyString += " ";
   }
@@ -9,11 +9,11 @@ function generateEmptyLine(string) {
 }
 
 function generateCode() {
-  const Line1 = "for (int i = 0; i < arr.len; i++)\n";
-  const Line2 = "  for (int j = i; j > 0; j--)\n";
-  const Line3 = "    if (arr[j] < arr[j-1])\n";
-  const Line4 = "      swap (arr[j],arr[j-1])\n";
-  const Line5 = "    else break;    ";
+  const Line1 = "1 for (int i = 0; i < arr.len; i++)\n";
+  const Line2 = "2   for (int j = i; j > 0; j--)\n";
+  const Line3 = "3     if (arr[j] < arr[j-1])\n";
+  const Line4 = "4       swap (arr[j],arr[j-1])\n";
+  const Line5 = "5     else break;    ";
 
   const pseudoCodeStringArray = [Line1, Line2, Line3, Line4, Line5];
 
@@ -58,7 +58,7 @@ function generateCode() {
 
   for (let i = 0; i < pseudoCodeStringArray.length; i += 1) {
     if (i === randomLineNumber) {
-      insertionPseudo += generateEmptyLine(pseudoCodeStringArray[i]);
+      insertionPseudo += generateEmptyLine(pseudoCodeStringArray[i], randomLineNumber + 1);
     } else {
       insertionPseudo += pseudoCodeStringArray[i];
     }

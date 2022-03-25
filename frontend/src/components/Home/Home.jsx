@@ -26,6 +26,7 @@ const Home = () => {
 
   const handleAgree = () => {
     localStorage.setItem("visited", true);
+    navigate("/register");
     handleClose();
   };
 

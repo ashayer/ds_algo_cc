@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, ButtonBase, Typography } from "@mui/material/";
+import { toast } from "react-toastify";
 import useStyles from "./styles";
 import "./answers.css";
 
@@ -29,6 +30,15 @@ const Answers = ({
 
   const correctAnswer = () => {
     const questionEndTime = new Date();
+    toast.success("Correct!", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+    });
     const calculatedResponseTime = questionEndTime - questionStartTime;
     const updatePointsBy = calculatePoints();
     const localUser = JSON.parse(sessionStorage.getItem("user"));
@@ -51,7 +61,15 @@ const Answers = ({
 
   const wrongAnswer = () => {
     const questionEndTime = new Date();
-
+    toast.error("Incorrect!", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+    });
     const calculatedResponseTime = questionEndTime - questionStartTime;
     const localUser = JSON.parse(sessionStorage.getItem("user"));
     localUser.numWrong += 1;
