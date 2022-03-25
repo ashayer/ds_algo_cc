@@ -11,6 +11,7 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
+  Grow,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -70,61 +71,63 @@ const Auth = () => {
     return <CircularProgress />;
   }
   return (
-    <Container className={classes.formContainer} maxWidth="xs">
-      <Paper className={classes.paper} elevation={3}>
-        <Typography variant="h5">Sign Up</Typography>
-        <form onSubmit={handleSubmit}>
-          <Grid container sx={{ padding: "25px", justifyContent: "space-between" }} spacing={4}>
-            <Input name="name" label="Name" handleChange={handleChange} autoFocus type="text" />
-            <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-            <Input name="password" label="Password" handleChange={handleChange} type="password" />
-            <Input
-              name="confirmPassword"
-              label="Repeat Password"
-              handleChange={handleChange}
-              type="password"
-            />
+    <Grow in>
+      <Container className={classes.formContainer} maxWidth="xs">
+        <Paper className={classes.paper} elevation={3}>
+          <Typography variant="h5">Sign Up</Typography>
+          <form onSubmit={handleSubmit}>
+            <Grid container sx={{ padding: "25px", justifyContent: "space-between" }} spacing={4}>
+              <Input name="name" label="Name" handleChange={handleChange} autoFocus type="text" />
+              <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
+              <Input name="password" label="Password" handleChange={handleChange} type="password" />
+              <Input
+                name="confirmPassword"
+                label="Repeat Password"
+                handleChange={handleChange}
+                type="password"
+              />
 
-            <Grid item>
-              <FormControl>
-                <FormLabel>What is your knowledge level with sorting algorithms?</FormLabel>
-                <RadioGroup row onChange={handleChange} name="skill">
-                  <FormControlLabel value={0} control={<Radio />} label="Beginner" />
-                  <FormControlLabel value={1} control={<Radio />} label="Intermediate" />
-                  <FormControlLabel value={2} control={<Radio />} label="Expert" />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
+              <Grid item>
+                <FormControl>
+                  <FormLabel>What is your knowledge level with sorting algorithms?</FormLabel>
+                  <RadioGroup row onChange={handleChange} name="skill">
+                    <FormControlLabel value={0} control={<Radio />} label="Beginner" />
+                    <FormControlLabel value={1} control={<Radio />} label="Intermediate" />
+                    <FormControlLabel value={2} control={<Radio />} label="Expert" />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
 
-            <Grid item>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="success"
-                sx={{ padding: "10px" }}
-              >
-                Sign Up
-              </Button>
+              <Grid item>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="success"
+                  sx={{ padding: "10px" }}
+                >
+                  Sign Up
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  type="button"
+                  variant="contained"
+                  color="warning"
+                  fullWidth
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                  sx={{ padding: "10px" }}
+                >
+                  Log In Instead
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Button
-                type="button"
-                variant="contained"
-                color="warning"
-                fullWidth
-                onClick={() => {
-                  navigate("/login");
-                }}
-                sx={{ padding: "10px" }}
-              >
-                Log In Instead
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Paper>
-    </Container>
+          </form>
+        </Paper>
+      </Container>
+    </Grow>
   );
 };
 
