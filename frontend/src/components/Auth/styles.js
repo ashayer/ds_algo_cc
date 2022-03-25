@@ -18,8 +18,8 @@ export default makeStyles(() => ({
     },
   },
   formSubmitButton: {
-    backgroundColor: "#9e3200",
-    color: "#fff",
+    backgroundColor: "#c94b4b",
+    color: "color",
     "&:hover": {
       backgroundColor: "#fff",
       color: "#3c52b2",

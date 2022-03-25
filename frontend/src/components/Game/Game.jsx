@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Grid, Button, Container, Paper, Grow } from "@mui/material/";
+import { Grid, Button, Container, Paper, Grow, Slide } from "@mui/material/";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { useDispatch } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
@@ -148,7 +148,7 @@ const Game = () => {
         setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
         break;
       default:
-        console.log("Something went wrong");
+        break;
     }
   }, [object.original, object?.swaps, questionTopic, questionType]);
 
@@ -207,12 +207,14 @@ const Game = () => {
       </Grid>
     </Grow>
   ) : (
-    <>
-      <Navbar />
-      <Button variant="contained" onClick={startGame} className={classes.startButton}>
-        START GAME
-      </Button>
-    </>
+    <Slide in>
+      <Container maxWidth="xl">
+        <Navbar />
+        <Button variant="contained" onClick={startGame} className={classes.startButton}>
+          START GAME
+        </Button>
+      </Container>
+    </Slide>
   );
 };
 
