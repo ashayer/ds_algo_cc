@@ -137,9 +137,15 @@ const Game = () => {
       case 0:
         setTimer(30);
         setContent(object.original);
-        setQuestion(
-          `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps`,
-        );
+        if (questionTopic === "Quick") {
+          setQuestion(
+            `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps using leftmost as pivot`,
+          );
+        } else {
+          setQuestion(
+            `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps`,
+          );
+        }
         break;
       case 1:
         setTimer(15);
