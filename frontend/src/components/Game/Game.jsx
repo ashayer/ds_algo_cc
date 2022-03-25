@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Grid, Button, Container, Paper, Grow, Slide } from "@mui/material/";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
 import questionHandler from "../../Algorithms/handler";
@@ -55,14 +56,14 @@ const Game = () => {
   const createRandomGame = () => {
     if (localUser.numCorrect + localUser.numWrong < 20) {
       const correctIndex = Math.floor(Math.random() * 4);
-      const typeIndex = 3;
+      let typeIndex = Math.floor(Math.random() * 4);
       let topicIndex = Math.floor(Math.random() * 4);
       while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
         topicIndex = Math.floor(Math.random() * 4);
       }
-      // while (typeIndex === questionType) {
-      //   typeIndex = Math.floor(Math.random() * 4);
-      // }
+      while (typeIndex === questionType) {
+        typeIndex = Math.floor(Math.random() * 4);
+      }
       setQuestionTopicNum(topicIndex);
       const gameObject = questionHandler(topicIndex, typeIndex);
       // console.log(gameObject);
@@ -107,7 +108,15 @@ const Game = () => {
 
   const startGameOnTimeEnd = () => {
     const questionEndTime = new Date();
-
+    toast.error("Ran out of time!", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+    });
     const calculatedResponseTime = questionEndTime - questionStartTime;
 
     localUser.numWrong += 1;
