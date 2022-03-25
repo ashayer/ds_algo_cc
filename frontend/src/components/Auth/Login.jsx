@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Paper, Grid, Container, CircularProgress, Grow } from "@mui/material";
+import { Button, Paper, Grid, Container, Grow } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -55,10 +55,6 @@ const Auth = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  if (isLoading) {
-    return <CircularProgress />;
-  }
 
   return (
     <Grow in>

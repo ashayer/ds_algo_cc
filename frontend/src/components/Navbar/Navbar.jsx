@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
 import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./styles";
@@ -20,9 +19,7 @@ const Navbar = () => {
 
   return (
     <AppBar className={classes.appBar} position="static">
-      <Typography component={Link} to="/" variant="h2">
-        <HomeIcon fontSize="large" sx={{ color: "black" }} />
-      </Typography>
+      <Typography component={Link} to="/" variant="h2" />
       <Toolbar className={classes.toolbar}>
         {user || localUser ? (
           <Button variant="contained" onClick={onLogout}>

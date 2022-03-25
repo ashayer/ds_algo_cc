@@ -4,7 +4,6 @@ import {
   Paper,
   Grid,
   Container,
-  CircularProgress,
   FormControl,
   FormLabel,
   FormControlLabel,
@@ -83,9 +82,6 @@ const Auth = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  if (isLoading) {
-    return <CircularProgress />;
-  }
   return (
     <Grow in>
       <Container className={classes.formContainer} maxWidth="xs">
