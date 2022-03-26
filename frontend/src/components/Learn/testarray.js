@@ -1,145 +1,73 @@
 const sectionArray = [
   {
-    section: "Section 1",
-    completed: false,
+    section: "Insertion Sort",
+    completed: true,
     subsections: [
       {
-        name: "Sub-Section 1.1",
-        completed: false,
+        name: "General",
+        completed: true,
       },
       {
-        name: "Sub-Section 1.2",
-        completed: false,
+        name: "Complexities",
+        completed: true,
       },
       {
-        name: "Sub-Section 1.3",
-        completed: false,
+        name: "Code",
+        completed: true,
       },
     ],
   },
   {
-    section: "Section 2",
-    completed: false,
+    section: "Selection Sort",
+    completed: true,
     subsections: [
       {
-        name: "Sub-Section 2.1",
-        completed: false,
+        name: "General",
+        completed: true,
       },
       {
-        name: "Sub-Section 2.2",
-        completed: false,
+        name: "Complexities",
+        completed: true,
       },
       {
-        name: "Sub-Section 2.3",
-        completed: false,
+        name: "Code",
+        completed: true,
       },
     ],
   },
   {
-    section: "Section 3",
-    completed: false,
+    section: "Merge Sort",
+    completed: true,
     subsections: [
       {
-        name: "Sub-Section 3.1",
-        completed: false,
+        name: "General",
+        completed: true,
       },
       {
-        name: "Sub-Section 3.2",
-        completed: false,
+        name: "Complexities",
+        completed: true,
       },
       {
-        name: "Sub-Section 3.3",
-        completed: false,
+        name: "Code",
+        completed: true,
       },
     ],
   },
   {
-    section: "Section 4",
-    completed: false,
+    section: "Quick Sort",
+    completed: true,
     subsections: [
       {
-        name: "Sub-Section 4.1",
-        completed: false,
+        name: "General",
+        completed: true,
       },
       {
-        name: "Sub-Section 4.2",
-        completed: false,
+        name: "Complexities",
+        completed: true,
       },
       {
-        name: "Sub-Section 4.3",
-        completed: false,
-      },
-    ],
-  },
-  {
-    section: "Section 5",
-    completed: false,
-    subsections: [
-      {
-        name: "Sub-Section 5.1",
-        completed: false,
-      },
-      {
-        name: "Sub-Section 5.2",
-        completed: false,
-      },
-      {
-        name: "Sub-Section 5.3",
-        completed: false,
-      },
-    ],
-  },
-  {
-    section: "Section 6",
-    completed: false,
-    subsections: [
-      {
-        name: "Sub-Section 6.1",
-        completed: false,
-      },
-      {
-        name: "Sub-Section 6.2",
-        completed: false,
-      },
-      {
-        name: "Sub-Section 6.3",
-        completed: false,
-      },
-    ],
-  },
-  {
-    section: "Section 7",
-    completed: false,
-    subsections: [
-      {
-        name: "Sub-Section 7.1",
-        completed: false,
-      },
-      {
-        name: "Sub-Section 7.2",
-        completed: false,
-      },
-      {
-        name: "Sub-Section 7.3",
-        completed: false,
-      },
-    ],
-  },
-  {
-    section: "Section 8",
-    completed: false,
-    subsections: [
-      {
-        name: "Sub-Section 8.1",
-        completed: false,
-      },
-      {
-        name: "Sub-Section 8.2",
-        completed: false,
-      },
-      {
-        name: "Sub-Section 8.3",
-        completed: false,
+        name: "Code",
+        completed: true,
       },
     ],
   },
