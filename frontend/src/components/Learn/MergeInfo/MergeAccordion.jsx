@@ -12,12 +12,12 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
 
   const completed = (index) => {
-    tempSectionArray[0].subsections[index].completed = true;
+    tempSectionArray[2].subsections[index].completed = true;
     const tempSectionArrayOne = tempSectionArray.slice();
     setTempSectionArray(tempSectionArrayOne);
-    setCurrentSubSection(tempSectionArray[0].subsections[index].name);
-    if (index === tempSectionArray[0].subsections.length - 1) {
-      tempSectionArray[0].completed = true;
+    setCurrentSubSection(tempSectionArray[2].subsections[index].name);
+    if (index === tempSectionArray[2].subsections.length - 1) {
+      tempSectionArray[2].completed = true;
       const temp = tempSectionArray.slice();
       setTempSectionArray(temp);
     }
@@ -32,25 +32,23 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
     <Accordion
       defaultExpanded
       sx={{
-        backgroundColor: `${tempSectionArray[0].completed ? "#4db866" : "#ff8178"}`,
+        backgroundColor: `${tempSectionArray[2].completed ? "#4db866" : "#ff8178"}`,
       }}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography variant="h3">{tempSectionArray[0].section}</Typography>
+        <Typography variant="h3">{tempSectionArray[2].section}</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        {tempSectionArray[0].subsections.map((subsection, index) => (
+        {tempSectionArray[2].subsections.map((subsection, index) => (
           <Accordion
             key={subsection.name}
             expanded={currentSubSection === subsection.name}
             onClick={
-              index === 0 || tempSectionArray[0].subsections[index - 1].completed
+              index === 0 || tempSectionArray[2].subsections[index - 1].completed
                 ? () => handleAccordClick(subsection.name)
                 : null
             }
-            disabled={
-              index === 0 ? false : !tempSectionArray[0].subsections[index - 1].completed
-            }
+            disabled={index === 0 ? false : !tempSectionArray[2].subsections[index - 1].completed}
           >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
@@ -64,11 +62,11 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
             </AccordionSummary>
             <AccordionDetails>
               {index === 0 ? (
-                <Typography>Insertion General</Typography>
+                <Typography>Merge Complexities</Typography>
               ) : index === 1 ? (
-                <Typography>Insertion Complexities</Typography>
+                <Typography>Merge Complexities</Typography>
               ) : index === 2 ? (
-                <Typography>Insertion Code</Typography>
+                <Typography>Merge Code</Typography>
               ) : null}
             </AccordionDetails>
             <Button onClick={() => completed(index)} variant="contained">

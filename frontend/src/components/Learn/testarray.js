@@ -1,73 +1,73 @@
 const sectionArray = [
   {
     section: "Insertion Sort",
-    completed: true,
+    completed: false,
     subsections: [
       {
         name: "General",
-        completed: true,
+        completed: false,
       },
       {
         name: "Complexities",
-        completed: true,
+        completed: false,
       },
       {
         name: "Code",
-        completed: true,
+        completed: false,
       },
     ],
   },
   {
     section: "Selection Sort",
-    completed: true,
+    completed: false,
     subsections: [
       {
         name: "General",
-        completed: true,
+        completed: false,
       },
       {
         name: "Complexities",
-        completed: true,
+        completed: false,
       },
       {
         name: "Code",
-        completed: true,
+        completed: false,
       },
     ],
   },
   {
     section: "Merge Sort",
-    completed: true,
+    completed: false,
     subsections: [
       {
         name: "General",
-        completed: true,
+        completed: false,
       },
       {
         name: "Complexities",
-        completed: true,
+        completed: false,
       },
       {
         name: "Code",
-        completed: true,
+        completed: false,
       },
     ],
   },
   {
     section: "Quick Sort",
-    completed: true,
+    completed: false,
     subsections: [
       {
         name: "General",
-        completed: true,
+        completed: false,
       },
       {
         name: "Complexities",
-        completed: true,
+        completed: false,
       },
       {
         name: "Code",
-        completed: true,
+        completed: false,
       },
     ],
   },
