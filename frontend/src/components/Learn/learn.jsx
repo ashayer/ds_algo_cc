@@ -44,9 +44,16 @@ const Learn = () => {
   return (
     <Container maxWidth="lg">
       <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
-        <Button onClick={prevSection} variant="contained" disabled={sectionNum < 1}>
+        <Button
+          onClick={prevSection}
+          variant="contained"
+          disabled={sectionNum < 1}
+          sx={{
+            visibility: `${sectionNum === 0 ? "hidden" : "visible"}`,
+          }}
+        >
           <ArrowBackIcon />
-          Prev section
+          {sectionNum > 0 ? `${tempSectionArray[sectionNum - 1].section}` : null}
         </Button>
 
         <Button
@@ -55,8 +62,13 @@ const Learn = () => {
           disabled={
             sectionNum === tempSectionArray.length - 1 || !tempSectionArray[sectionNum].completed
           }
+          sx={{
+            visibility: `${sectionNum === tempSectionArray.length - 1 ? "hidden" : "visible"}`,
+          }}
         >
-          Next section
+          {sectionNum < tempSectionArray.length - 1
+            ? `${tempSectionArray[sectionNum + 1].section}`
+            : null}
           <ArrowForwardIcon />
         </Button>
       </Grid>
@@ -68,7 +80,7 @@ const Learn = () => {
         }}
       >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="h5">{tempSectionArray[sectionNum].section}</Typography>
+          <Typography variant="h3">{tempSectionArray[sectionNum].section}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           {tempSectionArray[sectionNum].subsections.map((subsection, index) => (
