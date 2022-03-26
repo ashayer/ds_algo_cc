@@ -24,9 +24,14 @@ const Learn = () => {
 
   const completed = (index) => {
     tempSectionArray[sectionNum].subsections[index].completed = true;
-    const temp = tempSectionArray.slice();
-    setTempSectionArray(temp);
+    const tempSectionArrayOne = tempSectionArray.slice();
+    setTempSectionArray(tempSectionArrayOne);
     setCurrentSubSection(tempSectionArray[sectionNum].subsections[index].name);
+    if (index === tempSectionArray[sectionNum].subsections.length - 1) {
+      tempSectionArray[sectionNum].completed = true;
+      const temp = tempSectionArray.slice();
+      setTempSectionArray(temp);
+    }
   };
 
   function handleAccordClick(name) {
@@ -42,13 +47,22 @@ const Learn = () => {
           Prev section
         </Button>
 
-        <Button onClick={nextSection} variant="contained" disabled={sectionNum > 6}>
+        <Button
+          onClick={nextSection}
+          variant="contained"
+          disabled={sectionNum > 6 || !tempSectionArray[sectionNum].completed}
+        >
           Next section
           <ArrowForwardIcon />
         </Button>
       </Grid>
 
-      <Accordion defaultExpanded>
+      <Accordion
+        defaultExpanded
+        sx={{
+          backgroundColor: `${tempSectionArray[sectionNum].completed ? "#4db866" : "#ff8178"}`,
+        }}
+      >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h5">{tempSectionArray[sectionNum].section}</Typography>
         </AccordionSummary>
@@ -58,7 +72,14 @@ const Learn = () => {
               key={subsection.name}
               sx={{ backgroundColor: `${subsection.completed ? "#4db866" : "#ffcc8a"}` }}
               expanded={currentSubSection === subsection.name}
-              onClick={() => handleAccordClick(subsection.name)}
+              onClick={
+                index === 0 || tempSectionArray[sectionNum].subsections[index - 1].completed
+                  ? () => handleAccordClick(subsection.name)
+                  : null
+              }
+              disabled={
+                index === 0 ? false : !tempSectionArray[sectionNum].subsections[index - 1].completed
+              }
             >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography variant="h5">{subsection.name}</Typography>
