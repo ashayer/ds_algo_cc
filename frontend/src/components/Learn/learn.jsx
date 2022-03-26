@@ -17,7 +17,7 @@ const Learn = () => {
   const [currentSubSection, setCurrentSubSection] = useState("");
 
   const nextSection = () => {
-    if (sectionNum < 7) setSectionNum(sectionNum + 1);
+    if (sectionNum < tempSectionArray.length - 1) setSectionNum(sectionNum + 1);
   };
 
   const prevSection = () => {
@@ -52,7 +52,9 @@ const Learn = () => {
         <Button
           onClick={nextSection}
           variant="contained"
-          disabled={sectionNum > 6 || !tempSectionArray[sectionNum].completed}
+          disabled={
+            sectionNum === tempSectionArray.length - 1 || !tempSectionArray[sectionNum].completed
+          }
         >
           Next section
           <ArrowForwardIcon />
