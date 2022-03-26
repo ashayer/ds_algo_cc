@@ -86,9 +86,9 @@ const Learn = () => {
                 <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
                   <Typography variant="h5">{subsection.name}</Typography>
                   {subsection.completed ? (
-                    <CheckBoxIcon color="success" />
+                    <CheckBoxIcon color="success" fontSize="large" />
                   ) : (
-                    <CheckBoxOutlineBlankIcon />
+                    <CheckBoxOutlineBlankIcon fontSize="large" />
                   )}
                 </Grid>
               </AccordionSummary>
