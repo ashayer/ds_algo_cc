@@ -7,6 +7,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Container, Button, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import sectionArray from "./testarray";
 
 const Learn = () => {
@@ -41,7 +43,7 @@ const Learn = () => {
 
   return (
     <Container maxWidth="lg">
-      <Grid container sx={{ justifyContent: "space-between" }}>
+      <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
         <Button onClick={prevSection} variant="contained" disabled={sectionNum < 1}>
           <ArrowBackIcon />
           Prev section
@@ -70,7 +72,6 @@ const Learn = () => {
           {tempSectionArray[sectionNum].subsections.map((subsection, index) => (
             <Accordion
               key={subsection.name}
-              sx={{ backgroundColor: `${subsection.completed ? "#4db866" : "#ffcc8a"}` }}
               expanded={currentSubSection === subsection.name}
               onClick={
                 index === 0 || tempSectionArray[sectionNum].subsections[index - 1].completed
@@ -82,7 +83,14 @@ const Learn = () => {
               }
             >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography variant="h5">{subsection.name}</Typography>
+                <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
+                  <Typography variant="h5">{subsection.name}</Typography>
+                  {subsection.completed ? (
+                    <CheckBoxIcon color="success" />
+                  ) : (
+                    <CheckBoxOutlineBlankIcon />
+                  )}
+                </Grid>
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>
