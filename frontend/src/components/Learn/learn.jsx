@@ -10,6 +10,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import sectionArray from "./testarray";
+// import InsertionGeneral from "./InsertionInfo/insertionGeneral";
 
 const Learn = () => {
   const [sectionNum, setSectionNum] = useState(0);
@@ -107,10 +108,13 @@ const Learn = () => {
                 </Grid>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-                  lacus ex, sit amet blandit leo lobortis eget.
-                </Typography>
+                {index === 0 ? (
+                  <Typography>General</Typography>
+                ) : index === 1 ? (
+                  <Typography>Complexities</Typography>
+                ) : index === 2 ? (
+                  <Typography>Code</Typography>
+                ) : null}
               </AccordionDetails>
               <Button onClick={() => completed(index)} variant="contained">
                 Completed

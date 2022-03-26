@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
-import Learn from "./components/Learn/learn";
+import Learn from "./components/Learn/Learn";
 
 const App = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));
