@@ -7,6 +7,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button, Grid } from "@mui/material";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import InsertionGeneral from "./InsertionGeneral.tsx";
+import InsertionCompletion from "./InsertionComplexities.tsx";
+import InsertionCode from "./InsertionCode.tsx";
 
 const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
@@ -48,9 +51,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
                 ? () => handleAccordClick(subsection.name)
                 : null
             }
-            disabled={
-              index === 0 ? false : !tempSectionArray[0].subsections[index - 1].completed
-            }
+            disabled={index === 0 ? false : !tempSectionArray[0].subsections[index - 1].completed}
           >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
@@ -64,11 +65,11 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
             </AccordionSummary>
             <AccordionDetails>
               {index === 0 ? (
-                <Typography>Insertion General</Typography>
+                <InsertionGeneral />
               ) : index === 1 ? (
-                <Typography>Insertion Complexities</Typography>
+                <InsertionCompletion />
               ) : index === 2 ? (
-                <Typography>Insertion Code</Typography>
+                <InsertionCode />
               ) : null}
             </AccordionDetails>
             <Button onClick={() => completed(index)} variant="contained">

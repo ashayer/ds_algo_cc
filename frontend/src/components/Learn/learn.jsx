@@ -21,7 +21,7 @@ const Learn = () => {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
         <Button
           onClick={prevSection}
