@@ -7,9 +7,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button, Grid } from "@mui/material";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import InsertionGeneral from "./InsertionGeneral.tsx";
-import InsertionCompletion from "./InsertionComplexities.tsx";
-import InsertionCode from "./InsertionCode.tsx";
+import InsertionGeneral from "./InsertionGeneral";
+import InsertionCompletion from "./InsertionComplexities";
+import InsertionCode from "./InsertionCode";
 
 const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");

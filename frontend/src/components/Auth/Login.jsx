@@ -3,9 +3,9 @@ import { Button, Paper, Grid, Container, Grow } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import useStyles from "./styles";
 import Input from "./Input";
 import { login, reset } from "../../features/auth/authSlice";
+import useStyles from "./styles";
 
 const Auth = () => {
   const classes = useStyles();
