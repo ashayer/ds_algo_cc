@@ -114,7 +114,15 @@ const Auth = () => {
                   className={classes.formSubmitButton}
                   type="submit"
                   variant="contained"
-                  sx={{ padding: "10px" }}
+                  sx={{
+                    padding: "10px",
+                    backgroundColor: "#c94b4b",
+                    color: "color",
+                    "&:hover": {
+                      backgroundColor: "#fff",
+                      color: "#3c52b2",
+                    },
+                  }}
                 >
                   Sign Up
                 </Button>
@@ -127,7 +135,15 @@ const Auth = () => {
                   onClick={() => {
                     navigate("/login");
                   }}
-                  sx={{ padding: "10px" }}
+                  sx={{
+                    padding: "10px",
+                    backgroundColor: "#000000",
+                    color: "#fff",
+                    "&:hover": {
+                      backgroundColor: "#fff",
+                      color: "#3c52b2",
+                    },
+                  }}
                 >
                   Log In Instead
                 </Button>

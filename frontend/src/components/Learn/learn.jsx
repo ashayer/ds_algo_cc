@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Container, Button, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import sectionArray from "./testarray";
 import InsertionAccordion from "./InsertionInfo/InsertionAccordion";
 import SelectionAccordion from "./SelectionInfo/SelectionAccordion";
 import MergeAccordion from "./MergeInfo/MergeAccordion";
 import QuickAccordion from "./QuickInfo/QuickAccordion";
+import sectionArray from "./testarray";
 
 const Learn = () => {
   const [sectionNum, setSectionNum] = useState(0);

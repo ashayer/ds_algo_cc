@@ -11,9 +11,9 @@ import Navbar from "../Navbar/Navbar";
 import Answers from "./Answers/Answers";
 import Content from "./Content/Content";
 import Question from "./Question/Question";
-import useStyles from "./styles";
 import UserStatsTable from "./UserStatsTable/UserStatsTable";
 import "./game.css";
+import useStyles from "./styles";
 //! countdown timer causing memory leak
 let highestStreak = 0;
 const Game = () => {
