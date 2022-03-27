@@ -14,7 +14,14 @@ import InsertionCode from "./InsertionCode";
 const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
 
+  function handleAccordClick(name) {
+    console.log("being clicked");
+    if (currentSubSection === name) setCurrentSubSection("");
+    if (currentSubSection !== name) setCurrentSubSection(name);
+  }
+
   const completed = (index) => {
+    console.log("being clicked");
     tempSectionArray[0].subsections[index].completed = true;
     const tempSectionArrayOne = tempSectionArray.slice();
     setTempSectionArray(tempSectionArrayOne);
@@ -24,12 +31,8 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
       const temp = tempSectionArray.slice();
       setTempSectionArray(temp);
     }
+    handleAccordClick(tempSectionArray[0].subsections[index].name);
   };
-
-  function handleAccordClick(name) {
-    if (currentSubSection === name) setCurrentSubSection("");
-    if (currentSubSection !== name) setCurrentSubSection(name);
-  }
 
   return (
     <Accordion
@@ -46,14 +49,16 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
           <Accordion
             key={subsection.name}
             expanded={currentSubSection === subsection.name}
-            onClick={
-              index === 0 || tempSectionArray[0].subsections[index - 1].completed
-                ? () => handleAccordClick(subsection.name)
-                : null
-            }
             disabled={index === 0 ? false : !tempSectionArray[0].subsections[index - 1].completed}
           >
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              onClick={
+                index === 0 || tempSectionArray[0].subsections[index - 1].completed
+                  ? () => handleAccordClick(subsection.name)
+                  : null
+              }
+            >
               <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
                 <Typography variant="h5">{subsection.name}</Typography>
                 {subsection.completed ? (
