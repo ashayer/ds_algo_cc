@@ -4,11 +4,7 @@ const sectionArray = [
     completed: false,
     subsections: [
       {
-        name: "General",
-        completed: false,
-      },
-      {
-        name: "Complexities",
+        name: "General and Complexities",
         completed: false,
       },
       {
@@ -22,11 +18,7 @@ const sectionArray = [
     completed: false,
     subsections: [
       {
-        name: "General",
-        completed: false,
-      },
-      {
-        name: "Complexities",
+        name: "General and Complexities",
         completed: false,
       },
       {
@@ -40,11 +32,7 @@ const sectionArray = [
     completed: false,
     subsections: [
       {
-        name: "General",
-        completed: false,
-      },
-      {
-        name: "Complexities",
+        name: "General and Complexities",
         completed: false,
       },
       {
@@ -58,11 +46,7 @@ const sectionArray = [
     completed: false,
     subsections: [
       {
-        name: "General",
-        completed: false,
-      },
-      {
-        name: "Complexities",
+        name: "General and Complexities",
         completed: false,
       },
       {

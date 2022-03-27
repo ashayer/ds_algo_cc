@@ -8,20 +8,17 @@ import { Button, Grid } from "@mui/material";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import InsertionGeneral from "./InsertionGeneral";
-import InsertionCompletion from "./InsertionComplexities";
 import InsertionCode from "./InsertionCode";
 
 const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
 
   function handleAccordClick(name) {
-    console.log("being clicked");
     if (currentSubSection === name) setCurrentSubSection("");
     if (currentSubSection !== name) setCurrentSubSection(name);
   }
 
   const completed = (index) => {
-    console.log("being clicked");
     tempSectionArray[0].subsections[index].completed = true;
     const tempSectionArrayOne = tempSectionArray.slice();
     setTempSectionArray(tempSectionArrayOne);
@@ -72,8 +69,6 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
               {index === 0 ? (
                 <InsertionGeneral />
               ) : index === 1 ? (
-                <InsertionCompletion />
-              ) : index === 2 ? (
                 <InsertionCode />
               ) : null}
             </AccordionDetails>

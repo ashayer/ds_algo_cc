@@ -65,8 +65,6 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
                 <Typography>Merge Complexities</Typography>
               ) : index === 1 ? (
                 <Typography>Merge Complexities</Typography>
-              ) : index === 2 ? (
-                <Typography>Merge Code</Typography>
               ) : null}
             </AccordionDetails>
             <Button onClick={() => completed(index)} variant="contained">
