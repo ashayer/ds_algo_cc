@@ -1,12 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { AppBar, Button, Toolbar, Typography, Container, Grow } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import useStyles from "./styles";
 import { logout, reset } from "../../features/auth/authSlice";
 
-const Navbar = () => {
-  const classes = useStyles();
+const Navbar = ({ page }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const localUser = JSON.parse(sessionStorage.getItem("user"));
@@ -18,16 +16,34 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar className={classes.appBar} position="static">
-      <Typography component={Link} to="/" variant="h2" />
-      <Toolbar className={classes.toolbar}>
-        {user || localUser ? (
-          <Button variant="contained" onClick={onLogout} className={classes.logoutButton}>
-            Logout
-          </Button>
-        ) : null}
-      </Toolbar>
-    </AppBar>
+    <Grow in>
+      <Container maxWidth="xl" align="center">
+        <AppBar
+          sx={{
+            borderRadius: 3,
+            margin: "10px 0",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "5px 15px",
+            backgroundColor: "white",
+          }}
+          position="static"
+        >
+          <Typography variant="h3" sx={{ color: "black" }}>
+            {page}
+          </Typography>
+          <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
+            {user || localUser ? (
+              <Button variant="contained" onClick={onLogout}>
+                Logout
+              </Button>
+            ) : null}
+          </Toolbar>
+        </AppBar>
+      </Container>
+    </Grow>
   );
 };
 

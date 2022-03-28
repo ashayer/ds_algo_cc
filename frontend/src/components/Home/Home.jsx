@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import { Container, Grow } from "@mui/material";
+import { Grid, Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Game from "../Game/Game";
-import Login from "../Auth/Login";
+import Navbar from "../Navbar/Navbar";
 
 const Home = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
@@ -11,17 +10,18 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if ((!user || !localUser)) {
+    if (!user || !localUser) {
       navigate("/login");
     }
   }, [user, localUser, navigate]);
 
   return (
-    <Grow in>
-      <Container maxWidth="xl" align="center">
-        {user || localUser ? <Game /> : <Login />}
-      </Container>
-    </Grow>
+    <>
+      <Navbar page="Home" />
+      <Grid container>
+        <Button>To Game</Button>
+      </Grid>
+    </>
   );
 };
 
