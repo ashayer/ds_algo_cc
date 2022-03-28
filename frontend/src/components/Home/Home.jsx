@@ -1,15 +1,7 @@
 import React, { useEffect } from "react";
-import {
-  Grid,
-  Paper,
-  Typography,
-  Card,
-  CardContent,
-  CardActionArea,
-  Box,
-} from "@mui/material";
+import { Grid, Paper, Typography, Card, CardContent, CardActionArea, Box } from "@mui/material";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
 const Home = () => {
@@ -26,7 +18,7 @@ const Home = () => {
   return (
     <Box>
       <Navbar page="Home" />
-      <Grid container spacing={3} sx={{ marginTop: 2, textAlign: "center" }}>
+      <Grid container spacing={4} sx={{ marginTop: 1, textAlign: "center" }}>
         <Grid item xs={12} md={6}>
           <Paper elevation={4}>
             <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
@@ -43,8 +35,8 @@ const Home = () => {
                   </Typography>
                 </CardContent>
               </Card>
-              <Card sx={{ minWidth: "50%" }}>
-                <CardActionArea sx={{ minHeight: "30vh" }}>
+              <Card sx={{ minWidth: "50%", align: "center" }}>
+                <CardActionArea sx={{ minHeight: "30vh" }} component={Link} to="/game">
                   <CardContent>
                     <Typography variant="h1">Play</Typography>
                   </CardContent>
