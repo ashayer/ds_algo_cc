@@ -7,7 +7,6 @@ import {
   CardContent,
   CardActionArea,
   Box,
-  Container,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +24,7 @@ const Home = () => {
   }, [user, localUser, navigate]);
 
   return (
-    <Container maxWidth="xl">
+    <Box>
       <Navbar page="Home" />
       <Grid container spacing={3} sx={{ marginTop: 2, textAlign: "center" }}>
         <Grid item xs={12} md={6}>
@@ -34,9 +33,9 @@ const Home = () => {
               Game
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <Card sx={{ minWidth: "48%" }}>
+              <Card sx={{ minWidth: "50%" }}>
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h5">
                     Game options
                   </Typography>
                   <Typography>
@@ -44,7 +43,7 @@ const Home = () => {
                   </Typography>
                 </CardContent>
               </Card>
-              <Card sx={{ minWidth: "48%" }}>
+              <Card sx={{ minWidth: "50%" }}>
                 <CardActionArea sx={{ minHeight: "30vh" }}>
                   <CardContent>
                     <Typography variant="h1">Play</Typography>
@@ -56,11 +55,13 @@ const Home = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Paper elevation={4}>
-            <Typography variant="h3">Game</Typography>
+            <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
+              Stats
+            </Typography>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <Card sx={{ minWidth: "48%" }}>
+              <Card sx={{ minWidth: "50%" }}>
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h5">
                     *User name* Stats
                   </Typography>
                   <Typography>
@@ -69,7 +70,7 @@ const Home = () => {
                   </Typography>
                 </CardContent>
               </Card>
-              <Card sx={{ minWidth: "48%" }}>
+              <Card sx={{ minWidth: "50%" }}>
                 <CardActionArea sx={{ minHeight: "30vh" }}>
                   <CardContent>
                     <Typography variant="h2">View leader board</Typography>
@@ -81,9 +82,11 @@ const Home = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Paper elevation={4}>
-            <Typography variant="h3">Game</Typography>
+            <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
+              Sorting algorithms
+            </Typography>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <Card sx={{ minWidth: "49%", minHeight: "30vh" }}>
+              <Card sx={{ minWidth: "50%", minHeight: "30vh" }}>
                 <CardActionArea>
                   <CardContent>
                     <Typography variant="h2">Read</Typography>
@@ -91,8 +94,8 @@ const Home = () => {
                 </CardActionArea>
                 <CardContent>Stats of amount read about sorting algorithms</CardContent>
               </Card>
-              <Card sx={{ minWidth: "49%", minHeight: "30vh" }}>
-                <CardActionArea>
+              <Card sx={{ minWidth: "50%" }}>
+                <CardActionArea sx={{ minHeight: "30vh" }}>
                   <CardContent>
                     <Typography variant="h2">Go to Sandbox</Typography>
                   </CardContent>
@@ -103,17 +106,19 @@ const Home = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Paper elevation={4}>
-            <Typography variant="h3">Data Structures</Typography>
+            <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
+              Data Structures
+            </Typography>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <Card sx={{ minWidth: "49%" }}>
-                <CardActionArea sx={{ minHeight: "15vh" }}>
+              <Card sx={{ minWidth: "50%" }}>
+                <CardActionArea>
                   <CardContent>
                     <Typography variant="h2">Read</Typography>
                   </CardContent>
                 </CardActionArea>
                 <CardContent>Stats of amount read about data structures</CardContent>
               </Card>
-              <Card sx={{ minWidth: "49%" }}>
+              <Card sx={{ minWidth: "50%" }}>
                 <CardActionArea sx={{ minHeight: "30vh" }}>
                   <CardContent>
                     <Typography variant="h2">Go to Sandbox</Typography>
@@ -124,7 +129,7 @@ const Home = () => {
           </Paper>
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 };
 
