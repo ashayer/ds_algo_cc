@@ -28,24 +28,23 @@ const Home = () => {
     <Container maxWidth="xl">
       <Navbar page="Home" />
       <Grid container spacing={3} sx={{ marginTop: 2, textAlign: "center" }}>
-        <Grid item xs={6} md={6}>
-          <Paper elevation={24}>
-            <Typography variant="h3" sx={{ border: "1px solid blue" }}>
+        <Grid item xs={12} md={6}>
+          <Paper elevation={4}>
+            <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
               Game
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <Card sx={{ minWidth: "48%", minHeight: "30vh", border: "1px solid red" }}>
+              <Card sx={{ minWidth: "48%" }}>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    *User name* - Stats
+                    Game options
                   </Typography>
                   <Typography>
-                    Get lifetime user stats, points, highest streak, avg response time, lifetime
-                    questions right, lifetime questions wrong
+                    Options to set game topics, dynamic or static difficulties
                   </Typography>
                 </CardContent>
               </Card>
-              <Card sx={{ minWidth: "48%", minHeight: "30vh", border: "1px solid red" }}>
+              <Card sx={{ minWidth: "48%" }}>
                 <CardActionArea sx={{ minHeight: "30vh" }}>
                   <CardContent>
                     <Typography variant="h1">Play</Typography>
@@ -55,105 +54,69 @@ const Home = () => {
             </Box>
           </Paper>
         </Grid>
-        <Grid item xs={6} md={6}>
-          <Paper elevation={24}>
-            <Typography variant="h3" sx={{ border: "1px solid blue" }}>
-              Extras
-            </Typography>
+        <Grid item xs={12} md={6}>
+          <Paper elevation={4}>
+            <Typography variant="h3">Game</Typography>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <Card sx={{ minHeight: "30vh", border: "1px solid red" }}>
-                <CardActionArea>
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      Lizard
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Lizards are a widespread group of squamate reptiles, with over 6,000 species,
-                      ranging across all continents except Antarctica
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
+              <Card sx={{ minWidth: "48%" }}>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    *User name* Stats
+                  </Typography>
+                  <Typography>
+                    Table of lifetime user stats, points, highest streak, avg response time,
+                    lifetime questions right, lifetime questions wrong
+                  </Typography>
+                </CardContent>
               </Card>
-              <Card sx={{ minHeight: "30vh", border: "1px solid red" }}>
-                <CardActionArea>
+              <Card sx={{ minWidth: "48%" }}>
+                <CardActionArea sx={{ minHeight: "30vh" }}>
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      Lizard
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Lizards are a widespread group of squamate reptiles, with over 6,000 species,
-                      ranging across all continents except Antarctica
-                    </Typography>
+                    <Typography variant="h2">View leader board</Typography>
                   </CardContent>
                 </CardActionArea>
               </Card>
             </Box>
           </Paper>
         </Grid>
-        <Grid item xs={6} md={6}>
-          <Paper elevation={24}>
-            <Typography variant="h3" sx={{ border: "1px solid blue" }}>
-              Sorting Algorithms
-            </Typography>
+        <Grid item xs={12} md={6}>
+          <Paper elevation={4}>
+            <Typography variant="h3">Game</Typography>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <Card sx={{ minHeight: "30vh", border: "1px solid red" }}>
+              <Card sx={{ minWidth: "49%", minHeight: "30vh" }}>
                 <CardActionArea>
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      Lizard
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Lizards are a widespread group of squamate reptiles, with over 6,000 species,
-                      ranging across all continents except Antarctica
-                    </Typography>
+                    <Typography variant="h2">Read</Typography>
                   </CardContent>
                 </CardActionArea>
+                <CardContent>Stats of amount read about sorting algorithms</CardContent>
               </Card>
-              <Card sx={{ minHeight: "30vh", border: "1px solid red" }}>
+              <Card sx={{ minWidth: "49%", minHeight: "30vh" }}>
                 <CardActionArea>
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      Lizard
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Lizards are a widespread group of squamate reptiles, with over 6,000 species,
-                      ranging across all continents except Antarctica
-                    </Typography>
+                    <Typography variant="h2">Go to Sandbox</Typography>
                   </CardContent>
                 </CardActionArea>
               </Card>
             </Box>
           </Paper>
         </Grid>
-        <Grid item xs={6} md={6}>
-          <Paper elevation={24}>
-            <Typography variant="h3" sx={{ border: "1px solid blue" }}>
-              Data structures
-            </Typography>
+        <Grid item xs={12} md={6}>
+          <Paper elevation={4}>
+            <Typography variant="h3">Data Structures</Typography>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <Card sx={{ minHeight: "30vh", border: "1px solid red" }}>
-                <CardActionArea>
+              <Card sx={{ minWidth: "49%" }}>
+                <CardActionArea sx={{ minHeight: "15vh" }}>
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      Lizard
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Lizards are a widespread group of squamate reptiles, with over 6,000 species,
-                      ranging across all continents except Antarctica
-                    </Typography>
+                    <Typography variant="h2">Read</Typography>
                   </CardContent>
                 </CardActionArea>
+                <CardContent>Stats of amount read about data structures</CardContent>
               </Card>
-              <Card sx={{ minHeight: "30vh", border: "1px solid red" }}>
-                <CardActionArea>
+              <Card sx={{ minWidth: "49%" }}>
+                <CardActionArea sx={{ minHeight: "30vh" }}>
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      Lizard
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Lizards are a widespread group of squamate reptiles, with over 6,000 species,
-                      ranging across all continents except Antarctica
-                    </Typography>
+                    <Typography variant="h2">Go to Sandbox</Typography>
                   </CardContent>
                 </CardActionArea>
               </Card>
