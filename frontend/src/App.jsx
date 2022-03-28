@@ -6,14 +6,12 @@ import Login from "./components/Auth/Login";
 import Learn from "./components/Learn/Learn";
 
 const App = () => {
-  const user = JSON.parse(sessionStorage.getItem("user"));
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={!user ? <Register /> : <Home />} />
-        <Route path="/login" element={!user ? <Login /> : <Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/learn" element={<Learn />} />
       </Routes>
     </BrowserRouter>

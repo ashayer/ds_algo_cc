@@ -7,15 +7,14 @@ import Login from "../Auth/Login";
 
 const Home = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
-  const visited = JSON.parse(localStorage.getItem("visited"));
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if ((!user || !localUser) && visited) {
+    if ((!user || !localUser)) {
       navigate("/login");
     }
-  }, [user, localUser, navigate, visited]);
+  }, [user, localUser, navigate]);
 
   return (
     <Grow in>
