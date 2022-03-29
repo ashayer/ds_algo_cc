@@ -14,6 +14,7 @@ import Question from "./Question/Question";
 import UserStatsTable from "./UserStatsTable/UserStatsTable";
 import "./game.css";
 import useStyles from "./styles";
+
 //! countdown timer causing memory leak
 let highestStreak = 0;
 const Game = () => {
@@ -54,36 +55,32 @@ const Game = () => {
   };
 
   const createRandomGame = () => {
-    if (localUser.numCorrect + localUser.numWrong < 20) {
-      const correctIndex = Math.floor(Math.random() * 4);
-      let typeIndex = Math.floor(Math.random() * 4);
-      let topicIndex = Math.floor(Math.random() * 4);
-      while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
-        topicIndex = Math.floor(Math.random() * 4);
-      }
-      while (typeIndex === questionType) {
-        typeIndex = Math.floor(Math.random() * 4);
-      }
-      setQuestionTopicNum(topicIndex);
-      const gameObject = questionHandler(topicIndex, typeIndex);
-      // console.log(gameObject);
-      const answerOptions = [];
-      let wrongIndex = 0;
-      for (let i = 0; i < 4; i += 1) {
-        if (i === correctIndex) {
-          answerOptions[i] = [true, gameObject.right];
-        } else {
-          answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
-          wrongIndex += 1;
-        }
-      }
-      setQuestionTopic(algorithmInfoArray[0][topicIndex].name);
-      setQuestionType(typeIndex);
-      setAnswers(answerOptions);
-      setObject(gameObject);
-    } else {
-      endGame();
+    const correctIndex = Math.floor(Math.random() * 4);
+    let typeIndex = Math.floor(Math.random() * 4);
+    let topicIndex = Math.floor(Math.random() * 4);
+    while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
+      topicIndex = Math.floor(Math.random() * 4);
     }
+    while (typeIndex === questionType) {
+      typeIndex = Math.floor(Math.random() * 4);
+    }
+    setQuestionTopicNum(topicIndex);
+    const gameObject = questionHandler(topicIndex, typeIndex);
+    // console.log(gameObject);
+    const answerOptions = [];
+    let wrongIndex = 0;
+    for (let i = 0; i < 4; i += 1) {
+      if (i === correctIndex) {
+        answerOptions[i] = [true, gameObject.right];
+      } else {
+        answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
+        wrongIndex += 1;
+      }
+    }
+    setQuestionTopic(algorithmInfoArray[0][topicIndex].name);
+    setQuestionType(typeIndex);
+    setAnswers(answerOptions);
+    setObject(gameObject);
   };
 
   const startGame = () => {
@@ -198,9 +195,9 @@ const Game = () => {
             </Grid>
             <Grid item>
               <CountdownTimer />
-              {/* <Button variant="contained" onClick={endGame} style={{ margin: "10px" }}>
+              <Button variant="contained" onClick={endGame} style={{ margin: "10px" }}>
                 END GAME
-              </Button> */}
+              </Button>
             </Grid>
           </Grid>
         </Paper>
