@@ -5,7 +5,7 @@ import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Learn from "./components/Learn/Learn";
 import Game from "./components/Game/Game";
-import Flask from "./components/PythonTest/Flask";
+import UserEmulator from "./components/UserEmulator/UserEmulator";
 
 const App = () => {
   return (
@@ -16,7 +16,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/learn" element={<Learn />} />
         <Route path="/game" element={<Game />} />
-        <Route path="/py" element={<Flask />} />
+        <Route path="/emulate" element={<UserEmulator />} />
       </Routes>
     </BrowserRouter>
   );
