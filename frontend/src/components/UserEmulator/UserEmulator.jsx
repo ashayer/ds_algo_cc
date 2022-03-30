@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Box, Typography, Button, Grid } from "@mui/material";
 import axios from "axios";
 import {
@@ -15,9 +15,8 @@ import {
 import { Line, Bar } from "react-chartjs-2";
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip);
-Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
-const options = {
+const optionsForNum = {
   responsive: true,
   plugins: {
     title: {
@@ -25,39 +24,52 @@ const options = {
       text: "% Correct",
     },
   },
-};
-
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-const labelsForTopics = ["Insertion", "Selection", "Merge", "Quick"];
-
-const labelsForTypes = ["Swaps", "Time", "Space", "Code"];
-
-
-const data = {
-  labels,
-  datasets: [
-    {
-      data: labels.map(() => Math.floor(Math.random() * 100)),
-      borderColor: "white",
-      backgroundColor: "white",
-    },
-  ],
+  scales: {
+    y: {
+        min: 0,
+        max: 100,
+    }
+}
 };
 
 const UserEmulator = () => {
-  const [totalQuestions, setTotalQuestions] = useState(0);
+  const [totalQuestions, setTotalQuestions] = useState(10);
   const [percentCorrect, setPercentCorrect] = useState(0);
-  const [typeCountArray, setTypeCountArray] = useState([0,0,0,0]);
-  const [topicCountArray, setTopicCountArray] = useState([0,0,0,0]);
+  const [typeCountArray, setTypeCountArray] = useState([0, 0, 0, 0]);
+  const [topicCountArray, setTopicCountArray] = useState([0, 0, 0, 0]);
+  const [labelsForNum, setLabelsForNum] = useState(["10"]);
+  let dataForNum = {
+    labels: labelsForNum,
+    datasets: [
+      {
+        data: labelsForNum.map(() => Math.floor(Math.random() * 100)),
+      },
+    ],
+  };
 
+  const addRandom = useCallback(() => {
+    console.log(labelsForNum);
+
+    const nextLabel = parseInt(labelsForNum[labelsForNum.length - 1]) + 5;
+    setLabelsForNum([...labelsForNum, nextLabel.toString()]);
+  }, [labelsForNum]);
 
   return (
     <Box sx={{ textAlign: "center" }}>
       <Typography variant="h4">User Emulator</Typography>
       <Grid container>
-        <Grid item xs={12} md={4}>
-          <Line options={options} data={data} />
+        <Grid item xs={12} md={4} sx={{ backgroundColor: "white" }}>
+          <Line options={optionsForNum} data={dataForNum} />
+        </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            onClick={() => {
+              addRandom();
+            }}
+          >
+            Add random value and label
+          </Button>
         </Grid>
         {/* <Grid item xs={12} md={4}>
           <Bar options={options} data={data} />
@@ -71,6 +83,9 @@ const UserEmulator = () => {
 };
 
 export default UserEmulator;
+// Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
+// const labelsForTopics = ["Insertion", "Selection", "Merge", "Quick"];
+// const labelsForTypes = ["Swaps", "Time", "Space", "Code"];
 
 // const UserPlayground = () => {
 //   const [getMessage, setGetMessage] = useState({});
