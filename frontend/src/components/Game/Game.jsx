@@ -55,7 +55,7 @@ const Game = () => {
     const correctIndex = Math.floor(Math.random() * 4);
     // let typeIndex = Math.floor(Math.random() * 4);
     // let topicIndex = Math.floor(Math.random() * 4);
-    const topicIndex = 3;
+    const topicIndex = 2;
     const typeIndex = 5;
     //! change to not use [0]
     // while (questionTopic === algorithmInfoArray[0][topicIndex].name) {

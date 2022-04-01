@@ -1,8 +1,4 @@
 import { shuffle } from "d3-array";
-// to generate a random question that asks about pseudo-code pick a line with meaningful logic
-// get the character number in string or make its own variable
-// generate similar answers with minor incorrect changes
-// put correct string into answer.right and three wrong string into answer.wrong
 
 function generateDragCode() {
   const partitionLine1 = "int pivotValue = arr[low]\n";
