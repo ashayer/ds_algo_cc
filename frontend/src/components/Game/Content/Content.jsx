@@ -6,7 +6,7 @@ import { Grid, Typography, Container, Box } from "@mui/material/";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import useStyles from "./styles";
 
-const Content = ({ content, setContent, questionTopic, questionType }) => {
+const Content = ({ content, setContentObject, contentObject, questionTopic, questionType }) => {
   const classes = useStyles();
 
   const ContentBars = () => {
@@ -52,37 +52,28 @@ const Content = ({ content, setContent, questionTopic, questionType }) => {
       return;
     }
 
-    const newLinesArray = Array.from(content);
+    const newLinesArray = Array.from(contentObject);
 
     newLinesArray.splice(source.index, 1);
-    newLinesArray.splice(destination.index, 0, content[source.index]);
+    newLinesArray.splice(destination.index, 0, contentObject[source.index]);
 
-    setContent(newLinesArray);
+    setContentObject(newLinesArray);
   };
 
   const ContentDragCode = () => {
     return (
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="1">
-          {(provided) => (
-            <Box
-              key="1"
-              onDragOver={(e) => e.preventDefault()}
-              maxWidth="sm"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {content?.map((value, idx) => (
-                <Draggable draggableId={idx.toString()} index={idx} key={idx}>
-                  {(provided) => (
-                    <div
-                      key={value.correctIdx}
-                      id={idx}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      ref={provided.innerRef}
-                    >
+      <Box>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="1">
+            {(provided) => (
+              <Box maxWidth="sm" {...provided.droppableProps} ref={provided.innerRef}>
+                {contentObject?.map((value, idx) => (
+                  <Draggable draggableId={idx.toString()} index={idx} key={idx}>
+                    {(provided) => (
                       <Typography
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
                         variant="h6"
                         sx={{
                           backgroundColor: "white",
@@ -92,17 +83,17 @@ const Content = ({ content, setContent, questionTopic, questionType }) => {
                           transition: "all 0.2s ease",
                         }}
                       >
-                        {value.lineContent + value.correctIdx}
+                        {`${value.lineContent} + ${value.correctIdx}`}
                       </Typography>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </Box>
-          )}
-        </Droppable>
-      </DragDropContext>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </Box>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </Box>
     );
   };
 

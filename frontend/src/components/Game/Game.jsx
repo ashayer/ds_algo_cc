@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Grid, Button, Container, Paper, Grow, Slide } from "@mui/material/";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { toast } from "react-toastify";
@@ -24,13 +24,15 @@ const Game = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState("");
-  const [content, setContent] = useState(null);
+  const [content, setContent] = useState([]);
   const [gameStarted, setGameStarted] = useState(false);
   const [questionTopic, setQuestionTopic] = useState("");
   const [questionType, setQuestionType] = useState(0);
   const [questionTopicNum, setQuestionTopicNum] = useState(0);
   const [timer, setTimer] = useState(timeLeft);
   const [object, setObject] = useState({}); // ! change name to something more descriptive
+  const [contentObject, setContentObject] = useState([{}]);
+
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -51,29 +53,83 @@ const Game = () => {
     setGameStarted(false);
   };
 
+  const createQuestion = useCallback(() => {
+    switch (questionType) {
+      case 0:
+        setTimer(10);
+        setContent(object.original);
+        if (questionTopic === "Quick") {
+          setQuestion(
+            `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps using leftmost as pivot`,
+          );
+        } else {
+          setQuestion(
+            `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps`,
+          );
+        }
+        break;
+      case 1:
+        setTimer(10);
+        setContent([questionTopic]);
+        setQuestion("What is the time complexity of the algorithm below?");
+        break;
+      case 2:
+        setTimer(10);
+        setContent([questionTopic]);
+        setQuestion("What is the space complexity of the algorithm below?");
+        break;
+      case 3:
+        setTimer(10);
+        setContent([object.original]);
+        setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
+        break;
+      case 4:
+        setTimer(10);
+        setContent(object.original);
+        setQuestion(`What is the time complexity using ${questionTopic} to sort the array`);
+        break;
+      case 5:
+        setTimer(10);
+        setContentObject(object.original);
+        setQuestion(`Move pseudo-code into correct order for ${questionTopic} sort`);
+        break;
+      default:
+        break;
+    }
+  }, [object.original, questionTopic, questionType]);
+
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    const typeIndex = Math.floor(Math.random() * 6);
-    let topicIndex = Math.floor(Math.random() * 4);
-    //! change to not use [0]
-    while (questionTopic === algorithmInfoArray[topicIndex].name) {
-      topicIndex = Math.floor(Math.random() * 4);
-    }
+    // let typeIndex = Math.floor(Math.random() * 5);
+    // let topicIndex = Math.floor(Math.random() * 0);
+    // while (questionTopic === algorithmInfoArray[topicIndex].name) {
+    //   topicIndex = Math.floor(Math.random() * 4);
+    // }
     // while (typeIndex === questionType) {
     //   typeIndex = Math.floor(Math.random() * 6);
     // }
+
+    let typeIndex = 5;
+    const topicIndex = 0;
+
+    if (questionType === 5) {
+      typeIndex = 4;
+    } else {
+      typeIndex = 5;
+    }
     setQuestionTopicNum(topicIndex);
     const gameObject = questionHandler(topicIndex, typeIndex);
     const answerOptions = [];
     let wrongIndex = 0;
     for (let i = 0; i < 4; i += 1) {
       if (i === correctIndex) {
-        answerOptions[i] = [true, gameObject?.right];
+        answerOptions[i] = [true, gameObject.right];
       } else {
-        answerOptions[i] = [false, gameObject?.wrong[wrongIndex]];
+        answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
         wrongIndex += 1;
       }
     }
+
     setQuestionTopic(algorithmInfoArray[topicIndex].name);
     setQuestionType(typeIndex);
     setAnswers(answerOptions);
@@ -103,7 +159,7 @@ const Game = () => {
   const startGameOnTimeEnd = () => {
     const questionEndTime = new Date();
     toast.error("Ran out of time!", {
-      position: "top-right",
+      position: "top-center",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -126,55 +182,6 @@ const Game = () => {
     createRandomGame();
   };
 
-  const createQuestion = useCallback(() => {
-    switch (questionType) {
-      case 0:
-        setTimer(1);
-        setContent(object.original);
-        if (questionTopic === "Quick") {
-          setQuestion(
-            `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps using leftmost as pivot`,
-          );
-        } else {
-          setQuestion(
-            `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps`,
-          );
-        }
-        break;
-      case 1:
-        setTimer(1);
-        setContent([questionTopic]);
-        setQuestion("What is the time complexity of the algorithm below?");
-        break;
-      case 2:
-        setTimer(1);
-        setContent([questionTopic]);
-        setQuestion("What is the space complexity of the algorithm below?");
-        break;
-      case 3:
-        setTimer(1);
-        setContent([object.original]);
-        setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
-        break;
-      case 4:
-        setTimer(1);
-        setContent(object.original);
-        setQuestion(`What is the time complexity using ${questionTopic} to sort the array`);
-        break;
-      case 5:
-        setTimer(1);
-        setContent(object.original);
-        setQuestion(`Move pseudo-code into correct order for ${questionTopic} sort`);
-        break;
-      default:
-        break;
-    }
-  }, [object.original, object?.swaps, questionTopic, questionType]);
-
-  useEffect(() => {
-    createQuestion();
-  }, [createQuestion]);
-
   const CountdownTimer = () => (
     <CountdownCircleTimer
       isPlaying
@@ -192,7 +199,7 @@ const Game = () => {
   const checkLineOrder = () => {
     const arr = [];
     for (let i = 0; i < object.original.length; i += 1) {
-      arr.push(content[i].correctIdx);
+      arr.push(contentObject[i].correctIdx);
     }
 
     // console.log(arr);
@@ -203,6 +210,10 @@ const Game = () => {
     }
     return true;
   };
+
+  useEffect(() => {
+    createQuestion();
+  }, [createQuestion]);
 
   return gameStarted ? (
     <Grow in>
@@ -227,7 +238,8 @@ const Game = () => {
           <Container>
             <Content
               content={content}
-              setContent={setContent}
+              contentObject={contentObject}
+              setContentObject={setContentObject}
               questionType={questionType}
               questionTopic={questionTopic}
             />
@@ -242,7 +254,6 @@ const Game = () => {
             questionStartTime={questionStartTime}
             questionTopicNum={questionTopicNum}
             isHighestStreak={isHighestStreak}
-            content={content}
             checkLineOrder={checkLineOrder}
           />
         </Paper>
