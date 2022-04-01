@@ -8,6 +8,7 @@ import useStyles from "./styles";
 
 const Content = ({ content, setContent, questionTopic, questionType }) => {
   const classes = useStyles();
+
   const ContentBars = () => {
     return (
       <Grid container className={classes.contentArrayContainer}>

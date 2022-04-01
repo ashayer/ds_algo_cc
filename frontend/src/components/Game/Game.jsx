@@ -17,7 +17,7 @@ import useStyles from "./styles";
 //! countdown timer causing memory leak
 let highestStreak = 0;
 const Game = () => {
-  const timeLeft = 300;
+  const timeLeft = 1;
 
   const questionStartTime = new Date();
 
@@ -53,19 +53,17 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    // let typeIndex = Math.floor(Math.random() * 4);
+    const typeIndex = Math.floor(Math.random() * 6);
     let topicIndex = Math.floor(Math.random() * 4);
-    const typeIndex = 5;
     //! change to not use [0]
-    while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
+    while (questionTopic === algorithmInfoArray[topicIndex].name) {
       topicIndex = Math.floor(Math.random() * 4);
     }
     // while (typeIndex === questionType) {
-    //   typeIndex = Math.floor(Math.random() * 4);
+    //   typeIndex = Math.floor(Math.random() * 6);
     // }
     setQuestionTopicNum(topicIndex);
     const gameObject = questionHandler(topicIndex, typeIndex);
-    // console.log(gameObject);
     const answerOptions = [];
     let wrongIndex = 0;
     for (let i = 0; i < 4; i += 1) {
@@ -76,7 +74,7 @@ const Game = () => {
         wrongIndex += 1;
       }
     }
-    setQuestionTopic(algorithmInfoArray[0][topicIndex].name);
+    setQuestionTopic(algorithmInfoArray[topicIndex].name);
     setQuestionType(typeIndex);
     setAnswers(answerOptions);
     setObject(gameObject);
@@ -131,7 +129,7 @@ const Game = () => {
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
-        setTimer(3000);
+        setTimer(1);
         setContent(object.original);
         if (questionTopic === "Quick") {
           setQuestion(
@@ -144,29 +142,29 @@ const Game = () => {
         }
         break;
       case 1:
-        setTimer(1500);
+        setTimer(1);
         setContent([questionTopic]);
         setQuestion("What is the time complexity of the algorithm below?");
         break;
       case 2:
-        setTimer(1500);
+        setTimer(1);
         setContent([questionTopic]);
         setQuestion("What is the space complexity of the algorithm below?");
         break;
       case 3:
-        setTimer(2000);
+        setTimer(1);
         setContent([object.original]);
         setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
         break;
       case 4:
-        setTimer(2000);
+        setTimer(1);
         setContent(object.original);
         setQuestion(`What is the time complexity using ${questionTopic} to sort the array`);
         break;
       case 5:
-        setTimer(2000);
+        setTimer(1);
         setContent(object.original);
-        setQuestion(`Move the lines of pseudo-code into the correct order for ${questionTopic} sort`);
+        setQuestion(`Move pseudo-code into correct order for ${questionTopic} sort`);
         break;
       default:
         break;

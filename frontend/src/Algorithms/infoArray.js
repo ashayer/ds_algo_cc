@@ -25,4 +25,4 @@ const algorithmInfoArray = [
   },
 ];
 
-export default [algorithmInfoArray];
+export default algorithmInfoArray;

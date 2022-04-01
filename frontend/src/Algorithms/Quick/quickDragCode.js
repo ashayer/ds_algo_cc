@@ -65,8 +65,8 @@ function generateDragCode() {
   ]);
 
   const answers = {
-    right: "",
-    wrong: [],
+    right: "Right",
+    wrong: ["Wrong, Wrong", "Wrong"],
     original: Math.random() > 0.5 ? quickSortStringArray : partitionStringArray,
   };
 
