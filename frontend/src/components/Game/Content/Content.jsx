@@ -84,9 +84,11 @@ const Content = ({ content, setContent, questionTopic, questionType }) => {
                       <Typography
                         variant="h6"
                         sx={{
-                          border: "1px solid blue",
-                          marginBottom: "10px",
                           backgroundColor: "white",
+                          "&:hover": {
+                            color: "#9ec3ff",
+                          },
+                          transition: "all 0.2s ease",
                         }}
                       >
                         {value.lineContent + value.correctIdx}
