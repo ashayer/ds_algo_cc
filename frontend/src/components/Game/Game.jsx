@@ -54,11 +54,12 @@ const Game = () => {
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
     // const typeIndex = Math.floor(Math.random() * 4);
-    const topicIndex = 0;
+    let topicIndex = Math.floor(Math.random() * 4);
     const typeIndex = 4;
-    // while (questionTopic === algorithmInfoArray[0][topicIndex].name) { //! change to not use [0]
-    //   topicIndex = Math.floor(Math.random() * 4);
-    // }
+    //! change to not use [0]
+    while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
+      topicIndex = Math.floor(Math.random() * 4);
+    }
     // while (typeIndex === questionType) {
     //   typeIndex = Math.floor(Math.random() * 4);
     // }

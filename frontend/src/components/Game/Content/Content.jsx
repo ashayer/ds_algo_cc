@@ -9,10 +9,7 @@ const Content = ({ content, questionTopic, questionType }) => {
       <Grid container className={classes.contentArrayContainer}>
         {content?.map((value) => (
           <Grid item key={value}>
-            <div
-              className="contentArrayBars"
-              style={{ height: `${value * 3}vh` }}
-            >
+            <div className="contentArrayBars" style={{ height: `${value * 3}vh` }}>
               <Typography variant="h4">{value}</Typography>
             </div>
           </Grid>
@@ -47,7 +44,7 @@ const Content = ({ content, questionTopic, questionType }) => {
   ) : questionType === 3 ? (
     <ContentCode />
   ) : questionType === 4 ? (
-    <ContentBars /> //! using a different component temporarily
+    <ContentBars />
   ) : null;
 };
 
