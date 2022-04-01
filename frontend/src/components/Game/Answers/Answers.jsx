@@ -1,7 +1,6 @@
 import React from "react";
 import { Grid, ButtonBase, Typography } from "@mui/material/";
 import { toast } from "react-toastify";
-import useStyles from "./styles";
 import "./answers.css";
 
 const Answers = ({
@@ -12,8 +11,6 @@ const Answers = ({
   questionStartTime,
   isHighestStreak,
 }) => {
-  const classes = useStyles();
-
   const calculatePoints = () => {
     const localUser = JSON.parse(sessionStorage.getItem("user"));
 
@@ -88,10 +85,24 @@ const Answers = ({
 
   const AnswerBars = () => {
     return answers.map((answer, index) => (
-      <Grid item key={index}>
+      <Grid item key={index} xs={12} md={6}>
         <ButtonBase
           onClick={answer[0] ? correctAnswer : wrongAnswer}
-          className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
+          sx={
+            answer[0]
+              ? {
+                  backgroundColor: "green",
+                  color: "white",
+                  width: "35vw",
+                  height: "20.5vh",
+                }
+              : {
+                  backgroundColor: "red",
+                  color: "white",
+                  width: "35vw",
+                  height: "20.5vh",
+                }
+          }
         >
           <Grid container justifyContent="space-evenly" margin="0px">
             {answer[1].map((value, indexA) => (
@@ -109,11 +120,8 @@ const Answers = ({
 
   const AnswerText = () => {
     return answers.map((answer, index) => (
-      <Grid item key={index}>
-        <ButtonBase
-          onClick={answer[0] ? correctAnswer : wrongAnswer}
-          className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
-        >
+      <Grid item key={index} xs={12} md={6}>
+        <ButtonBase onClick={answer[0] ? correctAnswer : wrongAnswer}>
           <Typography variant={questionType < 3 ? "h1" : "h4"}>{answer[1]}</Typography>
         </ButtonBase>
       </Grid>
@@ -121,10 +129,19 @@ const Answers = ({
   };
 
   return (
-    <Grid container align="center" justifyContent="center">
+    <Grid
+      container
+      align="center"
+      justifyContent="center"
+      alignContent="center"
+      spacing={3}
+      maxWidth="xl"
+    >
       {questionType === 0 ? (
         <AnswerBars />
       ) : questionType > 0 && questionType < 4 ? (
+        <AnswerText />
+      ) : questionType === 4 ? (
         <AnswerText />
       ) : null}
     </Grid>

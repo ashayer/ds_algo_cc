@@ -42,10 +42,12 @@ const Content = ({ content, questionTopic, questionType }) => {
 
   return questionType === 0 ? (
     <ContentBars />
-  ) : questionType > 0 && questionType < 3 ? (
+  ) : questionType === 1 || questionType === 2 ? (
     <ContentText />
   ) : questionType === 3 ? (
     <ContentCode />
+  ) : questionType === 4 ? (
+    <ContentBars /> //! using a different component temporarily
   ) : null;
 };
 

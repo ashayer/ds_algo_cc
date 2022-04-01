@@ -3,7 +3,6 @@ import { Grid, Button, Container, Paper, Grow, Slide } from "@mui/material/";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { logout, reset } from "../../features/auth/authSlice";
 import questionHandler from "../../Algorithms/handler";
 import algorithmInfoArray from "../../Algorithms/infoArray";
 import { updatePoints } from "../../features/game/gameSlice";
@@ -50,20 +49,19 @@ const Game = () => {
       }),
     );
     setGameStarted(false);
-    dispatch(logout());
-    dispatch(reset());
   };
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    let typeIndex = Math.floor(Math.random() * 4);
-    let topicIndex = Math.floor(Math.random() * 4);
-    while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
-      topicIndex = Math.floor(Math.random() * 4);
-    }
-    while (typeIndex === questionType) {
-      typeIndex = Math.floor(Math.random() * 4);
-    }
+    // const typeIndex = Math.floor(Math.random() * 4);
+    const topicIndex = 0;
+    const typeIndex = 4;
+    // while (questionTopic === algorithmInfoArray[0][topicIndex].name) { //! change to not use [0]
+    //   topicIndex = Math.floor(Math.random() * 4);
+    // }
+    // while (typeIndex === questionType) {
+    //   typeIndex = Math.floor(Math.random() * 4);
+    // }
     setQuestionTopicNum(topicIndex);
     const gameObject = questionHandler(topicIndex, typeIndex);
     // console.log(gameObject);
@@ -132,7 +130,7 @@ const Game = () => {
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
-        setTimer(30);
+        setTimer(3000);
         setContent(object.original);
         if (questionTopic === "Quick") {
           setQuestion(
@@ -145,19 +143,24 @@ const Game = () => {
         }
         break;
       case 1:
-        setTimer(15);
+        setTimer(1500);
         setContent([questionTopic]);
         setQuestion("What is the time complexity of the algorithm below?");
         break;
       case 2:
-        setTimer(15);
+        setTimer(1500);
         setContent([questionTopic]);
         setQuestion("What is the space complexity of the algorithm below?");
         break;
       case 3:
-        setTimer(20);
+        setTimer(2000);
         setContent([object.original]);
         setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
+        break;
+      case 4:
+        setTimer(2000);
+        setContent(object.original);
+        setQuestion(`What is the time complexity using ${questionTopic} to sort the array`);
         break;
       default:
         break;
@@ -206,16 +209,14 @@ const Game = () => {
             <Content content={content} questionType={questionType} questionTopic={questionTopic} />
           </Container>
         </Paper>
-        <Paper className={classes.paperAnswers}>
-          <Answers
-            answers={answers}
-            startGame={startGame}
-            questionType={questionType}
-            questionStartTime={questionStartTime}
-            questionTopicNum={questionTopicNum}
-            isHighestStreak={isHighestStreak}
-          />
-        </Paper>
+        <Answers
+          answers={answers}
+          startGame={startGame}
+          questionType={questionType}
+          questionStartTime={questionStartTime}
+          questionTopicNum={questionTopicNum}
+          isHighestStreak={isHighestStreak}
+        />
       </Grid>
     </Grow>
   ) : (

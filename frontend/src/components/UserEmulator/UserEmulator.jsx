@@ -48,8 +48,6 @@ const UserEmulator = () => {
   };
 
   const addRandom = useCallback(() => {
-    console.log(labelsForNum);
-
     const nextLabel = parseInt(labelsForNum[labelsForNum.length - 1]) + 5;
     setLabelsForNum([...labelsForNum, nextLabel.toString()]);
   }, [labelsForNum]);
