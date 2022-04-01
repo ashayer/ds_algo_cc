@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, ButtonBase, Typography } from "@mui/material/";
+import { Grid, ButtonBase, Typography, Button } from "@mui/material/";
 import { toast } from "react-toastify";
 import "./answers.css";
 
@@ -10,6 +10,7 @@ const Answers = ({
   questionTopicNum,
   questionStartTime,
   isHighestStreak,
+  checkLineOrder,
 }) => {
   const calculatePoints = () => {
     const localUser = JSON.parse(sessionStorage.getItem("user"));
@@ -128,6 +129,32 @@ const Answers = ({
     ));
   };
 
+  const isInOrder = () => {
+    const isOrdered = checkLineOrder();
+    if (isOrdered) {
+      correctAnswer();
+    } else if (!isOrdered) {
+      toast.error("Try again!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      });
+    }
+  };
+  const AnswerDragCode = () => {
+    return (
+      <Grid item>
+        <Button variant="contained" onClick={isInOrder}>
+          Check
+        </Button>
+      </Grid>
+    );
+  };
+
   return (
     <Grid
       container
@@ -144,7 +171,7 @@ const Answers = ({
       ) : questionType === 4 ? (
         <AnswerText />
       ) : questionType === 5 ? (
-        <AnswerText />
+        <AnswerDragCode />
       ) : null}
     </Grid>
   );

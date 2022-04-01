@@ -192,6 +192,21 @@ const Game = () => {
     </CountdownCircleTimer>
   );
 
+  const checkLineOrder = () => {
+    const arr = [];
+    for (let i = 0; i < object.original.length; i += 1) {
+      arr.push(content[i].correctIdx);
+    }
+
+    console.log(arr);
+    for (let i = 0; i < arr.length - 1; i += 1) {
+      if (arr[i] > arr[i + 1]) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   return gameStarted ? (
     <Grow in>
       <Grid container>
@@ -221,14 +236,19 @@ const Game = () => {
             />
           </Container>
         </Paper>
-        <Answers
-          answers={answers}
-          startGame={startGame}
-          questionType={questionType}
-          questionStartTime={questionStartTime}
-          questionTopicNum={questionTopicNum}
-          isHighestStreak={isHighestStreak}
-        />
+
+        <Paper>
+          <Answers
+            answers={answers}
+            startGame={startGame}
+            questionType={questionType}
+            questionStartTime={questionStartTime}
+            questionTopicNum={questionTopicNum}
+            isHighestStreak={isHighestStreak}
+            content={content}
+            checkLineOrder={checkLineOrder}
+          />
+        </Paper>
       </Grid>
     </Grow>
   ) : (

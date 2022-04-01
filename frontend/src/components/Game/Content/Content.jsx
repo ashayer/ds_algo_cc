@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
 
@@ -42,7 +41,7 @@ const Content = ({ content, setContent, questionTopic, questionType }) => {
   };
 
   const onDragEnd = (result) => {
-    const { destination, source, draggableId } = result;
+    const { destination, source } = result;
 
     if (!destination) {
       return;
