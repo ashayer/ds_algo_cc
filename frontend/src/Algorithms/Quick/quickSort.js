@@ -3,6 +3,7 @@ import generateTime from "./quickTime";
 import generateSpace from "./quickSpace";
 import generateCode from "./quickCode";
 import generateArrayTime from "./quickArrayTime";
+import generateDragCode from "./quickDragCode";
 
 function quickSortHandler(randomType) {
   switch (randomType) {
@@ -16,6 +17,8 @@ function quickSortHandler(randomType) {
       return generateCode();
     case 4:
       return generateArrayTime();
+    case 5:
+      return generateDragCode();
     default:
       return null;
   }

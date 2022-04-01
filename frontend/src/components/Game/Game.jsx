@@ -55,7 +55,7 @@ const Game = () => {
     const correctIndex = Math.floor(Math.random() * 4);
     // let typeIndex = Math.floor(Math.random() * 4);
     // let topicIndex = Math.floor(Math.random() * 4);
-    const topicIndex = 0;
+    const topicIndex = 3;
     const typeIndex = 5;
     //! change to not use [0]
     // while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
@@ -71,9 +71,9 @@ const Game = () => {
     let wrongIndex = 0;
     for (let i = 0; i < 4; i += 1) {
       if (i === correctIndex) {
-        answerOptions[i] = [true, gameObject.right];
+        answerOptions[i] = [true, gameObject?.right];
       } else {
-        answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
+        answerOptions[i] = [false, gameObject?.wrong[wrongIndex]];
         wrongIndex += 1;
       }
     }
@@ -198,7 +198,7 @@ const Game = () => {
       arr.push(content[i].correctIdx);
     }
 
-    console.log(arr);
+    // console.log(arr);
     for (let i = 0; i < arr.length - 1; i += 1) {
       if (arr[i] > arr[i + 1]) {
         return false;

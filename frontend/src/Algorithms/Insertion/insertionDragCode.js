@@ -31,8 +31,8 @@ function generateDragCode() {
   ]);
 
   const answers = {
-    right: "Right Drag the THings",
-    wrong: ["Drag the THings", "Drag the THings", "Drag the THings"],
+    right: "",
+    wrong: [],
     original: pseudoCodeStringArray,
   };
 
