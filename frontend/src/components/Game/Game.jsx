@@ -54,13 +54,12 @@ const Game = () => {
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
     // let typeIndex = Math.floor(Math.random() * 4);
-    // let topicIndex = Math.floor(Math.random() * 4);
-    const topicIndex = 2;
+    let topicIndex = Math.floor(Math.random() * 4);
     const typeIndex = 5;
     //! change to not use [0]
-    // while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
-    //   topicIndex = Math.floor(Math.random() * 4);
-    // }
+    while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
+      topicIndex = Math.floor(Math.random() * 4);
+    }
     // while (typeIndex === questionType) {
     //   typeIndex = Math.floor(Math.random() * 4);
     // }
@@ -167,7 +166,7 @@ const Game = () => {
       case 5:
         setTimer(2000);
         setContent(object.original);
-        setQuestion("Move the lines of pseudo-code into the correct order");
+        setQuestion(`Move the lines of pseudo-code into the correct order for ${questionTopic} sort`);
         break;
       default:
         break;
