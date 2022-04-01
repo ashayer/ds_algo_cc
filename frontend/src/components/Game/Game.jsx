@@ -53,13 +53,14 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    // const typeIndex = Math.floor(Math.random() * 4);
-    let topicIndex = Math.floor(Math.random() * 4);
-    const typeIndex = 4;
+    // let typeIndex = Math.floor(Math.random() * 4);
+    // let topicIndex = Math.floor(Math.random() * 4);
+    const topicIndex = 0;
+    const typeIndex = 5;
     //! change to not use [0]
-    while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
-      topicIndex = Math.floor(Math.random() * 4);
-    }
+    // while (questionTopic === algorithmInfoArray[0][topicIndex].name) {
+    //   topicIndex = Math.floor(Math.random() * 4);
+    // }
     // while (typeIndex === questionType) {
     //   typeIndex = Math.floor(Math.random() * 4);
     // }
@@ -162,6 +163,11 @@ const Game = () => {
         setTimer(2000);
         setContent(object.original);
         setQuestion(`What is the time complexity using ${questionTopic} to sort the array`);
+        break;
+      case 5:
+        setTimer(2000);
+        setContent(object.original);
+        setQuestion("Move the lines of pseudo-code into the correct order");
         break;
       default:
         break;

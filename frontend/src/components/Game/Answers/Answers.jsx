@@ -143,6 +143,8 @@ const Answers = ({
         <AnswerText />
       ) : questionType === 4 ? (
         <AnswerText />
+      ) : questionType === 5 ? (
+        <AnswerText />
       ) : null}
     </Grid>
   );

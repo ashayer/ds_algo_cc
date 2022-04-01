@@ -3,6 +3,7 @@ import generateTime from "./insertionTime";
 import generateSpace from "./insertionSpace";
 import generateCode from "./insertionCode";
 import generateArrayTime from "./insertionArrayTime";
+import generateDragCode from "./insertionDragCode";
 
 function insertionSortHandler(randomType) {
   switch (randomType) {
@@ -16,6 +17,8 @@ function insertionSortHandler(randomType) {
       return generateCode();
     case 4:
       return generateArrayTime();
+    case 5:
+      return generateDragCode();
     default:
       return null;
   }
