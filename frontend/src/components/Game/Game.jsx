@@ -213,7 +213,12 @@ const Game = () => {
         </Paper>
         <Paper className={classes.paperContent}>
           <Container>
-            <Content content={content} questionType={questionType} questionTopic={questionTopic} />
+            <Content
+              content={content}
+              setContent={setContent}
+              questionType={questionType}
+              questionTopic={questionTopic}
+            />
           </Container>
         </Paper>
         <Answers

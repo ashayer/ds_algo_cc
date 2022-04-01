@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
 
@@ -6,7 +7,7 @@ import { Grid, Typography, Container, Box } from "@mui/material/";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import useStyles from "./styles";
 
-const Content = ({ content, questionTopic, questionType }) => {
+const Content = ({ content, setContent, questionTopic, questionType }) => {
   const classes = useStyles();
   const ContentBars = () => {
     return (
@@ -40,7 +41,24 @@ const Content = ({ content, questionTopic, questionType }) => {
     );
   };
 
-  const onDragEnd = () => {};
+  const onDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (destination.index === source.index) {
+      return;
+    }
+
+    const newLinesArray = Array.from(content);
+
+    newLinesArray.splice(source.index, 1);
+    newLinesArray.splice(destination.index, 0, content[source.index]);
+
+    setContent(newLinesArray);
+  };
 
   const ContentDragCode = () => {
     return (
@@ -48,13 +66,14 @@ const Content = ({ content, questionTopic, questionType }) => {
         <Droppable droppableId="1">
           {(provided) => (
             <Box
+              key="1"
               onDragOver={(e) => e.preventDefault()}
               maxWidth="sm"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
               {content?.map((value, idx) => (
-                <Draggable draggableId={value.correctIdx.toString()} index={idx} key={idx}>
+                <Draggable draggableId={idx.toString()} index={idx} key={idx}>
                   {(provided) => (
                     <div
                       key={value.correctIdx}
@@ -63,7 +82,14 @@ const Content = ({ content, questionTopic, questionType }) => {
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
                     >
-                      <Typography variant="h6" sx={{ border: "1px solid blue", marginBottom: "10px" }}>
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          border: "1px solid blue",
+                          marginBottom: "10px",
+                          backgroundColor: "white",
+                        }}
+                      >
                         {value.lineContent + value.correctIdx}
                       </Typography>
                     </div>
