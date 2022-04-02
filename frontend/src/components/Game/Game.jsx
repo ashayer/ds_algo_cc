@@ -56,7 +56,7 @@ const Game = () => {
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
-        setTimer(10);
+        setTimer(1000);
         setContent(object.original);
         if (questionTopic === "Quick") {
           setQuestion(
@@ -108,18 +108,20 @@ const Game = () => {
     const correctIndex = Math.floor(Math.random() * 4);
     // let typeIndex = Math.floor(Math.random() * 6);
     const typeIndex = 6;
-    let topicIndex = Math.floor(Math.random() * 0);
-    while (questionTopic === algorithmInfoArray[topicIndex].name) {
-      topicIndex = Math.floor(Math.random() * 4);
-    }
+    const topicIndex = Math.floor(Math.random() * 0);
+    // while (questionTopic === algorithmInfoArray[topicIndex].name) {
+    //   topicIndex = Math.floor(Math.random() * 4);
+    // }
     // while (typeIndex === questionType) {
     //   typeIndex = Math.floor(Math.random() * 6);
     // }
 
     setQuestionTopicNum(topicIndex);
+    setQuestionTopic(algorithmInfoArray[topicIndex].name);
     const gameObject = questionHandler(topicIndex, typeIndex);
     const answerOptions = [];
     let wrongIndex = 0;
+    console.log(gameObject);
     for (let i = 0; i < 4; i += 1) {
       if (i === correctIndex) {
         answerOptions[i] = [true, gameObject.right];
@@ -128,8 +130,6 @@ const Game = () => {
         wrongIndex += 1;
       }
     }
-
-    setQuestionTopic(algorithmInfoArray[topicIndex].name);
     setQuestionType(typeIndex);
     setAnswers(answerOptions);
     setObject(gameObject);

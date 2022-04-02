@@ -15,7 +15,14 @@ function generateCorrectSwapArray(swaps, originalArray) {
       }
     }
   }
-  return swapSorted;
+  const unsortedArrayObject = [];
+  for (let i = 0; i < swapSorted.length; i += 1) {
+    unsortedArrayObject.push({
+      lineContent: originalArray[i],
+      correctIdx: swapSorted.findIndex((element) => element === originalArray[i]),
+    });
+  }
+  return unsortedArrayObject;
 }
 
 function insertionSort(array) {
@@ -32,6 +39,7 @@ function insertionSort(array) {
     }
     currentArray[j + 1] = current;
   }
+
   const sortedArrayObject = {
     arraySorted: currentArray,
     arrayUnsorted: unSortedArray,
@@ -51,16 +59,19 @@ function generateDragSwap() {
   }
   // the swap number used for correct answer
   const correctSwapNumber = Math.floor(Math.random() * (sortedArrayObject.swaps + 1 - 3) + 3);
-  const rightAnswer = generateCorrectSwapArray(correctSwapNumber, sortedArrayObject.arrayUnsorted);
+
+  const originalObject = generateCorrectSwapArray(
+    correctSwapNumber,
+    sortedArrayObject.arrayUnsorted,
+  );
   const answers = {
-    right: rightAnswer,
-    wrong: [],
-    original: sortedArrayObject.arrayUnsorted,
+    right: "Right",
+    wrong: ["Wrong", "Wrong", "Wrong"],
+    original: originalObject,
     swaps: correctSwapNumber,
   };
 
   console.log(answers);
-
   return answers;
 }
 

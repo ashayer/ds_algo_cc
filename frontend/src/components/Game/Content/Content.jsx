@@ -13,10 +13,18 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
     return (
       <Grid container className={classes.contentArrayContainer}>
         {content?.map((value) => (
-          <Grid item key={value}>
-            <div className="contentArrayBars" style={{ height: `${value * 3}vh` }}>
-              <Typography variant="h4">{value}</Typography>
-            </div>
+          <Grid item key={value} sx={{ height: "25vh", width: "10vw" }} md={1} sm={0}>
+            <Box
+              sx={{
+                height: `${value * 3}vh`,
+                backgroundColor: "orange",
+                position: "absolute",
+                bottom: "0",
+                borderRadius: "15px 15px 0px 0px",
+              }}
+            >
+              <Typography variant="h4" sx={{ width: "4vw" }}>{`${value}`}</Typography>
+            </Box>
           </Grid>
         ))}
       </Grid>
@@ -42,7 +50,6 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
   };
 
   const onDragEnd = (result) => {
-    console.log(result);
     const { destination, source } = result;
 
     if (!destination) {
@@ -118,20 +125,20 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
-                      sx={{ height: "25vh", width: "10vw", border: "1px solid blue" }}
+                      sx={{ height: "25vh", width: "10vw" }}
                       md={1}
                       sm={0}
                     >
                       <Box
                         sx={{
-                          height: `${value * 3}vh`,
+                          height: `${value.lineContent * 3}vh`,
                           backgroundColor: "orange",
                           position: "absolute",
                           bottom: "0",
                           borderRadius: "15px 15px 0px 0px",
                         }}
                       >
-                        <Typography variant="h4" sx={{ width: "4vw" }}>{`${value}`}</Typography>
+                        <Typography variant="h4" sx={{ width: "4vw" }}>{`${value.lineContent} - ${value.correctIdx}`}</Typography>
                       </Box>
                     </Grid>
                   )}

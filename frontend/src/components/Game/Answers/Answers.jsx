@@ -1,7 +1,6 @@
 import React from "react";
-import { Grid, ButtonBase, Typography, Button } from "@mui/material/";
+import { Grid, ButtonBase, Typography, Button, Box } from "@mui/material/";
 import { toast } from "react-toastify";
-import "./answers.css";
 
 const Answers = ({
   answers,
@@ -86,7 +85,7 @@ const Answers = ({
 
   const AnswerBars = () => {
     return answers.map((answer, index) => (
-      <Grid item key={index} xs={12} md={6}>
+      <Grid item key={index} sx={{ margin: "10px" }}>
         <ButtonBase
           onClick={answer[0] ? correctAnswer : wrongAnswer}
           sx={
@@ -95,22 +94,30 @@ const Answers = ({
                   backgroundColor: "green",
                   color: "white",
                   width: "35vw",
-                  height: "20.5vh",
+                  height: "20vh",
                 }
               : {
                   backgroundColor: "red",
                   color: "white",
                   width: "35vw",
-                  height: "20.5vh",
+                  height: "20vh",
                 }
           }
         >
-          <Grid container justifyContent="space-evenly" margin="0px">
+          <Grid container sx={{ justifyContent: "space-evenly" }}>
             {answer[1].map((value, indexA) => (
-              <Grid item key={indexA}>
-                <div className="answerArrayBars" style={{ height: `${value * 2.5}vh` }}>
-                  <Typography variant="h5">{value}</Typography>
-                </div>
+              <Grid item key={indexA} sx={{ height: "20vh" }}>
+                <Box
+                  sx={{
+                    height: `${value * 2.25}vh`,
+                    backgroundColor: "orange",
+                    position: "absolute",
+                    bottom: "0",
+                    borderRadius: "15px 15px 0px 0px",
+                  }}
+                >
+                  <Typography variant="h4" sx={{ width: "4vw" }}>{`${value}`}</Typography>
+                </Box>
               </Grid>
             ))}
           </Grid>
@@ -159,7 +166,7 @@ const Answers = ({
   const AnswerDragSwap = () => {
     return (
       <Grid item>
-        <Button variant="contained">
+        <Button variant="contained" onClick={isInOrder}>
           Check Array Order
         </Button>
       </Grid>
@@ -167,14 +174,7 @@ const Answers = ({
   };
 
   return (
-    <Grid
-      container
-      align="center"
-      justifyContent="center"
-      alignContent="center"
-      spacing={3}
-      maxWidth="xl"
-    >
+    <Grid container align="center" justifyContent="center" alignContent="center" maxWidth="xl">
       {questionType === 0 ? (
         <AnswerBars />
       ) : questionType > 0 && questionType < 4 ? (

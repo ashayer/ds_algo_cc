@@ -1,8 +1,0 @@
-.answerArrayBars {
-  width: 8vh;
-  background-color: #fbae66;
-  position: absolute;
-  bottom: 0;
-  border-radius: 15px 15px 0px 0px;
-  transition: all 0.25s ease;
-}

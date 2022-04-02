@@ -3,7 +3,6 @@ import { makeStyles } from "@mui/styles";
 export default makeStyles(() => ({
   contentArrayContainer: {
     position: "relative",
-    transition: "all 0.25s ease",
     justifyContent: "center",
   },
   codeContainer: {},

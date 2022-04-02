@@ -32,7 +32,7 @@ function generateDragCode() {
 
   const answers = {
     right: "Right",
-    wrong: ["Wrong, Wrong", "Wrong"],
+    wrong: ["Wrong", "Wrong", "Wrong"],
     original: pseudoCodeStringArray,
   };
 
