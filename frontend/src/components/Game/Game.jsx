@@ -117,7 +117,7 @@ const Game = () => {
     //   typeIndex = Math.floor(Math.random() * 6);
     // }
 
-    const typeIndex = 1;
+    const typeIndex = 3;
 
     setQuestionTopicNum(topicIndex);
     setQuestionTopic(algorithmInfoArray[topicIndex].name);

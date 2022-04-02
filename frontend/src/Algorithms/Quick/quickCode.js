@@ -19,8 +19,8 @@ function generateCode() {
   const partitionLine3 = "3 for(int i = low + 1; i<=high; i++)\n";
   const partitionLine4 = "4   if(arr[i] < pivotValue)\n";
   const partitionLine5 = "5   swap(arr[i], arr[++pivotIndex])\n";
-  const partitionLine6 = "6 swap(arr[low], arr[pivotIndex])\n";
-  const partitionLine7 = "7  + 1return pivotIndex\n";
+  const partitionLine6 = "6   swap(arr[low], arr[pivotIndex])\n";
+  const partitionLine7 = "7 return pivotIndex\n";
 
   const qSortLine1 = "1 if (low < high)\n";
   const qSortLine2 = "2   int index = partition(arr, low, high)\n";
