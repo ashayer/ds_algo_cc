@@ -6,6 +6,7 @@ import Login from "./components/Auth/Login";
 import Learn from "./components/Learn/Learn";
 import Game from "./components/Game/Game";
 import UserEmulator from "./components/UserEmulator/UserEmulator";
+import NotFound from "./components/ErrorRoute/ErrorRoute";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/learn" element={<Learn />} />
         <Route path="/game" element={<Game />} />
         <Route path="/emulate" element={<UserEmulator />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

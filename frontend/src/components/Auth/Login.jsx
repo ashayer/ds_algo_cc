@@ -55,13 +55,24 @@ const Auth = () => {
 
   return (
     <Grow in>
-      <Container sx={{ marginTop: "15vh" }} maxWidth="xs">
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          marginTop: "15vh",
+          border: "1px solid black",
+          alignContent: "center",
+        }}
+        maxWidth="xs"
+        disableGutters
+      >
         <Paper
+          square
           sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
           elevation={3}
         >
           <form onSubmit={handleSubmit}>
-            <Grid container sx={{ padding: "25px", justifyContent: "space-between" }} spacing={4}>
+            <Grid container sx={{ padding: "25px", justifyContent: "center" }} spacing={4}>
               <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
               <Input name="password" label="Password" handleChange={handleChange} type="password" />
               <Grid item>
@@ -71,7 +82,7 @@ const Auth = () => {
                   variant="contained"
                   sx={{
                     padding: "10px",
-                    backgroundColor: "#c94b4b",
+                    backgroundColor: "#0091ff",
                     color: "color",
                     "&:hover": {
                       backgroundColor: "#fff",
@@ -82,29 +93,28 @@ const Auth = () => {
                   Sign In
                 </Button>
               </Grid>
-              <Grid item>
-                <Button
-                  type="button"
-                  variant="contained"
-                  onClick={() => {
-                    navigate("/register");
-                  }}
-                  sx={{
-                    padding: "10px",
-                    backgroundColor: "#000000",
-                    color: "#fff",
-                    "&:hover": {
-                      backgroundColor: "#fff",
-                      color: "#3c52b2",
-                    },
-                  }}
-                >
-                  Register Instead
-                </Button>
-              </Grid>
             </Grid>
           </form>
         </Paper>
+        <Button
+          type="button"
+          variant="contained"
+          onClick={() => {
+            navigate("/register");
+          }}
+          sx={{
+            borderRadius: 0,
+            padding: "10px",
+            backgroundColor: "#000000",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#fff",
+              color: "#3c52b2",
+            },
+          }}
+        >
+          Register Instead
+        </Button>
       </Container>
     </Grow>
   );
