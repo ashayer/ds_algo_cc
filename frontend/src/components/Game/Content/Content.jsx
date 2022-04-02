@@ -5,14 +5,11 @@ import React from "react";
 import { Grid, Typography, Container, Box } from "@mui/material/";
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import useStyles from "./styles";
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const Content = ({ content, setContentObject, contentObject, questionTopic, questionType }) => {
-  const classes = useStyles();
-
   const ContentBars = () => {
     return (
       <Grid container sx={{ position: "relative", justifyContent: "center" }}>
@@ -46,8 +43,6 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
   };
 
   const ContentCode = () => {
-    console.log(content);
-
     return (
       <ThemeProvider theme={theme}>
         <Grid
@@ -133,12 +128,7 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="1" direction="horizontal">
           {(provided) => (
-            <Grid
-              container
-              className={classes.contentArrayContainer}
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
+            <Grid container {...provided.droppableProps} ref={provided.innerRef}>
               {contentObject?.map((value, idx) => (
                 <Draggable draggableId={idx.toString()} index={idx} key={idx}>
                   {(provided) => (
