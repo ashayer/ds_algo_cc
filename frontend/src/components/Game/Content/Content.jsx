@@ -43,12 +43,8 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
 
   const ContentCode = () => {
     return (
-      <Container>
-        <Typography
-          variant="h6"
-          style={{ whiteSpace: "break-spaces" }}
-          className={classes.codeText}
-        >
+      <Container disableGutters maxWidth="xs" sx={{ border: "1px solid black" }}>
+        <Typography variant="h6" style={{ whiteSpace: "break-spaces" }} sx={{ textAlign: "left" }}>
           {content}
         </Typography>
       </Container>
