@@ -4,6 +4,7 @@ import generateSpace from "./mergeSpace";
 import generateCode from "./mergeCode";
 import generateArrayTime from "./mergeArrayTime";
 import generateDragCode from "./mergeDragCode";
+import generateDragSwap from "./mergeDragSwap";
 
 function mergeSortHandler(randomType) {
   switch (randomType) {
@@ -19,6 +20,8 @@ function mergeSortHandler(randomType) {
       return generateArrayTime();
     case 5:
       return generateDragCode();
+    case 6:
+      return generateDragSwap();
     default:
       return null;
   }
