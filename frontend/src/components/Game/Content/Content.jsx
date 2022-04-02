@@ -11,16 +11,18 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
 
   const ContentBars = () => {
     return (
-      <Grid container className={classes.contentArrayContainer}>
+      <Grid container sx={{ position: "relative", justifyContent: "center" }}>
         {content?.map((value) => (
-          <Grid item key={value} sx={{ height: "25vh", width: "10vw" }} md={1} sm={0}>
+          <Grid item key={value} sx={{ height: "25vh", width: "8vw" }} md={1} sm={0}>
             <Box
               sx={{
                 height: `${value * 3}vh`,
-                backgroundColor: "orange",
+                backgroundColor: "#036bfc",
+                color: "white",
                 position: "absolute",
                 bottom: "0",
-                borderRadius: "15px 15px 0px 0px",
+                borderRadius: "5px 5px 0px 0px",
+                textAlign: "center",
               }}
             >
               <Typography variant="h4" sx={{ width: "4vw" }}>{`${value}`}</Typography>
@@ -32,12 +34,16 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
   };
 
   const ContentText = () => {
-    return <Typography variant="h1">{questionTopic}</Typography>;
+    return (
+      <Container disableGutters sx={{ textAlign: "center" }}>
+        <Typography variant="h1">{questionTopic}</Typography>
+      </Container>
+    );
   };
 
   const ContentCode = () => {
     return (
-      <Container className={classes.codeContainer}>
+      <Container>
         <Typography
           variant="h6"
           style={{ whiteSpace: "break-spaces" }}
@@ -138,7 +144,9 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
                           borderRadius: "15px 15px 0px 0px",
                         }}
                       >
-                        <Typography variant="h4" sx={{ width: "4vw" }}>{`${value.lineContent} - ${value.correctIdx}`}</Typography>
+                        <Typography variant="h4" sx={{ width: "4vw" }}>
+                          {`${value.lineContent} - ${value.correctIdx}`}
+                        </Typography>
                       </Box>
                     </Grid>
                   )}
