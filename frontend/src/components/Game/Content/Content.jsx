@@ -53,7 +53,7 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
       >
         <Grid item xs={12} md={6}>
           <Typography
-            variant="h4"
+            variant="h5"
             style={{ whiteSpace: "break-spaces" }}
             sx={{ textAlign: "left" }}
           >
@@ -87,7 +87,6 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
     return (
       <Box
         sx={{
-          border: "1px solid black",
           display: "flex",
           justifyContent: "center",
         }}
@@ -103,11 +102,12 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
-                        variant="h4"
+                        variant="h5"
                         sx={{
                           backgroundColor: "white",
+                          margin: "10px",
                           "&:hover": {
-                            color: "#9ec3ff",
+                            color: "red",
                           },
                           transition: "all 0.2s ease",
                         }}
@@ -131,7 +131,12 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="1" direction="horizontal">
           {(provided) => (
-            <Grid container {...provided.droppableProps} ref={provided.innerRef}>
+            <Grid
+              container
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              sx={{ position: "relative", justifyContent: "center" }}
+            >
               {contentObject?.map((value, idx) => (
                 <Draggable draggableId={idx.toString()} index={idx} key={idx}>
                   {(provided) => (
@@ -148,14 +153,16 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
                       <Box
                         sx={{
                           height: `${value.lineContent * 3}vh`,
-                          backgroundColor: "orange",
+                          backgroundColor: "#036bfc",
+                          color: "white",
                           position: "absolute",
                           bottom: "0",
-                          borderRadius: "15px 15px 0px 0px",
+                          borderRadius: "5px 5px 0px 0px",
+                          textAlign: "center",
                         }}
                       >
                         <Typography variant="h4" sx={{ width: "4vw" }}>
-                          {`${value.lineContent} - ${value.correctIdx}`}
+                          {`${value.lineContent}`}
                         </Typography>
                       </Box>
                     </Grid>
