@@ -19,39 +19,14 @@ function generateCorrectSwapArray(swaps, originalArray) {
       }
     }
   }
-  return swapSorted;
-}
-
-function generateWrongSwapArrays(swapArray, originalArray) {
-  const wrongSwapSorted = [];
-  for (let k = 0; k < 3; k += 1) {
-    const wrongSwap = swapArray[k];
-    const array = originalArray.slice();
-    let currentSwaps = 0;
-    let swapSorted = [];
-    if (wrongSwap === 0) {
-      swapSorted = array.slice();
-      wrongSwapSorted[k] = swapSorted;
-    } else {
-      for (let i = 0; i < array.length; i += 1) {
-        let min = i;
-        for (let j = i + 1; j < array.length; j += 1) {
-          if (array[j] < array[min]) {
-            min = j;
-          }
-        }
-        [array[i], array[min]] = [array[min], array[i]];
-        if (min !== i) {
-          currentSwaps += 1;
-          if (currentSwaps === wrongSwap) {
-            swapSorted = array.slice();
-          }
-        }
-      }
-      wrongSwapSorted[k] = swapSorted;
-    }
+  const unsortedArrayObject = [];
+  for (let i = 0; i < swapSorted.length; i += 1) {
+    unsortedArrayObject.push({
+      lineContent: originalArray[i],
+      correctIdx: swapSorted.findIndex((element) => element === originalArray[i]),
+    });
   }
-  return wrongSwapSorted;
+  return unsortedArrayObject;
 }
 
 function selectionSort(array) {
@@ -79,7 +54,7 @@ function selectionSort(array) {
   return sortedArrayObject;
 }
 
-function generateSwap() {
+function generateDragSwap() {
   let arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]);
   let sortedArrayObject = selectionSort(arrayToBeSorted);
 
@@ -89,26 +64,20 @@ function generateSwap() {
   }
 
   const correctSwapNumber = Math.floor(Math.random() * (sortedArrayObject.swaps + 1 - 1) + 1);
-  const wrongSwaps = [];
-  for (let i = 0; i < 3; i += 1) {
-    let wrongSwapNumber = Math.floor(Math.random() * (sortedArrayObject.swaps + 1 - 0) + 0);
-    while (wrongSwapNumber === correctSwapNumber || wrongSwaps.includes(wrongSwapNumber)) {
-      wrongSwapNumber = Math.floor(Math.random() * (sortedArrayObject.swaps + 1 - 0) + 0);
-    }
-    wrongSwaps[i] = wrongSwapNumber;
-  }
-  const rightAnswer = generateCorrectSwapArray(
+
+  const originalObject = generateCorrectSwapArray(
     correctSwapNumber,
     sortedArrayObject.arrayUnsorted,
-    sortedArrayObject.swaps,
   );
-  const wrongAnswers = generateWrongSwapArrays(wrongSwaps, sortedArrayObject.arrayUnsorted);
+
   const answers = {
-    right: rightAnswer,
-    wrong: wrongAnswers,
-    original: sortedArrayObject.arrayUnsorted,
+    right: "Right",
+    wrong: ["Wrong", "Wrong", "Wrong"],
+    original: originalObject,
     swaps: correctSwapNumber,
   };
+
+  console.log(answers);
 
   return answers;
 }
@@ -125,4 +94,4 @@ function generateSwap() {
 //     console.log(test);
 // }
 
-export default generateSwap;
+export default generateDragSwap;

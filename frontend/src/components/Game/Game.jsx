@@ -108,7 +108,7 @@ const Game = () => {
     const correctIndex = Math.floor(Math.random() * 4);
     // let typeIndex = Math.floor(Math.random() * 6);
     const typeIndex = 6;
-    const topicIndex = Math.floor(Math.random() * 0);
+    const topicIndex = 1;
     // while (questionTopic === algorithmInfoArray[topicIndex].name) {
     //   topicIndex = Math.floor(Math.random() * 4);
     // }

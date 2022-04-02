@@ -64,6 +64,7 @@ function generateDragSwap() {
     correctSwapNumber,
     sortedArrayObject.arrayUnsorted,
   );
+
   const answers = {
     right: "Right",
     wrong: ["Wrong", "Wrong", "Wrong"],
