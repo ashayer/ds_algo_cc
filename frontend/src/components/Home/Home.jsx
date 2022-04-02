@@ -79,7 +79,7 @@ const Home = () => {
                 <Card sx={{ minWidth: "50%" }}>
                   <CardActionArea sx={{ minHeight: "30vh" }}>
                     <CardContent>
-                      <Typography variant="h2">View leader board</Typography>
+                      <Typography variant="h2">View Leader Board</Typography>
                     </CardContent>
                   </CardActionArea>
                 </Card>

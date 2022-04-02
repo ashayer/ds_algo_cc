@@ -17,16 +17,15 @@ const Navbar = ({ page }) => {
 
   return (
     <Grow in>
-      <Container maxWidth="xl" align="center">
+      <Container maxWidth="xl" align="center" disableGutters>
         <AppBar
           sx={{
-            borderRadius: 3,
-            margin: "10px 0",
+            borderRadius: 1,
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: "5px 15px",
+            paddingLeft: "15px",
             backgroundColor: "white",
           }}
           position="static"
@@ -34,7 +33,7 @@ const Navbar = ({ page }) => {
           <Typography variant="h3" sx={{ color: "black" }}>
             {page}
           </Typography>
-          <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Toolbar>
             {user || localUser ? (
               <Button variant="contained" onClick={onLogout}>
                 Logout

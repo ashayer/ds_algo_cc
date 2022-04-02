@@ -3,6 +3,7 @@ import { Grid, Button, Container, Paper, Grow, Slide } from "@mui/material/";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
+import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import questionHandler from "../../Algorithms/handler";
 import algorithmInfoArray from "../../Algorithms/infoArray";
 import { updatePoints } from "../../features/game/gameSlice";
@@ -12,7 +13,9 @@ import Content from "./Content/Content";
 import Question from "./Question/Question";
 import UserStatsTable from "./UserStatsTable/UserStatsTable";
 import "./game.css";
-import useStyles from "./styles";
+
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
 
 //! countdown timer causing memory leak
 let highestStreak = 0;
@@ -33,7 +36,6 @@ const Game = () => {
   const [object, setObject] = useState({}); // ! change name to something more descriptive
   const [contentObject, setContentObject] = useState([{}]);
 
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   const endGame = () => {
@@ -56,7 +58,7 @@ const Game = () => {
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
-        setTimer(1);
+        setTimer(1000);
         setContent(object.original);
         if (questionTopic === "Quick") {
           setQuestion(
@@ -69,32 +71,32 @@ const Game = () => {
         }
         break;
       case 1:
-        setTimer(1);
+        setTimer(1000);
         setContent([questionTopic]);
         setQuestion("What is the time complexity of the algorithm below?");
         break;
       case 2:
-        setTimer(1);
+        setTimer(1000);
         setContent([questionTopic]);
         setQuestion("What is the space complexity of the algorithm below?");
         break;
       case 3:
-        setTimer(1);
+        setTimer(1000);
         setContent([object.original]);
         setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
         break;
       case 4:
-        setTimer(1);
+        setTimer(1000);
         setContent(object.original);
         setQuestion(`What is the time complexity using ${questionTopic} sort to sort the array`);
         break;
       case 5:
-        setTimer(1);
+        setTimer(1000);
         setContentObject(object.original);
         setQuestion(`Move pseudo-code into correct order for ${questionTopic} sort`);
         break;
       case 6:
-        setTimer(1);
+        setTimer(1000);
         setContentObject(object.original);
         setQuestion(`Using ${questionTopic} sort move the array 
         into the state after ${object?.swaps} swaps`);
@@ -213,58 +215,81 @@ const Game = () => {
   }, [createQuestion]);
 
   return gameStarted ? (
-    <Grow in>
-      <Grid container>
-        <Paper className={classes.paperQuestion}>
-          <Grid container className={classes.topRow}>
-            <Grid item>
-              <UserStatsTable localUser={localUser} />
+    <ThemeProvider theme={theme}>
+      <Grow in>
+        <Grid container>
+          <Paper sx={{ width: "100vw" }}>
+            <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
+              <Grid item>
+                <UserStatsTable localUser={localUser} />
+              </Grid>
+              <Grid item>
+                <Question question={question} />
+              </Grid>
+              <Grid item>
+                <CountdownTimer />
+                <Button variant="contained" onClick={endGame} style={{ margin: "10px" }}>
+                  END GAME
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Question question={question} />
-            </Grid>
-            <Grid item>
-              <CountdownTimer />
-              <Button variant="contained" onClick={endGame} style={{ margin: "10px" }}>
-                END GAME
-              </Button>
-            </Grid>
-          </Grid>
-        </Paper>
-        <Paper className={classes.paperContent}>
-          <Container>
-            <Content
-              content={content}
-              contentObject={contentObject}
-              setContentObject={setContentObject}
-              questionType={questionType}
-              questionTopic={questionTopic}
-            />
-          </Container>
-        </Paper>
+          </Paper>
+          <Paper
+            sx={{
+              width: "100vw",
+              height: "25vh",
+              margin: "10px 0",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Container>
+              <Content
+                content={content}
+                contentObject={contentObject}
+                setContentObject={setContentObject}
+                questionType={questionType}
+                questionTopic={questionTopic}
+              />
+            </Container>
+          </Paper>
 
-        <Paper>
-          <Answers
-            answers={answers}
-            startGame={startGame}
-            questionType={questionType}
-            questionStartTime={questionStartTime}
-            questionTopicNum={questionTopicNum}
-            isHighestStreak={isHighestStreak}
-            checkLineOrder={checkLineOrder}
-          />
-        </Paper>
-      </Grid>
-    </Grow>
+          <Paper>
+            <Answers
+              answers={answers}
+              startGame={startGame}
+              questionType={questionType}
+              questionStartTime={questionStartTime}
+              questionTopicNum={questionTopicNum}
+              isHighestStreak={isHighestStreak}
+              checkLineOrder={checkLineOrder}
+            />
+          </Paper>
+        </Grid>
+      </Grow>
+    </ThemeProvider>
   ) : (
-    <Slide in>
-      <Container maxWidth="xl">
-        <Navbar />
-        <Button variant="contained" onClick={startGame} className={classes.startButton}>
-          START GAME
-        </Button>
-      </Container>
-    </Slide>
+    <ThemeProvider theme={theme}>
+      <Slide in>
+        <Container
+          maxWidth="xl"
+          disableGutters
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            border: "1px solid black",
+            alignContent: "center",
+          }}
+        >
+          <Navbar page="Game" />
+          <Button variant="contained" onClick={startGame} sx={{ backgroundColor: "#358a04" }}>
+            START GAME
+          </Button>
+        </Container>
+      </Slide>
+    </ThemeProvider>
   );
 };
 
