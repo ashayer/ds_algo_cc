@@ -150,7 +150,17 @@ const Answers = ({
     return (
       <Grid item>
         <Button variant="contained" onClick={isInOrder}>
-          Check
+          Check Line Order
+        </Button>
+      </Grid>
+    );
+  };
+
+  const AnswerDragSwap = () => {
+    return (
+      <Grid item>
+        <Button variant="contained">
+          Check Array Order
         </Button>
       </Grid>
     );
@@ -173,6 +183,8 @@ const Answers = ({
         <AnswerText />
       ) : questionType === 5 ? (
         <AnswerDragCode />
+      ) : questionType === 6 ? (
+        <AnswerDragSwap />
       ) : null}
     </Grid>
   );

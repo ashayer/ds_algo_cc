@@ -42,6 +42,7 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
   };
 
   const onDragEnd = (result) => {
+    console.log(result);
     const { destination, source } = result;
 
     if (!destination) {
@@ -83,7 +84,7 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
                           transition: "all 0.2s ease",
                         }}
                       >
-                        {`${value.lineContent} + ${value.correctIdx}`}
+                        {`${value.lineContent}`}
                       </Typography>
                     )}
                   </Draggable>
@@ -97,6 +98,53 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
     );
   };
 
+  const ContentDragSwap = () => {
+    return (
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="1" direction="horizontal">
+          {(provided) => (
+            <Grid
+              container
+              className={classes.contentArrayContainer}
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {contentObject?.map((value, idx) => (
+                <Draggable draggableId={idx.toString()} index={idx} key={idx}>
+                  {(provided) => (
+                    <Grid
+                      item
+                      key={value}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      ref={provided.innerRef}
+                      sx={{ height: "25vh", width: "10vw", border: "1px solid blue" }}
+                      md={1}
+                      sm={0}
+                    >
+                      <Box
+                        sx={{
+                          height: `${value * 3}vh`,
+                          backgroundColor: "orange",
+                          position: "absolute",
+                          bottom: "0",
+                          borderRadius: "15px 15px 0px 0px",
+                        }}
+                      >
+                        <Typography variant="h4" sx={{ width: "4vw" }}>{`${value}`}</Typography>
+                      </Box>
+                    </Grid>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </Grid>
+          )}
+        </Droppable>
+      </DragDropContext>
+    );
+  };
+
   return questionType === 0 ? (
     <ContentBars />
   ) : questionType === 1 || questionType === 2 ? (
@@ -107,6 +155,8 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
     <ContentBars />
   ) : questionType === 5 ? (
     <ContentDragCode />
+  ) : questionType === 6 ? (
+    <ContentDragSwap />
   ) : null;
 };
 

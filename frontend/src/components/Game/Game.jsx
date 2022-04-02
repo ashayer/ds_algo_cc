@@ -93,6 +93,12 @@ const Game = () => {
         setContentObject(object.original);
         setQuestion(`Move pseudo-code into correct order for ${questionTopic} sort`);
         break;
+      case 6:
+        setTimer(1000);
+        setContentObject(object.original);
+        setQuestion(`Using ${questionTopic} sort move the array 
+        into the state after ${object?.swaps} swaps`);
+        break;
       default:
         break;
     }
@@ -100,23 +106,16 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    // let typeIndex = Math.floor(Math.random() * 5);
-    // let topicIndex = Math.floor(Math.random() * 0);
-    // while (questionTopic === algorithmInfoArray[topicIndex].name) {
-    //   topicIndex = Math.floor(Math.random() * 4);
-    // }
+    // let typeIndex = Math.floor(Math.random() * 6);
+    const typeIndex = 6;
+    let topicIndex = Math.floor(Math.random() * 0);
+    while (questionTopic === algorithmInfoArray[topicIndex].name) {
+      topicIndex = Math.floor(Math.random() * 4);
+    }
     // while (typeIndex === questionType) {
     //   typeIndex = Math.floor(Math.random() * 6);
     // }
 
-    let typeIndex = 5;
-    const topicIndex = 0;
-
-    if (questionType === 5) {
-      typeIndex = 4;
-    } else {
-      typeIndex = 5;
-    }
     setQuestionTopicNum(topicIndex);
     const gameObject = questionHandler(topicIndex, typeIndex);
     const answerOptions = [];
