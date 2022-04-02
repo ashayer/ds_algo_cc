@@ -44,26 +44,23 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
 
   const ContentCode = () => {
     return (
-      <ThemeProvider theme={theme}>
-        <Grid
-          container
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            height: "25vh",
-          }}
-        >
-          <Grid item xs={12} md={6}>
-            <Typography
-              variant="h6"
-              style={{ whiteSpace: "break-spaces" }}
-              sx={{ textAlign: "left" }}
-            >
-              {content}
-            </Typography>
-          </Grid>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Grid item xs={12} md={6}>
+          <Typography
+            variant="h4"
+            style={{ whiteSpace: "break-spaces" }}
+            sx={{ textAlign: "left" }}
+          >
+            {content}
+          </Typography>
         </Grid>
-      </ThemeProvider>
+      </Grid>
     );
   };
 
@@ -88,7 +85,13 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
 
   const ContentDragCode = () => {
     return (
-      <Box>
+      <Box
+        sx={{
+          border: "1px solid black",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="1">
             {(provided) => (
@@ -100,7 +103,7 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
-                        variant="h6"
+                        variant="h4"
                         sx={{
                           backgroundColor: "white",
                           "&:hover": {
@@ -167,19 +170,23 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
     );
   };
 
-  return questionType === 0 ? (
-    <ContentBars />
-  ) : questionType === 1 || questionType === 2 ? (
-    <ContentText />
-  ) : questionType === 3 ? (
-    <ContentCode />
-  ) : questionType === 4 ? (
-    <ContentBars />
-  ) : questionType === 5 ? (
-    <ContentDragCode />
-  ) : questionType === 6 ? (
-    <ContentDragSwap />
-  ) : null;
+  return (
+    <ThemeProvider theme={theme}>
+      {questionType === 0 ? (
+        <ContentBars />
+      ) : questionType === 1 || questionType === 2 ? (
+        <ContentText />
+      ) : questionType === 3 ? (
+        <ContentCode />
+      ) : questionType === 4 ? (
+        <ContentBars />
+      ) : questionType === 5 ? (
+        <ContentDragCode />
+      ) : questionType === 6 ? (
+        <ContentDragSwap />
+      ) : null}
+    </ThemeProvider>
+  );
 };
 
 export default Content;

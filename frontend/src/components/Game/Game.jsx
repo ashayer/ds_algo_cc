@@ -117,7 +117,7 @@ const Game = () => {
     //   typeIndex = Math.floor(Math.random() * 6);
     // }
 
-    const typeIndex = 3;
+    const typeIndex = 5;
 
     setQuestionTopicNum(topicIndex);
     setQuestionTopic(algorithmInfoArray[topicIndex].name);
@@ -220,7 +220,7 @@ const Game = () => {
     <ThemeProvider theme={theme}>
       <Grow in>
         <Grid container>
-          <Paper sx={{ width: "100vw" }}>
+          <Paper sx={{ border: "5px solid blue", width: "100vw" }}>
             <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
               <Grid item>
                 <UserStatsTable localUser={localUser} />
@@ -239,7 +239,6 @@ const Game = () => {
           <Paper
             sx={{
               width: "100vw",
-              height: "25vh",
               margin: "10px 0",
               display: "flex",
               flexDirection: "row",
