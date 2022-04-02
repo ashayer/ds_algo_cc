@@ -14,12 +14,10 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import useStyles from "./styles";
 import Input from "./Input";
 import { register, reset } from "../../features/auth/authSlice";
 
 const Auth = () => {
-  const classes = useStyles();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -84,8 +82,11 @@ const Auth = () => {
 
   return (
     <Grow in>
-      <Container className={classes.formContainer} maxWidth="xs">
-        <Paper className={classes.paper} elevation={3}>
+      <Container sx={{ marginTop: "15vh" }} maxWidth="xs">
+        <Paper
+          sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+          elevation={3}
+        >
           <form onSubmit={handleSubmit}>
             <Grid container sx={{ padding: "25px", justifyContent: "space-between" }} spacing={4}>
               <Input name="name" label="Name" handleChange={handleChange} autoFocus type="text" />
@@ -111,7 +112,6 @@ const Auth = () => {
 
               <Grid item>
                 <Button
-                  className={classes.formSubmitButton}
                   type="submit"
                   variant="contained"
                   sx={{
@@ -129,7 +129,6 @@ const Auth = () => {
               </Grid>
               <Grid item>
                 <Button
-                  className={classes.formButton}
                   type="button"
                   variant="contained"
                   onClick={() => {

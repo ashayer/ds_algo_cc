@@ -5,11 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Input from "./Input";
 import { login, reset } from "../../features/auth/authSlice";
-import useStyles from "./styles";
 
 const Auth = () => {
-  const classes = useStyles();
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -45,7 +42,7 @@ const Auth = () => {
       });
     }
 
-    if (isSuccess || user) {
+    if (isSuccess) {
       navigate("/");
     }
 
@@ -58,8 +55,11 @@ const Auth = () => {
 
   return (
     <Grow in>
-      <Container className={classes.formContainer} maxWidth="xs">
-        <Paper className={classes.paper} elevation={3}>
+      <Container sx={{ marginTop: "15vh" }} maxWidth="xs">
+        <Paper
+          sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+          elevation={3}
+        >
           <form onSubmit={handleSubmit}>
             <Grid container sx={{ padding: "25px", justifyContent: "space-between" }} spacing={4}>
               <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
@@ -67,7 +67,6 @@ const Auth = () => {
               <Grid item>
                 <Button
                   fullWidth
-                  className={classes.formSubmitButton}
                   type="submit"
                   variant="contained"
                   sx={{
@@ -85,7 +84,6 @@ const Auth = () => {
               </Grid>
               <Grid item>
                 <Button
-                  className={classes.formButton}
                   type="button"
                   variant="contained"
                   onClick={() => {
@@ -102,17 +100,6 @@ const Auth = () => {
                   }}
                 >
                   Register Instead
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button
-                  href="https://forms.gle/sX8YTNmbmZZngrjn9"
-                  target="_blank"
-                  type="button"
-                  variant="contained"
-                  sx={{ padding: "10px" }}
-                >
-                  Feedback form
                 </Button>
               </Grid>
             </Grid>
