@@ -3,8 +3,12 @@
 
 import React from "react";
 import { Grid, Typography, Container, Box } from "@mui/material/";
+import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import useStyles from "./styles";
+
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
 
 const Content = ({ content, setContentObject, contentObject, questionTopic, questionType }) => {
   const classes = useStyles();
@@ -42,12 +46,29 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
   };
 
   const ContentCode = () => {
+    console.log(content);
+
     return (
-      <Container disableGutters maxWidth="xs" sx={{ border: "1px solid black" }}>
-        <Typography variant="h6" style={{ whiteSpace: "break-spaces" }} sx={{ textAlign: "left" }}>
-          {content}
-        </Typography>
-      </Container>
+      <ThemeProvider theme={theme}>
+        <Grid
+          container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            height: "25vh",
+          }}
+        >
+          <Grid item xs={12} md={6}>
+            <Typography
+              variant="h6"
+              style={{ whiteSpace: "break-spaces" }}
+              sx={{ textAlign: "left" }}
+            >
+              {content}
+            </Typography>
+          </Grid>
+        </Grid>
+      </ThemeProvider>
     );
   };
 
