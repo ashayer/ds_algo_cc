@@ -6,7 +6,7 @@ import { shuffle } from "d3-array";
 function generateEmptyLine(string, lineNum) {
   let emptyString = lineNum.toString();
   for (let i = 0; i < string.length; i += 1) {
-    emptyString += " ";
+    emptyString = `${emptyString} `;
   }
   return `${emptyString}\n`;
 }
@@ -52,7 +52,7 @@ function generateCode() {
     },
     {
       right: Line6,
-      wrong: ["swap(arr[i],arr[j])", "swap(arr[min],arr[j])", "swap(arr[i],arr[i-1])"],
+      wrong: ["swap(arr[i], arr[j])", "swap(arr[min], arr[j])", "swap(arr[i], arr[i-1])"],
     },
   ];
 

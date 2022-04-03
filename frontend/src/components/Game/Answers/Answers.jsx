@@ -130,17 +130,26 @@ const Answers = ({
 
   const AnswerText = () => {
     return answers.map((answer, index) => (
-      <Grid item key={index} sx={{ margin: "1vh" }}>
+      <Grid
+        item
+        key={index}
+        xs={12}
+        md={5}
+        sx={{
+          textAlign: "center",
+          margin: "1vw",
+          border: "1px solid black",
+          "&:hover": {
+            backgroundColor: "#fa382a",
+          },
+          transition: "all 0.2s ease",
+        }}
+      >
         <ButtonBase
           onClick={answer[0] ? correctAnswer : wrongAnswer}
           sx={{
-            width: "35vw",
-            height: "20vh",
-            border: "1px solid",
-            "&:hover": {
-              backgroundColor: "#fa382a",
-            },
-            transition: "all 0.2s ease",
+            width: "40vw",
+            height: "15vh",
           }}
         >
           <Typography variant={questionType < 3 ? "h1" : "h4"}>{answer[1]}</Typography>

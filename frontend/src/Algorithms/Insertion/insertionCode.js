@@ -3,7 +3,7 @@ import { shuffle } from "d3-array";
 function generateEmptyLine(string, lineNum) {
   let emptyString = lineNum.toString();
   for (let i = 0; i < string.length; i += 1) {
-    emptyString += " ";
+    emptyString = `${emptyString} `;
   }
   return `${emptyString}\n`;
 }
