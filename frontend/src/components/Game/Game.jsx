@@ -12,7 +12,6 @@ import Answers from "./Answers/Answers";
 import Content from "./Content/Content";
 import Question from "./Question/Question";
 import UserStatsTable from "./UserStatsTable/UserStatsTable";
-import "./game.css";
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);

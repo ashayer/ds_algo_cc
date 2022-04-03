@@ -7,8 +7,9 @@ import SelectionAccordion from "./SelectionInfo/SelectionAccordion";
 import MergeAccordion from "./MergeInfo/MergeAccordion";
 import QuickAccordion from "./QuickInfo/QuickAccordion";
 import sectionArray from "./testarray";
+import Navbar from "../../Navbar/Navbar";
 
-const Learn = () => {
+const Algos = () => {
   const [sectionNum, setSectionNum] = useState(0);
   const [tempSectionArray, setTempSectionArray] = useState(sectionArray);
 
@@ -22,6 +23,7 @@ const Learn = () => {
 
   return (
     <Container maxWidth="xl">
+      <Navbar page="Sorting Algorithms" />
       <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
         <Button
           onClick={prevSection}
@@ -80,4 +82,4 @@ const Learn = () => {
   );
 };
 
-export default Learn;
+export default Algos;

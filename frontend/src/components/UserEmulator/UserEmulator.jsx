@@ -16,6 +16,12 @@ import { Line, Bar } from "react-chartjs-2";
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip);
 
+const advancedUserModel = {
+  one: 1,
+  two: 0.8,
+  three: 0.6,
+};
+
 const optionsForNum = {
   responsive: true,
   plugins: {
@@ -26,10 +32,10 @@ const optionsForNum = {
   },
   scales: {
     y: {
-        min: 0,
-        max: 100,
-    }
-}
+      min: 0,
+      max: 100,
+    },
+  },
 };
 
 const UserEmulator = () => {

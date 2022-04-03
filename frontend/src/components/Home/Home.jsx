@@ -32,7 +32,7 @@ const Home = () => {
     <ThemeProvider theme={theme}>
       <Box>
         <Navbar page="Home" />
-        <Grid container spacing={3} sx={{ marginTop: 1, textAlign: "center" }}>
+        <Grid container spacing={5} sx={{ marginTop: 1, textAlign: "center" }}>
           <Slide in>
             <Grid item xs={12} md={6}>
               <Paper elevation={4}>
@@ -100,11 +100,11 @@ const Home = () => {
             <Grid item xs={12} md={6}>
               <Paper elevation={4}>
                 <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
-                  Sorting algorithms
+                  Sorting Algorithms
                 </Typography>
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
                   <Card sx={{ minWidth: "50%", minHeight: "30vh" }}>
-                    <CardActionArea>
+                    <CardActionArea onClick={() => navigate("/algos")}>
                       <CardContent>
                         <Typography variant="h2">Read</Typography>
                       </CardContent>

@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
-import Learn from "./components/Learn/Learn";
+import Algos from "./components/Learn/Algos/Algos";
 import Game from "./components/Game/Game";
 import UserEmulator from "./components/UserEmulator/UserEmulator";
 import NotFound from "./components/ErrorRoute/ErrorRoute";
@@ -15,7 +15,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/learn" element={<Learn />} />
+        <Route path="/algos" element={<Algos />} />
+        {/* <Route path="/read/ds" element={<Algos />} /> */}
         <Route path="/game" element={<Game />} />
         <Route path="/emulate" element={<UserEmulator />} />
         <Route path="*" element={<NotFound />} />

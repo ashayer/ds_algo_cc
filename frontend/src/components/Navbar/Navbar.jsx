@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AppBar, Button, Toolbar, Typography, Container, Grow } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import HomeIcon from "@mui/icons-material/Home";
 import { logout, reset } from "../../features/auth/authSlice";
 
 const Navbar = ({ page }) => {
@@ -30,6 +31,11 @@ const Navbar = ({ page }) => {
           position="static"
         >
           <Typography variant="h3" sx={{ color: "black" }}>
+            <HomeIcon
+              sx={{ color: "black", cursor: "pointer", paddingRight: "15px" }}
+              fontSize="large"
+              onClick={() => navigate("/")}
+            />
             {page}
           </Typography>
           <Toolbar>
