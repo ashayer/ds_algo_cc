@@ -206,7 +206,7 @@ const Answers = ({
   };
 
   return (
-    <Grid container align="center" justifyContent="center" alignContent="center">
+    <Grid container sx={{ align: "center", justifyContent: "center", alignContent: "center" }}>
       {questionType === 0 ? (
         <AnswerBars />
       ) : questionType > 0 && questionType < 4 ? (

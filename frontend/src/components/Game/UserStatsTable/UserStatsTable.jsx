@@ -1,37 +1,40 @@
 import React from "react";
-import { Table, TableBody, TableRow, TableContainer, TableCell } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 const UserStatsTable = ({ localUser }) => (
-  <TableContainer>
-    <Table sx={{ maxWidth: 15 }}>
-      <TableBody>
-        <TableRow>
-          <TableCell>Avg Response Time:</TableCell>
-          <TableCell>
-            {`${(
-              localUser.responseTime /
-              (localUser.numCorrect + localUser.numWrong) /
-              1000
-            ).toFixed(2)}s`}
-          </TableCell>
-          <TableCell>Streak:</TableCell>
-          <TableCell>{localUser.streak}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Total Points:</TableCell>
-          <TableCell>{localUser.points}</TableCell>
-          <TableCell>Question #</TableCell>
-          <TableCell>{localUser.numWrong + localUser.numCorrect + 1}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Right:</TableCell>
-          <TableCell>{localUser.numCorrect}</TableCell>
-          <TableCell>Wrong:</TableCell>
-          <TableCell>{localUser.numWrong}</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
-  </TableContainer>
+  <Grid container sx={{ display: "flex", textAlign: "center" }}>
+    <Grid item md={6} xs={4}>
+      <Typography variant="subtitle1">
+        {`Avg Response Time - ${(
+          localUser.responseTime /
+          (localUser.numCorrect + localUser.numWrong) /
+          1000
+        ).toFixed(2)}s`}
+      </Typography>
+    </Grid>
+
+    <Grid item md={6} xs={4}>
+      <Typography variant="subtitle1">{`Streak - ${localUser.streak}`}</Typography>
+    </Grid>
+
+    <Grid item md={6} xs={4}>
+      <Typography variant="subtitle1">{`Total Points - ${localUser.points}`}</Typography>
+    </Grid>
+
+    <Grid item md={6} xs={4}>
+      <Typography variant="subtitle1">
+        {`Question - ${localUser.numWrong + localUser.numCorrect + 1}`}
+      </Typography>
+    </Grid>
+
+    <Grid item md={6} xs={4}>
+      <Typography variant="subtitle1">{`Right - ${localUser.numCorrect}`}</Typography>
+    </Grid>
+
+    <Grid item md={6} xs={4}>
+      <Typography variant="subtitle1">{`Wrong - ${localUser.numWrong}`}</Typography>
+    </Grid>
+  </Grid>
 );
 
 export default UserStatsTable;

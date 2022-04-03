@@ -228,15 +228,31 @@ const Game = () => {
         <Grid container>
           <Paper sx={{ width: "100vw" }}>
             <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
-              <Grid item>
+              <Grid item md={3} xs={10}>
                 <UserStatsTable localUser={localUser} />
               </Grid>
-              <Grid item>
+              <Grid
+                item
+                md={7}
+                xs={12}
+                order={{ xs: 3, sm: 3, md: 2 }}
+              >
                 <Question question={question} />
               </Grid>
-              <Grid item>
+              <Grid
+                item
+                md={2}
+                xs={2}
+                sx={{
+                  textAlign: "center",
+                  alignItems: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+                order={{ xs: 2, sm: 2, md: 3 }}
+              >
                 <CountdownTimer />
-                <Button variant="contained" onClick={endGame} style={{ margin: "10px" }}>
+                <Button variant="contained" onClick={endGame}>
                   END GAME
                 </Button>
               </Grid>
