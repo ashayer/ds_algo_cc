@@ -152,7 +152,9 @@ const Answers = ({
             height: "15vh",
           }}
         >
-          <Typography variant={questionType < 3 ? "h1" : "h4"}>{answer[1]}</Typography>
+          <Typography variant={questionType < 3 || questionType === 4 ? "h1" : "h4"}>
+            {answer[1]}
+          </Typography>
         </ButtonBase>
       </Grid>
     ));
@@ -178,8 +180,12 @@ const Answers = ({
   const AnswerDragCode = () => {
     return (
       <Grid item>
-        <Button variant="contained" onClick={isInOrder}>
-          Check Line Order
+        <Button
+          variant="contained"
+          sx={{ padding: "1vh", "&:hover": { backgroundColor: "#22ba48" }, margin: "2vw" }}
+          onClick={isInOrder}
+        >
+          <Typography variant="h5">Check Line Order</Typography>
         </Button>
       </Grid>
     );
@@ -188,8 +194,12 @@ const Answers = ({
   const AnswerDragSwap = () => {
     return (
       <Grid item>
-        <Button variant="contained" onClick={isInOrder}>
-          Check Array Order
+        <Button
+          variant="contained"
+          sx={{ padding: "1vh", "&:hover": { backgroundColor: "#22ba48" }, margin: "2vw" }}
+          onClick={isInOrder}
+        >
+          <Typography variant="h5">Check Array Order</Typography>
         </Button>
       </Grid>
     );

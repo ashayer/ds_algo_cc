@@ -100,15 +100,11 @@ const Game = () => {
         setContentObject(object.original);
 
         if (questionTopic === "Quick") {
-          setQuestion(
-            setQuestion(`Using ${questionTopic} sort move the array 
-            into the state after ${object?.swaps} swaps using left most as pivot`),
-          );
+          setQuestion(`Using ${questionTopic} sort move the array 
+            into the state after ${object?.swaps} swaps using left most as pivot`);
         } else {
-          setQuestion(
-            setQuestion(`Using ${questionTopic} sort move the array 
-            into the state after ${object?.swaps} swaps`),
-          );
+          setQuestion(`Using ${questionTopic} sort move the array 
+            into the state after ${object?.swaps} swaps`);
         }
         break;
       default:
@@ -127,7 +123,7 @@ const Game = () => {
     //   typeIndex = Math.floor(Math.random() * 7);
     // }
 
-    const typeIndex = 3;
+    const typeIndex = 6;
 
     setQuestionTopicNum(topicIndex);
     setQuestionTopic(algorithmInfoArray[topicIndex].name);
