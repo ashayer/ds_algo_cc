@@ -236,6 +236,7 @@ const Game = () => {
                 md={7}
                 xs={12}
                 order={{ xs: 3, sm: 3, md: 2 }}
+                sx={{ textAlign: "center" }}
               >
                 <Question question={question} />
               </Grid>

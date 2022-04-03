@@ -77,8 +77,6 @@ function generateDragSwap() {
     swaps: correctSwapNumber,
   };
 
-  console.log(answers);
-
   return answers;
 }
 
