@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Typography } from "@mui/material";
 
 const UserStatsTable = ({ localUser }) => (
-  <Grid container sx={{ display: "flex", textAlign: "center" }}>
+  <Grid container sx={{ display: "flex", textAlign: "center", padding: "15px" }}>
     <Grid item md={6} xs={4} sx={{ border: "1px solid black" }}>
       <Typography variant="subtitle1">
         {`Avg Response Time - ${(

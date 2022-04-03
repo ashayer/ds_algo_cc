@@ -58,7 +58,7 @@ const Game = () => {
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
-        setTimer(1);
+        setTimer(100);
         setContent(object.original);
         if (questionTopic === "Quick") {
           setQuestion(
@@ -71,32 +71,32 @@ const Game = () => {
         }
         break;
       case 1:
-        setTimer(1);
+        setTimer(100);
         setContent([questionTopic]);
         setQuestion("What is the time complexity of the algorithm below?");
         break;
       case 2:
-        setTimer(1);
+        setTimer(100);
         setContent([questionTopic]);
         setQuestion("What is the space complexity of the algorithm below?");
         break;
       case 3:
-        setTimer(1);
+        setTimer(100);
         setContent([object.original]);
         setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
         break;
       case 4:
-        setTimer(1);
+        setTimer(100);
         setContent(object.original);
         setQuestion(`What is the time complexity using ${questionTopic} sort to sort the array`);
         break;
       case 5:
-        setTimer(1);
+        setTimer(100);
         setContentObject(object.original);
         setQuestion(`Move pseudo-code into correct order for ${questionTopic} sort`);
         break;
       case 6:
-        setTimer(1);
+        setTimer(100);
         setContentObject(object.original);
 
         if (questionTopic === "Quick") {
@@ -247,11 +247,18 @@ const Game = () => {
                   alignItems: "center",
                   display: "flex",
                   flexDirection: "column",
+                  padding: "15px",
                 }}
                 order={{ xs: 2, sm: 2, md: 3 }}
               >
                 <CountdownTimer />
-                <Button variant="contained" onClick={endGame}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    marginTop: "15px",
+                  }}
+                  onClick={endGame}
+                >
                   END GAME
                 </Button>
               </Grid>
