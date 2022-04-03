@@ -20,7 +20,6 @@ const Navbar = ({ page }) => {
       <Container maxWidth="xl" align="center" disableGutters>
         <AppBar
           sx={{
-            borderRadius: 1,
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
@@ -35,7 +34,14 @@ const Navbar = ({ page }) => {
           </Typography>
           <Toolbar>
             {user || localUser ? (
-              <Button variant="contained" onClick={onLogout}>
+              <Button
+                variant="contained"
+                onClick={onLogout}
+                sx={{
+                  "&:hover": { backgroundColor: "#f72f2f" },
+                  transition: "all 0.2s ease",
+                }}
+              >
                 Logout
               </Button>
             ) : null}

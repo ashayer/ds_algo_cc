@@ -59,7 +59,7 @@ const Answers = ({
   const wrongAnswer = () => {
     const questionEndTime = new Date();
     toast.error("Incorrect!", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -166,7 +166,7 @@ const Answers = ({
       correctAnswer();
     } else if (!isOrdered) {
       toast.error("Try again!", {
-        position: "top-right",
+        position: "bottom-right",
         autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,

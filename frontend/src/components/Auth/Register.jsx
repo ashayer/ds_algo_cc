@@ -36,7 +36,7 @@ const Auth = () => {
 
     if (password !== confirmPassword) {
       toast.error("Passwords do not match!", {
-        position: "top-center",
+        position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -59,7 +59,7 @@ const Auth = () => {
   useEffect(() => {
     if (isError) {
       toast.error(message, {
-        position: "top-center",
+        position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,

@@ -32,7 +32,7 @@ const Auth = () => {
   useEffect(() => {
     if (isError) {
       toast.error(message, {
-        position: "top-center",
+        position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,

@@ -10,7 +10,7 @@ import "./index.css";
 ReactDOM.render(
   <Provider store={store}>
     <StrictMode>
-      <ToastContainer />
+      <ToastContainer pauseOnFocusLoss={false} theme="colored" />
       <App />
     </StrictMode>
   </Provider>,

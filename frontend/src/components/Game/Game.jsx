@@ -58,7 +58,7 @@ const Game = () => {
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
-        setTimer(2000);
+        setTimer(1);
         setContent(object.original);
         if (questionTopic === "Quick") {
           setQuestion(
@@ -71,32 +71,32 @@ const Game = () => {
         }
         break;
       case 1:
-        setTimer(2000);
+        setTimer(1);
         setContent([questionTopic]);
         setQuestion("What is the time complexity of the algorithm below?");
         break;
       case 2:
-        setTimer(2000);
+        setTimer(1);
         setContent([questionTopic]);
         setQuestion("What is the space complexity of the algorithm below?");
         break;
       case 3:
-        setTimer(2000);
+        setTimer(1);
         setContent([object.original]);
         setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
         break;
       case 4:
-        setTimer(2000);
+        setTimer(1);
         setContent(object.original);
         setQuestion(`What is the time complexity using ${questionTopic} sort to sort the array`);
         break;
       case 5:
-        setTimer(2000);
+        setTimer(1);
         setContentObject(object.original);
         setQuestion(`Move pseudo-code into correct order for ${questionTopic} sort`);
         break;
       case 6:
-        setTimer(2000);
+        setTimer(1);
         setContentObject(object.original);
 
         if (questionTopic === "Quick") {
@@ -118,12 +118,10 @@ const Game = () => {
     while (questionTopic === algorithmInfoArray[topicIndex].name) {
       topicIndex = Math.floor(Math.random() * 4);
     }
-    // let typeIndex = Math.floor(Math.random() * 7);
-    // while (typeIndex === questionType) {
-    //   typeIndex = Math.floor(Math.random() * 7);
-    // }
-
-    const typeIndex = 6;
+    let typeIndex = Math.floor(Math.random() * 7);
+    while (typeIndex === questionType) {
+      typeIndex = Math.floor(Math.random() * 7);
+    }
 
     setQuestionTopicNum(topicIndex);
     setQuestionTopic(algorithmInfoArray[topicIndex].name);
@@ -166,7 +164,7 @@ const Game = () => {
   const startGameOnTimeEnd = () => {
     const questionEndTime = new Date();
     toast.error("Ran out of time!", {
-      position: "top-center",
+      position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -308,7 +306,15 @@ const Game = () => {
           }}
         >
           <Navbar page="Game" />
-          <Button variant="contained" onClick={startGame} sx={{ backgroundColor: "#358a04" }}>
+          <Button
+            variant="contained"
+            onClick={startGame}
+            sx={{
+              "&:hover": { backgroundColor: "#358a04" },
+              borderRadius: 0,
+              transition: "all 0.2s ease",
+            }}
+          >
             START GAME
           </Button>
         </Container>
