@@ -85,35 +85,37 @@ const Answers = ({
 
   const AnswerBars = () => {
     return answers.map((answer, index) => (
-      <Grid item key={index} sx={{ margin: "10px" }}>
+      <Grid item key={index} sx={{ margin: "1vh" }}>
         <ButtonBase
+          focusRipple
           onClick={answer[0] ? correctAnswer : wrongAnswer}
-          sx={
-            answer[0]
-              ? {
-                  backgroundColor: "green",
-                  color: "white",
-                  width: "35vw",
-                  height: "20vh",
-                }
-              : {
-                  backgroundColor: "red",
-                  color: "white",
-                  width: "35vw",
-                  height: "20vh",
-                }
-          }
+          sx={{
+            width: "35vw",
+            height: "20vh",
+          }}
         >
-          <Grid container sx={{ justifyContent: "space-evenly" }}>
+          <Grid
+            container
+            sx={{
+              border: "1px solid black",
+
+              justifyContent: "space-evenly",
+              "&:hover": {
+                backgroundColor: "#fa382a",
+              },
+              transition: "all 0.2s ease",
+            }}
+          >
             {answer[1].map((value, indexA) => (
-              <Grid item key={indexA} sx={{ height: "20vh" }}>
+              <Grid item key={indexA} sx={{ height: "20vh", width: "4vw" }}>
                 <Box
                   sx={{
                     height: `${value * 2.25}vh`,
-                    backgroundColor: "orange",
+                    backgroundColor: "#a1caff",
+                    color: "black",
                     position: "absolute",
                     bottom: "0",
-                    borderRadius: "15px 15px 0px 0px",
+                    borderRadius: "5px 5px 0px 0px",
                   }}
                 >
                   <Typography variant="h4" sx={{ width: "4vw" }}>{`${value}`}</Typography>
@@ -174,7 +176,7 @@ const Answers = ({
   };
 
   return (
-    <Grid container align="center" justifyContent="center" alignContent="center" maxWidth="xl">
+    <Grid container align="center" justifyContent="center" alignContent="center">
       {questionType === 0 ? (
         <AnswerBars />
       ) : questionType > 0 && questionType < 4 ? (

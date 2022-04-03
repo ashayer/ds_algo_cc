@@ -58,7 +58,7 @@ const Game = () => {
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
-        setTimer(1000);
+        setTimer(2000);
         setContent(object.original);
         if (questionTopic === "Quick") {
           setQuestion(
@@ -71,35 +71,45 @@ const Game = () => {
         }
         break;
       case 1:
-        setTimer(1000);
+        setTimer(2000);
         setContent([questionTopic]);
         setQuestion("What is the time complexity of the algorithm below?");
         break;
       case 2:
-        setTimer(1000);
+        setTimer(2000);
         setContent([questionTopic]);
         setQuestion("What is the space complexity of the algorithm below?");
         break;
       case 3:
-        setTimer(1000);
+        setTimer(2000);
         setContent([object.original]);
         setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
         break;
       case 4:
-        setTimer(1000);
+        setTimer(2000);
         setContent(object.original);
         setQuestion(`What is the time complexity using ${questionTopic} sort to sort the array`);
         break;
       case 5:
-        setTimer(1000);
+        setTimer(2000);
         setContentObject(object.original);
         setQuestion(`Move pseudo-code into correct order for ${questionTopic} sort`);
         break;
       case 6:
-        setTimer(1000);
+        setTimer(2000);
         setContentObject(object.original);
-        setQuestion(`Using ${questionTopic} sort move the array 
-        into the state after ${object?.swaps} swaps`);
+
+        if (questionTopic === "Quick") {
+          setQuestion(
+            setQuestion(`Using ${questionTopic} sort move the array 
+            into the state after ${object?.swaps} swaps using left most as pivot`),
+          );
+        } else {
+          setQuestion(
+            setQuestion(`Using ${questionTopic} sort move the array 
+            into the state after ${object?.swaps} swaps`),
+          );
+        }
         break;
       default:
         break;
@@ -112,12 +122,12 @@ const Game = () => {
     while (questionTopic === algorithmInfoArray[topicIndex].name) {
       topicIndex = Math.floor(Math.random() * 4);
     }
-    // let typeIndex = Math.floor(Math.random() * 6);
+    // let typeIndex = Math.floor(Math.random() * 7);
     // while (typeIndex === questionType) {
-    //   typeIndex = Math.floor(Math.random() * 6);
+    //   typeIndex = Math.floor(Math.random() * 7);
     // }
 
-    const typeIndex = 6;
+    const typeIndex = 0;
 
     setQuestionTopicNum(topicIndex);
     setQuestionTopic(algorithmInfoArray[topicIndex].name);
@@ -257,7 +267,7 @@ const Game = () => {
             </Container>
           </Paper>
 
-          <Paper>
+          <Paper sx={{ width: "100vw" }}>
             <Answers
               answers={answers}
               startGame={startGame}
