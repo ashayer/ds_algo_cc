@@ -113,14 +113,10 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    let topicIndex = Math.floor(Math.random() * 4);
-    while (questionTopic === algorithmInfoArray[topicIndex].name) {
-      topicIndex = Math.floor(Math.random() * 4);
-    }
-    let typeIndex = Math.floor(Math.random() * 7);
-    while (typeIndex === questionType) {
-      typeIndex = Math.floor(Math.random() * 7);
-    }
+    const topicIndex = Math.floor(Math.random() * 4);
+
+    const typeIndex = Math.floor(Math.random() * 7);
+
 
     setQuestionTopicNum(topicIndex);
     setQuestionTopic(algorithmInfoArray[topicIndex].name);
