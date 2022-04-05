@@ -7,6 +7,7 @@ import Algos from "./components/Learn/Algos/Algos";
 import Game from "./components/Game/Game";
 import UserEmulator from "./components/UserEmulator/UserEmulator";
 import NotFound from "./components/ErrorRoute/ErrorRoute";
+import Leaderboard from "./components/Leaderboard/Leaderboard";
 
 const App = () => {
   return (
@@ -19,6 +20,8 @@ const App = () => {
         {/* <Route path="/read/ds" element={<Algos />} /> */}
         <Route path="/game" element={<Game />} />
         <Route path="/emulate" element={<UserEmulator />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -86,7 +86,7 @@ const Home = () => {
                     </CardContent>
                   </Card>
                   <Card sx={{ minWidth: "50%" }}>
-                    <CardActionArea sx={{ minHeight: "30vh" }}>
+                    <CardActionArea sx={{ minHeight: "30vh" }} onClick={() => navigate("/leaderboard")}>
                       <CardContent>
                         <Typography variant="h2">View Leader Board</Typography>
                       </CardContent>
