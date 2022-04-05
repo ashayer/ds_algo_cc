@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Typography, Container, Box } from "@mui/material/";
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -9,7 +9,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
-const Content = ({ content, setContentObject, contentObject, questionTopic, questionType }) => {
+const Content = ({ content, contentObject, questionTopic, questionType }) => {
   const ContentBars = () => {
     return (
       <Grid container sx={{ position: "relative", justifyContent: "center" }}>
@@ -75,15 +75,18 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
       return;
     }
 
-    const newLinesArray = Array.from(contentObject);
+    const newLinesArray = Array.from(contentObject.current);
 
     newLinesArray.splice(source.index, 1);
-    newLinesArray.splice(destination.index, 0, contentObject[source.index]);
+    newLinesArray.splice(destination.index, 0, contentObject.current[source.index]);
 
-    setContentObject(newLinesArray);
+    contentObject.current = newLinesArray;
   };
 
+  useEffect(() => {}, [contentObject, onDragEnd]);
+
   const ContentDragCode = () => {
+    console.log(contentObject);
     return (
       <Box
         sx={{
@@ -95,7 +98,7 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
           <Droppable droppableId="1">
             {(provided) => (
               <Box maxWidth="sm" {...provided.droppableProps} ref={provided.innerRef}>
-                {contentObject?.map((value, idx) => (
+                {contentObject.current?.map((value, idx) => (
                   <Draggable draggableId={idx.toString()} index={idx} key={idx}>
                     {(provided) => (
                       <Typography
@@ -127,6 +130,8 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
   };
 
   const ContentDragSwap = () => {
+    console.log(contentObject);
+
     return (
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="1" direction="horizontal">
@@ -137,7 +142,7 @@ const Content = ({ content, setContentObject, contentObject, questionTopic, ques
               ref={provided.innerRef}
               sx={{ position: "relative", justifyContent: "center" }}
             >
-              {contentObject?.map((value, idx) => (
+              {contentObject.current?.map((value, idx) => (
                 <Draggable draggableId={idx.toString()} index={idx} key={idx}>
                   {(provided) => (
                     <Grid

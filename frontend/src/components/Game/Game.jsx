@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Grid, Button, Container, Paper, Grow, Slide } from "@mui/material/";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { toast } from "react-toastify";
@@ -33,7 +33,8 @@ const Game = () => {
   const [questionTopicNum, setQuestionTopicNum] = useState(0);
   const [timer, setTimer] = useState(timeLeft);
   const [object, setObject] = useState({}); // ! change name to something more descriptive
-  const [contentObject, setContentObject] = useState([{}]);
+  // const [contentObject, setContentObject] = useState([{}]);
+  const contentObject = useRef([{}]);
 
   const dispatch = useDispatch();
 
@@ -57,7 +58,7 @@ const Game = () => {
   const createQuestion = useCallback(() => {
     switch (questionType) {
       case 0:
-        setTimer(100);
+        setTimer(30);
         setContent(object.original);
         if (questionTopic === "Quick") {
           setQuestion(
@@ -70,33 +71,34 @@ const Game = () => {
         }
         break;
       case 1:
-        setTimer(100);
+        setTimer(15);
         setContent([questionTopic]);
         setQuestion("What is the time complexity of the algorithm below?");
         break;
       case 2:
-        setTimer(100);
+        setTimer(15);
         setContent([questionTopic]);
         setQuestion("What is the space complexity of the algorithm below?");
         break;
       case 3:
-        setTimer(100);
+        setTimer(20);
         setContent([object.original]);
         setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
         break;
       case 4:
-        setTimer(100);
+        setTimer(15);
         setContent(object.original);
         setQuestion(`What is the time complexity using ${questionTopic} sort to sort the array`);
         break;
       case 5:
-        setTimer(100);
-        setContentObject(object.original);
+        setTimer(25);
+        // setContentObject(object.original);
+        contentObject.current = object.original;
         setQuestion(`Move pseudo-code into correct order for ${questionTopic} sort`);
         break;
       case 6:
-        setTimer(100);
-        setContentObject(object.original);
+        setTimer(35);
+        contentObject.current = object.original;
 
         if (questionTopic === "Quick") {
           setQuestion(`Using ${questionTopic} sort move the array 
@@ -113,10 +115,12 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    const topicIndex = Math.floor(Math.random() * 4);
 
+    const topicIndex = Math.floor(Math.random() * 4);
     const typeIndex = Math.floor(Math.random() * 7);
 
+    // const topicIndex = Math.floor(Math.random() * 4);
+    // const typeIndex = 5;
 
     setQuestionTopicNum(topicIndex);
     setQuestionTopic(algorithmInfoArray[topicIndex].name);
@@ -199,7 +203,7 @@ const Game = () => {
   const checkLineOrder = () => {
     const arr = [];
     for (let i = 0; i < object.original.length; i += 1) {
-      arr.push(contentObject[i].correctIdx);
+      arr.push(contentObject.current[i].correctIdx);
     }
 
     // console.log(arr);
@@ -273,9 +277,10 @@ const Game = () => {
               <Content
                 content={content}
                 contentObject={contentObject}
-                setContentObject={setContentObject}
+                // setContentObject={setContentObject}
                 questionType={questionType}
                 questionTopic={questionTopic}
+                object={object}
               />
             </Container>
           </Paper>
