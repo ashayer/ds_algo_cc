@@ -1,4 +1,4 @@
-const sectionArray = [
+const AlgoSectionArray = [
   {
     sectionID: 1,
     sectionName: "Insertion Sort",
@@ -65,4 +65,4 @@ const sectionArray = [
   },
 ];
 
-export default sectionArray;
+export default AlgoSectionArray;

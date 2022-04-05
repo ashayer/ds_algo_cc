@@ -28,7 +28,7 @@ const Answers = ({
   const correctAnswer = () => {
     const questionEndTime = new Date();
     toast.success("Correct!", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,

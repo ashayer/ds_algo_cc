@@ -130,7 +130,7 @@ const Home = () => {
                 </Typography>
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
                   <Card sx={{ minWidth: "50%" }}>
-                    <CardActionArea>
+                    <CardActionArea onClick={() => navigate("/datastructs")}>
                       <CardContent>
                         <Typography variant="h2">Read</Typography>
                       </CardContent>

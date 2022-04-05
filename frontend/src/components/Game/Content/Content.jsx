@@ -86,7 +86,7 @@ const Content = ({ content, contentObject, questionTopic, questionType }) => {
   useEffect(() => {}, [contentObject, onDragEnd]);
 
   const ContentDragCode = () => {
-    console.log(contentObject);
+    // console.log(contentObject);
     return (
       <Box
         sx={{
@@ -130,8 +130,6 @@ const Content = ({ content, contentObject, questionTopic, questionType }) => {
   };
 
   const ContentDragSwap = () => {
-    console.log(contentObject);
-
     return (
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="1" direction="horizontal">

@@ -6,11 +6,12 @@ import InsertionAccordion from "./InsertionInfo/InsertionAccordion";
 import SelectionAccordion from "./SelectionInfo/SelectionAccordion";
 import MergeAccordion from "./MergeInfo/MergeAccordion";
 import QuickAccordion from "./QuickInfo/QuickAccordion";
-import sectionArray from "./testarray";
+import StructureSectionArray from "./StructureSectionArray";
+import Navbar from "../../Navbar/Navbar";
 
-const Algos = () => {
+const DataStructures = () => {
   const [sectionNum, setSectionNum] = useState(0);
-  const [tempSectionArray, setTempSectionArray] = useState(sectionArray);
+  const [tempSectionArray, setTempSectionArray] = useState(StructureSectionArray);
 
   const nextSection = () => {
     if (sectionNum < tempSectionArray.length - 1) setSectionNum(sectionNum + 1);
@@ -22,6 +23,8 @@ const Algos = () => {
 
   return (
     <Container maxWidth="xl">
+      <Navbar page="Data Structures" />
+
       <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
         <Button
           onClick={prevSection}
@@ -80,4 +83,4 @@ const Algos = () => {
   );
 };
 
-export default Algos;
+export default DataStructures;

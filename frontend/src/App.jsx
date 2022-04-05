@@ -8,6 +8,7 @@ import Game from "./components/Game/Game";
 import UserEmulator from "./components/UserEmulator/UserEmulator";
 import NotFound from "./components/ErrorRoute/ErrorRoute";
 import Leaderboard from "./components/Leaderboard/Leaderboard";
+import DataStructs from "./components/Learn/DataStructures/DataStructs";
 
 const App = () => {
   return (
@@ -17,11 +18,10 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/algos" element={<Algos />} />
-        {/* <Route path="/read/ds" element={<Algos />} /> */}
+        <Route path="/datastructs" element={<DataStructs />} />
         <Route path="/game" element={<Game />} />
         <Route path="/emulate" element={<UserEmulator />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
-
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

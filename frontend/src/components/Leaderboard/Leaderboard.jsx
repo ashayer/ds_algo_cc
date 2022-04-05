@@ -12,6 +12,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
+import Navbar from "../Navbar/Navbar";
 
 function createData(name, calories, fat, carbs, protein) {
   return {
@@ -163,7 +164,8 @@ export default function Leaderboard() {
 
   return (
     <Box>
-      <Paper>
+      <Navbar page="Leaderboard" />
+      <Paper sx={{ mt: "2vh" }}>
         <EnhancedTableToolbar />
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
@@ -174,17 +176,15 @@ export default function Leaderboard() {
               rowCount={rows.length}
             />
             <TableBody>
-              {rows.slice().sort(getComparator(order, orderBy))
+              {rows
+                .slice()
+                .sort(getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
-                    <TableRow
-                      hover
-                      tabIndex={-1}
-                      key={row.name}
-                    >
+                    <TableRow hover tabIndex={-1} key={row.name}>
                       <TableCell component="th" id={labelId} scope="row">
                         {row.name}
                       </TableCell>

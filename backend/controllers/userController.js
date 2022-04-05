@@ -2,7 +2,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
-import mongoose from "mongoose";
 
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password, skill } = req.body;
@@ -100,6 +99,6 @@ export const updatePoints = asyncHandler(async (req) => {
 
 export const getPoints = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
-  console.log("The user current has " + user.points + " points");
+  // console.log("The user current has " + user.points + " points");
   res.status(200).json(user.points);
 });
