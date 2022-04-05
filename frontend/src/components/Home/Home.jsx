@@ -112,7 +112,7 @@ const Home = () => {
                     <CardContent>Stats of amount read about sorting algorithms</CardContent>
                   </Card>
                   <Card sx={{ minWidth: "50%" }}>
-                    <CardActionArea sx={{ minHeight: "30vh" }}>
+                    <CardActionArea sx={{ minHeight: "30vh" }} onClick={() => navigate("/sortsandbox")}>
                       <CardContent>
                         <Typography variant="h2">Go to Sandbox</Typography>
                       </CardContent>
@@ -138,7 +138,7 @@ const Home = () => {
                     <CardContent>Stats of amount read about data structures</CardContent>
                   </Card>
                   <Card sx={{ minWidth: "50%" }}>
-                    <CardActionArea sx={{ minHeight: "30vh" }}>
+                    <CardActionArea sx={{ minHeight: "30vh" }} onClick={() => navigate("/datasandbox")}>
                       <CardContent>
                         <Typography variant="h2">Go to Sandbox</Typography>
                       </CardContent>

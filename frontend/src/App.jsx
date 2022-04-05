@@ -8,7 +8,9 @@ import Game from "./components/Game/Game";
 import UserEmulator from "./components/UserEmulator/UserEmulator";
 import NotFound from "./components/ErrorRoute/ErrorRoute";
 import Leaderboard from "./components/Leaderboard/Leaderboard";
-import DataStructs from "./components/Learn/DataStructures/DataStructs";
+import DataStructures from "./components/Learn/DataStructures/DataStructs";
+import SortingSandbox from "./components/SortingSandbox/SortingSandbox";
+import StructureSandbox from "./components/StructureSandbox/StructureSandbox";
 
 const App = () => {
   return (
@@ -18,10 +20,12 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/algos" element={<Algos />} />
-        <Route path="/datastructs" element={<DataStructs />} />
+        <Route path="/datastructs" element={<DataStructures />} />
         <Route path="/game" element={<Game />} />
         <Route path="/emulate" element={<UserEmulator />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/sortsandbox" element={<SortingSandbox />} />
+        <Route path="/datasandbox" element={<StructureSandbox />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
