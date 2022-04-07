@@ -10,7 +10,7 @@ class Node {
   }
 }
 
-const globalDepth = 3;
+const globalDepth = 10;
 const createTree = (depth, value) => {
   const newNode = new Node();
   if (depth === globalDepth) {
@@ -42,44 +42,79 @@ const createTree = (depth, value) => {
 
 let tempArray = [];
 let arrayOfArray = [];
+const currentState = [1, 2];
+
+let test = [];
+const calculatePercentage = (array) => {
+  let [stateCorrect, stateTotal] = currentState;
+  let totalQuestions = array.length;
+  let totalCorrect = 0;
+  for (let i = 0; i < totalQuestions; i += 1) {
+    if (array[i] < 3) {
+      totalCorrect += 1;
+    }
+  }
+
+  if (!test[totalCorrect + stateCorrect]) {
+    test[totalCorrect + stateCorrect] = 1;
+  } else {
+    test[totalCorrect + stateCorrect] += 1;
+  }
+  if ((totalCorrect + stateCorrect) / (totalQuestions + stateTotal) === 0.8) {
+    return true;
+  }
+  return false;
+};
+
+let stopRecursion = false;
+
 const dfs = (start) => {
-  if (!start) {
+  if (!stopRecursion) {
+    if (!start) {
+      return start;
+    }
+
+    if (tempArray[tempArray.length - 1] && tempArray[tempArray.length - 1].visited) {
+      tempArray.pop();
+    }
+    if (!(start.value === 0) && !start.visited) {
+      tempArray.push(start.value);
+    }
+
+    if (start.left === undefined && start.middle === undefined && start.right === undefined) {
+      start.visited = true;
+      arrayOfArray.push(tempArray.slice());
+      if (calculatePercentage(tempArray.slice())) {
+        stopRecursion = true;
+      }
+      tempArray.pop();
+    }
+    if (start.left && start.left.visited) {
+      console.log("getting here");
+    }
+
+    dfs(start.left);
+    dfs(start.middle);
+    dfs(start.right);
+
+    if (start.left && start.left.visited && start.right.visited && start.middle.visited) {
+      start.visited = true;
+      tempArray.pop();
+    }
+
     return start;
   }
-  if (tempArray[tempArray.length - 1] && tempArray[tempArray.length - 1].visited) {
-    tempArray.pop();
-  }
-  if (!(start.value === 0) && !start.visited) {
-    tempArray.push(start.value);
-  }
-
-  if (start.left === undefined && start.middle === undefined && start.right === undefined) {
-    start.visited = true;
-    arrayOfArray.push(tempArray.slice());
-    tempArray.pop();
-  }
-  if (start.left && start.left.visited) {
-    console.log("getting here");
-  }
-
-  dfs(start.left);
-  dfs(start.middle);
-  dfs(start.right);
-  if (start.left && start.left.visited && start.right.visited && start.middle.visited) {
-    start.visited = true;
-    tempArray.pop();
-  }
-
   return start;
 };
 
 const MPCHandler = () => {
   const planningTree = createTree(globalDepth, 0);
+  dfs(planningTree);
 
-  const newTree = dfs(planningTree);
-
-  console.log(newTree);
-  console.log(arrayOfArray);
+  // eslint-disable-next-line no-unused-vars
+  const idealPath = arrayOfArray[arrayOfArray.length - 1];
+  console.log(idealPath);
+  console.log(test);
 };
 
 export default MPCHandler;
