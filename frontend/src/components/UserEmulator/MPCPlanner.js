@@ -1,19 +1,24 @@
-/* eslint-disable max-classes-per-file */
+/* eslint-disable prefer-const */
 class Node {
-  constructor(value, left, middle, right) {
+  constructor(value, left, middle, right, id) {
     this.value = value;
+    this.visited = false;
     this.left = left;
+    this.id = id;
     this.middle = middle;
     this.right = right;
   }
 }
 
+const globalDepth = 3;
 const createTree = (depth, value) => {
   const newNode = new Node();
-  if (depth === 2) {
+  if (depth === globalDepth) {
     newNode.value = 0;
+    newNode.id = "0";
   } else {
     newNode.value = value;
+    newNode.id = (globalDepth - depth).toString() + value.toString();
   }
   if (depth === 0) {
     return newNode;
@@ -34,37 +39,47 @@ const createTree = (depth, value) => {
 // at each node is the value is 1 or 2 then the user got is right
 // if the node value is 3 the user got it wrong
 // once you reach a node with no children
-const depth = 2;
 
+let tempArray = [];
+let arrayOfArray = [];
 const dfs = (start) => {
-  if(start && start.value){
-      console.log(start.value)
-  }
   if (!start) {
-    return;
+    return start;
   }
-  if (start.value === 1 || start.value === 2) {
-
-  } else if (start.value === 3) {
-
+  if (tempArray[tempArray.length - 1] && tempArray[tempArray.length - 1].visited) {
+    tempArray.pop();
+  }
+  if (!(start.value === 0) && !start.visited) {
+    tempArray.push(start.value);
   }
 
-  // Recurse with all children
+  if (start.left === undefined && start.middle === undefined && start.right === undefined) {
+    start.visited = true;
+    arrayOfArray.push(tempArray.slice());
+    tempArray.pop();
+  }
+  if (start.left && start.left.visited) {
+    console.log("getting here");
+  }
 
   dfs(start.left);
   dfs(start.middle);
   dfs(start.right);
+  if (start.left && start.left.visited && start.right.visited && start.middle.visited) {
+    start.visited = true;
+    tempArray.pop();
+  }
+
+  return start;
 };
 
 const MPCHandler = () => {
-  const planningTree = createTree(depth, 0);
+  const planningTree = createTree(globalDepth, 0);
 
-  dfs(planningTree);
+  const newTree = dfs(planningTree);
 
-  console.log(planningTree);
-  console.log(globalCorrect);
-  console.log(globalWrong);
-  console.log(tempArray);
+  console.log(newTree);
+  console.log(arrayOfArray);
 };
 
 export default MPCHandler;
