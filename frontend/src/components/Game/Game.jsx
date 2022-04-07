@@ -116,11 +116,11 @@ const Game = () => {
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
 
-    const topicIndex = Math.floor(Math.random() * 4);
-    const typeIndex = Math.floor(Math.random() * 7);
-
     // const topicIndex = Math.floor(Math.random() * 4);
-    // const typeIndex = 5;
+    // const typeIndex = Math.floor(Math.random() * 7);
+
+    const topicIndex = Math.floor(Math.random() * 4);
+    const typeIndex = 6;
 
     setQuestionTopicNum(topicIndex);
     setQuestionTopic(algorithmInfoArray[topicIndex].name);
@@ -277,7 +277,6 @@ const Game = () => {
               <Content
                 content={content}
                 contentObject={contentObject}
-                // setContentObject={setContentObject}
                 questionType={questionType}
                 questionTopic={questionTopic}
                 object={object}

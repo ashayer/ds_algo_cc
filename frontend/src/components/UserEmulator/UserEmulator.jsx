@@ -14,6 +14,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line, Bar } from "react-chartjs-2";
+import MPCHandler from "./MPCPlanner"
 
 const optionsForNum = {
   responsive: true,
@@ -42,6 +43,8 @@ const optionsForQuestionLevelCount = {
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 Chart.register(CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend);
+
+MPCHandler();
 
 const initialQuestions = [
   { level: 1, correct: true },
