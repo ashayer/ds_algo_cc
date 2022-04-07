@@ -35,23 +35,18 @@ const createTree = (depth, value) => {
 // if the node value is 3 the user got it wrong
 // once you reach a node with no children
 const depth = 2;
-let globalCorrect = 0;
-let globalWrong = 0;
-const tempArray = [];
-let globalArray = [];
 
 const dfs = (start) => {
-  if (!start.left && !start.middle && !start.right) {
-    tempArray.push(globalArray);
-    globalArray = [];
+  if(start && start.value){
+      console.log(start.value)
+  }
+  if (!start) {
     return;
   }
   if (start.value === 1 || start.value === 2) {
-    globalArray.push(start.value);
-    globalCorrect += 1;
+
   } else if (start.value === 3) {
-    globalWrong += 1;
-    globalArray.push(start.value);
+
   }
 
   // Recurse with all children
