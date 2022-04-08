@@ -30,28 +30,20 @@ const createTree = (depth, value) => {
   return newNode;
 };
 
-// const UserModel = {
-//   one: 0.95,
-//   two: 0.8,
-//   three: 0.6,
-// };
-
-// go down every possible path
-// at each node is the value is 1 or 2 then the user got is right
-// if the node value is 3 the user got it wrong
-// once you reach a node with no children
-
 let tempArray = [];
 let arrayOfArray = [];
 let stateTotal = 0;
 let stateCorrect = 0;
 let denominator = 0;
+// eslint-disable-next-line no-unused-vars
+let userModel = {};
 let x = 0;
 
 const calculatePercentage = (array) => {
   let totalQuestions = globalDepth;
   let totalCorrect = 0;
   for (let i = 0; i < globalDepth; i += 1) {
+    //! change this to calulcate based on the threshold and model values instead of just less than 3
     if (array[i] < 3) {
       totalCorrect += 1;
     }
@@ -103,13 +95,14 @@ const dfs = (start) => {
   return start;
 };
 
-const MPCHandler = (correct, total) => {
+const MPCHandler = (correct, total, currentModel) => {
   tempArray = [];
   arrayOfArray = [];
   stateCorrect = correct;
   stateTotal = total;
   denominator = stateTotal + globalDepth;
   x = (0.75 * denominator - stateCorrect) / globalDepth;
+  userModel = currentModel;
   const planningTree = createTree(globalDepth, 0);
   dfs(planningTree);
 
