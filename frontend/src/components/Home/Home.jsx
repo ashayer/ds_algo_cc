@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box>
+      <Box maxWidth="xl" sx={{ marginLeft: "auto", marginRight: "auto" }}>
         <Navbar page="Home" />
         <Grid container spacing={5} sx={{ marginTop: 1, textAlign: "center" }}>
           <Slide in>
@@ -86,7 +86,10 @@ const Home = () => {
                     </CardContent>
                   </Card>
                   <Card sx={{ minWidth: "50%" }}>
-                    <CardActionArea sx={{ minHeight: "30vh" }} onClick={() => navigate("/leaderboard")}>
+                    <CardActionArea
+                      sx={{ minHeight: "30vh" }}
+                      onClick={() => navigate("/leaderboard")}
+                    >
                       <CardContent>
                         <Typography variant="h2">View Leader Board</Typography>
                       </CardContent>
@@ -112,7 +115,10 @@ const Home = () => {
                     <CardContent>Stats of amount read about sorting algorithms</CardContent>
                   </Card>
                   <Card sx={{ minWidth: "50%" }}>
-                    <CardActionArea sx={{ minHeight: "30vh" }} onClick={() => navigate("/sortsandbox")}>
+                    <CardActionArea
+                      sx={{ minHeight: "30vh" }}
+                      onClick={() => navigate("/sortsandbox")}
+                    >
                       <CardContent>
                         <Typography variant="h2">Go to Sandbox</Typography>
                       </CardContent>
@@ -138,7 +144,10 @@ const Home = () => {
                     <CardContent>Stats of amount read about data structures</CardContent>
                   </Card>
                   <Card sx={{ minWidth: "50%" }}>
-                    <CardActionArea sx={{ minHeight: "30vh" }} onClick={() => navigate("/datasandbox")}>
+                    <CardActionArea
+                      sx={{ minHeight: "30vh" }}
+                      onClick={() => navigate("/datasandbox")}
+                    >
                       <CardContent>
                         <Typography variant="h2">Go to Sandbox</Typography>
                       </CardContent>

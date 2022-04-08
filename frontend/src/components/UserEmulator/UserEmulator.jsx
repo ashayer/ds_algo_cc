@@ -14,8 +14,9 @@ import {
   Legend,
 } from "chart.js";
 import { Line, Bar } from "react-chartjs-2";
-// import MPCHandler from "./MPCPlanner"
-// MPCHandler();
+import MPCHandler from "./MPCPlanner"
+MPCHandler();
+
 const optionsForNum = {
   responsive: true,
   plugins: {
