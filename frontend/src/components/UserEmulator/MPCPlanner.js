@@ -42,7 +42,7 @@ const createTree = (depth, value) => {
 
 let tempArray = [];
 let arrayOfArray = [];
-const currentState = [8, 10];
+const currentState = [48, 49];
 
 const calculatePercentage = (array) => {
   let [stateCorrect, stateTotal] = currentState;
@@ -50,6 +50,7 @@ const calculatePercentage = (array) => {
   let totalCorrect = 0;
   let denominator = stateTotal + globalDepth;
   let x = (0.8 * denominator - stateCorrect) / globalDepth;
+  console.log(x);
   for (let i = 0; i < totalQuestions; i += 1) {
     if (array[i] < 3) {
       totalCorrect += 1;
@@ -61,6 +62,10 @@ const calculatePercentage = (array) => {
     }
   } else if (totalCorrect / totalQuestions === parseFloat(x.toFixed(1))) {
     return true;
+  } else if (x < 0) {
+    if (totalCorrect / totalQuestions === 0) {
+      return true;
+    }
   }
   return false;
 };
