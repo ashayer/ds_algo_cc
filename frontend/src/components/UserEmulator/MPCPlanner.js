@@ -11,6 +11,7 @@ class Node {
 }
 
 const globalDepth = 10;
+
 const createTree = (depth, value) => {
   const newNode = new Node();
   if (depth === globalDepth) {
@@ -42,27 +43,26 @@ const createTree = (depth, value) => {
 
 let tempArray = [];
 let arrayOfArray = [];
-const currentState = [48, 49];
+let stateTotal = 0;
+let stateCorrect = 0;
+let denominator = 0;
+let x = 0;
 
 const calculatePercentage = (array) => {
-  let [stateCorrect, stateTotal] = currentState;
-  let totalQuestions = array.length;
+  let totalQuestions = globalDepth;
   let totalCorrect = 0;
-  let denominator = stateTotal + globalDepth;
-  let x = (0.8 * denominator - stateCorrect) / globalDepth;
-  console.log(x);
-  for (let i = 0; i < totalQuestions; i += 1) {
+  for (let i = 0; i < globalDepth; i += 1) {
     if (array[i] < 3) {
       totalCorrect += 1;
     }
   }
-  if (x >= 1) {
+  if (parseFloat(x.toFixed(1)) >= 1) {
     if (totalCorrect / totalQuestions === 1) {
       return true;
     }
   } else if (totalCorrect / totalQuestions === parseFloat(x.toFixed(1))) {
     return true;
-  } else if (x < 0) {
+  } else if (parseFloat(x.toFixed(1)) < 0) {
     if (totalCorrect / totalQuestions === 0) {
       return true;
     }
@@ -90,9 +90,6 @@ const dfs = (start) => {
     }
     tempArray.pop();
   }
-  if (start.left && start.left.visited) {
-    console.log("getting here");
-  }
 
   dfs(start.left);
   dfs(start.middle);
@@ -106,13 +103,18 @@ const dfs = (start) => {
   return start;
 };
 
-const MPCHandler = () => {
+const MPCHandler = (correct, total) => {
+  tempArray = [];
+  arrayOfArray = [];
+  stateCorrect = correct;
+  stateTotal = total;
+  denominator = stateTotal + globalDepth;
+  x = (0.75 * denominator - stateCorrect) / globalDepth;
   const planningTree = createTree(globalDepth, 0);
   dfs(planningTree);
 
   const idealPath = arrayOfArray[Math.floor(Math.random() * arrayOfArray.length)];
-
-  console.log(idealPath);
+  return idealPath;
 };
 
 export default MPCHandler;

@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useState, useCallback } from "react";
-import { Box, Typography, Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import axios from "axios";
 import {
   Chart,
@@ -14,265 +14,83 @@ import {
   Legend,
 } from "chart.js";
 import { Line, Bar } from "react-chartjs-2";
-import MPCHandler from "./MPCPlanner"
-MPCHandler();
+import MPCHandler from "./MPCPlanner";
 
-const optionsForNum = {
-  responsive: true,
-  plugins: {
-    title: {
-      display: true,
-    },
-  },
-  scales: {},
-};
+// const optionsForNum = {
+//   responsive: true,
+//   plugins: {
+//     title: {
+//       display: true,
+//     },
+//   },
+//   scales: {},
+// };
 
-const optionsForQuestionLevelCount = {
-  responsive: true,
-  plugins: {
-    title: {
-      display: true,
-      text: "Question Levels",
-    },
-  },
-  scales: {
-    y: {
-      min: 0,
-    },
-  },
+// const optionsForQuestionLevelCount = {
+//   responsive: true,
+//   plugins: {
+//     title: {
+//       display: true,
+//       text: "Question Levels",
+//     },
+//   },
+//   scales: {
+//     y: {
+//       min: 0,
+//     },
+//   },
+// };
+
+let userModel = {
+  one: 0.9,
+  two: 0.75,
+  three: 0.45,
 };
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 Chart.register(CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend);
 
-
-
-const initialQuestions = [
-  { level: 1, correct: true },
-  { level: 1, correct: true },
-  { level: 3, correct: false },
-  { level: 2, correct: true },
-  { level: 3, correct: true },
-  { level: 1, correct: true },
-  { level: 2, correct: false },
-  { level: 1, correct: false },
-  { level: 3, correct: false },
-  { level: 3, correct: false },
-];
-
-const advancedUserModel = {
-  one: 0.95,
-  two: 0.8,
-  three: 0.6,
-};
-
-const questionLikelihood = {
-  one: 2 / 7,
-  two: 2 / 7,
-  three: (3, 7),
-};
-
-
-
 const UserEmulator = () => {
-  const [percentCorrect, setPercentCorrect] = useState(0);
-  const [totalWrongPerLevel, setTotalWrongPerLevel] = useState([0, 0, 0]);
-  const [totalRightPerLevel, setTotalRightPerLevel] = useState([0, 0, 0]);
-  const [typeCountArray, setTypeCountArray] = useState([0, 0, 0]);
-  const [labelsForNum, setLabelsForNum] = useState(["10"]);
-  const [percentCorrectArray, setPercentCorrectArray] = useState([]);
+  const [batch, setBatch] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState();
+  const [totalCorrect, setTotalCorrect] = useState(0);
+  const [totalQuestions, setTotalQuestions] = useState(0);
+  // const [percentCorrect, setPercentCorrect] = useState(0);
+  // const [totalWrongPerLevel, setTotalWrongPerLevel] = useState([0, 0, 0]);
+  // const [totalRightPerLevel, setTotalRightPerLevel] = useState([0, 0, 0]);
+  // const [typeCountArray, setTypeCountArray] = useState([0, 0, 0]);
+  // const [labelsForNum, setLabelsForNum] = useState(["10"]);
+  // const [percentCorrectArray, setPercentCorrectArray] = useState([]);
 
-  const [levelOneCountArray, setLevelOneCountArray] = useState([]);
-  const [levelTwoCountArray, setLevelTwoCountArray] = useState([]);
-  const [levelThreeCountArray, setLevelThreeCountArray] = useState([]);
+  // const [levelOneCountArray, setLevelOneCountArray] = useState([]);
+  // const [levelTwoCountArray, setLevelTwoCountArray] = useState([]);
+  // const [levelThreeCountArray, setLevelThreeCountArray] = useState([]);
 
-  const [questionHistoryArray, setQuestionHistoryArray] = useState(initialQuestions);
+  // const [questionHistoryArray, setQuestionHistoryArray] = useState([]);
 
-  const getTypeCount = () => {
-    const tempCountArray = [0, 0, 0];
-
-    let count1 = 0;
-    let count2 = 0;
-    let count3 = 0;
-
-    questionHistoryArray.map((question) => {
-      tempCountArray[question.level - 1] += 1;
-      if (question.level === 1) {
-        count1 += 1;
-      } else if (question.level === 2) {
-        count2 += 1;
-      } else {
-        count3 += 1;
-      }
-    });
-
-    levelOneCountArray.push(count1);
-    levelTwoCountArray.push(count2);
-    levelThreeCountArray.push(count3);
-
-    setLevelOneCountArray(levelOneCountArray);
-    setLevelTwoCountArray(levelTwoCountArray);
-    setLevelThreeCountArray(levelThreeCountArray);
-
-    setTypeCountArray(tempCountArray);
+  const addRandom = () => {
+    const path = MPCHandler(totalCorrect, totalQuestions);
+    setBatch(path);
+    setCurrentQuestion(path[0]);
   };
 
-  const getPercentCorrect = () => {
-    const totalWrongCountArray = [0, 0, 0];
-    const totalRightCountArray = [0, 0, 0];
-    let totalQuestions = questionHistoryArray.length;
-    let totalCorrect = 0;
-    questionHistoryArray.map((question) => {
-      if (question.correct) {
-        totalCorrect += 1;
-        totalRightCountArray[question.level - 1] += 1;
-      } else {
-        totalWrongCountArray[question.level - 1] += 1;
-      }
-    });
-    setTotalWrongPerLevel(totalWrongCountArray);
-    setTotalRightPerLevel(totalRightCountArray);
-
-    const newPercentCorrect = Math.round((totalCorrect / totalQuestions) * 100);
-    percentCorrectArray.push(newPercentCorrect);
-
-    setPercentCorrectArray(percentCorrectArray);
-  };
-
-  const generateNextQuestion = () => {
-    if (Math.random() < questionLikelihood.two + questionLikelihood.one) {
-      // generate level 1 or 2
-      if (Math.random() < 0.5) {
-        // level 1
-        if (Math.random() < advancedUserModel.one) {
-          return {
-            level: 1,
-            correct: true,
-          };
-        } else {
-          return {
-            level: 1,
-            correct: false,
-          };
-        }
-      } else {
-        // level 2
-        if (Math.random() < advancedUserModel.two) {
-          return {
-            level: 2,
-            correct: true,
-          };
-        } else {
-          return {
-            level: 2,
-            correct: false,
-          };
-        }
-      }
+  const answerQuestion = (isCorrect) => {
+    if (isCorrect) {
+      setTotalCorrect(totalCorrect + 1);
+      setTotalQuestions(totalQuestions + 1);
     } else {
-      //generate level 3
-      if (Math.random() < advancedUserModel.three) {
-        return {
-          level: 3,
-          correct: true,
-        };
-      } else {
-        return {
-          level: 3,
-          correct: false,
-        };
-      }
+      setTotalQuestions(totalQuestions + 1);
     }
   };
 
   useEffect(() => {
-    getTypeCount();
-    getPercentCorrect();
-  }, []);
-
-  const addRandom = useCallback(
-    (iterations) => {
-      for (let i = 0; i < iterations; i += 1) {
-        const nextLabel = parseInt(labelsForNum[labelsForNum.length - 1]) + 1;
-        labelsForNum.push(nextLabel.toString());
-        setLabelsForNum(labelsForNum);
-
-        const nextQuestion = generateNextQuestion();
-        questionHistoryArray.push(nextQuestion);
-        setQuestionHistoryArray(questionHistoryArray);
-
-        getPercentCorrect();
-
-        getTypeCount();
-      }
-    },
-    [labelsForNum, questionHistoryArray],
-  );
-
-  let dataForPercentCorrect = {
-    labels: labelsForNum,
-    datasets: [
-      {
-        label: "Total % Correct",
-        data: percentCorrectArray,
-        borderColor: "green",
-        pointRadius: 0,
-        tension: 0.1,
-      },
-    ],
-  };
-
-  let dataForLevelCount = {
-    labels: labelsForNum,
-    datasets: [
-      {
-        label: "Level One Count",
-        data: levelOneCountArray,
-        borderColor: "red",
-        pointRadius: 0,
-        tension: 0.1,
-      },
-      {
-        label: "Level Two Count",
-        data: levelTwoCountArray,
-        borderColor: "blue",
-        pointRadius: 0,
-        tension: 0.1,
-      },
-      {
-        label: "Level Three Count",
-        data: levelThreeCountArray,
-        borderColor: "purple",
-        pointRadius: 0,
-        tension: 0.1,
-      },
-    ],
-  };
-  let dataForQuestionLevelCount = {
-    labels: [1, 2, 3],
-    datasets: [
-      {
-        label: "Total of Level",
-        data: typeCountArray,
-        backgroundColor: "rgba(53, 162, 235)",
-      },
-      {
-        label: "Total Right of Level",
-        data: totalRightPerLevel,
-        backgroundColor: "green",
-      },
-      {
-        label: "Total Wrong of Level",
-        data: totalWrongPerLevel,
-        backgroundColor: "rgba(255, 99, 132)",
-      },
-    ],
-  };
+    addRandom();
+  }, [totalQuestions]);
 
   return (
     <Box sx={{ textAlign: "center" }}>
       <Grid container sx={{ backgroundColor: "white" }}>
-        <Grid item xs={12} md={4}>
+        {/* <Grid item xs={12} md={4}>
           <Line options={optionsForNum} data={dataForPercentCorrect} />
         </Grid>
         <Grid item xs={12} md={4}>
@@ -280,15 +98,64 @@ const UserEmulator = () => {
         </Grid>
         <Grid item xs={12} md={4}>
           <Line options={optionsForNum} data={dataForLevelCount} />
+        </Grid> */}
+        <Grid item md={1}>
+          <table>
+            <thead>
+              <tr>
+                <th>Lvl</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>{userModel.one}</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>{userModel.two}</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>{userModel.three}</td>
+              </tr>
+            </tbody>
+          </table>
         </Grid>
-        <Grid item xs={12} md={12}>
+        <Grid item md={1}>
+          {`${batch}`}
+        </Grid>
+        <Grid item md={1}>
+          {`${currentQuestion}`}
+        </Grid>
+        <Grid item md={1}>
+          {`Total Correct - ${totalCorrect}`}
+        </Grid>
+        <Grid item md={2}>
+          {`Total Questions - ${totalQuestions}`}
+        </Grid>
+        <Grid item md={1}>
+          {`Percent Correct - ${((totalCorrect / totalQuestions) * 100).toFixed(2)}`}
+        </Grid>
+        <Grid item md={6}>
           <Button
             variant="contained"
+            sx={{ backgroundColor: "green" }}
             onClick={() => {
-              addRandom(100);
+              answerQuestion(true);
             }}
           >
-            Add 100 Random Questions
+            Answer Correct
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "red" }}
+            onClick={() => {
+              answerQuestion(false);
+            }}
+          >
+            Answer Wrong
           </Button>
           <Button
             variant="contained"
@@ -353,4 +220,65 @@ export default UserEmulator;
 //       </Button>
 //     </Container>
 //   );
+// };
+
+// let dataForPercentCorrect = {
+//   labels: labelsForNum,
+//   datasets: [
+//     {
+//       label: "Total % Correct",
+//       data: percentCorrectArray,
+//       borderColor: "green",
+//       pointRadius: 0,
+//       tension: 0.1,
+//     },
+//   ],
+// };
+
+// let dataForLevelCount = {
+//   labels: labelsForNum,
+//   datasets: [
+//     {
+//       label: "Level One Count",
+//       data: levelOneCountArray,
+//       borderColor: "red",
+//       pointRadius: 0,
+//       tension: 0.1,
+//     },
+//     {
+//       label: "Level Two Count",
+//       data: levelTwoCountArray,
+//       borderColor: "blue",
+//       pointRadius: 0,
+//       tension: 0.1,
+//     },
+//     {
+//       label: "Level Three Count",
+//       data: levelThreeCountArray,
+//       borderColor: "purple",
+//       pointRadius: 0,
+//       tension: 0.1,
+//     },
+//   ],
+// };
+
+// let dataForQuestionLevelCount = {
+//   labels: [1, 2, 3],
+//   datasets: [
+//     {
+//       label: "Total of Level",
+//       data: typeCountArray,
+//       backgroundColor: "rgba(53, 162, 235)",
+//     },
+//     {
+//       label: "Total Right of Level",
+//       data: totalRightPerLevel,
+//       backgroundColor: "green",
+//     },
+//     {
+//       label: "Total Wrong of Level",
+//       data: totalWrongPerLevel,
+//       backgroundColor: "rgba(255, 99, 132)",
+//     },
+//   ],
 // };
