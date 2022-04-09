@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Typography, Grid, Button } from "@mui/material";
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 
@@ -8,12 +8,19 @@ theme = responsiveFontSizes(theme);
 const SortingSandbox = () => {
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
-  const [sortHistoryArray, setSortHistoryArray] = useState([]);
+  const [sortHistoryArray, setSortHistoryArray] = useState([
+    [
+      { value: 1, color: "blue" },
+      { value: 2, color: "blue" },
+      { value: 5, color: "blue" },
+      { value: 6, color: "blue" },
+      { value: 4, color: "blue" },
+    ],
+  ]);
   const [step, setStep] = useState(0);
-  const speed = useRef(500);
   const createRandomArray = () => {
     const tempArray = [];
-    for (let i = 0; i < 15; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
       const elementObject = {
         value: Math.floor(Math.random() * (99 - 10) + 10),
         color: "blue",
@@ -77,7 +84,7 @@ const SortingSandbox = () => {
 
   const prevStep = () => {
     if (step > 0) {
-      setStep(step - 1);
+      setStep((pStep) => pStep - 1);
     }
   };
 
@@ -96,7 +103,7 @@ const SortingSandbox = () => {
               justifyContent: "space-evenly",
             }}
           >
-            {sortHistoryArray[step]?.map((element, idx) => (
+            {sortHistoryArray[step].map((element, idx) => (
               <Grid item key={idx} sx={{ height: "75vh", width: "6vw" }}>
                 <Box
                   sx={{
@@ -131,14 +138,6 @@ const SortingSandbox = () => {
         </Button>
         <Button variant="contained" onClick={nextStep}>
           Next Step
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() => {
-            setInterval(nextStep, speed.current);
-          }}
-        >
-          Play
         </Button>
       </Box>
     </ThemeProvider>
