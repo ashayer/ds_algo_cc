@@ -60,14 +60,13 @@ const headCells = [
   {
     id: "name",
     numeric: false,
-    disablePadding: false,
-    label: "Dessert (100g serving)",
+    label: "Name",
   },
   {
     id: "calories",
     numeric: true,
     disablePadding: false,
-    label: "Calories",
+    label: "Points",
   },
   {
     id: "fat",
@@ -102,8 +101,8 @@ function EnhancedTableHead(props) {
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
-            padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
+            sx={{ width: "6vw" }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
