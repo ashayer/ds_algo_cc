@@ -111,10 +111,16 @@ const SortingSandbox = () => {
     setAlgorithm(e.target.value);
   };
 
-  const handleSliderChange = (e, value) => {
+  const handleSizeSliderChange = (e, value) => {
     if (!(arraySize.current === value)) {
       arraySize.current = value;
       createRandomArray();
+    }
+  };
+
+  const handleHistorySliderChange = (e, value) => {
+    if (!(step === value)) {
+      setStep(value);
     }
   };
 
@@ -159,10 +165,9 @@ const SortingSandbox = () => {
             Generate New Random Array
           </Button>
           <Slider
-            aria-label="Temperature"
             defaultValue={15}
             onChangeCommitted={(e, value) => {
-              handleSliderChange(e, value);
+              handleSizeSliderChange(e, value);
             }}
             valueLabelDisplay="auto"
             step={1}
@@ -215,7 +220,17 @@ const SortingSandbox = () => {
         <Button variant="contained" onClick={nextStep}>
           Next Step
         </Button>
-
+        <Slider
+          defaultValue={0}
+          onChange={(e, value) => {
+            handleHistorySliderChange(e, value);
+          }}
+          valueLabelDisplay="auto"
+          step={1}
+          min={0}
+          max={sortHistoryArray.length - 1}
+          sx={{ width: "15vw" }}
+        />
         <Grid
           container
           sx={{
