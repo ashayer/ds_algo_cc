@@ -27,7 +27,7 @@ theme = responsiveFontSizes(theme);
 
 const SortingSandbox = () => {
   const [algorithm, setAlgorithm] = useState("");
-  const arraySize = useRef(15);
+  const arraySize = useRef(10);
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
   const [sortHistoryArray, setSortHistoryArray] = useState([[{}]]);
@@ -162,10 +162,10 @@ const SortingSandbox = () => {
               createRandomArray();
             }}
           >
-            Generate New Random Array
+            {`Generate New Random Array of Size ${arraySize.current}`}
           </Button>
           <Slider
-            defaultValue={15}
+            defaultValue={10}
             onChangeCommitted={(e, value) => {
               handleSizeSliderChange(e, value);
             }}
@@ -220,8 +220,9 @@ const SortingSandbox = () => {
         <Button variant="contained" onClick={nextStep}>
           Next Step
         </Button>
+        <Typography>{sortHistoryArray.length > 1 ? `Step ${step} of ${sortHistoryArray.length - 1}` : "Press Sort"}</Typography>
         <Slider
-          defaultValue={0}
+          value={step}
           onChange={(e, value) => {
             handleHistorySliderChange(e, value);
           }}
