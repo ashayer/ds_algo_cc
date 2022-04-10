@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Container, Button, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import InsertionAccordion from "./InsertionInfo/InsertionAccordion";
-import SelectionAccordion from "./SelectionInfo/SelectionAccordion";
-import MergeAccordion from "./MergeInfo/MergeAccordion";
-import QuickAccordion from "./QuickInfo/QuickAccordion";
+import InsertionAccordion from "./LinkedListInfo/LinkedListAccordion";
+import SelectionAccordion from "./StackInfo/StackAccordion";
+import MergeAccordion from "./BinaryTreeInfo/BinaryTreeAccordion";
+import QuickAccordion from "./QueueInfo/QueueAccordion";
 import StructureSectionArray from "./StructureSectionArray";
 import Navbar from "../../Navbar/Navbar";
 
@@ -35,7 +35,7 @@ const DataStructures = () => {
           }}
         >
           <ArrowBackIcon />
-          {sectionNum > 0 ? `${tempSectionArray[sectionNum - 1].section}` : null}
+          {sectionNum > 0 ? `${tempSectionArray[sectionNum - 1].sectionName}` : null}
         </Button>
 
         <Button
@@ -49,7 +49,7 @@ const DataStructures = () => {
           }}
         >
           {sectionNum < tempSectionArray.length - 1
-            ? `${tempSectionArray[sectionNum + 1].section}`
+            ? `${tempSectionArray[sectionNum + 1].sectionName}`
             : null}
           <ArrowForwardIcon />
         </Button>

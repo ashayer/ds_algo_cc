@@ -36,7 +36,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
       }}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography variant="h3">{tempSectionArray[3].section}</Typography>
+        <Typography variant="h3">{tempSectionArray[3].sectionName}</Typography>
       </AccordionSummary>
       <AccordionDetails>
         {tempSectionArray[3].subsections.map((subsection, index) => (

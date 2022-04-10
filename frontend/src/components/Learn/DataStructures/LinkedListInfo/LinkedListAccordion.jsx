@@ -7,50 +7,55 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button, Grid } from "@mui/material";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import InsertionGeneral from "./LinkedListGeneral";
+import InsertionCode from "./LinkedListCode";
 
 const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
-
-  const completed = (index) => {
-    tempSectionArray[3].subsections[index].completed = true;
-    const tempSectionArrayOne = tempSectionArray.slice();
-    setTempSectionArray(tempSectionArrayOne);
-    setCurrentSubSection(tempSectionArray[3].subsections[index].name);
-    if (index === tempSectionArray[3].subsections.length - 1) {
-      tempSectionArray[3].completed = true;
-      const temp = tempSectionArray.slice();
-      setTempSectionArray(temp);
-    }
-  };
 
   function handleAccordClick(name) {
     if (currentSubSection === name) setCurrentSubSection("");
     if (currentSubSection !== name) setCurrentSubSection(name);
   }
 
+  const completed = (index) => {
+    tempSectionArray[0].subsections[index].completed = true;
+    const tempSectionArrayOne = tempSectionArray.slice();
+    setTempSectionArray(tempSectionArrayOne);
+    setCurrentSubSection(tempSectionArray[0].subsections[index].name);
+    if (index === tempSectionArray[0].subsections.length - 1) {
+      tempSectionArray[0].completed = true;
+      const temp = tempSectionArray.slice();
+      setTempSectionArray(temp);
+    }
+    handleAccordClick(tempSectionArray[0].subsections[index].name);
+  };
+
   return (
     <Accordion
       defaultExpanded
       sx={{
-        backgroundColor: `${tempSectionArray[3].completed ? "#4db866" : "#ff8178"}`,
+        backgroundColor: `${tempSectionArray[0].completed ? "#4db866" : "#ff8178"}`,
       }}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography variant="h3">{tempSectionArray[3].section}</Typography>
+        <Typography variant="h3">{tempSectionArray[0].sectionName}</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        {tempSectionArray[3].subsections.map((subsection, index) => (
+        {tempSectionArray[0].subsections.map((subsection, index) => (
           <Accordion
             key={subsection.name}
             expanded={currentSubSection === subsection.name}
-            onClick={
-              index === 0 || tempSectionArray[3].subsections[index - 1].completed
-                ? () => handleAccordClick(subsection.name)
-                : null
-            }
-            disabled={index === 0 ? false : !tempSectionArray[3].subsections[index - 1].completed}
+            disabled={index === 0 ? false : !tempSectionArray[0].subsections[index - 1].completed}
           >
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              onClick={
+                index === 0 || tempSectionArray[0].subsections[index - 1].completed
+                  ? () => handleAccordClick(subsection.name)
+                  : null
+              }
+            >
               <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
                 <Typography variant="h5">{subsection.name}</Typography>
                 {subsection.completed ? (
@@ -62,11 +67,9 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
             </AccordionSummary>
             <AccordionDetails>
               {index === 0 ? (
-                <Typography>Quick Complexities</Typography>
+                <InsertionGeneral />
               ) : index === 1 ? (
-                <Typography>Quick Complexities</Typography>
-              ) : index === 2 ? (
-                <Typography>Quick Code</Typography>
+                <InsertionCode />
               ) : null}
             </AccordionDetails>
             <Button onClick={() => completed(index)} variant="contained">

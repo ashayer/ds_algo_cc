@@ -1,7 +1,7 @@
 const StructureSectionArray = [
   {
     sectionID: 1,
-    sectionName: "Insertion Sort",
+    sectionName: "Linked List",
     completed: false,
     subsections: [
       {
@@ -10,54 +10,58 @@ const StructureSectionArray = [
         completed: false,
       },
       {
+        subsectionId: 1.2,
         name: "Code",
         completed: false,
       },
     ],
   },
   {
-    sectionID: 1,
-    sectionName: "Selection Sort",
+    sectionID: 2,
+    sectionName: "Stack",
     completed: false,
     subsections: [
       {
-        subsectionId: 1.1,
+        subsectionId: 2.1,
         name: "General and Complexities",
         completed: false,
       },
       {
+        subsectionId: 2.2,
         name: "Code",
         completed: false,
       },
     ],
   },
   {
-    sectionID: 1,
-    sectionName: "Merge Sort",
+    sectionID: 3,
+    sectionName: "Queue",
     completed: false,
     subsections: [
       {
-        subsectionId: 1.1,
+        subsectionId: 3.1,
         name: "General and Complexities",
         completed: false,
       },
       {
+        subsectionId: 3.2,
         name: "Code",
         completed: false,
       },
     ],
   },
   {
-    sectionID: 1,
-    sectionName: "Quick Sort",
+    sectionID: 4,
+    sectionName: "Binary Tree",
     completed: false,
     subsections: [
       {
-        subsectionId: 1.1,
+        subsectionId: 4.1,
         name: "General and Complexities",
         completed: false,
       },
       {
+        subsectionId: 4.2,
         name: "Code",
         completed: false,
       },

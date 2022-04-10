@@ -34,7 +34,7 @@ const Algos = () => {
           }}
         >
           <ArrowBackIcon />
-          {sectionNum > 0 ? `${tempSectionArray[sectionNum - 1].section}` : null}
+          {sectionNum > 0 ? `${tempSectionArray[sectionNum - 1].sectionName}` : null}
         </Button>
 
         <Button
@@ -48,7 +48,7 @@ const Algos = () => {
           }}
         >
           {sectionNum < tempSectionArray.length - 1
-            ? `${tempSectionArray[sectionNum + 1].section}`
+            ? `${tempSectionArray[sectionNum + 1].sectionName}`
             : null}
           <ArrowForwardIcon />
         </Button>

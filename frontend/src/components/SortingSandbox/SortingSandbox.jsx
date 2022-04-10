@@ -108,13 +108,14 @@ const SortingSandbox = () => {
   }, []);
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setAlgorithm(e.target.value);
   };
 
   const handleSliderChange = (e, value) => {
-    arraySize.current = value;
-    createRandomArray();
+    if (!(arraySize.current === value)) {
+      arraySize.current = value;
+      createRandomArray();
+    }
   };
 
   return (
@@ -165,8 +166,7 @@ const SortingSandbox = () => {
             }}
             valueLabelDisplay="auto"
             step={1}
-            marks
-            min={3}
+            min={5}
             max={15}
             sx={{ width: "15vw" }}
           />
@@ -179,7 +179,7 @@ const SortingSandbox = () => {
             Sort
           </Button>
         </AppBar>
-        <Box sx={{ border: "1px solid black", mt: "2vh" }}>
+        <Box sx={{ border: "2px solid black", mt: "2vh" }}>
           <Grid
             container
             sx={{
@@ -209,7 +209,6 @@ const SortingSandbox = () => {
             ))}
           </Grid>
         </Box>
-
         <Button variant="contained" onClick={prevStep}>
           Prev Step
         </Button>
