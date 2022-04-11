@@ -1,5 +1,6 @@
 import express from "express";
 import { registerUser, loginUser, updatePoints, getUsers } from "../controllers/userController.js";
+// eslint-disable-next-line no-unused-vars
 import protect from "../middleware/authMiddle.js";
 const router = express.Router();
 

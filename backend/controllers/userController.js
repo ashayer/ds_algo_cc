@@ -275,7 +275,6 @@ export const updatePoints = asyncHandler(async (req) => {
 });
 
 export const getUsers = asyncHandler(async (req, res) => {
-  const users = await User.find({});
-  console.log(users);
+  const users = await User.find().select("name points responseTime streak numCorrect numWrong gamesPlayed");
   res.status(200).json(users);
 });
