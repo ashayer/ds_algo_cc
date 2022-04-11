@@ -41,18 +41,18 @@ export const updatePoints = createAsyncThunk("game/update", async (userInfo, thu
   }
 });
 
-export const getPoints = createAsyncThunk("auth/getPoints", async (userId, thunkAPI) => {
-  try {
-    return await gameService.getPoints(userId);
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
+// export const getPoints = createAsyncThunk("auth/getPoints", async (userId, thunkAPI) => {
+//   try {
+//     return await gameService.getPoints(userId);
+//   } catch (error) {
+//     const message =
+//       (error.response && error.response.data && error.response.data.message) ||
+//       error.message ||
+//       error.toString();
 
-    return thunkAPI.rejectWithValue(message);
-  }
-});
+//     return thunkAPI.rejectWithValue(message);
+//   }
+// });
 
 export const gameSlice = createSlice({
   name: "auth",
@@ -76,20 +76,6 @@ export const gameSlice = createSlice({
         state.user.points = action.payload;
       })
       .addCase(updatePoints.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-        state.user = null;
-      })
-      .addCase(getPoints.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getPoints.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.user = action.payload;
-      })
-      .addCase(getPoints.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

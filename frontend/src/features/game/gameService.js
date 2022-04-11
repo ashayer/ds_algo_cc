@@ -9,7 +9,6 @@ const updatePoints = async (
   userNumCorrect,
   userNumWrong,
   userStreak,
-  userHistory,
 ) => {
   const response = await axios.patch(`${API_URL}user/${userId}`, {
     points: userPoints,
@@ -17,21 +16,19 @@ const updatePoints = async (
     streak: userStreak,
     numCorrect: userNumCorrect,
     numWrong: userNumWrong,
-    qHistory: userHistory,
   });
 
   return response.data;
 };
 
-const getPoints = async (userId) => {
-  const response = await axios.get(`${API_URL}user/${userId}`);
+// const getPoints = async (userId) => {
+//   const response = await axios.get(`${API_URL}user/${userId}`);
 
-  return response.data;
-};
+//   return response.data;
+// };
 
 const gameService = {
   updatePoints,
-  getPoints,
 };
 
 export default gameService;

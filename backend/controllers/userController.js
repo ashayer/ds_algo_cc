@@ -3,6 +3,93 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 
+const StructureSectionArray = [
+  {
+    sectionID: 1,
+    sectionName: "Linked List",
+    completed: false,
+    subsections: [
+      {
+        subsectionId: 1.1,
+        name: "General and Complexities",
+        completed: false,
+        quizScore: 0,
+        quizCompleted: false,
+      },
+      {
+        subsectionId: 1.2,
+        name: "Code",
+        completed: false,
+        quizScore: 0,
+        quizCompleted: false,
+      },
+    ],
+  },
+  {
+    sectionID: 2,
+    sectionName: "Stack",
+    completed: false,
+    subsections: [
+      {
+        subsectionId: 2.1,
+        name: "General and Complexities",
+        completed: false,
+        quizScore: 0,
+        quizCompleted: false,
+      },
+      {
+        subsectionId: 2.2,
+        name: "Code",
+        completed: false,
+        quizScore: 0,
+        quizCompleted: false,
+      },
+    ],
+  },
+  {
+    sectionID: 3,
+    sectionName: "Queue",
+    completed: false,
+    subsections: [
+      {
+        subsectionId: 3.1,
+        name: "General and Complexities",
+        completed: false,
+        quizScore: 0,
+        quizCompleted: false,
+      },
+      {
+        subsectionId: 3.2,
+        name: "Code",
+        completed: false,
+        quizScore: 0,
+        quizCompleted: false,
+      },
+    ],
+  },
+  {
+    sectionID: 4,
+    sectionName: "Binary Tree",
+    completed: false,
+    subsections: [
+      {
+        subsectionId: 4.1,
+        name: "General and Complexities",
+        completed: false,
+        quizScore: 0,
+        quizCompleted: false,
+      },
+      {
+        subsectionId: 4.2,
+        name: "Code",
+        completed: false,
+        quizScore: 0,
+        quizCompleted: false,
+      },
+    ],
+  },
+];
+
 const AlgoSectionArray = [
   {
     sectionID: 1,
@@ -13,11 +100,15 @@ const AlgoSectionArray = [
         subsectionId: 1.1,
         name: "General and Complexities",
         completed: false,
+        quizScore: 0,
+        quizCompleted: false,
       },
       {
         subsectionId: 1.2,
         name: "Code",
         completed: false,
+        quizScore: 0,
+        quizCompleted: false,
       },
     ],
   },
@@ -30,11 +121,15 @@ const AlgoSectionArray = [
         subsectionId: 2.1,
         name: "General and Complexities",
         completed: false,
+        quizScore: 0,
+        quizCompleted: false,
       },
       {
         subsectionId: 2.2,
         name: "Code",
         completed: false,
+        quizScore: 0,
+        quizCompleted: false,
       },
     ],
   },
@@ -47,11 +142,15 @@ const AlgoSectionArray = [
         subsectionId: 3.1,
         name: "General and Complexities",
         completed: false,
+        quizScore: 0,
+        quizCompleted: false,
       },
       {
         subsectionId: 3.2,
         name: "Code",
         completed: false,
+        quizScore: 0,
+        quizCompleted: false,
       },
     ],
   },
@@ -64,15 +163,21 @@ const AlgoSectionArray = [
         subsectionId: 4.1,
         name: "General and Complexities",
         completed: false,
+        quizScore: 0,
+        quizCompleted: false,
       },
       {
         subsectionId: 4.2,
         name: "Code",
         completed: false,
+        quizScore: 0,
+        quizCompleted: false,
       },
     ],
   },
 ];
+
+export default StructureSectionArray;
 
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
@@ -100,7 +205,9 @@ export const registerUser = asyncHandler(async (req, res) => {
     streak: 0,
     numCorrect: 0,
     numWrong: 0,
+    gamesPlayed: 0,
     algoReading: AlgoSectionArray,
+    dataReading: StructureSectionArray,
   });
 
   if (user) {
@@ -113,7 +220,9 @@ export const registerUser = asyncHandler(async (req, res) => {
       streak: user.streak,
       numCorrect: user.numCorrect,
       numWrong: user.numWrong,
+      gamesPlayed: user.gamesPlayed,
       algoReading: user.algoReading,
+      dataReading: user.dataReading,
       token: generateToken(user._id),
     });
   } else {
@@ -137,6 +246,9 @@ export const loginUser = asyncHandler(async (req, res) => {
       streak: user.streak,
       numCorrect: user.numCorrect,
       numWrong: user.numWrong,
+      gamesPlayed: user.gamesPlayed,
+      algoReading: user.algoReading,
+      dataReading: user.dataReading,
       token: generateToken(user._id),
     });
   } else {
