@@ -6,7 +6,6 @@ const Answers = ({
   answers,
   startGame,
   questionType,
-  questionTopicNum,
   questionStartTime,
   isHighestStreak,
   checkLineOrder,
@@ -43,12 +42,6 @@ const Answers = ({
     localUser.numCorrect += 1;
     localUser.streak += 1;
     localUser.responseTime += calculatedResponseTime;
-    localUser.qHistory.push({
-      qType: questionType,
-      qTopic: questionTopicNum,
-      correct: 1,
-      rTime: calculatedResponseTime,
-    });
     sessionStorage.setItem("user", JSON.stringify(localUser));
 
     isHighestStreak();
@@ -72,12 +65,6 @@ const Answers = ({
     localUser.numWrong += 1;
     localUser.streak = 0;
     localUser.responseTime += calculatedResponseTime;
-    localUser.qHistory.push({
-      qType: questionType,
-      qTopic: questionTopicNum,
-      correct: 0,
-      rTime: calculatedResponseTime,
-    });
     sessionStorage.setItem("user", JSON.stringify(localUser));
 
     startGame();

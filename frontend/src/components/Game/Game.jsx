@@ -2,16 +2,36 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Grid, Button, Container, Paper, Grow } from "@mui/material/";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
 import questionHandler from "../../Algorithms/handler";
 import algorithmInfoArray from "../../Algorithms/infoArray";
-import { updatePoints } from "../../features/game/gameSlice";
 import Navbar from "../Navbar/Navbar";
 import Answers from "./Answers/Answers";
 import Content from "./Content/Content";
 import Question from "./Question/Question";
 import UserStatsTable from "./UserStatsTable/UserStatsTable";
+
+const API_URL = "/api/users/";
+
+const updatePoints = async (
+  userId,
+  userPoints,
+  userResponseTime,
+  userNumCorrect,
+  userNumWrong,
+  userStreak,
+) => {
+  const response = await axios.patch(`${API_URL}user/${userId}`, {
+    points: userPoints,
+    responseTime: userResponseTime,
+    streak: userStreak,
+    numCorrect: userNumCorrect,
+    numWrong: userNumWrong,
+  });
+
+  return response.data;
+};
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -30,27 +50,24 @@ const Game = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [questionTopic, setQuestionTopic] = useState("");
   const [questionType, setQuestionType] = useState(0);
-  const [questionTopicNum, setQuestionTopicNum] = useState(0);
   const [timer, setTimer] = useState(timeLeft);
   const [object, setObject] = useState({}); // ! change name to something more descriptive
   // const [contentObject, setContentObject] = useState([{}]);
   const contentObject = useRef([{}]);
 
-  const dispatch = useDispatch();
-
   const endGame = () => {
     const totalQuestions = localUser.numCorrect + localUser.numWrong;
     const averageResponseTime = Math.floor(localUser.responseTime / totalQuestions);
-    dispatch(
-      updatePoints({
-        userId: localUser._id,
-        userPoints: localUser.points,
-        userResponseTime: averageResponseTime,
-        userNumCorrect: localUser.numCorrect,
-        userNumWrong: localUser.numWrong,
-        userStreak: highestStreak,
-      }),
+
+    const test = updatePoints(
+      localUser._id,
+      localUser.points,
+      averageResponseTime,
+      localUser.numCorrect,
+      localUser.numWrong,
+      highestStreak,
     );
+    test.then((r) => console.log(r));
     setGameStarted(false);
   };
 
@@ -121,7 +138,6 @@ const Game = () => {
     // const topicIndex = Math.floor(Math.random() * 4);
     // const typeIndex = 6;
 
-    setQuestionTopicNum(topicIndex);
     setQuestionTopic(algorithmInfoArray[topicIndex].name);
     const gameObject = questionHandler(topicIndex, typeIndex);
     const answerOptions = [];
@@ -282,7 +298,6 @@ const Game = () => {
               startGame={startGame}
               questionType={questionType}
               questionStartTime={questionStartTime}
-              questionTopicNum={questionTopicNum}
               isHighestStreak={isHighestStreak}
               checkLineOrder={checkLineOrder}
             />

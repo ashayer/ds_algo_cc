@@ -6,7 +6,6 @@ import AlgoSectionArray from "../models/structureSectionReading.js";
 import StructureSectionArray from "../models/structureSectionReading.js";
 
 export const registerUser = asyncHandler(async (req, res) => {
-  console.log(req.body);
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
     res.status(400);
@@ -89,6 +88,7 @@ const generateToken = (id) => {
 //req body is {points: points, responseTime: time}
 //! add error catches
 export const updatePoints = asyncHandler(async (req) => {
+  console.log(req.body);
   await User.findByIdAndUpdate(req.params.id, {
     points: req.body.points,
     responseTime: req.body.responseTime,
