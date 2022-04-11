@@ -22,6 +22,11 @@ const Algos = () => {
     if (sectionNum > 0) setSectionNum(sectionNum - 1);
   };
 
+  const updateLocalUser = (array) => {
+    localUser.algoReading = array;
+    sessionStorage.setItem("user", JSON.stringify(localUser));
+  };
+
   return (
     <Container maxWidth="xl">
       <Navbar page="Sorting Algorithms" />
@@ -59,24 +64,28 @@ const Algos = () => {
           sectionNum={sectionNum}
           tempSectionArray={tempSectionArray}
           setTempSectionArray={setTempSectionArray}
+          updateLocalUser={updateLocalUser}
         />
       ) : sectionNum === 1 ? (
         <SelectionAccordion
           sectionNum={sectionNum}
           tempSectionArray={tempSectionArray}
           setTempSectionArray={setTempSectionArray}
+          updateLocalUser={updateLocalUser}
         />
       ) : sectionNum === 2 ? (
         <MergeAccordion
           sectionNum={sectionNum}
           tempSectionArray={tempSectionArray}
           setTempSectionArray={setTempSectionArray}
+          updateLocalUser={updateLocalUser}
         />
       ) : sectionNum === 3 ? (
         <QuickAccordion
           sectionNum={sectionNum}
           tempSectionArray={tempSectionArray}
           setTempSectionArray={setTempSectionArray}
+          updateLocalUser={updateLocalUser}
         />
       ) : null}
     </Container>

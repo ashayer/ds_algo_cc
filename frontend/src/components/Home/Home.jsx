@@ -17,21 +17,41 @@ import Navbar from "../Navbar/Navbar";
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
-const localUser = JSON.parse(sessionStorage.getItem("user"));
+const calculateCompletedReadingForAlgo = () => {
+  const localUser = JSON.parse(sessionStorage.getItem("user"));
 
-
-const calculateCompletedReading = () => {
   const totalSections = 4;
   const totalSubSections = 2;
+  let completed = 0;
   for (let i = 0; i < totalSections; i += 1) {
-    for (let j= 0; j < totalSubSections; j += 1) {
-      if(localUser.algoReading[i].subsections[j].completed)
+    for (let j = 0; j < totalSubSections; j += 1) {
+      if (localUser.algoReading[i].subsections[j].completed) {
+        completed += 1;
+      }
     }
   }
+  return (completed / 8) * 100;
+};
 
+const calculateCompletedReadingForData = () => {
+  const localUser = JSON.parse(sessionStorage.getItem("user"));
+
+  const totalSections = 4;
+  const totalSubSections = 2;
+  let completed = 0;
+  for (let i = 0; i < totalSections; i += 1) {
+    for (let j = 0; j < totalSubSections; j += 1) {
+      if (localUser.dataReading[i].subsections[j].completed) {
+        completed += 1;
+      }
+    }
+  }
+  return (completed / 8) * 100;
 };
 
 const Home = () => {
+  const localUser = JSON.parse(sessionStorage.getItem("user"));
+
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
@@ -39,6 +59,8 @@ const Home = () => {
     if (!user || !localUser) {
       navigate("/login");
     }
+    calculateCompletedReadingForAlgo();
+    calculateCompletedReadingForData();
   }, [user, localUser, navigate]);
 
   return (
@@ -149,7 +171,7 @@ const Home = () => {
                         <Typography variant="h2">Read</Typography>
                       </CardContent>
                     </CardActionArea>
-                    <CardContent>Stats of amount read about sorting algorithms</CardContent>
+                    <CardContent>{`${calculateCompletedReadingForAlgo()}% Read`}</CardContent>
                   </Card>
                   <Card sx={{ minWidth: "50%" }}>
                     <CardActionArea
@@ -178,7 +200,7 @@ const Home = () => {
                         <Typography variant="h2">Read</Typography>
                       </CardContent>
                     </CardActionArea>
-                    <CardContent>Stats of amount read about data structures</CardContent>
+                    <CardContent>{`${calculateCompletedReadingForData()}% Read`}</CardContent>
                   </Card>
                   <Card sx={{ minWidth: "50%" }}>
                     <CardActionArea

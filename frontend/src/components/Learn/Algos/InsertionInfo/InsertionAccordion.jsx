@@ -10,7 +10,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import InsertionGeneral from "./InsertionGeneral";
 import InsertionCode from "./InsertionCode";
 
-const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
+const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocalUser }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
 
   function handleAccordClick(name) {
@@ -29,6 +29,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
       setTempSectionArray(temp);
     }
     handleAccordClick(tempSectionArray[0].subsections[index].name);
+    updateLocalUser(tempSectionArray);
   };
 
   return (
@@ -66,15 +67,17 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
               </Grid>
             </AccordionSummary>
             <AccordionDetails>
-              {index === 0 ? (
-                <InsertionGeneral />
-              ) : index === 1 ? (
-                <InsertionCode />
-              ) : null}
+              {index === 0 ? <InsertionGeneral /> : index === 1 ? <InsertionCode /> : null}
             </AccordionDetails>
-            <Button onClick={() => completed(index)} variant="contained">
-              Completed
-            </Button>
+            {!subsection.completed ? (
+              <Button onClick={() => completed(index)} variant="contained">
+                Take Quiz
+              </Button>
+            ) : (
+              <Button onClick={() => handleAccordClick(index)} variant="contained">
+                Close
+              </Button>
+            )}
           </Accordion>
         ))}
       </AccordionDetails>
