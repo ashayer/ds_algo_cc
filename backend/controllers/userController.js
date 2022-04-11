@@ -75,8 +75,8 @@ const AlgoSectionArray = [
 ];
 
 export const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, skill } = req.body;
-  if (!name || !email || !password || !skill) {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
     res.status(400);
     throw new Error("Missing field");
   }
@@ -95,13 +95,11 @@ export const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashedPassword,
-    skill,
     points: 0,
     responseTime: 0,
     streak: 0,
     numCorrect: 0,
     numWrong: 0,
-    qHistory: [],
     algoReading: AlgoSectionArray,
   });
 
@@ -110,13 +108,11 @@ export const registerUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
-      skill: user.skill,
       points: user.points,
       responseTime: user.responseTime,
       streak: user.streak,
       numCorrect: user.numCorrect,
       numWrong: user.numWrong,
-      qHistory: user.qHistory,
       algoReading: user.algoReading,
       token: generateToken(user._id),
     });
@@ -136,13 +132,11 @@ export const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
-      skill: user.skill,
       points: user.points,
       responseTime: user.responseTime,
       streak: user.streak,
       numCorrect: user.numCorrect,
       numWrong: user.numWrong,
-      qHistory: user.qHistory,
       token: generateToken(user._id),
     });
   } else {
@@ -166,12 +160,11 @@ export const updatePoints = asyncHandler(async (req) => {
     streak: req.body.streak,
     numCorrect: req.body.numCorrect,
     numWrong: req.body.numWrong,
-    qHistory: req.body.qHistory,
   });
 });
 
-export const getPoints = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
-  // console.log("The user current has " + user.points + " points");
-  res.status(200).json(user.points);
-});
+// export const getPoints = asyncHandler(async (req, res) => {
+//   const user = await User.findById(req.params.id);
+//   console.log("The user current has " + user.points + " points");
+//   res.status(200).json(user.points);
+// });

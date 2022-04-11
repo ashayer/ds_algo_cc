@@ -1,16 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Paper,
-  Grid,
-  Container,
-  FormControl,
-  FormLabel,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  Grow,
-} from "@mui/material";
+import { Button, Paper, Grid, Container, Grow } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -23,12 +12,11 @@ const Auth = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    skill: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { name, email, password, confirmPassword, skill } = formData;
+  const { name, email, password, confirmPassword } = formData;
   const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
@@ -49,7 +37,6 @@ const Auth = () => {
         name,
         email,
         password,
-        skill,
         qHistory: [],
       };
       dispatch(register(userData));
@@ -109,18 +96,6 @@ const Auth = () => {
                 handleChange={handleChange}
                 type="password"
               />
-
-              <Grid item>
-                <FormControl sx={{ alignItems: "center" }}>
-                  <FormLabel>What is your knowledge level with sorting algorithms?</FormLabel>
-                  <RadioGroup row onChange={handleChange} name="skill">
-                    <FormControlLabel value={0} control={<Radio />} label="Beginner" />
-                    <FormControlLabel value={1} control={<Radio />} label="Intermediate" />
-                    <FormControlLabel value={2} control={<Radio />} label="Expert" />
-                  </RadioGroup>
-                </FormControl>
-              </Grid>
-
               <Grid item>
                 <Button
                   type="submit"

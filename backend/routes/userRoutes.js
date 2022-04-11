@@ -1,5 +1,5 @@
 import express from "express";
-import { registerUser, loginUser, updatePoints, getPoints } from "../controllers/userController.js";
+import { registerUser, loginUser, updatePoints } from "../controllers/userController.js";
 import protect from "../middleware/authMiddle.js";
 const router = express.Router();
 
@@ -7,6 +7,5 @@ const router = express.Router();
 router.post("/", registerUser);
 router.post("/login", loginUser);
 router.patch("/user/:id", updatePoints); //!does not properly authenticate so cannot use protect middleware
-router.get("/user/:id", getPoints);
 
 export default router;
