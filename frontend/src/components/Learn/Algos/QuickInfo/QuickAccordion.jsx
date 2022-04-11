@@ -66,8 +66,6 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
                 <Typography>Quick Complexities</Typography>
               ) : index === 1 ? (
                 <Typography>Quick Complexities</Typography>
-              ) : index === 2 ? (
-                <Typography>Quick Code</Typography>
               ) : null}
             </AccordionDetails>
             {!subsection.completed ? (

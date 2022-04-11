@@ -66,8 +66,6 @@ const SelectionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
                 <Typography>Selection Complexities</Typography>
               ) : index === 1 ? (
                 <Typography>Selection Complexities</Typography>
-              ) : index === 2 ? (
-                <Typography>Selection Code</Typography>
               ) : null}
             </AccordionDetails>
             {!subsection.completed ? (

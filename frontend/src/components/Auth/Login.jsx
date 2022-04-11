@@ -1,53 +1,69 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Paper, Grid, Container, Grow } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import axios from "axios";
 import Input from "./Input";
-import { login, reset } from "../../features/auth/authSlice";
+
+const API_URL = "/api/users/";
+
+const tempLogin = async (userData) => {
+  try {
+    const response = await axios.post(`${API_URL}login`, userData);
+    if (response.data) {
+      sessionStorage.setItem("user", JSON.stringify(response.data));
+    }
+    return response.status;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
 const Auth = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   const { email, password } = formData;
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
+  useEffect(() => {
+    const localUser = JSON.parse(sessionStorage.getItem("user"));
+    if (localUser) {
+      navigate("/");
+    } else {
+      console.log("No user");
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const userData = {
       email,
       password,
     };
-    dispatch(login(userData));
+
+    // dispatch(login(userData));
+
+    const loginStatus = tempLogin(userData);
+    loginStatus.then((status) => {
+      if (status === 200) {
+        navigate("/");
+      } else {
+        toast.error("Invalid Credentials!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    });
   };
-
-  useEffect(() => {
-    if (isError) {
-      toast.error(message, {
-        position: "bottom-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-
-    if (isSuccess) {
-      navigate("/");
-    }
-
-    dispatch(reset());
-  }, [user, isLoading, isError, isSuccess, message, navigate, dispatch]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

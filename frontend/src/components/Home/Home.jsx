@@ -9,7 +9,6 @@ import {
   Box,
   Slide,
 } from "@mui/material";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Navbar/Navbar";
@@ -52,16 +51,15 @@ const calculateCompletedReadingForData = () => {
 const Home = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
 
-  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user || !localUser) {
+    if (!localUser) {
       navigate("/login");
     }
     calculateCompletedReadingForAlgo();
     calculateCompletedReadingForData();
-  }, [user, localUser, navigate]);
+  }, [localUser, navigate]);
 
   return (
     <ThemeProvider theme={theme}>
