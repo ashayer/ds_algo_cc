@@ -20,6 +20,21 @@ const register = async (userData) => {
   }
 };
 
+// const getRandomValues = async () => {
+//   for (let i = 0; i < 10; i += 1) {
+//     // eslint-disable-next-line no-await-in-loop
+//     const results = await axios.get("https://randomuser.me/api/");
+//     const { name, email, login } = results.data.results[0];
+//     console.log(name.first, email, login.password);
+//     const test = {
+//       name: name.first,
+//       email,
+//       password: login.password,
+//     };
+//     register(test);
+//   }
+// };
+
 const Auth = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -70,6 +85,7 @@ const Auth = () => {
   };
 
   useEffect(() => {
+    // getRandomValues(); //! this is for filling database will random values
     const localUser = JSON.parse(sessionStorage.getItem("user"));
     if (localUser) {
       navigate("/");

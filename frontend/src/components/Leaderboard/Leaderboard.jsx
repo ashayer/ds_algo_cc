@@ -12,7 +12,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
-import axios from "axios"; //! used for now to make basic calls without redux
+import axios from "axios";
 import Navbar from "../Navbar/Navbar";
 
 const API_URL = "/api/users/";
@@ -110,7 +110,7 @@ function EnhancedTableHead(props) {
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
-              {headCell.label}
+              <Typography>{headCell.label}</Typography>
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
                   {order === "desc" ? "sorted descending" : "sorted ascending"}
@@ -132,7 +132,7 @@ const EnhancedTableToolbar = () => {
         pr: { xs: 1, sm: 1 },
       }}
     >
-      <Typography sx={{ flex: "1 1 100%" }} variant="h6" id="tableTitle" component="div">
+      <Typography variant="h4" id="tableTitle">
         User Leaderboard
       </Typography>
     </Toolbar>
@@ -140,10 +140,10 @@ const EnhancedTableToolbar = () => {
 };
 
 export default function Leaderboard() {
-  const [order, setOrder] = useState("asc");
+  const [order, setOrder] = useState("desc");
   const [orderBy, setOrderBy] = useState("points");
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const [rows, setRows] = useState([]);
 
@@ -186,20 +186,20 @@ export default function Leaderboard() {
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <Box>
       <Navbar page="Leaderboard" />
-      <Box maxWidth="xl">
+      <Box maxWidth="xl" sx={{ marginLeft: "auto", marginRight: "auto" }}>
         <Paper sx={{ mt: "2vh" }}>
           <EnhancedTableToolbar />
           <TableContainer>
-            <Table aria-labelledby="tableTitle">
+            <Table>
               <EnhancedTableHead
                 order={order}
                 orderBy={orderBy}
                 onRequestSort={handleRequestSort}
                 rowCount={rows.length}
               />
-              <TableBody>
+              <TableBody sx={{ overflow: "scroll" }}>
                 {rows
                   .slice()
                   .sort(getComparator(order, orderBy))
@@ -208,14 +208,28 @@ export default function Leaderboard() {
                     return (
                       <TableRow hover tabIndex={-1} key={row.name}>
                         <TableCell component="th" id={row.id} scope="row">
-                          {row.name}
+                          <Typography noWrap sx={{ width: "15vw" }}>
+                            {row.name}
+                          </Typography>
                         </TableCell>
-                        <TableCell align="right">{row.points}</TableCell>
-                        <TableCell align="right">{row.gamesPlayed}</TableCell>
-                        <TableCell align="right">{row.streak}</TableCell>
-                        <TableCell align="right">{row.numCorrect}</TableCell>
-                        <TableCell align="right">{row.numWrong}</TableCell>
-                        <TableCell align="right">{row.responseTime}</TableCell>
+                        <TableCell align="right">
+                          <Typography>{row.points}</Typography>
+                        </TableCell>
+                        <TableCell align="right">
+                          <Typography>{row.gamesPlayed}</Typography>
+                        </TableCell>
+                        <TableCell align="right">
+                          <Typography>{row.streak}</Typography>
+                        </TableCell>
+                        <TableCell align="right">
+                          <Typography>{row.numCorrect}</Typography>
+                        </TableCell>
+                        <TableCell align="right">
+                          <Typography>{row.numWrong}</Typography>
+                        </TableCell>
+                        <TableCell align="right">
+                          <Typography>{row.responseTime}</Typography>
+                        </TableCell>
                       </TableRow>
                     );
                   })}
@@ -232,7 +246,7 @@ export default function Leaderboard() {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[5, 10, 15]}
+            rowsPerPageOptions={[10, 15, 20]}
             component="div"
             count={rows.length}
             rowsPerPage={rowsPerPage}
