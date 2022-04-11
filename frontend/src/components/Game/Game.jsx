@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { Grid, Button, Container, Paper, Grow, Slide } from "@mui/material/";
+import { Grid, Button, Container, Paper, Grow } from "@mui/material/";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -300,31 +300,29 @@ const Game = () => {
     </ThemeProvider>
   ) : (
     <ThemeProvider theme={theme}>
-      <Slide in>
-        <Container
-          maxWidth="xl"
-          disableGutters
+      <Navbar page="Game" />
+      <Container
+        maxWidth="xl"
+        disableGutters
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          border: "1px solid black",
+          alignContent: "center",
+        }}
+      >
+        <Button
+          variant="contained"
+          onClick={startGame}
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            border: "1px solid black",
-            alignContent: "center",
+            "&:hover": { backgroundColor: "#358a04" },
+            borderRadius: 0,
+            transition: "all 0.2s ease",
           }}
         >
-          <Navbar page="Game" />
-          <Button
-            variant="contained"
-            onClick={startGame}
-            sx={{
-              "&:hover": { backgroundColor: "#358a04" },
-              borderRadius: 0,
-              transition: "all 0.2s ease",
-            }}
-          >
-            START GAME
-          </Button>
-        </Container>
-      </Slide>
+          START GAME
+        </Button>
+      </Container>
     </ThemeProvider>
   );
 };
