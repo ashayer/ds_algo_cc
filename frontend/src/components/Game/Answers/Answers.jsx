@@ -1,8 +1,6 @@
 import React from "react";
-import { Grid, ButtonBase, Typography } from "@mui/material/";
+import { Grid, ButtonBase, Typography, Button, Box } from "@mui/material/";
 import { toast } from "react-toastify";
-import useStyles from "./styles";
-import "./answers.css";
 
 const Answers = ({
   answers,
@@ -11,9 +9,8 @@ const Answers = ({
   questionTopicNum,
   questionStartTime,
   isHighestStreak,
+  checkLineOrder,
 }) => {
-  const classes = useStyles();
-
   const calculatePoints = () => {
     const localUser = JSON.parse(sessionStorage.getItem("user"));
 
@@ -31,7 +28,7 @@ const Answers = ({
   const correctAnswer = () => {
     const questionEndTime = new Date();
     toast.success("Correct!", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -62,7 +59,7 @@ const Answers = ({
   const wrongAnswer = () => {
     const questionEndTime = new Date();
     toast.error("Incorrect!", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -88,17 +85,41 @@ const Answers = ({
 
   const AnswerBars = () => {
     return answers.map((answer, index) => (
-      <Grid item key={index}>
+      <Grid item key={index} sx={{ margin: "1vh" }}>
         <ButtonBase
+          focusRipple
           onClick={answer[0] ? correctAnswer : wrongAnswer}
-          className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
+          sx={{
+            width: "35vw",
+            height: "20vh",
+          }}
         >
-          <Grid container justifyContent="space-evenly" margin="0px">
+          <Grid
+            container
+            sx={{
+              border: "1px solid black",
+
+              justifyContent: "space-evenly",
+              "&:hover": {
+                backgroundColor: "#fa382a",
+              },
+              transition: "all 0.2s ease",
+            }}
+          >
             {answer[1].map((value, indexA) => (
-              <Grid item key={indexA}>
-                <div className="answerArrayBars" style={{ height: `${value * 2.5}vh` }}>
-                  <Typography variant="h5">{value}</Typography>
-                </div>
+              <Grid item key={indexA} sx={{ height: "20vh", width: "4vw" }}>
+                <Box
+                  sx={{
+                    height: `${value * 2.25}vh`,
+                    backgroundColor: "#a1caff",
+                    color: "black",
+                    position: "absolute",
+                    bottom: "0",
+                    borderRadius: "5px 5px 0px 0px",
+                  }}
+                >
+                  <Typography variant="h4" sx={{ width: "4vw" }}>{`${value}`}</Typography>
+                </Box>
               </Grid>
             ))}
           </Grid>
@@ -109,23 +130,93 @@ const Answers = ({
 
   const AnswerText = () => {
     return answers.map((answer, index) => (
-      <Grid item key={index}>
+      <Grid
+        item
+        key={index}
+        xs={12}
+        md={5}
+        sx={{
+          textAlign: "center",
+          margin: "1vw",
+          border: "1px solid black",
+          "&:hover": {
+            backgroundColor: "#fa382a",
+          },
+          transition: "all 0.2s ease",
+        }}
+      >
         <ButtonBase
           onClick={answer[0] ? correctAnswer : wrongAnswer}
-          className={answer[0] ? classes.rightAnswer : classes.wrongAnswer}
+          sx={{
+            width: "40vw",
+            height: "15vh",
+          }}
         >
-          <Typography variant={questionType < 3 ? "h1" : "h4"}>{answer[1]}</Typography>
+          <Typography variant={questionType < 3 || questionType === 4 ? "h1" : "h4"}>
+            {answer[1]}
+          </Typography>
         </ButtonBase>
       </Grid>
     ));
   };
 
+  const isInOrder = () => {
+    const isOrdered = checkLineOrder();
+    if (isOrdered) {
+      correctAnswer();
+    } else if (!isOrdered) {
+      toast.error("Try again!", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      });
+    }
+  };
+
+  const AnswerDragCode = () => {
+    return (
+      <Grid item>
+        <Button
+          variant="contained"
+          sx={{ padding: "1vh", "&:hover": { backgroundColor: "#22ba48" }, margin: "2vw" }}
+          onClick={isInOrder}
+        >
+          <Typography variant="h5">Check Line Order</Typography>
+        </Button>
+      </Grid>
+    );
+  };
+
+  const AnswerDragSwap = () => {
+    return (
+      <Grid item>
+        <Button
+          variant="contained"
+          sx={{ padding: "1vh", "&:hover": { backgroundColor: "#22ba48" }, margin: "2vw" }}
+          onClick={isInOrder}
+        >
+          <Typography variant="h5">Check Array Order</Typography>
+        </Button>
+      </Grid>
+    );
+  };
+
   return (
-    <Grid container align="center" justifyContent="center">
+    <Grid container sx={{ align: "center", justifyContent: "center", alignContent: "center" }}>
       {questionType === 0 ? (
         <AnswerBars />
       ) : questionType > 0 && questionType < 4 ? (
         <AnswerText />
+      ) : questionType === 4 ? (
+        <AnswerText />
+      ) : questionType === 5 ? (
+        <AnswerDragCode />
+      ) : questionType === 6 ? (
+        <AnswerDragSwap />
       ) : null}
     </Grid>
   );

@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { Container, Button, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import InsertionAccordion from "./InsertionInfo/InsertionAccordion";
-import SelectionAccordion from "./SelectionInfo/SelectionAccordion";
-import MergeAccordion from "./MergeInfo/MergeAccordion";
-import QuickAccordion from "./QuickInfo/QuickAccordion";
-import sectionArray from "./testarray";
+import InsertionAccordion from "./LinkedListInfo/LinkedListAccordion";
+import SelectionAccordion from "./StackInfo/StackAccordion";
+import MergeAccordion from "./BinaryTreeInfo/BinaryTreeAccordion";
+import QuickAccordion from "./QueueInfo/QueueAccordion";
+import StructureSectionArray from "./StructureSectionArray";
+import Navbar from "../../Navbar/Navbar";
 
-const Learn = () => {
+const DataStructures = () => {
   const [sectionNum, setSectionNum] = useState(0);
-  const [tempSectionArray, setTempSectionArray] = useState(sectionArray);
+  const [tempSectionArray, setTempSectionArray] = useState(StructureSectionArray);
 
   const nextSection = () => {
     if (sectionNum < tempSectionArray.length - 1) setSectionNum(sectionNum + 1);
@@ -22,6 +23,8 @@ const Learn = () => {
 
   return (
     <Container maxWidth="xl">
+      <Navbar page="Data Structures" />
+
       <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
         <Button
           onClick={prevSection}
@@ -32,7 +35,7 @@ const Learn = () => {
           }}
         >
           <ArrowBackIcon />
-          {sectionNum > 0 ? `${tempSectionArray[sectionNum - 1].section}` : null}
+          {sectionNum > 0 ? `${tempSectionArray[sectionNum - 1].sectionName}` : null}
         </Button>
 
         <Button
@@ -46,7 +49,7 @@ const Learn = () => {
           }}
         >
           {sectionNum < tempSectionArray.length - 1
-            ? `${tempSectionArray[sectionNum + 1].section}`
+            ? `${tempSectionArray[sectionNum + 1].sectionName}`
             : null}
           <ArrowForwardIcon />
         </Button>
@@ -80,4 +83,4 @@ const Learn = () => {
   );
 };
 
-export default Learn;
+export default DataStructures;

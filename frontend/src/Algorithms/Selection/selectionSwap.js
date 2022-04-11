@@ -79,7 +79,7 @@ function selectionSort(array) {
   return sortedArrayObject;
 }
 
-function selectionSortHandler() {
+function generateSwap() {
   let arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]);
   let sortedArrayObject = selectionSort(arrayToBeSorted);
 
@@ -125,4 +125,4 @@ function selectionSortHandler() {
 //     console.log(test);
 // }
 
-export default selectionSortHandler;
+export default generateSwap;

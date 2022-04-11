@@ -1,18 +1,18 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import store from "./app/store";
-import App from "./App";
+import store from "./app/store.ts";
+import App from "./App.tsx";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <ToastContainer />
+    <StrictMode>
+      <ToastContainer pauseOnFocusLoss={false} theme="colored" />
       <App />
-    </React.StrictMode>
+    </StrictMode>
   </Provider>,
   document.getElementById("root"),
 );

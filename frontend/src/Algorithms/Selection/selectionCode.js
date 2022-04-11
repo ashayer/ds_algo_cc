@@ -6,18 +6,18 @@ import { shuffle } from "d3-array";
 function generateEmptyLine(string, lineNum) {
   let emptyString = lineNum.toString();
   for (let i = 0; i < string.length; i += 1) {
-    emptyString += " ";
+    emptyString = `${emptyString} `;
   }
   return `${emptyString}\n`;
 }
 
 function generateCode() {
   const Line1 = "1 for(int i = 0; i < arr.len; i += 1)\n";
-  const Line2 = "2   int min = i\n";
-  const Line3 = "3    for(int j = i+1; j < arr.len; j += 1)\n";
-  const Line4 = "4       if (arr[j] < arr[min])\n";
-  const Line5 = "5         min = j\n";
-  const Line6 = "6      swap (arr[i],arr[min])";
+  const Line2 = "2 \tint min = i\n";
+  const Line3 = "3 \tfor(int j = i+1; j < arr.len; j += 1)\n";
+  const Line4 = "4 \t\tif (arr[j] < arr[min])\n";
+  const Line5 = "5 \t\t\tmin = j\n";
+  const Line6 = "6 \tswap(arr[i],arr[min])\n";
 
   const pseudoCodeStringArray = [Line1, Line2, Line3, Line4, Line5, Line6];
 
@@ -52,7 +52,7 @@ function generateCode() {
     },
     {
       right: Line6,
-      wrong: ["swap(arr[i],arr[j])", "swap(arr[min],arr[j])", "swap(arr[i],arr[i-1])"],
+      wrong: ["swap(arr[i], arr[j])", "swap(arr[min], arr[j])", "swap(arr[i], arr[i-1])"],
     },
   ];
 

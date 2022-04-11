@@ -22,8 +22,11 @@ const userSchema = mongoose.Schema(
         rTime: Number,
       },
     ],
+    algoReading: [{}],
+    
   },
   {
+    collection: "usersdev",
     timestamps: true,
   },
 );

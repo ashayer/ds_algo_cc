@@ -14,12 +14,10 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import useStyles from "./styles";
 import Input from "./Input";
 import { register, reset } from "../../features/auth/authSlice";
 
 const Auth = () => {
-  const classes = useStyles();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,7 +36,7 @@ const Auth = () => {
 
     if (password !== confirmPassword) {
       toast.error("Passwords do not match!", {
-        position: "top-center",
+        position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -61,7 +59,7 @@ const Auth = () => {
   useEffect(() => {
     if (isError) {
       toast.error(message, {
-        position: "top-center",
+        position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -84,10 +82,24 @@ const Auth = () => {
 
   return (
     <Grow in>
-      <Container className={classes.formContainer} maxWidth="xs">
-        <Paper className={classes.paper} elevation={3}>
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          marginTop: "15vh",
+          border: "1px solid black",
+          alignContent: "center",
+        }}
+        disableGutters
+        maxWidth="xs"
+      >
+        <Paper
+          square
+          sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+          elevation={3}
+        >
           <form onSubmit={handleSubmit}>
-            <Grid container sx={{ padding: "25px", justifyContent: "space-between" }} spacing={4}>
+            <Grid container sx={{ padding: "25px", justifyContent: "center" }} spacing={4}>
               <Input name="name" label="Name" handleChange={handleChange} autoFocus type="text" />
               <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
               <Input name="password" label="Password" handleChange={handleChange} type="password" />
@@ -99,7 +111,7 @@ const Auth = () => {
               />
 
               <Grid item>
-                <FormControl>
+                <FormControl sx={{ alignItems: "center" }}>
                   <FormLabel>What is your knowledge level with sorting algorithms?</FormLabel>
                   <RadioGroup row onChange={handleChange} name="skill">
                     <FormControlLabel value={0} control={<Radio />} label="Beginner" />
@@ -111,12 +123,11 @@ const Auth = () => {
 
               <Grid item>
                 <Button
-                  className={classes.formSubmitButton}
                   type="submit"
                   variant="contained"
                   sx={{
                     padding: "10px",
-                    backgroundColor: "#c94b4b",
+                    backgroundColor: "#0091ff",
                     color: "color",
                     "&:hover": {
                       backgroundColor: "#fff",
@@ -127,30 +138,28 @@ const Auth = () => {
                   Sign Up
                 </Button>
               </Grid>
-              <Grid item>
-                <Button
-                  className={classes.formButton}
-                  type="button"
-                  variant="contained"
-                  onClick={() => {
-                    navigate("/login");
-                  }}
-                  sx={{
-                    padding: "10px",
-                    backgroundColor: "#000000",
-                    color: "#fff",
-                    "&:hover": {
-                      backgroundColor: "#fff",
-                      color: "#3c52b2",
-                    },
-                  }}
-                >
-                  Log In Instead
-                </Button>
-              </Grid>
             </Grid>
           </form>
         </Paper>
+        <Button
+          type="button"
+          variant="contained"
+          onClick={() => {
+            navigate("/login");
+          }}
+          sx={{
+            borderRadius: 0,
+            padding: "10px",
+            backgroundColor: "#000000",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#fff",
+              color: "#3c52b2",
+            },
+          }}
+        >
+          Log In Instead
+        </Button>
       </Container>
     </Grow>
   );
