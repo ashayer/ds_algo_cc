@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Button, Paper, Grid, Container, Grow } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import axios from "axios";
 import Input from "./Input";
-import { register, reset } from "../../features/auth/authSlice";
+
+const API_URL = "/api/users/";
+
+const register = async (userData) => {
+  try {
+    const response = await axios.post(API_URL, userData);
+    if (response.data) {
+      sessionStorage.setItem("user", JSON.stringify(response.data));
+    }
+    return response.status;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
 
 const Auth = () => {
   const [formData, setFormData] = useState({
@@ -13,11 +27,9 @@ const Auth = () => {
     password: "",
     confirmPassword: "",
   });
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { name, email, password, confirmPassword } = formData;
-  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,29 +50,31 @@ const Auth = () => {
         email,
         password,
       };
-      dispatch(register(userData));
+      const registerStatus = register(userData);
+      registerStatus.then((status) => {
+        if (status === 201) {
+          navigate("/");
+        } else {
+          toast.error("User already exists!", {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+      });
     }
   };
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message, {
-        position: "bottom-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-
-    if (isSuccess || user) {
+    const localUser = JSON.parse(sessionStorage.getItem("user"));
+    if (localUser) {
       navigate("/");
     }
-
-    dispatch(reset());
-  }, [user, isLoading, isError, isSuccess, message, navigate, dispatch]);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

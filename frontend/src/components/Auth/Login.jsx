@@ -7,7 +7,7 @@ import Input from "./Input";
 
 const API_URL = "/api/users/";
 
-const tempLogin = async (userData) => {
+const login = async (userData) => {
   try {
     const response = await axios.post(`${API_URL}login`, userData);
     if (response.data) {
@@ -15,7 +15,8 @@ const tempLogin = async (userData) => {
     }
     return response.status;
   } catch (error) {
-    throw new Error(error);
+    console.error(error);
+    return null;
   }
 };
 
@@ -33,8 +34,6 @@ const Auth = () => {
     const localUser = JSON.parse(sessionStorage.getItem("user"));
     if (localUser) {
       navigate("/");
-    } else {
-      console.log("No user");
     }
   }, []);
 
@@ -47,7 +46,7 @@ const Auth = () => {
 
     // dispatch(login(userData));
 
-    const loginStatus = tempLogin(userData);
+    const loginStatus = login(userData);
     loginStatus.then((status) => {
       if (status === 200) {
         navigate("/");
