@@ -37,7 +37,6 @@ const Auth = () => {
         name,
         email,
         password,
-        qHistory: [],
       };
       dispatch(register(userData));
     }

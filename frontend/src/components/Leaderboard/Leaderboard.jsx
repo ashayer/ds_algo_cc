@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,7 +12,15 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
+import axios from "axios";
 import Navbar from "../Navbar/Navbar";
+
+const API_URL = "/api/users/";
+
+const test = async () => {
+  const response = await axios.get(`${API_URL}users/`);
+  console.log(response.data);
+};
 
 function createData(name, calories, fat, carbs, protein) {
   return {
@@ -157,6 +165,10 @@ export default function Leaderboard() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  useEffect(() => {
+    test();
+  }, []);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;

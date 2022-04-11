@@ -177,9 +177,8 @@ const AlgoSectionArray = [
   },
 ];
 
-export default StructureSectionArray;
-
 export const registerUser = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
     res.status(400);
@@ -275,8 +274,8 @@ export const updatePoints = asyncHandler(async (req) => {
   });
 });
 
-// export const getPoints = asyncHandler(async (req, res) => {
-//   const user = await User.findById(req.params.id);
-//   console.log("The user current has " + user.points + " points");
-//   res.status(200).json(user.points);
-// });
+export const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+  console.log(users);
+  res.status(200).json(users);
+});
