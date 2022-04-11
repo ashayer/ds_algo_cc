@@ -190,96 +190,91 @@ export default function Leaderboard() {
   return (
     <Box>
       <Navbar page="Leaderboard" />
-      <Grow in>
-        <Box
-          maxWidth="xl"
-          sx={{ marginLeft: "auto", marginRight: "auto", border: "1px solid black", mt: "2vh" }}
-        >
-          <Paper>
-            <EnhancedTableToolbar sx={{ mt: "2vh" }} />
-            {isLoading ? (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  height: "30vw",
-                  justifyContent: "center",
-                }}
-              >
-                <CircularProgress size={200} thickness={1.8} />
-              </Box>
-            ) : (
-              <>
-                <TableContainer>
-                  <Table>
-                    <EnhancedTableHead
-                      order={order}
-                      orderBy={orderBy}
-                      onRequestSort={handleRequestSort}
-                      rowCount={rows.length}
-                    />
-                    <TableBody sx={{ overflow: "scroll" }}>
-                      {rows
-                        .slice()
-                        .sort(getComparator(order, orderBy))
-                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((row) => {
-                          return (
-                            <TableRow hover tabIndex={-1} key={row.name}>
-                              <TableCell component="th" id={row.id} scope="row">
-                                <Typography noWrap sx={{ width: "15vw" }}>
-                                  {row.name}
-                                </Typography>
-                              </TableCell>
-                              <TableCell align="right">
-                                <Typography>{row.points}</Typography>
-                              </TableCell>
-                              <TableCell align="right">
-                                <Typography>{row.gamesPlayed}</Typography>
-                              </TableCell>
-                              <TableCell align="right">
-                                <Typography>{row.streak}</Typography>
-                              </TableCell>
-                              <TableCell align="right">
-                                <Typography>{row.numCorrect}</Typography>
-                              </TableCell>
-                              <TableCell align="right">
-                                <Typography>{row.numWrong}</Typography>
-                              </TableCell>
-                              <TableCell align="right">
-                                <Typography>{row.responseTime}</Typography>
-                              </TableCell>
-                            </TableRow>
-                          );
-                        })}
-                      {emptyRows > 0 && (
-                        <TableRow
-                          style={{
-                            height: 53 * emptyRows,
-                          }}
-                        >
-                          <TableCell colSpan={6} />
-                        </TableRow>
-                      )}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
+      <Box maxWidth="xl" sx={{ marginLeft: "auto", marginRight: "auto", mt: "2vh" }}>
+        {isLoading ? (
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              height: "30vw",
+              justifyContent: "center",
+            }}
+          >
+            <CircularProgress size={200} thickness={1.8} sx={{ color: "white" }} />
+          </Box>
+        ) : (
+          <Grow in>
+            <Paper>
+              <EnhancedTableToolbar sx={{ mt: "2vh" }} />
+              <TableContainer>
+                <Table>
+                  <EnhancedTableHead
+                    order={order}
+                    orderBy={orderBy}
+                    onRequestSort={handleRequestSort}
+                    rowCount={rows.length}
+                  />
+                  <TableBody sx={{ overflow: "scroll" }}>
+                    {rows
+                      .slice()
+                      .sort(getComparator(order, orderBy))
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((row) => {
+                        return (
+                          <TableRow hover tabIndex={-1} key={row.name}>
+                            <TableCell component="th" id={row.id} scope="row">
+                              <Typography noWrap sx={{ width: "15vw" }}>
+                                {row.name}
+                              </Typography>
+                            </TableCell>
+                            <TableCell align="right">
+                              <Typography>{row.points}</Typography>
+                            </TableCell>
+                            <TableCell align="right">
+                              <Typography>{row.gamesPlayed}</Typography>
+                            </TableCell>
+                            <TableCell align="right">
+                              <Typography>{row.streak}</Typography>
+                            </TableCell>
+                            <TableCell align="right">
+                              <Typography>{row.numCorrect}</Typography>
+                            </TableCell>
+                            <TableCell align="right">
+                              <Typography>{row.numWrong}</Typography>
+                            </TableCell>
+                            <TableCell align="right">
+                              <Typography>{row.responseTime}</Typography>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    {emptyRows > 0 && (
+                      <TableRow
+                        style={{
+                          height: 53 * emptyRows,
+                        }}
+                      >
+                        <TableCell colSpan={6} />
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
 
-                <TablePagination
-                  rowsPerPageOptions={[10, 15, 20]}
-                  component="div"
-                  count={rows.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-              </>
-            )}
-          </Paper>
-        </Box>
-      </Grow>
+              <TablePagination
+                rowsPerPageOptions={[10, 15, 20]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </Paper>
+          </Grow>
+        )}
+      </Box>
     </Box>
   );
 }
