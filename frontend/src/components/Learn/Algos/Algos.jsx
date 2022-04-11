@@ -6,12 +6,13 @@ import InsertionAccordion from "./InsertionInfo/InsertionAccordion";
 import SelectionAccordion from "./SelectionInfo/SelectionAccordion";
 import MergeAccordion from "./MergeInfo/MergeAccordion";
 import QuickAccordion from "./QuickInfo/QuickAccordion";
-import AlgoSectionArray from "./AlgoSectionArray";
 import Navbar from "../../Navbar/Navbar";
 
 const Algos = () => {
+  const localUser = JSON.parse(sessionStorage.getItem("user"));
+
   const [sectionNum, setSectionNum] = useState(0);
-  const [tempSectionArray, setTempSectionArray] = useState(AlgoSectionArray);
+  const [tempSectionArray, setTempSectionArray] = useState(localUser.algoReading);
 
   const nextSection = () => {
     if (sectionNum < tempSectionArray.length - 1) setSectionNum(sectionNum + 1);

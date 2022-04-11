@@ -17,8 +17,21 @@ import Navbar from "../Navbar/Navbar";
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
+const localUser = JSON.parse(sessionStorage.getItem("user"));
+
+
+const calculateCompletedReading = () => {
+  const totalSections = 4;
+  const totalSubSections = 2;
+  for (let i = 0; i < totalSections; i += 1) {
+    for (let j= 0; j < totalSubSections; j += 1) {
+      if(localUser.algoReading[i].subsections[j].completed)
+    }
+  }
+
+};
+
 const Home = () => {
-  const localUser = JSON.parse(sessionStorage.getItem("user"));
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
@@ -77,12 +90,36 @@ const Home = () => {
                   <Card sx={{ minWidth: "50%" }}>
                     <CardContent>
                       <Typography gutterBottom variant="h5">
-                        *User name* Stats
+                        {`${localUser.name}`}
                       </Typography>
-                      <Typography>
-                        Table of lifetime user stats, points, highest streak, avg response time,
-                        lifetime questions right, lifetime questions wrong
-                      </Typography>
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td>Points</td>
+                            <td>{`${localUser.points}`}</td>
+                          </tr>
+                          <tr>
+                            <td>Games Played</td>
+                            <td>{`${localUser.gamesPlayed}`}</td>
+                          </tr>
+                          <tr>
+                            <td>Highest Streak</td>
+                            <td>{`${localUser.streak}`}</td>
+                          </tr>
+                          <tr>
+                            <td>Total Correct</td>
+                            <td>{`${localUser.numCorrect}`}</td>
+                          </tr>
+                          <tr>
+                            <td>Total Wrong</td>
+                            <td>{`${localUser.numWrong}`}</td>
+                          </tr>
+                          <tr>
+                            <td>Response Time</td>
+                            <td>{`${localUser.responseTime}`}</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </CardContent>
                   </Card>
                   <Card sx={{ minWidth: "50%" }}>

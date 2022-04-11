@@ -68,7 +68,7 @@ const headCells = [
     id: "streak",
     numeric: true,
     disablePadding: false,
-    label: "Streak",
+    label: "Highest Streak",
   },
   {
     id: "numCorrect",

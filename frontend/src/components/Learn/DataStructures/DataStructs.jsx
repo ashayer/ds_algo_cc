@@ -6,12 +6,12 @@ import InsertionAccordion from "./LinkedListInfo/LinkedListAccordion";
 import SelectionAccordion from "./StackInfo/StackAccordion";
 import MergeAccordion from "./BinaryTreeInfo/BinaryTreeAccordion";
 import QuickAccordion from "./QueueInfo/QueueAccordion";
-import StructureSectionArray from "./StructureSectionArray";
 import Navbar from "../../Navbar/Navbar";
 
 const DataStructures = () => {
+  const localUser = JSON.parse(sessionStorage.getItem("user"));
   const [sectionNum, setSectionNum] = useState(0);
-  const [tempSectionArray, setTempSectionArray] = useState(StructureSectionArray);
+  const [tempSectionArray, setTempSectionArray] = useState(localUser.dataReading);
 
   const nextSection = () => {
     if (sectionNum < tempSectionArray.length - 1) setSectionNum(sectionNum + 1);

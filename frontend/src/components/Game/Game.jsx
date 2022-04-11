@@ -49,7 +49,6 @@ const Game = () => {
         userNumCorrect: localUser.numCorrect,
         userNumWrong: localUser.numWrong,
         userStreak: highestStreak,
-        userHistory: localUser.qHistory,
       }),
     );
     setGameStarted(false);
@@ -148,7 +147,6 @@ const Game = () => {
       localUser.numWrong = 0;
       localUser.streak = 0;
       localUser.responseTime = 0;
-      localUser.qHistory = [];
       sessionStorage.setItem("user", JSON.stringify(localUser));
       setGameStarted(true);
     }
@@ -176,12 +174,6 @@ const Game = () => {
     localUser.numWrong += 1;
     localUser.streak = 0;
     localUser.responseTime += calculatedResponseTime;
-    localUser.qHistory.push({
-      qType: questionType,
-      qTopic: questionTopicNum,
-      correct: 0,
-      rTime: calculatedResponseTime,
-    });
     sessionStorage.setItem("user", JSON.stringify(localUser));
     createRandomGame();
   };
