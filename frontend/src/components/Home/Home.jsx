@@ -49,173 +49,175 @@ const calculateCompletedReadingForData = () => {
 };
 
 const Home = () => {
-  const localUser = JSON.parse(sessionStorage.getItem("user"));
-
   const navigate = useNavigate();
 
+  const localUser = JSON.parse(sessionStorage.getItem("user"));
   useEffect(() => {
-    if (!localUser) {
+    if (localUser) {
+      calculateCompletedReadingForAlgo();
+      calculateCompletedReadingForData();
+    } else {
       navigate("/login");
     }
-    calculateCompletedReadingForAlgo();
-    calculateCompletedReadingForData();
-  }, [localUser, navigate]);
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
-      <Box maxWidth="xl" sx={{ marginLeft: "auto", marginRight: "auto" }}>
-        <Navbar page="Home" />
-        <Grid container spacing={5} sx={{ marginTop: 1, textAlign: "center" }}>
-          <Slide in>
-            <Grid item xs={12} md={6}>
-              <Paper elevation={4}>
-                <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
-                  Game
-                </Typography>
-                <Box sx={{ display: "flex", flexDirection: "row" }}>
-                  <Card sx={{ minWidth: "50%", align: "center" }}>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5">
-                        Game options
-                      </Typography>
-                      <Typography>
-                        Options to set game topics, dynamic or static difficulties
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                  <Card
-                    sx={{
-                      minWidth: "50%",
-                    }}
-                  >
-                    <CardActionArea sx={{ minHeight: "30vh" }} onClick={() => navigate("/game")}>
+      {localUser && (
+        <Box maxWidth="xl" sx={{ marginLeft: "auto", marginRight: "auto" }}>
+          <Navbar page="Home" />
+          <Grid container spacing={5} sx={{ marginTop: 1, textAlign: "center" }}>
+            <Slide in>
+              <Grid item xs={12} md={6}>
+                <Paper elevation={4}>
+                  <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
+                    Game
+                  </Typography>
+                  <Box sx={{ display: "flex", flexDirection: "row" }}>
+                    <Card sx={{ minWidth: "50%", align: "center" }}>
                       <CardContent>
-                        <Typography sx={{ top: "50%" }} variant="h2">
-                          Play
+                        <Typography gutterBottom variant="h5">
+                          Game options
+                        </Typography>
+                        <Typography>
+                          Options to set game topics, dynamic or static difficulties
                         </Typography>
                       </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Box>
-              </Paper>
-            </Grid>
-          </Slide>
-          <Slide in>
-            <Grid item xs={12} md={6}>
-              <Paper elevation={4}>
-                <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
-                  Stats
-                </Typography>
-                <Box sx={{ display: "flex", flexDirection: "row" }}>
-                  <Card sx={{ minWidth: "50%" }}>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5">
-                        {`${localUser.name}`}
-                      </Typography>
-                      <table>
-                        <tbody>
-                          <tr>
-                            <td>Points</td>
-                            <td>{`${localUser.points}`}</td>
-                          </tr>
-                          <tr>
-                            <td>Games Played</td>
-                            <td>{`${localUser.gamesPlayed}`}</td>
-                          </tr>
-                          <tr>
-                            <td>Highest Streak</td>
-                            <td>{`${localUser.streak}`}</td>
-                          </tr>
-                          <tr>
-                            <td>Total Correct</td>
-                            <td>{`${localUser.numCorrect}`}</td>
-                          </tr>
-                          <tr>
-                            <td>Total Wrong</td>
-                            <td>{`${localUser.numWrong}`}</td>
-                          </tr>
-                          <tr>
-                            <td>Response Time</td>
-                            <td>{`${localUser.responseTime}`}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </CardContent>
-                  </Card>
-                  <Card sx={{ minWidth: "50%" }}>
-                    <CardActionArea
-                      sx={{ minHeight: "30vh" }}
-                      onClick={() => navigate("/leaderboard")}
+                    </Card>
+                    <Card
+                      sx={{
+                        minWidth: "50%",
+                      }}
                     >
+                      <CardActionArea sx={{ minHeight: "30vh" }} onClick={() => navigate("/game")}>
+                        <CardContent>
+                          <Typography sx={{ top: "50%" }} variant="h2">
+                            Play
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Paper>
+              </Grid>
+            </Slide>
+            <Slide in>
+              <Grid item xs={12} md={6}>
+                <Paper elevation={4}>
+                  <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
+                    Stats
+                  </Typography>
+                  <Box sx={{ display: "flex", flexDirection: "row" }}>
+                    <Card sx={{ minWidth: "50%" }}>
                       <CardContent>
-                        <Typography variant="h2">View Leader Board</Typography>
+                        <Typography gutterBottom variant="h5">
+                          {`${localUser.name}`}
+                        </Typography>
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td>Points</td>
+                              <td>{`${localUser.points}`}</td>
+                            </tr>
+                            <tr>
+                              <td>Games Played</td>
+                              <td>{`${localUser.gamesPlayed}`}</td>
+                            </tr>
+                            <tr>
+                              <td>Highest Streak</td>
+                              <td>{`${localUser.streak}`}</td>
+                            </tr>
+                            <tr>
+                              <td>Total Correct</td>
+                              <td>{`${localUser.numCorrect}`}</td>
+                            </tr>
+                            <tr>
+                              <td>Total Wrong</td>
+                              <td>{`${localUser.numWrong}`}</td>
+                            </tr>
+                            <tr>
+                              <td>Response Time</td>
+                              <td>{`${localUser.responseTime}`}</td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Box>
-              </Paper>
-            </Grid>
-          </Slide>
-          <Slide in>
-            <Grid item xs={12} md={6}>
-              <Paper elevation={4}>
-                <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
-                  Sorting Algorithms
-                </Typography>
-                <Box sx={{ display: "flex", flexDirection: "row" }}>
-                  <Card sx={{ minWidth: "50%", minHeight: "30vh" }}>
-                    <CardActionArea onClick={() => navigate("/algos")}>
-                      <CardContent>
-                        <Typography variant="h2">Read</Typography>
-                      </CardContent>
-                    </CardActionArea>
-                    <CardContent>{`${calculateCompletedReadingForAlgo()}% Read`}</CardContent>
-                  </Card>
-                  <Card sx={{ minWidth: "50%" }}>
-                    <CardActionArea
-                      sx={{ minHeight: "30vh" }}
-                      onClick={() => navigate("/sortsandbox")}
-                    >
-                      <CardContent>
-                        <Typography variant="h2">Go to Sandbox</Typography>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Box>
-              </Paper>
-            </Grid>
-          </Slide>
-          <Slide in>
-            <Grid item xs={12} md={6}>
-              <Paper elevation={4}>
-                <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
-                  Data Structures
-                </Typography>
-                <Box sx={{ display: "flex", flexDirection: "row" }}>
-                  <Card sx={{ minWidth: "50%" }}>
-                    <CardActionArea onClick={() => navigate("/datastructs")}>
-                      <CardContent>
-                        <Typography variant="h2">Read</Typography>
-                      </CardContent>
-                    </CardActionArea>
-                    <CardContent>{`${calculateCompletedReadingForData()}% Read`}</CardContent>
-                  </Card>
-                  <Card sx={{ minWidth: "50%" }}>
-                    <CardActionArea
-                      sx={{ minHeight: "30vh" }}
-                      onClick={() => navigate("/datasandbox")}
-                    >
-                      <CardContent>
-                        <Typography variant="h2">Go to Sandbox</Typography>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Box>
-              </Paper>
-            </Grid>
-          </Slide>
-        </Grid>
-      </Box>
+                    </Card>
+                    <Card sx={{ minWidth: "50%" }}>
+                      <CardActionArea
+                        sx={{ minHeight: "30vh" }}
+                        onClick={() => navigate("/leaderboard")}
+                      >
+                        <CardContent>
+                          <Typography variant="h2">View Leader Board</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Paper>
+              </Grid>
+            </Slide>
+            <Slide in>
+              <Grid item xs={12} md={6}>
+                <Paper elevation={4}>
+                  <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
+                    Sorting Algorithms
+                  </Typography>
+                  <Box sx={{ display: "flex", flexDirection: "row" }}>
+                    <Card sx={{ minWidth: "50%", minHeight: "30vh" }}>
+                      <CardActionArea onClick={() => navigate("/algos")}>
+                        <CardContent>
+                          <Typography variant="h2">Read</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                      <CardContent>{`${calculateCompletedReadingForAlgo()}% Read`}</CardContent>
+                    </Card>
+                    <Card sx={{ minWidth: "50%" }}>
+                      <CardActionArea
+                        sx={{ minHeight: "30vh" }}
+                        onClick={() => navigate("/sortsandbox")}
+                      >
+                        <CardContent>
+                          <Typography variant="h2">Go to Sandbox</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Paper>
+              </Grid>
+            </Slide>
+            <Slide in>
+              <Grid item xs={12} md={6}>
+                <Paper elevation={4}>
+                  <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
+                    Data Structures
+                  </Typography>
+                  <Box sx={{ display: "flex", flexDirection: "row" }}>
+                    <Card sx={{ minWidth: "50%" }}>
+                      <CardActionArea onClick={() => navigate("/datastructs")}>
+                        <CardContent>
+                          <Typography variant="h2">Read</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                      <CardContent>{`${calculateCompletedReadingForData()}% Read`}</CardContent>
+                    </Card>
+                    <Card sx={{ minWidth: "50%" }}>
+                      <CardActionArea
+                        sx={{ minHeight: "30vh" }}
+                        onClick={() => navigate("/datasandbox")}
+                      >
+                        <CardContent>
+                          <Typography variant="h2">Go to Sandbox</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Paper>
+              </Grid>
+            </Slide>
+          </Grid>
+        </Box>
+      )}
     </ThemeProvider>
   );
 };

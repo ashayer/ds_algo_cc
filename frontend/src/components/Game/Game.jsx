@@ -59,7 +59,7 @@ const Game = () => {
     const totalQuestions = localUser.numCorrect + localUser.numWrong;
     const averageResponseTime = Math.floor(localUser.responseTime / totalQuestions);
 
-    const test = updatePoints(
+    updatePoints(
       localUser._id,
       localUser.points,
       averageResponseTime,
@@ -67,7 +67,6 @@ const Game = () => {
       localUser.numWrong,
       highestStreak,
     );
-    test.then((r) => console.log(r));
     setGameStarted(false);
   };
 
