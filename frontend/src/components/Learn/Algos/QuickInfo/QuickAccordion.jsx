@@ -8,7 +8,7 @@ import { Button, Grid } from "@mui/material";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
-const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
+const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocalUser }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
 
   const completed = (index) => {
@@ -21,6 +21,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
       const temp = tempSectionArray.slice();
       setTempSectionArray(temp);
     }
+    updateLocalUser(tempSectionArray);
   };
 
   function handleAccordClick(name) {
@@ -69,9 +70,15 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray }) => {
                 <Typography>Quick Code</Typography>
               ) : null}
             </AccordionDetails>
-            <Button onClick={() => completed(index)} variant="contained">
-              Completed
-            </Button>
+            {!subsection.completed ? (
+              <Button onClick={() => completed(index)} variant="contained">
+                Take Quiz
+              </Button>
+            ) : (
+              <Button onClick={() => handleAccordClick(index)} variant="contained">
+                Close
+              </Button>
+            )}
           </Accordion>
         ))}
       </AccordionDetails>

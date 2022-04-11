@@ -28,7 +28,6 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
       const temp = tempSectionArray.slice();
       setTempSectionArray(temp);
     }
-    handleAccordClick(tempSectionArray[0].subsections[index].name);
     updateLocalUser(tempSectionArray);
   };
 
