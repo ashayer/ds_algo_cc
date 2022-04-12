@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Paper, Grid, Container, Grow } from "@mui/material";
+import { Button, Paper, Grid, Container, Grow, CircularProgress, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -7,24 +7,26 @@ import Input from "./Input";
 
 const API_URL = "/api/users/";
 
-const login = async (userData) => {
-  try {
-    const response = await axios.post(`${API_URL}login`, userData);
-    if (response.data) {
-      sessionStorage.setItem("user", JSON.stringify(response.data));
-    }
-    return response.status;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
 const Auth = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const login = async (userData) => {
+    try {
+      setIsLoading(true);
+      const response = await axios.post(`${API_URL}login`, userData);
+      if (response.data) {
+        sessionStorage.setItem("user", JSON.stringify(response.data));
+      }
+      return response.status;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -34,6 +36,8 @@ const Auth = () => {
     const localUser = JSON.parse(sessionStorage.getItem("user"));
     if (localUser) {
       navigate("/");
+    } else {
+      setIsLoading(false);
     }
   }, []);
 
@@ -51,6 +55,7 @@ const Auth = () => {
       if (status === 200) {
         navigate("/");
       } else {
+        setIsLoading(false);
         toast.error("Invalid Credentials!", {
           position: "bottom-right",
           autoClose: 3000,
@@ -70,67 +75,91 @@ const Auth = () => {
 
   return (
     <Grow in>
-      <Container
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          marginTop: "15vh",
-          border: "1px solid black",
-          alignContent: "center",
-        }}
-        maxWidth="xs"
-        disableGutters
-      >
-        <Paper
-          square
-          sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-          elevation={3}
-        >
-          <form onSubmit={handleSubmit}>
-            <Grid container sx={{ padding: "25px", justifyContent: "center" }} spacing={4}>
-              <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-              <Input name="password" label="Password" handleChange={handleChange} type="password" />
-              <Grid item>
-                <Button
-                  fullWidth
-                  type="submit"
-                  variant="contained"
-                  sx={{
-                    padding: "10px",
-                    backgroundColor: "#0091ff",
-                    color: "color",
-                    "&:hover": {
-                      backgroundColor: "#fff",
-                      color: "#3c52b2",
-                    },
-                  }}
-                >
-                  Sign In
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </Paper>
-        <Button
-          type="button"
-          variant="contained"
-          onClick={() => {
-            navigate("/register");
-          }}
+      {isLoading ? (
+        <Box
           sx={{
-            borderRadius: 0,
-            padding: "10px",
-            backgroundColor: "#000000",
-            color: "#fff",
-            "&:hover": {
-              backgroundColor: "#fff",
-              color: "#3c52b2",
-            },
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            height: "30vw",
+            justifyContent: "center",
           }}
         >
-          Register Instead
-        </Button>
-      </Container>
+          <CircularProgress size={200} thickness={1.8} sx={{ color: "white" }} />
+        </Box>
+      ) : (
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            marginTop: "15vh",
+            border: "1px solid black",
+            alignContent: "center",
+          }}
+          maxWidth="xs"
+          disableGutters
+        >
+          <Paper
+            square
+            sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+            elevation={3}
+          >
+            <form onSubmit={handleSubmit}>
+              <Grid container sx={{ padding: "25px", justifyContent: "center" }} spacing={4}>
+                <Input
+                  name="email"
+                  label="Email Address"
+                  handleChange={handleChange}
+                  type="email"
+                />
+                <Input
+                  name="password"
+                  label="Password"
+                  handleChange={handleChange}
+                  type="password"
+                />
+                <Grid item>
+                  <Button
+                    fullWidth
+                    type="submit"
+                    variant="contained"
+                    sx={{
+                      padding: "10px",
+                      backgroundColor: "#0091ff",
+                      color: "color",
+                      "&:hover": {
+                        backgroundColor: "#fff",
+                        color: "#3c52b2",
+                      },
+                    }}
+                  >
+                    Sign In
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </Paper>
+          <Button
+            type="button"
+            variant="contained"
+            onClick={() => {
+              navigate("/register");
+            }}
+            sx={{
+              borderRadius: 0,
+              padding: "10px",
+              backgroundColor: "#000000",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#fff",
+                color: "#3c52b2",
+              },
+            }}
+          >
+            Register Instead
+          </Button>
+        </Container>
+      )}
     </Grow>
   );
 };
