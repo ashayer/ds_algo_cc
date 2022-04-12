@@ -8,8 +8,14 @@ import { Button, Grid } from "@mui/material";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
+// eslint-disable-next-line no-unused-vars
 const SelectionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocalUser }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
+
+  function handleAccordClick(name) {
+    if (currentSubSection === name) setCurrentSubSection("");
+    if (currentSubSection !== name) setCurrentSubSection(name);
+  }
 
   const completed = (index) => {
     tempSectionArray[1].subsections[index].completed = true;
@@ -21,13 +27,8 @@ const SelectionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
       const temp = tempSectionArray.slice();
       setTempSectionArray(temp);
     }
-    updateLocalUser(tempSectionArray);
+    // updateLocalUser(tempSectionArray);
   };
-
-  function handleAccordClick(name) {
-    if (currentSubSection === name) setCurrentSubSection("");
-    if (currentSubSection !== name) setCurrentSubSection(name);
-  }
 
   return (
     <Accordion
@@ -44,12 +45,12 @@ const SelectionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
           <Accordion
             key={subsection.name}
             expanded={currentSubSection === subsection.name}
+            disabled={index === 0 ? false : !tempSectionArray[1].subsections[index - 1].completed}
             onClick={
               index === 0 || tempSectionArray[1].subsections[index - 1].completed
                 ? () => handleAccordClick(subsection.name)
                 : null
             }
-            disabled={index === 0 ? false : !tempSectionArray[1].subsections[index - 1].completed}
           >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>

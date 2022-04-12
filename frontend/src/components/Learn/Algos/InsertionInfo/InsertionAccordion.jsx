@@ -10,6 +10,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import InsertionGeneral from "./InsertionGeneral";
 import InsertionCode from "./InsertionCode";
 
+// eslint-disable-next-line no-unused-vars
 const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocalUser }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
 
@@ -28,7 +29,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
       const temp = tempSectionArray.slice();
       setTempSectionArray(temp);
     }
-    updateLocalUser(tempSectionArray);
+    // updateLocalUser(tempSectionArray);
   };
 
   return (
@@ -47,15 +48,13 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
             key={subsection.name}
             expanded={currentSubSection === subsection.name}
             disabled={index === 0 ? false : !tempSectionArray[0].subsections[index - 1].completed}
+            onClick={
+              index === 0 || tempSectionArray[0].subsections[index - 1].completed
+                ? () => handleAccordClick(subsection.name)
+                : null
+            }
           >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              onClick={
-                index === 0 || tempSectionArray[0].subsections[index - 1].completed
-                  ? () => handleAccordClick(subsection.name)
-                  : null
-              }
-            >
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
                 <Typography variant="h5">{subsection.name}</Typography>
                 {subsection.completed ? (
@@ -66,7 +65,11 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
               </Grid>
             </AccordionSummary>
             <AccordionDetails>
-              {index === 0 ? <InsertionGeneral /> : index === 1 ? <InsertionCode /> : null}
+              {index === 0 ? (
+                <InsertionGeneral />
+              ) : index === 1 ? (
+                <InsertionCode />
+              ) : null}
             </AccordionDetails>
             {!subsection.completed ? (
               <Button onClick={() => completed(index)} variant="contained">
