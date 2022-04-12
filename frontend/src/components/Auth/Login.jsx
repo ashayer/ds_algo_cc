@@ -7,7 +7,7 @@ import Input from "./Input";
 
 const API_URL = "/api/users/";
 
-const Auth = () => {
+const Login = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
@@ -164,4 +164,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default Login;
