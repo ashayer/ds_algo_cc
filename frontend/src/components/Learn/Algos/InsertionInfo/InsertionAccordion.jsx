@@ -7,11 +7,13 @@ import {
   Box,
   Radio,
   RadioGroup,
+  FormGroup,
   FormControlLabel,
   FormControl,
   AccordionDetails,
   AccordionSummary,
   Accordion,
+  Checkbox,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
@@ -23,6 +25,7 @@ import InsertionCode from "./InsertionCode";
 const questionsArray = [
   {
     question: "Is insertion Sort An In Place Algorithm",
+    type: 0,
     options: [
       { answer: "a", correct: true },
       { answer: "b", correct: false },
@@ -32,6 +35,7 @@ const questionsArray = [
   },
   {
     question: "Click B",
+    type: 0,
     options: [
       { answer: "a", correct: false },
       { answer: "b", correct: true },
@@ -40,12 +44,21 @@ const questionsArray = [
     ],
   },
   {
-    question: "Click C",
+    question: "True or False",
+    type: 0,
     options: [
-      { answer: "a", correct: false },
-      { answer: "b", correct: false },
-      { answer: "c", correct: true },
-      { answer: "d", correct: false },
+      { answer: "true", correct: true },
+      { answer: "false", correct: false },
+    ],
+  },
+  {
+    question: "Check 1 and 3",
+    type: 1,
+    options: [
+      { answer: "1", correct: true },
+      { answer: "2", correct: false },
+      { answer: "3", correct: true },
+      { answer: "4", correct: false },
     ],
   },
 ];
@@ -54,7 +67,18 @@ const userAnswers = [];
 
 const answerQuestion = (e) => {
   userAnswers[e.target.name] = questionsArray[e.target.name].options[e.target.value].correct;
-  console.log(userAnswers);
+};
+const checkedForQuestionFour = [false, false, false, false];
+const answerQuestionCheckBox = (e) => {
+  checkedForQuestionFour[e.target.value] = !checkedForQuestionFour[e.target.value];
+  let isWrong = false;
+  questionsArray[e.target.name].options.map((option, index) => {
+    if (!(option.correct === checkedForQuestionFour[index])) {
+      isWrong = true;
+    }
+    return isWrong;
+  });
+  userAnswers[e.target.name] = !isWrong;
 };
 
 const checkAnswers = () => {
@@ -65,38 +89,42 @@ const checkAnswers = () => {
     }
     return totalCorrect;
   });
-  console.log((totalCorrect / 3) * 100);
+  console.log(totalCorrect / questionsArray.length);
 };
 
 const Questions = () => {
   return (
-    <Grid container>
-      <Grid item xs={12} md={12}>
+    <Grid container direction="column" justifyContent="space-evenly" alignItems="stretch">
+      <Grid item>
         {questionsArray.map((question, index) => (
-          <FormControl sx={{ border: "2px solid white", marginLeft: "10px" }} key={index}>
+          <FormControl key={index}>
             <Typography>{question.question}</Typography>
-            <RadioGroup name={`${index}`} onChange={answerQuestion}>
-              <FormControlLabel
-                value={0}
-                control={<Radio />}
-                label={`${question.options[0].answer}`}
-              />
-              <FormControlLabel
-                value={1}
-                control={<Radio />}
-                label={`${question.options[1].answer}`}
-              />
-              <FormControlLabel
-                value={2}
-                control={<Radio />}
-                label={`${question.options[2].answer}`}
-              />
-              <FormControlLabel
-                value={3}
-                control={<Radio />}
-                label={`${question.options[3].answer}`}
-              />
-            </RadioGroup>
+            {question.type ? (
+              <FormGroup sx={{ border: "1px solid white" }}>
+                {question.options.map((option, optionIndex) => (
+                  <FormControlLabel
+                    key={optionIndex}
+                    value={optionIndex}
+                    control={
+                      // eslint-disable-next-line react/jsx-wrap-multilines
+                      <Checkbox onChange={(e) => answerQuestionCheckBox(e)} name={`${index}`} />
+                    }
+                    label={`${option.answer}`}
+                  />
+                ))}
+              </FormGroup>
+            ) : (
+              <RadioGroup name={`${index}`} onChange={answerQuestion}>
+                {question.options.map((option, optionIndex) => (
+                  <FormControlLabel
+                    key={optionIndex}
+                    value={optionIndex}
+                    control={<Radio />}
+                    label={`${option.answer}`}
+                  />
+                ))}
+              </RadioGroup>
+            )}
           </FormControl>
         ))}
       </Grid>
@@ -145,6 +173,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
             width: "95vw",
             height: "95vh",
             backgroundColor: "gray",
+            outline: "none",
           }}
         >
           <Questions />
