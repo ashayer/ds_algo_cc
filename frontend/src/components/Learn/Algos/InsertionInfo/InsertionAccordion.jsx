@@ -22,7 +22,7 @@ import InsertionCode from "./InsertionCode";
 // eslint-disable-next-line no-unused-vars
 const questionsArray = [
   {
-    question: "Click A",
+    question: "Is insertion Sort An In Place Algorithm",
     options: [
       { answer: "a", correct: true },
       { answer: "b", correct: false },
@@ -69,17 +69,39 @@ const checkAnswers = () => {
 };
 
 const Questions = () => {
-  return questionsArray.map((question, index) => (
-    <FormControl sx={{ border: "2px solid white", marginLeft: "10px" }} key={index}>
-      <Typography>{question.question}</Typography>
-      <RadioGroup name={`${index}`} onChange={answerQuestion}>
-        <FormControlLabel value={0} control={<Radio />} label={`${question.options[0].answer}`} />
-        <FormControlLabel value={1} control={<Radio />} label={`${question.options[1].answer}`} />
-        <FormControlLabel value={2} control={<Radio />} label={`${question.options[2].answer}`} />
-        <FormControlLabel value={3} control={<Radio />} label={`${question.options[3].answer}`} />
-      </RadioGroup>
-    </FormControl>
-  ));
+  return (
+    <Grid container>
+      <Grid item xs={12} md={12}>
+        {questionsArray.map((question, index) => (
+          <FormControl sx={{ border: "2px solid white", marginLeft: "10px" }} key={index}>
+            <Typography>{question.question}</Typography>
+            <RadioGroup name={`${index}`} onChange={answerQuestion}>
+              <FormControlLabel
+                value={0}
+                control={<Radio />}
+                label={`${question.options[0].answer}`}
+              />
+              <FormControlLabel
+                value={1}
+                control={<Radio />}
+                label={`${question.options[1].answer}`}
+              />
+              <FormControlLabel
+                value={2}
+                control={<Radio />}
+                label={`${question.options[2].answer}`}
+              />
+              <FormControlLabel
+                value={3}
+                control={<Radio />}
+                label={`${question.options[3].answer}`}
+              />
+            </RadioGroup>
+          </FormControl>
+        ))}
+      </Grid>
+    </Grid>
+  );
 };
 
 // eslint-disable-next-line no-unused-vars
