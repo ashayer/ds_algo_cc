@@ -19,7 +19,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
     if (currentSubSection !== name) setCurrentSubSection(name);
   }
 
-  const completed = (index) => {
+  const completed = async (index) => {
     tempSectionArray[0].subsections[index].completed = true;
     const tempSectionArrayOne = tempSectionArray.slice();
     setTempSectionArray(tempSectionArrayOne);
@@ -29,7 +29,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
       const temp = tempSectionArray.slice();
       setTempSectionArray(temp);
     }
-    // updateLocalUser(tempSectionArray);
+    updateLocalUser(tempSectionArray);
   };
 
   return (
@@ -65,11 +65,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
               </Grid>
             </AccordionSummary>
             <AccordionDetails>
-              {index === 0 ? (
-                <InsertionGeneral />
-              ) : index === 1 ? (
-                <InsertionCode />
-              ) : null}
+              {index === 0 ? <InsertionGeneral /> : index === 1 ? <InsertionCode /> : null}
             </AccordionDetails>
             {!subsection.completed ? (
               <Button onClick={() => completed(index)} variant="contained">

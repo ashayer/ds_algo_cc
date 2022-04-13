@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { Container, Button, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import axios from "axios";
 import InsertionAccordion from "./InsertionInfo/InsertionAccordion";
 import SelectionAccordion from "./SelectionInfo/SelectionAccordion";
 import MergeAccordion from "./MergeInfo/MergeAccordion";
 import QuickAccordion from "./QuickInfo/QuickAccordion";
 import Navbar from "../../Navbar/Navbar";
 
+const API_URL = "/api/users/";
+
 const Algos = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
-
   const [sectionNum, setSectionNum] = useState(0);
   const [tempSectionArray, setTempSectionArray] = useState(localUser.algoReading);
 
@@ -22,7 +24,10 @@ const Algos = () => {
     if (sectionNum > 0) setSectionNum(sectionNum - 1);
   };
 
-  const updateLocalUser = (array) => {
+  const updateLocalUser = async (array) => {
+    await axios.patch(`${API_URL}updateAlgo/${localUser._id}`, {
+      algoReading: array,
+    });
     localUser.algoReading = array;
     sessionStorage.setItem("user", JSON.stringify(localUser));
   };

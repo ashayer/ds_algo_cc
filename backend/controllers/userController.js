@@ -85,14 +85,33 @@ const generateToken = (id) => {
   });
 };
 
-export const updatePoints = asyncHandler(async (req) => {
-  await User.findByIdAndUpdate(req.params.id, {
+export const updatePoints = asyncHandler(async (req ,res) => {
+  const update = await User.findByIdAndUpdate(req.params.id, {
     points: req.body.points,
     responseTime: req.body.responseTime,
     streak: req.body.streak,
     numCorrect: req.body.numCorrect,
     numWrong: req.body.numWrong,
   });
+
+  if (update) {
+    res.status(200).send("Updated");
+  } else {
+    res.status(400).send("Failed");
+    throw new Error("oops");
+  }
+});
+
+export const updateAlgoReading = asyncHandler(async (req, res) => {
+  const update = await User.findByIdAndUpdate(req.params.id, {
+    algoReading: req.body.algoReading,
+  });
+  if (update) {
+    res.status(200).send("Updated");
+  } else {
+    res.status(400).send("Failed");
+    throw new Error("oops");
+  }
 });
 
 export const getUsers = asyncHandler(async (req, res) => {

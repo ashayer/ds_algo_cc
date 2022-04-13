@@ -27,7 +27,7 @@ const SelectionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
       const temp = tempSectionArray.slice();
       setTempSectionArray(temp);
     }
-    // updateLocalUser(tempSectionArray);
+    updateLocalUser(tempSectionArray);
   };
 
   return (
