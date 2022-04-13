@@ -1,19 +1,91 @@
 import React, { useState, useRef } from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
+import {
+  Typography,
+  Button,
+  Grid,
+  Modal,
+  Box,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  AccordionDetails,
+  AccordionSummary,
+  Accordion,
+} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Button, Grid, Modal, Box } from "@mui/material";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import InsertionGeneral from "./InsertionGeneral";
 import InsertionCode from "./InsertionCode";
 
 // eslint-disable-next-line no-unused-vars
+const questionsArray = [
+  {
+    question: "Click A",
+    options: [
+      { answer: "a", correct: true },
+      { answer: "b", correct: false },
+      { answer: "c", correct: false },
+      { answer: "d", correct: false },
+    ],
+  },
+  {
+    question: "Click B",
+    options: [
+      { answer: "a", correct: false },
+      { answer: "b", correct: true },
+      { answer: "c", correct: false },
+      { answer: "d", correct: false },
+    ],
+  },
+  {
+    question: "Click C",
+    options: [
+      { answer: "a", correct: false },
+      { answer: "b", correct: false },
+      { answer: "c", correct: true },
+      { answer: "d", correct: false },
+    ],
+  },
+];
+
+const userAnswers = [];
+
+const answerQuestion = (e) => {
+  userAnswers[e.target.name] = questionsArray[e.target.name].options[e.target.value].correct;
+  console.log(userAnswers);
+};
+
+const checkAnswers = () => {
+  let totalCorrect = 0;
+  userAnswers.map((answer) => {
+    if (answer) {
+      totalCorrect += 1;
+    }
+    return totalCorrect;
+  });
+  console.log((totalCorrect / 3) * 100);
+};
+
+const Questions = () => {
+  return questionsArray.map((question, index) => (
+    <FormControl sx={{ border: "2px solid white", marginLeft: "10px" }} key={index}>
+      <Typography>{question.question}</Typography>
+      <RadioGroup name={`${index}`} onChange={answerQuestion}>
+        <FormControlLabel value={0} control={<Radio />} label={`${question.options[0].answer}`} />
+        <FormControlLabel value={1} control={<Radio />} label={`${question.options[1].answer}`} />
+        <FormControlLabel value={2} control={<Radio />} label={`${question.options[2].answer}`} />
+        <FormControlLabel value={3} control={<Radio />} label={`${question.options[3].answer}`} />
+      </RadioGroup>
+    </FormControl>
+  ));
+};
+
+// eslint-disable-next-line no-unused-vars
 const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocalUser }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const subsectionIndexRef = useRef(0);
@@ -22,6 +94,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
     if (currentSubSection !== name) setCurrentSubSection(name);
   }
 
+  // eslint-disable-next-line no-unused-vars
   const completed = async (index) => {
     console.log(index);
     tempSectionArray[0].subsections[index].completed = true;
@@ -40,23 +113,27 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
 
   return (
     <>
-      <Modal
-        open={open}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-          <Button onClick={() => completed(subsectionIndexRef.current)} variant="contained">
-            Take Quiz
+      <Modal open={open}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "95vw",
+            height: "95vh",
+            backgroundColor: "gray",
+          }}
+        >
+          <Questions />
+          {/* <Button onClick={() => completed(subsectionIndexRef.current)} variant="contained">
+            Submit
+          </Button> */}
+          <Button onClick={() => checkAnswers()} variant="contained">
+            Submit
           </Button>
           <Button onClick={() => handleClose()} variant="contained">
-            Close
+            X
           </Button>
         </Box>
       </Modal>
@@ -103,7 +180,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
                     handleOpen();
                   }}
                 >
-                  Open modal
+                  Take Quiz
                 </Button>
               ) : (
                 <Button onClick={() => handleAccordClick(index)} variant="contained">
