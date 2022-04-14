@@ -15,20 +15,16 @@ import {
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Navbar/Navbar";
+import sortArrayInsertion from "./AlgoGenerators/insertionGen";
+import sortArraySelection from "./AlgoGenerators/selectionGen";
 
-const Line1 = "1 for (int i = 1; i < arr.len; i++)\n";
-const Line2 = "2   for (int j = i; j > 0; j--)\n";
-const Line3 = "3     if (arr[j] < arr[j-1])\n";
-const Line4 = "4       swap (arr[j],arr[j-1])\n";
-const Line5 = "5     else break;    ";
-
-const pseudoCodeStringArray = [Line1, Line2, Line3, Line4, Line5];
+let pseudoCodeStringArray = [];
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const SortingSandbox = () => {
-  const [algorithm, setAlgorithm] = useState("");
+  const [algorithm, setAlgorithm] = useState(2);
   const arraySize = useRef(10);
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
@@ -38,6 +34,8 @@ const SortingSandbox = () => {
   const createRandomArray = () => {
     setStep(0);
     const tempArray = [];
+    const tempCodeArray = [];
+
     for (let i = 0; i < arraySize.current; i += 1) {
       const elementObject = {
         value: Math.floor(Math.random() * (99 - 10) + 10),
@@ -52,56 +50,24 @@ const SortingSandbox = () => {
     }
     setArrayMax(max);
     setSortHistoryArray([tempArray]);
-  };
-
-  const sortArrayInsertion = () => {
-    const tempArray = [];
-    const tempCodeArray = [];
-    const arr = JSON.parse(JSON.stringify(arrayElements));
-    for (let i = 1; i < arr.length; i += 1) {
-      // Choosing the first element in our unsorted subarray
-      const current = arr[i].value;
-      // The last element of our sorted subarray
-      let j = i - 1;
-      arr[i].color = "red";
-      arr[j].color = "red";
-
-      tempCodeArray.push(1);
-      tempArray.push(JSON.parse(JSON.stringify(arr)));
-
-      while (j >= 0 && arr[j].value > current) {
-        const temp = arr[j + 1].value;
-        arr[j + 1].value = arr[j].value;
-        arr[j].value = temp;
-        arr[j + 1].color = "blue";
-        j -= 1;
-        if (j >= 0) {
-          arr[j].color = "red";
-        }
-        tempCodeArray.push(4);
-        tempArray.push(JSON.parse(JSON.stringify(arr)));
-      }
-      arr[j + 1].value = current;
-
-      if (j >= 0) arr[j].color = "blue";
-      arr[j + 1].color = "blue";
-      tempCodeArray.push(3);
-      tempArray.push(JSON.parse(JSON.stringify(arr)));
-    }
-
-    for (let k = 0; k < arr.length; k += 1) {
-      arr[k].color = "green";
-    }
-    tempCodeArray.push(1);
-    tempArray.push(JSON.parse(JSON.stringify(arr)));
-
-    setSortHistoryArray(tempArray);
     setCodeHighlight(tempCodeArray);
   };
 
-  const nextStep = () => {
-    console.log(codeHighlight);
+  const sortArrayWithCurrentAlgorithm = () => {
+    if (algorithm === 1) {
+      const [tempArray, tempCodeArray, code] = sortArrayInsertion(arrayElements);
+      pseudoCodeStringArray = code;
+      setSortHistoryArray(tempArray);
+      setCodeHighlight(tempCodeArray);
+    } else if (algorithm === 2) {
+      const [tempArray, tempCodeArray, code] = sortArraySelection(arrayElements);
+      pseudoCodeStringArray = code;
+      setSortHistoryArray(tempArray);
+      setCodeHighlight(tempCodeArray);
+    }
+  };
 
+  const nextStep = () => {
     if (step < sortHistoryArray.length - 1) {
       setStep((prevStep) => prevStep + 1);
     }
@@ -158,12 +124,12 @@ const SortingSandbox = () => {
               value={algorithm}
               label="Algorithm"
               onChange={handleChange}
-              defaultValue=""
             >
               <MenuItem value={1}>Insertion Sort</MenuItem>
               <MenuItem value={2}>Selection Sort</MenuItem>
+              {/*
               <MenuItem value={3}>Merge Sort</MenuItem>
-              <MenuItem value={4}>Quick Sort</MenuItem>
+              <MenuItem value={4}>Quick Sort</MenuItem> */}
             </Select>
           </FormControl>
           <Button
@@ -188,7 +154,7 @@ const SortingSandbox = () => {
           <Button
             variant="contained"
             onClick={() => {
-              sortArrayInsertion();
+              sortArrayWithCurrentAlgorithm();
             }}
           >
             Sort
@@ -253,7 +219,7 @@ const SortingSandbox = () => {
             justifyContent: "center",
           }}
         >
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={3}>
             {pseudoCodeStringArray.map((line, index) => (
               <Typography
                 key={index}
@@ -261,7 +227,8 @@ const SortingSandbox = () => {
                 style={{ whiteSpace: "break-spaces" }}
                 sx={{
                   textAlign: "left",
-                  backgroundColor: codeHighlight[step] === index ? "blue" : "red",
+                  backgroundColor: codeHighlight[step] === index ? "red" : "white",
+                  marginTop: "0.5vh",
                 }}
               >
                 {line}

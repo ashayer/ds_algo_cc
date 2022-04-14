@@ -1,7 +1,6 @@
 import React from "react";
 import { Typography, Grid } from "@mui/material";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const InsertionSortCPP = () => {
   const codeString = `void InsertionSort(vector<int> arr) {
@@ -14,7 +13,7 @@ const InsertionSortCPP = () => {
   }
 }`;
   return (
-    <SyntaxHighlighter language="cpp" style={obsidian} showLineNumbers>
+    <SyntaxHighlighter language="cpp" showLineNumbers>
       {codeString}
     </SyntaxHighlighter>
   );
