@@ -21,8 +21,45 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import InsertionGeneral from "./InsertionGeneral";
 import InsertionCode from "./InsertionCode";
 
-// eslint-disable-next-line no-unused-vars
 const questionsArray = [
+  {
+    question: "Is insertion Sort An In Place Algorithm",
+    type: 0,
+    options: [
+      { answer: "a", correct: true },
+      { answer: "b", correct: false },
+      { answer: "c", correct: false },
+      { answer: "d", correct: false },
+    ],
+  },
+  {
+    question: "Click B",
+    type: 0,
+    options: [
+      { answer: "a", correct: false },
+      { answer: "b", correct: true },
+      { answer: "c", correct: false },
+      { answer: "d", correct: false },
+    ],
+  },
+  {
+    question: "True or False",
+    type: 0,
+    options: [
+      { answer: "true", correct: true },
+      { answer: "false", correct: false },
+    ],
+  },
+  {
+    question: "Check 1 and 3",
+    type: 1,
+    options: [
+      { answer: "1", correct: true },
+      { answer: "2", correct: false },
+      { answer: "3", correct: true },
+      { answer: "4", correct: false },
+    ],
+  },
   {
     question: "Is insertion Sort An In Place Algorithm",
     type: 0,
@@ -94,40 +131,41 @@ const checkAnswers = () => {
 
 const Questions = () => {
   return (
-    <Grid container direction="column" justifyContent="space-evenly" alignItems="stretch">
-      <Grid item>
-        {questionsArray.map((question, index) => (
-          <FormControl key={index}>
+    <Grid container justifyContent="center" alignItems="center">
+      {questionsArray.map((question, index) => (
+        <Grid item xs={12} md={6} key={index}>
+          <Box>
             <Typography>{question.question}</Typography>
-            {question.type ? (
-              <FormGroup sx={{ border: "1px solid white" }}>
-                {question.options.map((option, optionIndex) => (
-                  <FormControlLabel
-                    key={optionIndex}
-                    value={optionIndex}
-                    control={
-                      // eslint-disable-next-line react/jsx-wrap-multilines
-                      <Checkbox onChange={(e) => answerQuestionCheckBox(e)} name={`${index}`} />
-                    }
-                    label={`${option.answer}`}
-                  />
-                ))}
-              </FormGroup>
-            ) : (
-              <RadioGroup name={`${index}`} onChange={answerQuestion}>
-                {question.options.map((option, optionIndex) => (
-                  <FormControlLabel
-                    key={optionIndex}
-                    value={optionIndex}
-                    control={<Radio />}
-                    label={`${option.answer}`}
-                  />
-                ))}
-              </RadioGroup>
-            )}
-          </FormControl>
-        ))}
-      </Grid>
+            <FormControl>
+              {question.type ? (
+                <FormGroup>
+                  {question.options.map((option, optionIndex) => (
+                    <FormControlLabel
+                      key={optionIndex}
+                      value={optionIndex}
+                      control={
+                        <Checkbox onChange={(e) => answerQuestionCheckBox(e)} name={`${index}`} />
+                      }
+                      label={`${option.answer}`}
+                    />
+                  ))}
+                </FormGroup>
+              ) : (
+                <RadioGroup name={`${index}`} onChange={answerQuestion}>
+                  {question.options.map((option, optionIndex) => (
+                    <FormControlLabel
+                      key={optionIndex}
+                      value={optionIndex}
+                      control={<Radio />}
+                      label={`${option.answer}`}
+                    />
+                  ))}
+                </RadioGroup>
+              )}
+            </FormControl>
+          </Box>
+        </Grid>
+      ))}
     </Grid>
   );
 };
@@ -135,7 +173,7 @@ const Questions = () => {
 // eslint-disable-next-line no-unused-vars
 const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocalUser }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const subsectionIndexRef = useRef(0);
@@ -171,6 +209,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: "95vw",
+            overflow: "auto",
             height: "95vh",
             backgroundColor: "gray",
             outline: "none",
