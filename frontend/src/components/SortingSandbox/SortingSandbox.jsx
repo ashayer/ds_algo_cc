@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
@@ -11,10 +12,11 @@ import {
   MenuItem,
   Slider,
 } from "@mui/material";
+import SyntaxHighlighter from "react-syntax-highlighter";
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Navbar/Navbar";
 
-const Line1 = "1 for (int i = 0; i < arr.len; i++)\n";
+const Line1 = "1 for (int i = 1; i < arr.len; i++)\n";
 const Line2 = "2   for (int j = i; j > 0; j--)\n";
 const Line3 = "3     if (arr[j] < arr[j-1])\n";
 const Line4 = "4       swap (arr[j],arr[j-1])\n";
@@ -31,6 +33,7 @@ const SortingSandbox = () => {
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
   const [sortHistoryArray, setSortHistoryArray] = useState([[{}]]);
+  const [codeHighlight, setCodeHighlight] = useState([]);
   const [step, setStep] = useState(0);
   const createRandomArray = () => {
     setStep(0);
@@ -53,8 +56,8 @@ const SortingSandbox = () => {
 
   const sortArrayInsertion = () => {
     const tempArray = [];
+    const tempCodeArray = [];
     const arr = JSON.parse(JSON.stringify(arrayElements));
-    tempArray.push(JSON.parse(JSON.stringify(arr)));
     for (let i = 1; i < arr.length; i += 1) {
       // Choosing the first element in our unsorted subarray
       const current = arr[i].value;
@@ -63,7 +66,9 @@ const SortingSandbox = () => {
       arr[i].color = "red";
       arr[j].color = "red";
 
+      tempCodeArray.push(1);
       tempArray.push(JSON.parse(JSON.stringify(arr)));
+
       while (j >= 0 && arr[j].value > current) {
         const temp = arr[j + 1].value;
         arr[j + 1].value = arr[j].value;
@@ -73,25 +78,30 @@ const SortingSandbox = () => {
         if (j >= 0) {
           arr[j].color = "red";
         }
+        tempCodeArray.push(4);
         tempArray.push(JSON.parse(JSON.stringify(arr)));
       }
       arr[j + 1].value = current;
 
       if (j >= 0) arr[j].color = "blue";
-      arr[i].color = "pink";
       arr[j + 1].color = "blue";
+      tempCodeArray.push(3);
       tempArray.push(JSON.parse(JSON.stringify(arr)));
     }
 
     for (let k = 0; k < arr.length; k += 1) {
       arr[k].color = "green";
     }
+    tempCodeArray.push(1);
     tempArray.push(JSON.parse(JSON.stringify(arr)));
 
     setSortHistoryArray(tempArray);
+    setCodeHighlight(tempCodeArray);
   };
 
   const nextStep = () => {
+    console.log(codeHighlight);
+
     if (step < sortHistoryArray.length - 1) {
       setStep((prevStep) => prevStep + 1);
     }
@@ -220,7 +230,11 @@ const SortingSandbox = () => {
         <Button variant="contained" onClick={nextStep}>
           Next Step
         </Button>
-        <Typography>{sortHistoryArray.length > 1 ? `Step ${step} of ${sortHistoryArray.length - 1}` : "Press Sort"}</Typography>
+        <Typography>
+          {sortHistoryArray.length > 1
+            ? `Step ${step} of ${sortHistoryArray.length - 1}`
+            : "Press Sort"}
+        </Typography>
         <Slider
           value={step}
           onChange={(e, value) => {
@@ -240,13 +254,19 @@ const SortingSandbox = () => {
           }}
         >
           <Grid item xs={12} md={6}>
-            <Typography
-              variant="h5"
-              style={{ whiteSpace: "break-spaces" }}
-              sx={{ textAlign: "left" }}
-            >
-              {pseudoCodeStringArray}
-            </Typography>
+            {pseudoCodeStringArray.map((line, index) => (
+              <Typography
+                key={index}
+                variant="h5"
+                style={{ whiteSpace: "break-spaces" }}
+                sx={{
+                  textAlign: "left",
+                  backgroundColor: codeHighlight[step] === index ? "blue" : "red",
+                }}
+              >
+                {line}
+              </Typography>
+            ))}
           </Grid>
         </Grid>
       </Box>
