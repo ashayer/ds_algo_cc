@@ -17,6 +17,7 @@ import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/s
 import Navbar from "../Navbar/Navbar";
 import sortArrayInsertion from "./AlgoGenerators/insertionGen";
 import sortArraySelection from "./AlgoGenerators/selectionGen";
+import sortArrayMerge from "./AlgoGenerators/mergeGen";
 
 let pseudoCodeStringArray = [];
 
@@ -24,7 +25,7 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const SortingSandbox = () => {
-  const [algorithm, setAlgorithm] = useState(2);
+  const [algorithm, setAlgorithm] = useState(3);
   const arraySize = useRef(10);
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
@@ -61,6 +62,11 @@ const SortingSandbox = () => {
       setCodeHighlight(tempCodeArray);
     } else if (algorithm === 2) {
       const [tempArray, tempCodeArray, code] = sortArraySelection(arrayElements);
+      pseudoCodeStringArray = code;
+      setSortHistoryArray(tempArray);
+      setCodeHighlight(tempCodeArray);
+    } else if (algorithm === 3) {
+      const [tempArray, tempCodeArray, code] = sortArrayMerge(arrayElements);
       pseudoCodeStringArray = code;
       setSortHistoryArray(tempArray);
       setCodeHighlight(tempCodeArray);
@@ -127,8 +133,8 @@ const SortingSandbox = () => {
             >
               <MenuItem value={1}>Insertion Sort</MenuItem>
               <MenuItem value={2}>Selection Sort</MenuItem>
-              {/*
               <MenuItem value={3}>Merge Sort</MenuItem>
+              {/*
               <MenuItem value={4}>Quick Sort</MenuItem> */}
             </Select>
           </FormControl>
