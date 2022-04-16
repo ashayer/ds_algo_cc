@@ -66,7 +66,7 @@ const Time = () => {
         <Typography>
           Time complexity simply refers to the time it takes for an algorithm to run. For sorting
           algorithms the input can change in size, therefore the time complexity of an algorithm is
-          usually descirbed by its WORST performing time given a size. It is typically descirbed in
+          usually described by its WORST performing time given a size. It is typically described in
           Big O notation.
         </Typography>
       </Grid>

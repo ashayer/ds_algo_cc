@@ -13,7 +13,7 @@ const API_URL = "/api/users/";
 
 const Algos = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
-  const [sectionNum, setSectionNum] = useState(0);
+  const [sectionNum, setSectionNum] = useState(1);
   const [tempSectionArray, setTempSectionArray] = useState(localUser.algoReading);
 
   const nextSection = () => {

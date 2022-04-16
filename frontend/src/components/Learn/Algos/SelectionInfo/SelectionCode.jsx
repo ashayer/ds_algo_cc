@@ -39,13 +39,14 @@ const Line3 = () => {
 };
 
 const InsertionSortCPP = () => {
-  const codeString = `void InsertionSort(vector<int> arr) {
-  for(int i = 1; i < arr.size(); i++) {
-    for(int j = i; j > 0; j--) {
-      if(arr[j] < arr[j-1]) {
-        swap(arr[j], arr[j-1]);
+  const codeString = `void SelectionSort(vector<int> arr) {
+  for(int i = 0; i < arr.size(); i++) {
+    int min = i;
+    for(int j = i + 1; j < arr.size(); j++) {
+      if(arr[j] < arr[min]) {
+        min = j;
       }
-      else break;
+    swap(array[min], array[i]);
   }
 }`;
   return (
@@ -127,16 +128,13 @@ const SelectionCode = () => {
         </Grid>
         <Grid item md={8} xs={12} sx={{ border: "1px solid black" }}>
           <Typography variant="h6">
-            This is a code snippet of the insertion sort algorithm in C++. It utilizes a{" "}
-            <TextPopover text="NESTED FOR LOOP" id={0} />. The outer loop{" "}
-            <TextPopover text="(line 2)" id={1} /> dictates the place in the array we are currently
-            starting at for the inner loop. At each iteration all values to left of the ith place
-            will be currently sorted where everything to the right is untouched. Therefore we need
-            to start at the 2nd element. That is why i=1 instead of i=0. The inner loop{" "}
-            <TextPopover text="(line 3)" id={2} /> will function as a comparison pointer where it
-            will compare the current jth element to the jth-1 element, or the one directly to its
-            left. It will keep repeating this behavior until two conditions. J reaches the first
-            element of the list OR it finds a value that is less than or equal to the current value.
+            This is the code for selection sort in C++. It also be written using a{" "}
+            <TextPopover text="NESTED FOR LOOP" id={0} />. On <TextPopover text="LINE 3" id={0} />
+            the minimum value is set as I, the outer most index. The min will always start as the
+            first element in the unsorted section. The inner loop will increment through the rest of
+            the array to find the element with the smallest value, if the value is found then the
+            index of the minium value is set as J LINE 6. Then the index of the minimum value and i,
+            will be swapped. It will repeat this loop until I reaches the end of the array.
           </Typography>
         </Grid>
       </Grid>
