@@ -1,7 +1,8 @@
 {
-    "cSpell.words": [
-        "chartjs",
-        "Leaderboard",
-        "toastify"
-    ]
+  "cSpell.words": ["chartjs", "Leaderboard", "toastify"],
+  "editor.formatOnSave": true,
+  // enable per-language (here: Prettier as formatter)
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
