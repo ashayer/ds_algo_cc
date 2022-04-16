@@ -129,12 +129,7 @@ const InsertionGeneral = () => {
         </Typography>
       </Grid>
       <Grid item md={2} sx={{ border: "1px solid black" }}>
-        <Box
-          component="img"
-          src="https://upload.wikimedia.org/wikipedia/commons/4/42/Insertion_sort.gif"
-          alt="Insertion sort animation from Wikipedia"
-          title="Insertion sort animation from Wikipedia"
-        />
+        <Box>Animation here from sandbox</Box>
       </Grid>
       <Grid item md={4} sx={{ border: "1px solid black" }}>
         <Typography>Time Complexities</Typography>

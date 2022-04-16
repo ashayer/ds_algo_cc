@@ -112,7 +112,7 @@ const TextPopover = ({ text, id }) => {
   );
 };
 
-const SelectionGeneral = () => {
+const MergeGeneral = () => {
   return (
     <Grid container>
       <Grid item md={10} sx={{ border: "1px solid black" }}>
@@ -180,4 +180,4 @@ const SelectionGeneral = () => {
   );
 };
 
-export default SelectionGeneral;
+export default MergeGeneral;

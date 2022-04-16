@@ -27,15 +27,15 @@ const questionsArrayForGeneral = [
     question: "Which of the following is NOT true",
     type: 0,
     options: [
-      { answer: "selection sort has a best case of n", correct: false },
-      { answer: "selection sort is stable and in-place", correct: false },
-      { answer: "selection sort has a best case of n\u00B2", correct: true },
-      { answer: "selection sort is efficient on smaller datasets", correct: false },
+      { answer: "Selection sort has a best case of n", correct: false },
+      { answer: "Selection sort is stable and in-place", correct: false },
+      { answer: "Selection sort has a best case of n\u00B2", correct: true },
+      { answer: "Selection sort is efficient on smaller datasets", correct: false },
     ],
   },
   {
     question:
-      "What would be the output of selection sort if we sorted the tuples by their letter. " +
+      "What would be the output of Selection sort if we sorted the tuples by their letter. " +
       "(C,1) (B,3) (A,2) (A,1) (B,1)",
     type: 0,
     options: [
@@ -46,7 +46,7 @@ const questionsArrayForGeneral = [
     ],
   },
   {
-    question: "selection Sort is in-place but unstable",
+    question: "Selection Sort is in-place but unstable",
     type: 0,
     options: [
       { answer: "true", correct: false },
@@ -54,7 +54,7 @@ const questionsArrayForGeneral = [
     ],
   },
   {
-    question: "Check all that apply to selection sort",
+    question: "Check all that apply to Selection sort",
     type: 1,
     options: [
       { answer: "Has a space complexity of O(1)", correct: true },
@@ -87,7 +87,7 @@ const questionsArrayForCode = [
     ],
   },
   {
-    question: "What is the equivalent while loop for the inner j loop of selection sort",
+    question: "What is the equivalent while loop for the inner j loop of Selection sort",
     type: 0,
     options: [
       { answer: "while(j > 0)", correct: false },
@@ -204,7 +204,7 @@ const QuestionsForCode = () => {
 };
 
 // eslint-disable-next-line no-unused-vars
-const selectionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocalUser }) => {
+const SelectionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocalUser }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -370,4 +370,4 @@ const selectionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
   );
 };
 
-export default selectionAccordion;
+export default SelectionAccordion;
