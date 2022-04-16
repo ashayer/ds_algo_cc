@@ -15,102 +15,111 @@ import {
   Accordion,
   Checkbox,
 } from "@mui/material";
+import { toast } from "react-toastify";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import InsertionGeneral from "./InsertionGeneral";
 import InsertionCode from "./InsertionCode";
 
-const questionsArray = [
+const questionsArrayForGeneral = [
   {
-    question: "Is insertion Sort An In Place Algorithm",
+    question: "Which of the following is NOT true",
     type: 0,
     options: [
-      { answer: "a", correct: true },
-      { answer: "b", correct: false },
-      { answer: "c", correct: false },
-      { answer: "d", correct: false },
+      { answer: "Insertion sort has a best case of n", correct: false },
+      { answer: "Insertion sort is stable and in-place", correct: false },
+      { answer: "Insertion sort has a best case of n\u00B2", correct: true },
+      { answer: "Insertion sort is efficient on smaller datasets", correct: false },
     ],
   },
   {
-    question: "Click B",
+    question:
+      "What would be the output of insertion sort if we sorted the tuples by their letter. " +
+      "(C,1) (B,3) (A,2) (A,1) (B,1)",
     type: 0,
     options: [
-      { answer: "a", correct: false },
-      { answer: "b", correct: true },
-      { answer: "c", correct: false },
-      { answer: "d", correct: false },
+      { answer: "(A,1) (A,2) (B,1) (B,3) (C,1)", correct: false },
+      { answer: "(A,2) (A,1) (B,3) (B,1) (C,1)", correct: true },
+      { answer: "(A,2) (A,1) (B,1) (B,3) (C,1)", correct: false },
+      { answer: "(A,1) (B,1) (C,1) (A,2) (B,3) ", correct: false },
     ],
   },
   {
-    question: "True or False",
+    question: "Insertion Sort is in-place but unstable",
     type: 0,
     options: [
-      { answer: "true", correct: true },
-      { answer: "false", correct: false },
+      { answer: "true", correct: false },
+      { answer: "false", correct: true },
     ],
   },
   {
-    question: "Check 1 and 3",
+    question: "Check all that apply to insertion sort",
     type: 1,
     options: [
-      { answer: "1", correct: true },
-      { answer: "2", correct: false },
-      { answer: "3", correct: true },
-      { answer: "4", correct: false },
-    ],
-  },
-  {
-    question: "Is insertion Sort An In Place Algorithm",
-    type: 0,
-    options: [
-      { answer: "a", correct: true },
-      { answer: "b", correct: false },
-      { answer: "c", correct: false },
-      { answer: "d", correct: false },
-    ],
-  },
-  {
-    question: "Click B",
-    type: 0,
-    options: [
-      { answer: "a", correct: false },
-      { answer: "b", correct: true },
-      { answer: "c", correct: false },
-      { answer: "d", correct: false },
-    ],
-  },
-  {
-    question: "True or False",
-    type: 0,
-    options: [
-      { answer: "true", correct: true },
-      { answer: "false", correct: false },
-    ],
-  },
-  {
-    question: "Check 1 and 3",
-    type: 1,
-    options: [
-      { answer: "1", correct: true },
-      { answer: "2", correct: false },
-      { answer: "3", correct: true },
-      { answer: "4", correct: false },
+      { answer: "Has a space complexity of O(1)", correct: true },
+      { answer: "Has a space tune of O(n\u00B2)", correct: true },
+      { answer: "Sorts a list in-place", correct: true },
+      { answer: "Will maintain the order of the original list", correct: true },
     ],
   },
 ];
 
-const userAnswers = [];
+const questionsArrayForCode = [
+  {
+    question: "Which of the following is NOT true",
+    type: 0,
+    options: [
+      { answer: "Insertion sort has a best case of n", correct: false },
+      { answer: "Insertion sort is stable and in-place", correct: false },
+      { answer: "Insertion sort has a best case of n\u00B2", correct: true },
+      { answer: "Insertion sort is efficient on smaller datasets", correct: false },
+    ],
+  },
+  {
+    question:
+      "What would be the output of insertion sort if we sorted the tuples by their letter. " +
+      "(C,1) (B,3) (A,2) (A,1) (B,1)",
+    type: 0,
+    options: [
+      { answer: "(A,1) (A,2) (B,1) (B,3) (C,1)", correct: false },
+      { answer: "(A,2) (A,1) (B,3) (B,1) (C,1)", correct: true },
+      { answer: "(A,2) (A,1) (B,1) (B,3) (C,1)", correct: false },
+      { answer: "(A,1) (B,1) (C,1) (A,2) (B,3) ", correct: false },
+    ],
+  },
+  {
+    question: "Insertion Sort is in-place but unstable",
+    type: 0,
+    options: [
+      { answer: "true", correct: false },
+      { answer: "false", correct: true },
+    ],
+  },
+  {
+    question: "Check all that apply to insertion sort",
+    type: 1,
+    options: [
+      { answer: "Has a space complexity of O(1)", correct: true },
+      { answer: "Has a space tune of O(n\u00B2)", correct: true },
+      { answer: "Sorts a list in-place", correct: true },
+      { answer: "Will maintain the order of the original list", correct: true },
+    ],
+  },
+];
+
+let userAnswers = [];
+let checkboxQuestion = [false, false, false, false];
 
 const answerQuestion = (e) => {
-  userAnswers[e.target.name] = questionsArray[e.target.name].options[e.target.value].correct;
+  userAnswers[e.target.name] =
+    questionsArrayForGeneral[e.target.name].options[e.target.value].correct;
 };
-const checkedForQuestionFour = [false, false, false, false];
 const answerQuestionCheckBox = (e) => {
-  checkedForQuestionFour[e.target.value] = !checkedForQuestionFour[e.target.value];
+  checkboxQuestion[e.target.value] = !checkboxQuestion[e.target.value];
   let isWrong = false;
-  questionsArray[e.target.name].options.map((option, index) => {
-    if (!(option.correct === checkedForQuestionFour[index])) {
+  questionsArrayForGeneral[e.target.name].options.map((option, index) => {
+    if (!(option.correct === checkboxQuestion[index])) {
       isWrong = true;
     }
     return isWrong;
@@ -118,52 +127,88 @@ const answerQuestionCheckBox = (e) => {
   userAnswers[e.target.name] = !isWrong;
 };
 
-const checkAnswers = () => {
-  let totalCorrect = 0;
-  userAnswers.map((answer) => {
-    if (answer) {
-      totalCorrect += 1;
-    }
-    return totalCorrect;
-  });
-  console.log(totalCorrect / questionsArray.length);
+const QuestionsForGeneral = () => {
+  return (
+    <Grid
+      container
+      justifyContent="center"
+      alignItems="center"
+      sx={{ border: "1px solid red", padding: "50px" }}
+    >
+      {questionsArrayForGeneral.map((question, index) => (
+        <Grid item xs={12} md={5} key={index} sx={{ minHeight: "250px" }}>
+          <Typography>{question.question}</Typography>
+          <FormControl>
+            {question.type ? (
+              <FormGroup>
+                {question.options.map((option, optionIndex) => (
+                  <FormControlLabel
+                    key={optionIndex}
+                    value={optionIndex}
+                    control={
+                      <Checkbox onChange={(e) => answerQuestionCheckBox(e)} name={`${index}`} />
+                    }
+                    label={`${option.answer}`}
+                  />
+                ))}
+              </FormGroup>
+            ) : (
+              <RadioGroup name={`${index}`} onChange={answerQuestion}>
+                {question.options.map((option, optionIndex) => (
+                  <FormControlLabel
+                    key={optionIndex}
+                    value={optionIndex}
+                    control={<Radio />}
+                    label={`${option.answer}`}
+                  />
+                ))}
+              </RadioGroup>
+            )}
+          </FormControl>
+        </Grid>
+      ))}
+    </Grid>
+  );
 };
 
-const Questions = () => {
+const QuestionsForCode = () => {
   return (
-    <Grid container justifyContent="center" alignItems="center">
-      {questionsArray.map((question, index) => (
-        <Grid item xs={12} md={6} key={index}>
-          <Box>
-            <Typography>{question.question}</Typography>
-            <FormControl>
-              {question.type ? (
-                <FormGroup>
-                  {question.options.map((option, optionIndex) => (
-                    <FormControlLabel
-                      key={optionIndex}
-                      value={optionIndex}
-                      control={
-                        <Checkbox onChange={(e) => answerQuestionCheckBox(e)} name={`${index}`} />
-                      }
-                      label={`${option.answer}`}
-                    />
-                  ))}
-                </FormGroup>
-              ) : (
-                <RadioGroup name={`${index}`} onChange={answerQuestion}>
-                  {question.options.map((option, optionIndex) => (
-                    <FormControlLabel
-                      key={optionIndex}
-                      value={optionIndex}
-                      control={<Radio />}
-                      label={`${option.answer}`}
-                    />
-                  ))}
-                </RadioGroup>
-              )}
-            </FormControl>
-          </Box>
+    <Grid
+      container
+      justifyContent="center"
+      alignItems="center"
+      sx={{ border: "1px solid red", padding: "50px" }}
+    >
+      {questionsArrayForCode.map((question, index) => (
+        <Grid item xs={12} md={5} key={index} sx={{ minHeight: "250px" }}>
+          <Typography>{question.question}</Typography>
+          <FormControl>
+            {question.type ? (
+              <FormGroup>
+                {question.options.map((option, optionIndex) => (
+                  <FormControlLabel
+                    key={optionIndex}
+                    value={optionIndex}
+                    control={
+                      <Checkbox onChange={(e) => answerQuestionCheckBox(e)} name={`${index}`} />
+                    }
+                    label={`${option.answer}`}
+                  />
+                ))}
+              </FormGroup>
+            ) : (
+              <RadioGroup name={`${index}`} onChange={answerQuestion}>
+                {question.options.map((option, optionIndex) => (
+                  <FormControlLabel
+                    key={optionIndex}
+                    value={optionIndex}
+                    control={<Radio />}
+                    label={`${option.answer}`}
+                  />
+                ))}
+              </RadioGroup>
+            )}
+          </FormControl>
         </Grid>
       ))}
     </Grid>
@@ -174,7 +219,11 @@ const Questions = () => {
 const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocalUser }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    userAnswers = [];
+    checkboxQuestion = [false, false, false, false];
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
   const subsectionIndexRef = useRef(0);
   function handleAccordClick(name) {
@@ -182,9 +231,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
     if (currentSubSection !== name) setCurrentSubSection(name);
   }
 
-  // eslint-disable-next-line no-unused-vars
   const completed = async (index) => {
-    console.log(index);
     tempSectionArray[0].subsections[index].completed = true;
     const tempSectionArrayOne = tempSectionArray.slice();
     setTempSectionArray(tempSectionArrayOne);
@@ -199,6 +246,43 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
     handleClose();
   };
 
+  const checkAnswers = () => {
+    let totalCorrect = 0;
+    userAnswers.map((answer) => {
+      if (answer) {
+        totalCorrect += 1;
+      }
+      return totalCorrect;
+    });
+    if (totalCorrect / questionsArrayForGeneral.length !== 0) {
+      toast.error(
+        `Must get 100% correct to proceed! You got ${
+          (totalCorrect / questionsArrayForGeneral.length) * 100
+        }%`,
+        {
+          position: "bottom-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        },
+      );
+    } else {
+      toast.success("Passed!", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+      completed(subsectionIndexRef.current);
+    }
+  };
+
   return (
     <>
       <Modal open={open}>
@@ -211,22 +295,28 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
             width: "95vw",
             overflow: "auto",
             height: "95vh",
-            backgroundColor: "gray",
+            backgroundColor: "white",
             outline: "none",
+            alignItems: "center",
+            justifyContent: "center",
+            alignContent: "center",
           }}
         >
-          <Questions />
-          {/* <Button onClick={() => completed(subsectionIndexRef.current)} variant="contained">
-            Submit
-          </Button> */}
+          <Button
+            onClick={() => handleClose()}
+            sx={{ float: "right", borderRadius: "0" }}
+            variant="contained"
+          >
+            X
+          </Button>
+
+          {subsectionIndexRef.current === 0 ? <QuestionsForGeneral /> : <QuestionsForCode />}
           <Button onClick={() => checkAnswers()} variant="contained">
             Submit
           </Button>
-          <Button onClick={() => handleClose()} variant="contained">
-            X
-          </Button>
         </Box>
       </Modal>
+
       <Accordion
         defaultExpanded
         sx={{
@@ -269,6 +359,7 @@ const InsertionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
                     subsectionIndexRef.current = index;
                     handleOpen();
                   }}
+                  variant="contained"
                 >
                   Take Quiz
                 </Button>
