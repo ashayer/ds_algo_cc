@@ -13,11 +13,11 @@ import {
   Box,
 } from "@mui/material/";
 
-const InPlace = ({ handleClose }) => {
+const InPlace = () => {
   return (
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
-        <Typography onMouseLeave={handleClose}>
+        <Typography>
           In-place means that the algorithm can sort the input without using auxiliary data
           strucutres and instead directly changes the input list. Typically an in-place sorting
           algorithm will always have a space complexitiy of O(1).
@@ -26,11 +26,11 @@ const InPlace = ({ handleClose }) => {
     </Grid>
   );
 };
-const Quadratic = ({ handleClose }) => {
+const Quadratic = () => {
   return (
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
-        <Typography onMouseLeave={handleClose}>
+        <Typography>
           Quadractic simply means that the time it take to sort is the square of the size of the
           list. Since it has the time complexity of n&#178; it is deemed quadratic.
         </Typography>
@@ -39,11 +39,11 @@ const Quadratic = ({ handleClose }) => {
   );
 };
 
-const Stable = ({ handleClose }) => {
+const Stable = () => {
   return (
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
-        <Typography onMouseLeave={handleClose}>
+        <Typography>
           Stability refers to how the algorithm handles two elements of equal value. A stable
           algorithm will keep the the elements of the same value in the same original order.
           Consider the example below.
@@ -58,6 +58,7 @@ const Stable = ({ handleClose }) => {
     </Grid>
   );
 };
+
 const TextPopover = ({ text, id }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -105,13 +106,7 @@ const TextPopover = ({ text, id }) => {
         onClose={handleClose}
         disableRestoreFocus
       >
-        {id === 0 ? (
-          <InPlace handleClose={handleClose} />
-        ) : id === 1 ? (
-          <Quadratic />
-        ) : id === 2 ? (
-          <Stable />
-        ) : null}
+        {id === 0 ? <InPlace /> : id === 1 ? <Quadratic /> : id === 2 ? <Stable /> : null}
       </Popover>
     </>
   );
