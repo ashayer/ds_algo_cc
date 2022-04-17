@@ -24,7 +24,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import GeneralAccordionSection from "./GeneralAccordionSection";
 import CodeAccordionSection from "./CodeAccordionSection";
 
-import * as quizArray from "./sectionQuizArrays";
+import * as quizArray from "../sectionQuizArrays";
 
 let userAnswers = [];
 let checkboxQuestion = [false, false, false, false];

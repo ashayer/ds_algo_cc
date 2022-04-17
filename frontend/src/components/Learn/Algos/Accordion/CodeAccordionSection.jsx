@@ -1,8 +1,8 @@
 import React from "react";
-import InsertionCode from "./InsertionInfo/InsertionCode";
-import SelectionCode from "./SelectionInfo/SelectionCode";
-import MergeCode from "./MergeInfo/MergeCode";
-import QuickCode from "./QuickInfo/QuickCode";
+import InsertionCode from "../InsertionInfo/InsertionCode";
+import SelectionCode from "../SelectionInfo/SelectionCode";
+import MergeCode from "../MergeInfo/MergeCode";
+import QuickCode from "../QuickInfo/QuickCode";
 
 const CodeAccordionSection = ({ sectionNum }) => {
   return sectionNum === 0 ? (

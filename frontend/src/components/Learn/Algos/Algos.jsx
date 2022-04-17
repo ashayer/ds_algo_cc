@@ -5,7 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import axios from "axios";
 import Navbar from "../../Navbar/Navbar";
-import SortingAlgorithmAccordion from "./SortingAlgorithmAccordion";
+import SortingAlgorithmAccordion from "./Accordion/SortingAlgorithmAccordion";
 
 const API_URL = "/api/users/";
 

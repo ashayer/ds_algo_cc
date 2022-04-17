@@ -12,7 +12,7 @@ import {
   Box,
 } from "@mui/material/";
 
-import TextPopover from "../TextPopover";
+import TextPopover from "../TextPopUps/TextPopover";
 
 const QuickGeneral = () => {
   return (
@@ -63,9 +63,9 @@ const QuickGeneral = () => {
           is also the reason why it is more efficient on already sorted arrays. It only has to do a
           comparison on one element at a time. Compared to an algorithm like selection sort where
           each element is compared with every other element. This also gives insertion sort the
-          property of being a <TextPopover text="STABLE" /> algorithm. If it compares and
-          finds the values are the same it simply moves to the next element in the list. Because it
-          is an in-place algorithm, that gives insertion sort a space complexity of 1.
+          property of being a <TextPopover text="STABLE" /> algorithm. If it compares and finds the
+          values are the same it simply moves to the next element in the list. Because it is an
+          in-place algorithm, that gives insertion sort a space complexity of 1.
         </Typography>
       </Grid>
     </Grid>

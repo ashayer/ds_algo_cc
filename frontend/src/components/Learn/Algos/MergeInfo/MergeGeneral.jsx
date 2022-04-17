@@ -12,7 +12,7 @@ import {
   Box,
 } from "@mui/material/";
 
-import TextPopover from "../TextPopover";
+import TextPopover from "../TextPopUps/TextPopover";
 
 const MergeGeneral = () => {
   return (

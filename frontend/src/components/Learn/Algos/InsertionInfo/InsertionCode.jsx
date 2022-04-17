@@ -2,7 +2,7 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material/";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import TextPopover from "../TextPopover";
+import TextPopover from "../TextPopUps/TextPopover";
 
 const InsertionSortCPP = () => {
   const codeString = `void InsertionSort(vector<int> arr) {

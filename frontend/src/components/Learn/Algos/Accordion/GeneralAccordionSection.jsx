@@ -1,8 +1,8 @@
 import React from "react";
-import InsertionGeneral from "./InsertionInfo/InsertionGeneral";
-import SelectionGeneral from "./SelectionInfo/SelectionGeneral";
-import MergeGeneral from "./MergeInfo/MergeGeneral";
-import QuickGeneral from "./QuickInfo/QuickGeneral";
+import InsertionGeneral from "../InsertionInfo/InsertionGeneral";
+import SelectionGeneral from "../SelectionInfo/SelectionGeneral";
+import MergeGeneral from "../MergeInfo/MergeGeneral";
+import QuickGeneral from "../QuickInfo/QuickGeneral";
 
 const GeneralAccordionSection = ({ sectionNum }) => {
   return sectionNum === 0 ? (
