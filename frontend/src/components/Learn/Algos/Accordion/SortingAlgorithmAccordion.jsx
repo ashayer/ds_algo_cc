@@ -23,66 +23,12 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import GeneralAccordionSection from "./GeneralAccordionSection";
 import CodeAccordionSection from "./CodeAccordionSection";
+import QuizModal from "../QuizModal";
 
 import * as quizArray from "../sectionQuizArrays";
 
 let userAnswers = [];
 let checkboxQuestion = [false, false, false, false];
-
-const answerQuestion = (e) => {
-  userAnswers[e.target.name] =
-    questionsArrayForGeneral[e.target.name].options[e.target.value].correct;
-};
-const answerQuestionCheckBox = (e) => {
-  checkboxQuestion[e.target.value] = !checkboxQuestion[e.target.value];
-  let isWrong = false;
-  questionsArrayForGeneral[e.target.name].options.map((option, index) => {
-    if (!(option.correct === checkboxQuestion[index])) {
-      isWrong = true;
-    }
-    return isWrong;
-  });
-  userAnswers[e.target.name] = !isWrong;
-};
-
-const QuestionsModal = ({ questionArray }) => {
-  return (
-    <Grid container justifyContent="center" alignItems="center" sx={{ padding: "50px" }}>
-      {questionArray.map((question, index) => (
-        <Grid item xs={12} md={5} key={index} sx={{ minHeight: "250px" }}>
-          <Typography>{question.question}</Typography>
-          <FormControl>
-            {question.type ? (
-              <FormGroup>
-                {question.options.map((option, optionIndex) => (
-                  <FormControlLabel
-                    key={optionIndex}
-                    value={optionIndex}
-                    control={
-                      <Checkbox onChange={(e) => answerQuestionCheckBox(e)} name={`${index}`} />
-                    }
-                    label={`${option.answer}`}
-                  />
-                ))}
-              </FormGroup>
-            ) : (
-              <RadioGroup name={`${index}`} onChange={answerQuestion}>
-                {question.options.map((option, optionIndex) => (
-                  <FormControlLabel
-                    key={optionIndex}
-                    value={optionIndex}
-                    control={<Radio />}
-                    label={`${option.answer}`}
-                  />
-                ))}
-              </RadioGroup>
-            )}
-          </FormControl>
-        </Grid>
-      ))}
-    </Grid>
-  );
-};
 
 // eslint-disable-next-line no-unused-vars
 const SortingAlgorithmAccordion = ({
@@ -129,7 +75,7 @@ const SortingAlgorithmAccordion = ({
       return totalCorrect;
     });
     if (totalCorrect / 4 !== 0) {
-      toast.error(`Must get 100% correct to proceed! You got ${(totalCorrect / 4) * 100}%`, {
+      toast.error(`Must get 100% correct to proceed. You got ${(totalCorrect / 4) * 100}%`, {
         position: "bottom-center",
         autoClose: 2500,
         hideProgressBar: false,
@@ -185,11 +131,8 @@ const SortingAlgorithmAccordion = ({
             X
           </Button>
 
-          {subsectionIndexRef.current === 0 ? (
-            <QuestionsModal questionArray={quizArray.insertionGeneralQuiz} />
-          ) : (
-            <QuestionsModal questionArray={quizArray.insertionCodeQuiz} />
-          )}
+          <QuizModal subsectionIndex={subsectionIndexRef.current} sectionNum={sectionNum} />
+
           <Button onClick={() => checkAnswers()} variant="contained">
             Submit
           </Button>
