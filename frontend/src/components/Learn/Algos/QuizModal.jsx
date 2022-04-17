@@ -74,7 +74,12 @@ const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum 
           xs={12}
           md={5}
           key={index}
-          sx={{ minHeight: "250px", border: "1px solid black", p: 2, m: 1 }}
+          sx={{
+            minHeight: "250px",
+            border: "1px solid black",
+            p: 2,
+            m: 1,
+          }}
         >
           <Typography>{question.question}</Typography>
           <FormControl>
