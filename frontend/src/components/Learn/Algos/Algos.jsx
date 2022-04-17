@@ -4,10 +4,6 @@ import { Container, Button, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import axios from "axios";
-import InsertionAccordion from "./InsertionInfo/InsertionAccordion";
-import SelectionAccordion from "./SelectionInfo/SelectionAccordion";
-import MergeAccordion from "./MergeInfo/MergeAccordion";
-import QuickAccordion from "./QuickInfo/QuickAccordion";
 import Navbar from "../../Navbar/Navbar";
 import SortingAlgorithmAccordion from "./SortingAlgorithmAccordion";
 
