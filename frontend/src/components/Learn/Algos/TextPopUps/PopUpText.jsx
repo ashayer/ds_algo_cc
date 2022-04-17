@@ -51,12 +51,15 @@ export const UnStable = () => {
   return (
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
-        <Typography>A unstable algorithm will</Typography>
-        <Typography>Imagine we are sorting the tuples below by the letter only.</Typography>
-        <Typography>(A, 1), (C, 2), (B, 1),(C, 1)</Typography>
         <Typography>
-          A stable algorithm will always give us (A, 1), (B, 1), (C, 2),(C, 1) since we care only
-          about the letter. An unstable algorithm may switch the position of (C,2) (C, 1).
+          An unstable algorithm will change the order of the elements with the same value.Consider
+          the example below.
+        </Typography>
+        <Typography>Imagine we are sorting the tuples below by the letter only.</Typography>
+        <Typography>(A, 1), (C, 2), (C, 3), (B, 1),(C, 1)</Typography>
+        <Typography>
+          An unstable algorithm can give us (A, 1), (B, 1), (C, 1),(C, 2) (C, 3), or (A, 1), (B, 1),
+          (C, 3),(C, 2) (C, 1). Or any other order of the C tuples.
         </Typography>
       </Grid>
     </Grid>
