@@ -24,7 +24,7 @@ const InsertionGeneral = () => {
       <Grid item md={4} xs={6} sx={{ border: "1px solid black", p: 4 }}>
         <Box>Animation here from sandbox</Box>
       </Grid>
-      <Grid item md={4} xs={6} sx={{ border: "1px solid black", textAlign: "center" }}>
+      <Grid item md={4} xs={6} sx={{ border: "1px solid black", p: 4, textAlign: "center" }}>
         <ComplexityTable timeComplexityArray={["O(n)", "O(n\u00B2)", "O(n\u00B2)"]} space="O(1)" />
       </Grid>
       <Grid item md={8} sx={{ border: "1px solid black", p: 4 }}>
@@ -37,7 +37,8 @@ const InsertionGeneral = () => {
           each element is compared with every other element. This also gives insertion sort the
           property of being a <TextPopover text="STABLE" /> algorithm. If it compares and finds the
           values are the same it simply moves to the next element in the list. Because it is an
-          in-place algorithm, that gives insertion sort a space complexity of O(1).
+          <TextPopover text="IN-PLACE" /> algorithm, that gives insertion sort a space complexity of
+          O(1).
         </Typography>
       </Grid>
     </Grid>

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from "react";
-import { Grid, Typography } from "@mui/material/";
+import { Grid, Typography, Box } from "@mui/material/";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextPopover from "../TextPopUps/TextPopover";
@@ -17,7 +17,12 @@ const SelectionSortCPP = () => {
   }
 }`;
   return (
-    <SyntaxHighlighter language="cpp" style={lightfair} showLineNumbers>
+    <SyntaxHighlighter
+      language="cpp"
+      style={lightfair}
+      showLineNumbers
+      customStyle={{ fontSize: "large", border: "1px solid black", width: "35vw" }}
+    >
       {codeString}
     </SyntaxHighlighter>
   );
@@ -27,27 +32,27 @@ const SelectionCode = () => {
   return (
     <Grid container>
       <Grid container sx={{ align: "center", alignItems: "center" }}>
-        <Grid
-          item
-          md={4}
-          xs={12}
-          sx={{
-            border: "1px solid black",
-            paddingTop: "40px",
-            paddingBottom: "40px",
-          }}
-        >
-          <SelectionSortCPP />
+        <Grid item md={12} sm={12} xs={12}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <SelectionSortCPP />
+          </Box>
         </Grid>
-        <Grid item md={8} xs={12} sx={{ border: "1px solid black" }}>
+        <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
           <Typography variant="h6">
-            This is the code for selection sort in C++. It also be written using a{" "}
-            <TextPopover text="NESTED FOR LOOP" />. On (line 3) the minimum value is set as I, the
-            outer most index. The min will always start as the first element in the unsorted
-            section. The inner loop will increment through the rest of the array to find the element
-            with the smallest value, if the value is found then the index of the minium value is set
-            as J LINE 6. Then the index of the minimum value and i, will be swapped. It will repeat
-            this loop until I reaches the end of the array.
+            This is the code for selection sort in C++. It also can be written using a{" "}
+            <TextPopover text="NESTED FOR LOOP" />. On (line 3) the minimum index is set as i. The
+            min will always start as the first element in the unsorted section, because of this. The
+            inner loop will increment through the entire sorted section to the right of the i index
+            to find the element with the smallest value, if the value is found then the index of the
+            minimum value is set as J (the new minimum element) as seen on (line 6). Then the
+            elements of the minimum and i indexes, will be swapped. It will repeat this loop until i
+            reaches the end of the array. The algorithm has no other break condition and must run
+            through all i*j iterations.
           </Typography>
         </Grid>
       </Grid>
