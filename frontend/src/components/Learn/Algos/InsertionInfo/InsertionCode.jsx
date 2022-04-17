@@ -20,7 +20,7 @@ const InsertionSortCPP = () => {
       language="cpp"
       style={lightfair}
       showLineNumbers
-      customStyle={{ fontSize: "large", border: "1px solid black", width: "35vw" }}
+      customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
     >
       {codeString}
     </SyntaxHighlighter>

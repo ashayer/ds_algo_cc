@@ -32,9 +32,10 @@ const SelectionGeneral = () => {
       <Grid item md={8} sx={{ border: "1px solid black", p: 4 }}>
         <Typography variant="h6">
           The <TextPopover text="TIME" /> and <TextPopover text="SPACE" /> complexities of selection
-          sort can be seen in the table. In all cases selection sort will have a time complexity of
-          O(n&#178;). This is because it will always have tos search through the entire unsorted
-          section to find the smallest value. Selection sort is also <TextPopover text="UNSTABLE" />
+          sort in <TextPopover text="BIG O" /> notation can be seen in the table. In all cases
+          selection sort will have a time complexity of O(n&#178;). This is because it will always
+          have tos search through the entire unsorted section to find the smallest value. Selection
+          sort is also <TextPopover text="UNSTABLE" />
           , given that the swaps are based on the minimum value found. Selection sort also has a
           space complexity of O(1) since it is <TextPopover text="IN-PLACE" />.
         </Typography>
