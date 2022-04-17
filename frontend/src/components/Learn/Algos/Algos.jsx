@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Container, Button, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -8,6 +9,7 @@ import SelectionAccordion from "./SelectionInfo/SelectionAccordion";
 import MergeAccordion from "./MergeInfo/MergeAccordion";
 import QuickAccordion from "./QuickInfo/QuickAccordion";
 import Navbar from "../../Navbar/Navbar";
+import SortingAlgorithmAccordion from "./SortingAlgorithmAccordion";
 
 const API_URL = "/api/users/";
 
@@ -64,7 +66,7 @@ const Algos = () => {
           <ArrowForwardIcon />
         </Button>
       </Grid>
-      {sectionNum === 0 ? (
+      {/* {sectionNum === 0 ? (
         <InsertionAccordion
           sectionNum={sectionNum}
           tempSectionArray={tempSectionArray}
@@ -92,7 +94,13 @@ const Algos = () => {
           setTempSectionArray={setTempSectionArray}
           updateLocalUser={updateLocalUser}
         />
-      ) : null}
+      ) : null} */}
+      <SortingAlgorithmAccordion
+        sectionNum={sectionNum}
+        tempSectionArray={tempSectionArray}
+        setTempSectionArray={setTempSectionArray}
+        updateLocalUser={updateLocalUser}
+      />
     </Container>
   );
 };
