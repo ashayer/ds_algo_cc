@@ -90,3 +90,16 @@ export const BigO = () => {
     </Grid>
   );
 };
+
+export const NestedForLoop = () => {
+  return (
+    <Grid container sx={{ maxWidth: "600px", p: 3 }}>
+      <Grid item md={12}>
+        <Typography>
+          A nested for loop is a common pattern used in programming. The inner loop with the J
+          iterator will iterate J times every time we increment I.
+        </Typography>
+      </Grid>
+    </Grid>
+  );
+};
