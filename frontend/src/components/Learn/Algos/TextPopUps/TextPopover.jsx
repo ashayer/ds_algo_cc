@@ -51,6 +51,8 @@ const TextPopover = ({ text }) => {
       >
         {text === "IN-PLACE" ? (
           <PopUps.InPlace />
+        ) : text === "OUT-OF-PLACE" ? (
+          <PopUps.OutOfPlace />
         ) : text === "QUADRATIC" ? (
           <PopUps.Quadratic />
         ) : text === "STABLE" ? (
@@ -65,6 +67,8 @@ const TextPopover = ({ text }) => {
           <PopUps.BigO />
         ) : text === "NESTED FOR LOOP" ? (
           <PopUps.NestedForLoop />
+        ) : text === "DIVIDE-AND-CONQUER" ? (
+          <PopUps.DnC />
         ) : null}
       </Popover>
     </>

@@ -15,6 +15,21 @@ export const InPlace = () => {
     </Grid>
   );
 };
+
+export const OutOfPlace = () => {
+  return (
+    <Grid container sx={{ maxWidth: "600px", p: 3 }}>
+      <Grid item md={12}>
+        <Typography>
+          Out-of-place means that the algorithm requires a auxillary data structure, or simply extra
+          space to run that is not constant. Common space complexities for out-of-place algorithms
+          are either O(n) or O(logn).
+        </Typography>
+      </Grid>
+    </Grid>
+  );
+};
+
 export const Quadratic = () => {
   return (
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
@@ -117,6 +132,21 @@ export const NestedForLoop = () => {
         <Typography>
           A nested for loop is a common pattern used in programming. The inner loop with the J
           iterator will iterate J times every time we increment I.
+        </Typography>
+      </Grid>
+    </Grid>
+  );
+};
+
+export const DnC = () => {
+  return (
+    <Grid container sx={{ maxWidth: "600px", p: 3 }}>
+      <Grid item md={12}>
+        <Typography>
+          Divide and conquer refers to a computer science algorithmic pattern in which recursion is
+          used to break down a problem into smaller sub-problems that are more easily solved. The
+          solutions to the smaller problems are then combined to give the solution to the original
+          larger problem.
         </Typography>
       </Grid>
     </Grid>
