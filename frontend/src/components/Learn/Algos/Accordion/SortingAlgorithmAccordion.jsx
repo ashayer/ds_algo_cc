@@ -33,8 +33,8 @@ let checkboxQuestion = [false, false, false, false];
 // eslint-disable-next-line no-unused-vars
 const SortingAlgorithmAccordion = ({
   sectionNum,
-  tempSectionArray,
-  setTempSectionArray,
+  sectionArray,
+  setSectionArray,
   updateLocalUser,
 }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
@@ -52,17 +52,17 @@ const SortingAlgorithmAccordion = ({
   }
 
   const completed = async (index) => {
-    tempSectionArray[sectionNum].subsections[index].completed = true;
-    const tempSectionArrayOne = tempSectionArray.slice();
-    setTempSectionArray(tempSectionArrayOne);
-    setCurrentSubSection(tempSectionArray[sectionNum].subsections[index].name);
-    if (index === tempSectionArray[sectionNum].subsections.length - 1) {
-      tempSectionArray[sectionNum].completed = true;
-      const temp = tempSectionArray.slice();
-      setTempSectionArray(temp);
+    sectionArray[sectionNum].subsections[index].completed = true;
+    const newSectionArrays = sectionArray.slice();
+    setSectionArray(newSectionArrays);
+    setCurrentSubSection(sectionArray[sectionNum].subsections[index].name);
+    if (index === sectionArray[sectionNum].subsections.length - 1) {
+      sectionArray[sectionNum].completed = true;
+      const temp = sectionArray.slice();
+      setSectionArray(temp);
     }
-    // updateLocalUser(tempSectionArray);
-    handleAccordClick(tempSectionArray[sectionNum].subsections[index].name);
+    // updateLocalUser(sectionArray);
+    handleAccordClick(sectionArray[sectionNum].subsections[index].name);
     handleClose();
   };
 
@@ -142,25 +142,25 @@ const SortingAlgorithmAccordion = ({
       <Accordion
         defaultExpanded
         sx={{
-          backgroundColor: `${tempSectionArray[sectionNum].completed ? "#4db866" : "#ff8178"}`,
+          backgroundColor: `${sectionArray[sectionNum].completed ? "#4db866" : "#ff8178"}`,
         }}
       >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="h3">{tempSectionArray[sectionNum].sectionName}</Typography>
+          <Typography variant="h3">{sectionArray[sectionNum].sectionName}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {tempSectionArray[sectionNum].subsections.map((subsection, index) => (
+          {sectionArray[sectionNum].subsections.map((subsection, index) => (
             <Accordion
               key={subsection.name}
               expanded={currentSubSection === subsection.name}
               disabled={
-                index === 0 ? false : !tempSectionArray[sectionNum].subsections[index - 1].completed
+                index === 0 ? false : !sectionArray[sectionNum].subsections[index - 1].completed
               }
             >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 onClick={
-                  index === 0 || tempSectionArray[sectionNum].subsections[index - 1].completed
+                  index === 0 || sectionArray[sectionNum].subsections[index - 1].completed
                     ? () => handleAccordClick(subsection.name)
                     : null
                 }

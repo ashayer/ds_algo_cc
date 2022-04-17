@@ -12,10 +12,10 @@ const API_URL = "/api/users/";
 const Algos = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
   const [sectionNum, setSectionNum] = useState(0);
-  const [tempSectionArray, setTempSectionArray] = useState(localUser.algoReading);
+  const [sectionArray, setSectionArray] = useState(localUser.algoReading);
 
   const nextSection = () => {
-    if (sectionNum < tempSectionArray.length - 1) setSectionNum(sectionNum + 1);
+    if (sectionNum < sectionArray.length - 1) setSectionNum(sectionNum + 1);
   };
 
   const prevSection = () => {
@@ -43,29 +43,27 @@ const Algos = () => {
           }}
         >
           <ArrowBackIcon />
-          {sectionNum > 0 ? `${tempSectionArray[sectionNum - 1].sectionName}` : null}
+          {sectionNum > 0 ? `${sectionArray[sectionNum - 1].sectionName}` : null}
         </Button>
 
         <Button
           onClick={nextSection}
           variant="contained"
-          disabled={
-            sectionNum === tempSectionArray.length - 1 || !tempSectionArray[sectionNum].completed
-          }
+          disabled={sectionNum === sectionArray.length - 1 || !sectionArray[sectionNum].completed}
           sx={{
-            visibility: `${sectionNum === tempSectionArray.length - 1 ? "hidden" : "visible"}`,
+            visibility: `${sectionNum === sectionArray.length - 1 ? "hidden" : "visible"}`,
           }}
         >
-          {sectionNum < tempSectionArray.length - 1
-            ? `${tempSectionArray[sectionNum + 1].sectionName}`
+          {sectionNum < sectionArray.length - 1
+            ? `${sectionArray[sectionNum + 1].sectionName}`
             : null}
           <ArrowForwardIcon />
         </Button>
       </Grid>
       <SortingAlgorithmAccordion
         sectionNum={sectionNum}
-        tempSectionArray={tempSectionArray}
-        setTempSectionArray={setTempSectionArray}
+        sectionArray={sectionArray}
+        setSectionArray={setSectionArray}
         updateLocalUser={updateLocalUser}
       />
     </Container>

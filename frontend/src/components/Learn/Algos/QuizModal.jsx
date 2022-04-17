@@ -43,7 +43,6 @@ const getCodeArray = (sectionNum) => {
 };
 
 const getQuestionArray = ({ subsectionIndex, sectionNum }) => {
-  console.log(sectionNum, subsectionIndex);
   if (subsectionIndex === 0) {
     return getGeneralArray(sectionNum);
   }
