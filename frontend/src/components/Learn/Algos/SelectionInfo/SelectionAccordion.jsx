@@ -127,7 +127,7 @@ const answerQuestionCheckBox = (e) => {
 
 const QuestionsForGeneral = () => {
   return (
-    <Grid container justifyContent="center" alignItems="center" sx={{ padding: "50px" }}>
+    <Grid container justifyContent="center" alignItems="center" sx={{ paddingTop: "50px" }}>
       {questionsArrayForGeneral.map((question, index) => (
         <Grid item xs={12} md={5} key={index} sx={{ minHeight: "250px" }}>
           <Typography>{question.question}</Typography>
@@ -166,7 +166,7 @@ const QuestionsForGeneral = () => {
 
 const QuestionsForCode = () => {
   return (
-    <Grid container justifyContent="center" alignItems="center" sx={{ padding: "50px" }}>
+    <Grid container justifyContent="center" alignItems="center">
       {questionsArrayForCode.map((question, index) => (
         <Grid item xs={12} md={5} key={index} sx={{ minHeight: "250px" }}>
           <Typography>{question.question}</Typography>
@@ -282,7 +282,7 @@ const SelectionAccordion = ({ tempSectionArray, setTempSectionArray, updateLocal
             transform: "translate(-50%, -50%)",
             width: "80vw",
             overflow: "auto",
-            height: "80vh",
+            height: "70vh",
             backgroundColor: "white",
             outline: "none",
             alignItems: "center",
