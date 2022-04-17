@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef } from "react";
 import {
@@ -7,15 +6,9 @@ import {
   Grid,
   Modal,
   Box,
-  Radio,
-  RadioGroup,
-  FormGroup,
-  FormControlLabel,
-  FormControl,
   AccordionDetails,
   AccordionSummary,
   Accordion,
-  Checkbox,
 } from "@mui/material";
 import { toast } from "react-toastify";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -24,7 +17,6 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import GeneralAccordionSection from "./GeneralAccordionSection";
 import CodeAccordionSection from "./CodeAccordionSection";
 import QuizModal from "../QuizModal";
-import * as quizArray from "../sectionQuizArrays";
 
 let userAnswers = [false, false, false, false];
 let checkboxQuestion = [false, false, false, false];
@@ -37,6 +29,7 @@ const SortingAlgorithmAccordion = ({
 }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
   const [open, setOpen] = useState(true);
+  const [isCorrect, setIsCorrect] = useState([false, false, false, false]);
   const handleOpen = () => {
     userAnswers = [];
     checkboxQuestion = [false, false, false, false];
@@ -72,8 +65,8 @@ const SortingAlgorithmAccordion = ({
       }
       return totalCorrect;
     });
-    if (totalCorrect / 4 !== 0) {
-      //! change to 1
+    //! change to 1
+    if (totalCorrect / 4 !== 1) {
       toast.error(`Must get 100% correct to proceed. You got ${(totalCorrect / 4) * 100}%`, {
         position: "bottom-center",
         autoClose: 2000,
@@ -108,13 +101,12 @@ const SortingAlgorithmAccordion = ({
             transform: "translate(-50%, -50%)",
             overflow: "auto",
             backgroundColor: "white",
+            height: "85vh",
+            width: "90vw",
             outline: "none",
-            border: "3px solid red",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
             alignItems: "center",
-            borderRadius: "15px",
           }}
         >
           <Button
@@ -122,6 +114,7 @@ const SortingAlgorithmAccordion = ({
             sx={{
               float: "right",
               borderRadius: "0",
+              m: 0.5,
               "&:hover": {
                 backgroundColor: "red",
               },

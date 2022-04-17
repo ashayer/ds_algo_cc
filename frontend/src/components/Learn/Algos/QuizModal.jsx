@@ -67,14 +67,14 @@ const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum 
   };
 
   return (
-    <Grid container justifyContent="center" alignItems="center" sx={{ padding: "50px" }}>
+    <Grid container sx={{ p: 1, justifyContent: "center" }}>
       {questionArray.map((question, index) => (
         <Grid
           item
           xs={12}
           md={5}
           key={index}
-          sx={{ minHeight: "250px", border: "1px solid black" }}
+          sx={{ minHeight: "250px", border: "1px solid black", p: 2, m: 1 }}
         >
           <Typography>{question.question}</Typography>
           <FormControl>
@@ -88,6 +88,15 @@ const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum 
                       <Checkbox onChange={(e) => answerQuestionCheckBox(e)} name={`${index}`} />
                     }
                     label={`${option.answer}`}
+                    sx={{
+                      marginLeft: 0,
+                      p: 1,
+                      "&:hover": {
+                        backgroundColor: "#a3bcd6",
+                      },
+                      borderRadius: "15px",
+                      transition: "all 0.15s ease",
+                    }}
                   />
                 ))}
               </FormGroup>
@@ -99,6 +108,15 @@ const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum 
                     value={optionIndex}
                     control={<Radio />}
                     label={`${option.answer}`}
+                    sx={{
+                      marginLeft: 0,
+                      p: 1,
+                      "&:hover": {
+                        backgroundColor: "#a3bcd6",
+                      },
+                      borderRadius: "15px",
+                      transition: "all 0.15s ease",
+                    }}
                   />
                 ))}
               </RadioGroup>
