@@ -1,42 +1,9 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from "react";
-import { Grid, Typography, Popover } from "@mui/material/";
+import React from "react";
+import { Grid, Typography } from "@mui/material/";
 import SyntaxHighlighter from "react-syntax-highlighter";
 
-const NestedForLoop = () => {
-  return (
-    <Grid container sx={{ maxWidth: "600px", p: 3 }}>
-      <Grid item md={12}>
-        <Typography>
-          A nested for loop is a common pattern used in programming. The inner loop with the J
-          iterator will iterate J times every time we increment I.
-        </Typography>
-      </Grid>
-    </Grid>
-  );
-};
-
-const Line2 = () => {
-  return (
-    <Grid container sx={{ maxWidth: "600px", p: 3 }}>
-      <Grid item md={12}>
-        <SyntaxHighlighter language="cpp">
-          {"for(int i = 1; i < arr.size(); i++) {"}
-        </SyntaxHighlighter>
-      </Grid>
-    </Grid>
-  );
-};
-
-const Line3 = () => {
-  return (
-    <Grid container sx={{ maxWidth: "600px", p: 3 }}>
-      <Grid item md={12}>
-        <SyntaxHighlighter language="cpp">{"for(int j = i; j > 0; j--) {"}</SyntaxHighlighter>
-      </Grid>
-    </Grid>
-  );
-};
+import TextPopover from "../TextPopover";
 
 const InsertionSortCPP = () => {
   const codeString = `void InsertionSort(vector<int> arr) {
@@ -52,59 +19,6 @@ const InsertionSortCPP = () => {
     <SyntaxHighlighter language="cpp" showLineNumbers>
       {codeString}
     </SyntaxHighlighter>
-  );
-};
-
-const TextPopover = ({ text, id }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handlePopoverOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-
-  return (
-    <>
-      <span
-        aria-owns={open ? "mouse-over-popover" : undefined}
-        aria-haspopup="true"
-        style={{ color: "red", cursor: "pointer" }}
-        onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}
-        role="button"
-        aria-hidden="true"
-      >
-        {text}
-      </span>
-      <Popover
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        sx={{
-          pointerEvents: "none",
-        }}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        disableRestoreFocus
-      >
-        {id === 0 ? <NestedForLoop /> : id === 1 ? <Line2 /> : id === 2 ? <Line3 /> : null}
-      </Popover>
-    </>
   );
 };
 
