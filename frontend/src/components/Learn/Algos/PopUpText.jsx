@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 
+//! replace sx with something mui styles thing
 export const InPlace = () => {
   return (
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
@@ -32,10 +33,25 @@ export const Stable = () => {
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
         <Typography>
-          Stability refers to how the algorithm handles two elements of equal value. A stable
-          algorithm will keep the the elements of the same value in the same original order.
-          Consider the example below.
+          A stable algorithm will keep the the elements of the same value in the same original
+          order. Consider the example below.
         </Typography>
+        <Typography>Imagine we are sorting the tuples below by the letter only.</Typography>
+        <Typography>(A, 1), (C, 2), (B, 1),(C, 1)</Typography>
+        <Typography>
+          A stable algorithm will always give us (A, 1), (B, 1), (C, 2),(C, 1) since we care only
+          about the letter. An unstable algorithm may switch the position of (C,2) (C, 1).
+        </Typography>
+      </Grid>
+    </Grid>
+  );
+};
+
+export const UnStable = () => {
+  return (
+    <Grid container sx={{ maxWidth: "600px", p: 3 }}>
+      <Grid item md={12}>
+        <Typography>A unstable algorithm will</Typography>
         <Typography>Imagine we are sorting the tuples below by the letter only.</Typography>
         <Typography>(A, 1), (C, 2), (B, 1),(C, 1)</Typography>
         <Typography>

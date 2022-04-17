@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Popover } from "@mui/material/";
 import * as PopUps from "./PopUpText";
 
-const TextPopover = ({ text, id }) => {
+const TextPopover = ({ text }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handlePopoverOpen = (event) => {
@@ -49,18 +49,22 @@ const TextPopover = ({ text, id }) => {
         onClose={handleClose}
         disableRestoreFocus
       >
-        {id === 0 ? (
+        {text === "IN-PLACE" ? (
           <PopUps.InPlace />
-        ) : id === 1 ? (
+        ) : text === "QUADRATIC" ? (
           <PopUps.Quadratic />
-        ) : id === 2 ? (
+        ) : text === "STABLE" ? (
           <PopUps.Stable />
-        ) : id === 3 ? (
+        ) : text === "UNSTABLE" ? (
+          <PopUps.UnStable />
+        ) : text === "TIME" ? (
           <PopUps.Time />
-        ) : id === 4 ? (
+        ) : text === "SPACE" ? (
           <PopUps.Space />
-        ) : id === 5 ? (
+        ) : text === "BIG O" ? (
           <PopUps.BigO />
+        ) : text === "NESTED FOR LOOP" ? (
+          <PopUps.NestedForLoop />
         ) : null}
       </Popover>
     </>

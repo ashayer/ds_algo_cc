@@ -19,16 +19,16 @@ const SelectionGeneral = () => {
     <Grid container>
       <Grid item md={10} sx={{ border: "1px solid black" }}>
         <Typography variant="h6">
-          Selection sort is yet another <TextPopover text="IN-PLACE" id={0} /> sorting algorithm
-          that builds the sorted array one element at a time. It also creates a sorted and unsorted
+          Selection sort is yet another <TextPopover text="IN-PLACE" /> sorting algorithm that
+          builds the sorted array one element at a time. It also creates a sorted and unsorted
           section but the unsorted section has been searched through, unlike insertion sort. This is
           because at each iteration the algorithm finds the smallest value in entirety of the
           unsorted section and swaps that element with the element at the start of the unsorted
           section. The sorted section will always be built in the final order. Meaning that as soon
           as an element is swapped into its position at the current iteration it will stay there,
           throughout the rest of the algorithm. Selection sort although also a{" "}
-          <TextPopover text="QUADRATIC" id={1} /> sorting algorithm it is much less efficient,
-          compared to insertion sort.
+          <TextPopover text="QUADRATIC" /> sorting algorithm it is much less efficient, compared to
+          insertion sort.
         </Typography>
       </Grid>
       <Grid item md={2} sx={{ border: "1px solid black" }}>
