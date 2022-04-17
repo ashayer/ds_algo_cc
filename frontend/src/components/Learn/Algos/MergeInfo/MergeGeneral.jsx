@@ -19,7 +19,7 @@ const MergeGeneral = () => {
     <Grid container>
       <Grid item md={10} sx={{ border: "1px solid black" }}>
         <Typography variant="h6">
-          Insertion sort is an <TextPopover text="IN-PLACE" />
+          Merge sort is an <TextPopover text="IN-PLACE" />
         </Typography>
       </Grid>
       <Grid item md={2} sx={{ border: "1px solid black" }}>
@@ -49,7 +49,7 @@ const MergeGeneral = () => {
         <TableContainer>
           <Table>
             <TableBody>
-              <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableRow>
                 <TableCell>n</TableCell>
                 <TableCell>n&#178;</TableCell>
                 <TableCell>n&#178;</TableCell>

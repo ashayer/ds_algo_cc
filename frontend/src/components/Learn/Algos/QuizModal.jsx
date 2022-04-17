@@ -69,7 +69,13 @@ const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum 
   return (
     <Grid container justifyContent="center" alignItems="center" sx={{ padding: "50px" }}>
       {questionArray.map((question, index) => (
-        <Grid item xs={12} md={5} key={index} sx={{ minHeight: "250px" }}>
+        <Grid
+          item
+          xs={12}
+          md={5}
+          key={index}
+          sx={{ minHeight: "250px", border: "1px solid black" }}
+        >
           <Typography>{question.question}</Typography>
           <FormControl>
             {question.type ? (

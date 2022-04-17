@@ -2,6 +2,7 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material/";
 import SyntaxHighlighter from "react-syntax-highlighter";
+import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextPopover from "../TextPopUps/TextPopover";
 
 const InsertionSortCPP = () => {
@@ -15,7 +16,7 @@ const InsertionSortCPP = () => {
   }
 }`;
   return (
-    <SyntaxHighlighter language="cpp" showLineNumbers>
+    <SyntaxHighlighter language="cpp" style={lightfair} showLineNumbers>
       {codeString}
     </SyntaxHighlighter>
   );
@@ -31,7 +32,6 @@ const MergeCode = () => {
           xs={12}
           sx={{
             border: "1px solid black",
-            backgroundColor: "#F0F0F0",
             paddingTop: "40px",
             paddingBottom: "40px",
           }}
@@ -40,7 +40,7 @@ const MergeCode = () => {
         </Grid>
         <Grid item md={8} xs={12} sx={{ border: "1px solid black" }}>
           <Typography variant="h6">
-            This is a code snippet of the insertion sort algorithm in C++. It utilizes a{" "}
+            This is a code snippet of the merge sort algorithm in C++. It utilizes a{" "}
             <TextPopover text="NESTED FOR LOOP" />.
           </Typography>
         </Grid>

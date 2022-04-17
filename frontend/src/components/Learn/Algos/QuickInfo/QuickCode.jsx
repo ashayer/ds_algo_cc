@@ -2,7 +2,7 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material/";
 import SyntaxHighlighter from "react-syntax-highlighter";
-
+import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextPopover from "../TextPopUps/TextPopover";
 
 const InsertionSortCPP = () => {
@@ -16,7 +16,7 @@ const InsertionSortCPP = () => {
   }
 }`;
   return (
-    <SyntaxHighlighter language="cpp" showLineNumbers>
+    <SyntaxHighlighter language="cpp" style={lightfair} showLineNumbers>
       {codeString}
     </SyntaxHighlighter>
   );

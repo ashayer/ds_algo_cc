@@ -2,7 +2,7 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material/";
 import SyntaxHighlighter from "react-syntax-highlighter";
-
+import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextPopover from "../TextPopUps/TextPopover";
 
 const SelectionSortCPP = () => {
@@ -17,7 +17,7 @@ const SelectionSortCPP = () => {
   }
 }`;
   return (
-    <SyntaxHighlighter language="cpp" showLineNumbers>
+    <SyntaxHighlighter language="cpp" style={lightfair} showLineNumbers>
       {codeString}
     </SyntaxHighlighter>
   );
@@ -33,7 +33,6 @@ const SelectionCode = () => {
           xs={12}
           sx={{
             border: "1px solid black",
-            backgroundColor: "#F0F0F0",
             paddingTop: "40px",
             paddingBottom: "40px",
           }}
