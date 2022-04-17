@@ -66,35 +66,6 @@ const Algos = () => {
           <ArrowForwardIcon />
         </Button>
       </Grid>
-      {/* {sectionNum === 0 ? (
-        <InsertionAccordion
-          sectionNum={sectionNum}
-          tempSectionArray={tempSectionArray}
-          setTempSectionArray={setTempSectionArray}
-          updateLocalUser={updateLocalUser}
-        />
-      ) : sectionNum === 1 ? (
-        <SelectionAccordion
-          sectionNum={sectionNum}
-          tempSectionArray={tempSectionArray}
-          setTempSectionArray={setTempSectionArray}
-          updateLocalUser={updateLocalUser}
-        />
-      ) : sectionNum === 2 ? (
-        <MergeAccordion
-          sectionNum={sectionNum}
-          tempSectionArray={tempSectionArray}
-          setTempSectionArray={setTempSectionArray}
-          updateLocalUser={updateLocalUser}
-        />
-      ) : sectionNum === 3 ? (
-        <QuickAccordion
-          sectionNum={sectionNum}
-          tempSectionArray={tempSectionArray}
-          setTempSectionArray={setTempSectionArray}
-          updateLocalUser={updateLocalUser}
-        />
-      ) : null} */}
       <SortingAlgorithmAccordion
         sectionNum={sectionNum}
         tempSectionArray={tempSectionArray}
