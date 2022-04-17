@@ -9,9 +9,9 @@ const CodeAccordionSection = ({ sectionNum }) => {
     <InsertionCode />
   ) : sectionNum === 1 ? (
     <SelectionCode />
-  ) : sectionNum === 1 ? (
+  ) : sectionNum === 2 ? (
     <MergeCode />
-  ) : sectionNum === 1 ? (
+  ) : sectionNum === 3 ? (
     <QuickCode />
   ) : null;
 };

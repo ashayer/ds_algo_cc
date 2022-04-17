@@ -24,13 +24,11 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import GeneralAccordionSection from "./GeneralAccordionSection";
 import CodeAccordionSection from "./CodeAccordionSection";
 import QuizModal from "../QuizModal";
-
 import * as quizArray from "../sectionQuizArrays";
 
-let userAnswers = [];
+let userAnswers = [false, false, false, false];
 let checkboxQuestion = [false, false, false, false];
 
-// eslint-disable-next-line no-unused-vars
 const SortingAlgorithmAccordion = ({
   sectionNum,
   sectionArray,
@@ -38,7 +36,7 @@ const SortingAlgorithmAccordion = ({
   updateLocalUser,
 }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const handleOpen = () => {
     userAnswers = [];
     checkboxQuestion = [false, false, false, false];
@@ -51,7 +49,7 @@ const SortingAlgorithmAccordion = ({
     if (currentSubSection !== name) setCurrentSubSection(name);
   }
 
-  const completed = async (index) => {
+  const completedAccordion = async (index) => {
     sectionArray[sectionNum].subsections[index].completed = true;
     const newSectionArrays = sectionArray.slice();
     setSectionArray(newSectionArrays);
@@ -75,9 +73,10 @@ const SortingAlgorithmAccordion = ({
       return totalCorrect;
     });
     if (totalCorrect / 4 !== 0) {
+      //! change to 1
       toast.error(`Must get 100% correct to proceed. You got ${(totalCorrect / 4) * 100}%`, {
         position: "bottom-center",
-        autoClose: 2500,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
@@ -94,27 +93,28 @@ const SortingAlgorithmAccordion = ({
         draggable: true,
         progress: undefined,
       });
-      completed(subsectionIndexRef.current);
+      completedAccordion(subsectionIndexRef.current);
     }
   };
 
   return (
     <>
-      <Modal open={open} sx={{ backgroundColor: "white" }}>
+      <Modal open={open}>
         <Box
           sx={{
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: "80vw",
             overflow: "auto",
-            height: "80vh",
             backgroundColor: "white",
             outline: "none",
-            alignItems: "center",
+            border: "3px solid red",
+            display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
-            alignContent: "center",
+            alignItems: "center",
+            borderRadius: "15px",
           }}
         >
           <Button
@@ -125,13 +125,19 @@ const SortingAlgorithmAccordion = ({
               "&:hover": {
                 backgroundColor: "red",
               },
+              alignSelf: "end",
             }}
             variant="contained"
           >
             X
           </Button>
 
-          <QuizModal subsectionIndex={subsectionIndexRef.current} sectionNum={sectionNum} />
+          <QuizModal
+            userAnswers={userAnswers}
+            checkboxQuestion={checkboxQuestion}
+            subsectionIndex={subsectionIndexRef.current}
+            sectionNum={sectionNum}
+          />
 
           <Button onClick={() => checkAnswers()} variant="contained">
             Submit

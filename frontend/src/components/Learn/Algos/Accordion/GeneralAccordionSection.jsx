@@ -9,9 +9,9 @@ const GeneralAccordionSection = ({ sectionNum }) => {
     <InsertionGeneral />
   ) : sectionNum === 1 ? (
     <SelectionGeneral />
-  ) : sectionNum === 1 ? (
+  ) : sectionNum === 2 ? (
     <MergeGeneral />
-  ) : sectionNum === 1 ? (
+  ) : sectionNum === 3 ? (
     <QuickGeneral />
   ) : null;
 };
