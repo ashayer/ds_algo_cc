@@ -5,7 +5,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextPopover from "../TextPopUps/TextPopover";
 
-const mergeString = `void merge(vector<int> arr, int left, int middle, int right) {
+const mergeString = `void merge(vector<int>& arr, int left, int middle, int right) {
   int i = left;
   int j = middle + 1;
   vector<int> temp = arr;
@@ -26,7 +26,7 @@ const mergeString = `void merge(vector<int> arr, int left, int middle, int right
   }
 }`;
 
-const MergeCPP = () => {
+const Merge = () => {
   return (
     <SyntaxHighlighter
       language="cpp"
@@ -39,7 +39,7 @@ const MergeCPP = () => {
   );
 };
 
-const mergeSortString = `void mergeSort(vector<int> arr, int left, int right) {
+const mergeSortString = `void mergeSort(vector<int>& arr, int left, int right) {
     if(left < right) {
       int middle = left + (right - left) / 2;
       mergeSort(arr, left, middle);
@@ -48,7 +48,7 @@ const mergeSortString = `void mergeSort(vector<int> arr, int left, int right) {
     }
   }`;
 
-const MergeSortCPP = () => {
+const MergeSort = () => {
   return (
     <SyntaxHighlighter
       language="cpp"
@@ -72,7 +72,7 @@ const MergeCode = () => {
               justifyContent: "center",
             }}
           >
-            <MergeCPP />
+            <Merge />
           </Box>
         </Grid>
         <Grid item lg={6} md={12} sm={12} xs={12}>
@@ -82,13 +82,13 @@ const MergeCode = () => {
               justifyContent: "center",
             }}
           >
-            <MergeSortCPP />
+            <MergeSort />
           </Box>
         </Grid>
         <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
           <Typography variant="h6">
-            This is a code snippet of the merge sort algorithm in C++. It utilizes a{" "}
-            <TextPopover text="NESTED FOR LOOP" />.
+            This is the code for the merge sort algorithm in C++. The algorithm can be implemented
+            use two functions. The mergeSort function uses -------- <TextPopover text="RECURSION" />
           </Typography>
         </Grid>
       </Grid>

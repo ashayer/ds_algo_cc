@@ -5,7 +5,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextPopover from "../TextPopUps/TextPopover";
 
-const SelectionSortCPP = () => {
+const SelectionSort = () => {
   const codeString = `void SelectionSort(vector<int> arr) {
   for(int i = 0; i < arr.size(); i++) {
     int min = i;
@@ -39,7 +39,7 @@ const SelectionCode = () => {
               justifyContent: "center",
             }}
           >
-            <SelectionSortCPP />
+            <SelectionSort />
           </Box>
         </Grid>
         <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
