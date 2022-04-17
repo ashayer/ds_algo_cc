@@ -65,7 +65,7 @@ const SortingAlgorithmAccordion = ({
       return totalCorrect;
     });
     //! change to 1
-    if (totalCorrect / 4 !== 1) {
+    if (totalCorrect / 4 !== 0) {
       toast.error(`Must get 100% correct to proceed. You got ${(totalCorrect / 4) * 100}%`, {
         position: "bottom-center",
         autoClose: 2000,

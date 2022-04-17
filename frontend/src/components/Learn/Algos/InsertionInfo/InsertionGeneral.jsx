@@ -7,7 +7,7 @@ import TextPopover from "../TextPopUps/TextPopover";
 const InsertionGeneral = () => {
   return (
     <Grid container>
-      <Grid item md={10} sx={{ border: "1px solid black" }}>
+      <Grid item md={8} sx={{ border: "1px solid black", p: 4 }}>
         <Typography variant="h6">
           Insertion sort is an <TextPopover text="IN-PLACE" /> sorting algorithm that builds the
           sorted array one element at a time. Similar to how one would sort a deck of cards by hand.
@@ -21,13 +21,13 @@ const InsertionGeneral = () => {
           its typical recursive behavior. It is also very efficient on nearly sorted lists as well.
         </Typography>
       </Grid>
-      <Grid item md={2} sx={{ border: "1px solid black" }}>
+      <Grid item md={4} xs={6} sx={{ border: "1px solid black", p: 4 }}>
         <Box>Animation here from sandbox</Box>
       </Grid>
-      <Grid item md={4} sx={{ border: "1px solid black", textAlign: "center" }}>
+      <Grid item md={4} xs={6} sx={{ border: "1px solid black", textAlign: "center" }}>
         <ComplexityTable timeComplexityArray={["O(n)", "O(n\u00B2)", "O(n\u00B2)"]} space="O(1)" />
       </Grid>
-      <Grid item md={8} sx={{ border: "1px solid black" }}>
+      <Grid item md={8} sx={{ border: "1px solid black", p: 4 }}>
         <Typography variant="h6">
           The <TextPopover text="TIME" /> and <TextPopover text="SPACE" /> complexities of insertion
           sort in <TextPopover text="BIG O" /> notation can be seen in the table. As you can see it
