@@ -6,8 +6,8 @@ import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextPopover from "../TextPopUps/TextPopover";
 
 const partitionString = `int partition(vector<int>& arr, int left, int right){
-  int pivotValue = arr[left]; // using leftmost as pivot
-  int pivotIndex = left;
+  int pivotValue = arr[left]; 
+  int pivotIndex = left; // using leftmost as pivot
   for(int i = left + 1; i<=right;++i){
       if(arr[i] < pivotValue){
           swap(arr[i], arr[++pivotIndex]);
@@ -78,7 +78,13 @@ const QuickCode = () => {
         <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
           <Typography variant="h6">
             This is the code for the quick sort algorithm in C++. The algorithm can be implemented
-            use two functions. The mergeSort function uses -------- <TextPopover text="RECURSION" />
+            using two functions. The quickSort function similar to the one in mergeSort uses
+            <TextPopover text="RECURSION" /> to split the array into smaller sub-lists. The
+            partition function, both swaps the elements in the sub-lists as well as returning the
+            next pivotIndex. As mentioned previously we use the left most as the index line(3). Then
+            we loop through the current sub-list to move the values less than the pivot the left and
+            greater than the pivot to the right. At the end of the loop we swap the left most
+            element with the element at the pivotIndex.
           </Typography>
         </Grid>
       </Grid>
