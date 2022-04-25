@@ -85,7 +85,7 @@ const generateToken = (id) => {
   });
 };
 
-export const updatePoints = asyncHandler(async (req ,res) => {
+export const updatePoints = asyncHandler(async (req, res) => {
   const update = await User.findByIdAndUpdate(req.params.id, {
     points: req.body.points,
     responseTime: req.body.responseTime,

@@ -9,7 +9,7 @@ const InsertionGeneral = () => {
     <Grid container>
       <Grid item md={8} sx={{ border: "1px solid black", p: 4 }}>
         <Typography variant="h6">
-          Insertion sort is an <TextPopover text="IN-PLACE" /> sorting algorithm that builds the
+          Insertionsss sort is an <TextPopover text="IN-PLACE" /> sorting algorithm that builds the
           sorted array one element at a time. Similar to how one would sort a deck of cards by hand.
           It separates the original array into a sorted and unsorted section, the head of this
           sorted section will always be the largest value compared so far. Because of this each

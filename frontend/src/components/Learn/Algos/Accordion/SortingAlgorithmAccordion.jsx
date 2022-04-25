@@ -51,7 +51,7 @@ const SortingAlgorithmAccordion = ({
       const temp = sectionArray.slice();
       setSectionArray(temp);
     }
-    // updateLocalUser(sectionArray);
+    updateLocalUser(sectionArray);
     handleAccordClick(sectionArray[sectionNum].subsections[index].name);
     handleClose();
   };
