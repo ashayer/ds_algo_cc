@@ -3,12 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
-import Algos from "./components/Learn/Algos/Algos";
+import Algos from "./components/Reading/Algos/Algos";
+import DataStructures from "./components/Reading/DataStructures/DataStructures";
 import Game from "./components/Game/Game";
 import UserEmulator from "./components/UserEmulator/UserEmulator";
 import NotFound from "./components/ErrorRoute/ErrorRoute";
 import Leaderboard from "./components/Leaderboard/Leaderboard";
-import DataStructures from "./components/Learn/DataStructures/DataStructs";
 import SortingSandbox from "./components/SortingSandbox/SortingSandbox";
 import StructureSandbox from "./components/StructureSandbox/StructureSandbox";
 

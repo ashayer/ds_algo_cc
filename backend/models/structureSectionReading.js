@@ -1,7 +1,7 @@
-const AlgoSectionArray = [
+const StructureSectionArray = [
   {
     sectionID: 1,
-    sectionName: "Insertion Sort",
+    sectionName: "Queue",
     completed: false,
     subsections: [
       {
@@ -18,7 +18,7 @@ const AlgoSectionArray = [
   },
   {
     sectionID: 2,
-    sectionName: "Selection Sort",
+    sectionName: "Stack",
     completed: false,
     subsections: [
       {
@@ -35,7 +35,7 @@ const AlgoSectionArray = [
   },
   {
     sectionID: 3,
-    sectionName: "Merge Sort",
+    sectionName: "Linked List",
     completed: false,
     subsections: [
       {
@@ -52,7 +52,7 @@ const AlgoSectionArray = [
   },
   {
     sectionID: 4,
-    sectionName: "Quick Sort",
+    sectionName: "Binary Tree",
     completed: false,
     subsections: [
       {
@@ -69,4 +69,4 @@ const AlgoSectionArray = [
   },
 ];
 
-export default AlgoSectionArray;
+export default StructureSectionArray;
