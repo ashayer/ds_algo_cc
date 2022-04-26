@@ -19,13 +19,23 @@ const Queue = () => {
    }
 
    bool isEmpty() {
-     if (front == -1)
-       return true;
-     else
-       return false;
+     if (front == -1) return true;
+     else return false;
    }
- `;
+  `;
+  return (
+    <SyntaxHighlighter
+      language="cpp"
+      style={lightfair}
+      showLineNumbers
+      customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
+    >
+      {codeString}
+    </SyntaxHighlighter>
+  );
+};
 
+const Queue2 = () => {
   const codeString2 = `void enQueue(int element) {
     if (front == -1) front = 0;
     rear++;
@@ -34,7 +44,7 @@ const Queue = () => {
 
  int deQueue() {
    int element;
-   if (isEmpty()) { return -1; } 
+   if (isEmpty()) return -1; 
    else {
      element = items[front];
      if (front >= rear) {
@@ -42,28 +52,19 @@ const Queue = () => {
        rear = -1;
      }
      else front++;
-     return element;
-   }
+    return element;
+  }
 };`;
   return (
-    <>
-      <SyntaxHighlighter
-        language="cpp"
-        style={lightfair}
-        showLineNumbers
-        customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
-      >
-        {codeString}
-      </SyntaxHighlighter>
-      <SyntaxHighlighter
-        language="cpp"
-        style={lightfair}
-        showLineNumbers
-        customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
-      >
-        {codeString2}
-      </SyntaxHighlighter>
-    </>
+    <SyntaxHighlighter
+      language="cpp"
+      style={lightfair}
+      showLineNumbers
+      startingLineNumber={18}
+      customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
+    >
+      {codeString2}
+    </SyntaxHighlighter>
   );
 };
 
@@ -71,7 +72,7 @@ const QueueCode = () => {
   return (
     <Grid container>
       <Grid container sx={{ align: "center", alignItems: "center" }}>
-        <Grid item md={12} sm={12} xs={12}>
+        <Grid item lg={6} md={12} sm={12} xs={12}>
           <Box
             sx={{
               display: "flex",
@@ -81,13 +82,24 @@ const QueueCode = () => {
             <Queue />
           </Box>
         </Grid>
+        <Grid item lg={6} md={12} sm={12} xs={12}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Queue2 />
+          </Box>
+        </Grid>
         <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
           <Typography variant="h6">
-            This is a code to implement the queue data structure. The <TextPopover text="METHODS" />{" "}
-            as previously mentioned are to enqueue and dequeue an element. On line 3 and line 4 we
-            are creating the array, front and rear pointers to give the array the behavior of the
-            queue. These two variables are the only indexes of the array that we have access to, to
-            fulfill the behavior of the array.
+            This is the code to implement the queue data structure class. The{" "}
+            <TextPopover text="METHODS" /> as previously mentioned are to enqueue and dequeue an
+            element. Additionally we have another method to check if the queue is empty on line 11.
+            On line 3 and line 4 we are creating the array, front and rear pointers to give the
+            array the behavior of the queue. These two variables are the only indexes of the array
+            that we have access to, to fulfill the behavior of the array.
           </Typography>
         </Grid>
       </Grid>
