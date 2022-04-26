@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node backend/index.js",
     "client": "npm start --prefix frontend",
-    "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
+    "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend",
+    "f": "npm start --prefix frontend",
+    "b": "npm start --prefix backend"
   },
   "author": "",
   "license": "ISC",

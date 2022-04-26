@@ -1,7 +1,7 @@
 const StructureSectionArray = [
   {
     sectionID: 1,
-    sectionName: "Linked List",
+    sectionName: "Insertion Sort",
     completed: false,
     subsections: [
       {
@@ -18,7 +18,7 @@ const StructureSectionArray = [
   },
   {
     sectionID: 2,
-    sectionName: "Stack",
+    sectionName: "Selection Sort",
     completed: false,
     subsections: [
       {
@@ -35,7 +35,7 @@ const StructureSectionArray = [
   },
   {
     sectionID: 3,
-    sectionName: "Queue",
+    sectionName: "Merge Sort",
     completed: false,
     subsections: [
       {
@@ -52,7 +52,7 @@ const StructureSectionArray = [
   },
   {
     sectionID: 4,
-    sectionName: "Binary Tree",
+    sectionName: "Quick Sort",
     completed: false,
     subsections: [
       {

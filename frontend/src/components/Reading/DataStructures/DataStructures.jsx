@@ -9,7 +9,7 @@ import DataStructureAccordion from "./Accordion/DataStructureAccordion";
 
 const API_URL = "/api/users/";
 
-const Algos = () => {
+const DataStructures = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
   const [sectionNum, setSectionNum] = useState(0);
   const [sectionArray, setSectionArray] = useState(localUser.dataReading);
@@ -23,10 +23,10 @@ const Algos = () => {
   };
 
   const updateLocalUser = async (array) => {
-    await axios.patch(`${API_URL}updateAlgo/${localUser._id}`, {
-      algoReading: array,
+    await axios.patch(`${API_URL}updateData/${localUser._id}`, {
+      dataReading: array,
     });
-    localUser.algoReading = array;
+    localUser.dataReading = array;
     sessionStorage.setItem("user", JSON.stringify(localUser));
   };
 
@@ -73,4 +73,4 @@ const Algos = () => {
   );
 };
 
-export default Algos;
+export default DataStructures;

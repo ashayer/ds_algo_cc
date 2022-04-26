@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
-import AlgoSectionArray from "../models/structureSectionReading.js";
+import AlgoSectionArray from "../models/sortingSectionReading.js";
 import StructureSectionArray from "../models/structureSectionReading.js";
 
 export const registerUser = asyncHandler(async (req, res) => {
@@ -105,6 +105,18 @@ export const updatePoints = asyncHandler(async (req, res) => {
 export const updateAlgoReading = asyncHandler(async (req, res) => {
   const update = await User.findByIdAndUpdate(req.params.id, {
     algoReading: req.body.algoReading,
+  });
+  if (update) {
+    res.status(200).send("Updated");
+  } else {
+    res.status(400).send("Failed");
+    throw new Error("oops");
+  }
+});
+
+export const updateDataReading = asyncHandler(async (req, res) => {
+  const update = await User.findByIdAndUpdate(req.params.id, {
+    dataReading: req.body.dataReading,
   });
   if (update) {
     res.status(200).send("Updated");
