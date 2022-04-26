@@ -9,7 +9,7 @@ const Queue = () => {
   const codeString = `class Queue {
 
   public:
-   int* items[SIZE];
+   int items[SIZE];
    int front, rear;
    
   public:
@@ -19,8 +19,7 @@ const Queue = () => {
    }
 
    bool isEmpty() {
-     if (front == -1) return true;
-     else return false;
+     return (front < 0);
    }
   `;
   return (
@@ -37,16 +36,14 @@ const Queue = () => {
 
 const Queue2 = () => {
   const codeString2 = `void enQueue(int element) {
-    if (front == -1) front = 0;
-    rear++;
-    items[rear] = element;
+    if (isEmpty()) front = 0;
+    items[rear++] = element;
  }
 
  int deQueue() {
-   int element;
    if (isEmpty()) return -1; 
    else {
-     element = items[front];
+    int element = items[front];
      if (front >= rear) {
        front = -1;
        rear = -1;

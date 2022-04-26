@@ -10,11 +10,9 @@ const MergeGeneral = () => {
       <Grid item md={8} sx={{ border: "1px solid black", p: 4 }}>
         <>
           <Typography variant="h6" gutterBottom>
-            A stack is also an <TextPopover text="ABSTRACT" /> data structure to store data in a{" "}
-            <TextPopover text="LAST-IN-FIRST-OUT" /> order. This means that that the front item of
-            the stack is the most recent item added to the stack and the last item in the stack is
-            the first one that was added. That means that the <TextPopover text="METHODS" /> of the
-            structure, only affect the most recently added item.
+            A Linked List is a data structure that stores its data using nodes which contain the
+            element value and a pointer/reference to the next node. Together each node represent the
+            list in a sequence where each node is linked to the next.
           </Typography>
           <Typography variant="h6">
             The operations available to a stack are to Push - add an item onto the stack Pop -
