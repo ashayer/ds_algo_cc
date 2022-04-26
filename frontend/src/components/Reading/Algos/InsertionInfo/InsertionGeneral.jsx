@@ -37,8 +37,7 @@ const InsertionGeneral = () => {
           each element is compared with every other element. This also gives insertion sort the
           property of being a <TextPopover text="STABLE" /> algorithm. If it compares and finds the
           values are the same it simply moves to the next element in the list. Because it is an
-          <TextPopover text="IN-PLACE" /> algorithm, that gives insertion sort a space complexity of
-          O(1).
+          in-place algorithm, that gives insertion sort a space complexity of O(1).
         </Typography>
       </Grid>
     </Grid>
