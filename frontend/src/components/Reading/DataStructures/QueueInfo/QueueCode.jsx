@@ -9,7 +9,8 @@ const Queue = () => {
   const codeString = `class Queue {
 
   public:
-   int items[SIZE], front, rear;
+   int* items[SIZE];
+   int front, rear;
    
   public:
    Queue() {
@@ -82,7 +83,11 @@ const QueueCode = () => {
         </Grid>
         <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
           <Typography variant="h6">
-            This is a code to implement the queue data structure. The <TextPopover text="METHODS" />
+            This is a code to implement the queue data structure. The <TextPopover text="METHODS" />{" "}
+            as previously mentioned are to enqueue and dequeue an element. On line 3 and line 4 we
+            are creating the array, front and rear pointers to give the array the behavior of the
+            queue. These two variables are the only indexes of the array that we have access to, to
+            fulfill the behavior of the array.
           </Typography>
         </Grid>
       </Grid>
