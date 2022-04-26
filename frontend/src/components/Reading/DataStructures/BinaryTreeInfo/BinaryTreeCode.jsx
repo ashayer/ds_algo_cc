@@ -46,8 +46,8 @@ const BinaryTreeCode = () => {
         </Grid>
         <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
           <Typography variant="h6">
-            This is the code for the quick sort algorithm in C++. The algorithm can be implemented
-            using two functions. The quickSort function similar to the one in mergeSort uses
+            This is the code for the quick sort algorithm.. The algorithm can be implemented using
+            two functions. The quickSort function similar to the one in mergeSort uses
             <TextPopover text="RECURSION" />
           </Typography>
         </Grid>

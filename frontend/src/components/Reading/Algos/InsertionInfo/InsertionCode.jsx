@@ -43,7 +43,7 @@ const InsertionCode = () => {
         </Grid>
         <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
           <Typography variant="h6">
-            This is a code snippet of the Insertion sort algorithm in C++. It utilizes a{" "}
+            This is the code for the Insertion sort algorithm. It utilizes a{" "}
             <TextPopover text="NESTED FOR LOOP" />. The outer loop (line 2) dictates the place in
             the array we are currently starting at for the inner loop. At each iteration all values
             to left of the ith index will be currently sorted where everything to the right is still

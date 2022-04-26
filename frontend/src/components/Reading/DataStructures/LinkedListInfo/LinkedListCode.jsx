@@ -87,12 +87,12 @@ const MergeCode = () => {
         </Grid>
         <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
           <Typography variant="h6">
-            This is the code for the merge sort algorithm in C++. The algorithm can be implemented
-            using two functions. The mergeSort function takes in on top of the array to be sorted, a
-            left and right index.It will keep using <TextPopover text="RECURSION" /> to call itself
-            until the right index is equal to the left index, which means the current array is of
-            size 1 and can no longer be split. At each call, middle value is chosen that allows for
-            the split. After all the arrays have been split in a size of 1, the merge function is
+            This is the code for the merge sort algorithm.. The algorithm can be implemented using
+            two functions. The mergeSort function takes in on top of the array to be sorted, a left
+            and right index.It will keep using <TextPopover text="RECURSION" /> to call itself until
+            the right index is equal to the left index, which means the current array is of size 1
+            and can no longer be split. At each call, middle value is chosen that allows for the
+            split. After all the arrays have been split in a size of 1, the merge function is
             called. In this implementation we use an auxillary vector that stores the current values
             of the passed in subarray (line 4), to be used later. Then we use a for loop that
             iterates from the left index to the right index of the subarray. There are four

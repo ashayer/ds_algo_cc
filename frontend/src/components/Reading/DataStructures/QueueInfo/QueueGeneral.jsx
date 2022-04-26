@@ -30,10 +30,13 @@ const QueueGeneral = () => {
       <Grid item md={8} sx={{ border: "1px solid black", p: 4 }}>
         <Typography variant="h6">
           The <TextPopover text="TIME" /> complexities for common operations are shown here. Since
-          the only insert or delete operations affect the head or tale of the queue the
-          insert/delete have a complexity of O(1). We can immediately insert or delete items.
-          However, to access or change the last element in the array for example, we have to go
-          through every element before it.
+          the only insert or delete operations affect the head or tail of the queue the
+          insert/delete have a complexity of O(1). We can immediately insert or delete items with
+          our only two pointers. However, to access or change the last element in the array for
+          example, we have to go through every element before it, since a queue does no have
+          indexing like an array. What have to dequeue all the elements and store them in another
+          queue until we have access to the one we want and enqueue all the items stored in the
+          other queue.
         </Typography>
       </Grid>
     </Grid>

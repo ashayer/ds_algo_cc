@@ -44,7 +44,7 @@ const SelectionCode = () => {
         </Grid>
         <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
           <Typography variant="h6">
-            This is the code for selection sort in C++. It also can be written using a{" "}
+            This is the code for selection sort in . It also can be written using a{" "}
             <TextPopover text="NESTED FOR LOOP" />. On (line 3) the minimum index is set as i. The
             min will always start as the first element in the unsorted section, because of this. The
             inner loop will increment through the entire sorted section to the right of the i index

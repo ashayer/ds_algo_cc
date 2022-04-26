@@ -16,7 +16,7 @@ const QuickGeneral = () => {
           every element into a list of size 1 then merging together, Quick sort uses a pivot element
           the separate the array into two subsists, where one list contains elements smaller than
           the pivot and the other larger than the pivot. The smallest possible sub-list being a size
-          of 2. The choice of a pivot value can change the performance of the algorithm in certain
+          of 2. The choice of a pivot value can change the performance of the algorithm.certain
           cases. All questions and implementations on this site use the leftmost element as the
           pivot, for the sake of simplicity. However, this choice can lead to the worst case
           performance. Typically, the best method for choosing the pivot is the (median of three),
