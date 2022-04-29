@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Typography, Box } from "@mui/material/";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextPopover from "../TextPopUps/TextPopover";
+import CodeBlock from "../../CodeBlock";
+import HighlightLine from "../../HighlightLine";
 
 const mergeString = `void merge(vector<int>& arr, int left, int middle, int right) {
   int i = left;
@@ -12,31 +12,22 @@ const mergeString = `void merge(vector<int>& arr, int left, int middle, int righ
 
   for(int k = left; k <= right; k++) {
       if(i > middle){
-          a[k] = temp[j++];
+          arr[k] = temp[j++];
       }
       else if(j > right){
-          a[k] = temp[i++];
+          arr[k] = temp[i++];
       }
       else if(temp[j] < temp[i]){
-          a[k] = temp[j++];
+          arr[k] = temp[j++];
       }
-      else {
-          a[k] = temp[i++];
+      else { // temp[j] > temp[i]
+          arr[k] = temp[i++];
       }
   }
 }`;
 
-const Merge = () => {
-  return (
-    <SyntaxHighlighter
-      language="cpp"
-      style={lightfair}
-      showLineNumbers
-      customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
-    >
-      {mergeString}
-    </SyntaxHighlighter>
-  );
+const Merge = ({ hoveredLine }) => {
+  return <CodeBlock hoveredLine={hoveredLine} code={mergeString} />;
 };
 
 const mergeSortString = `void mergeSort(vector<int>& arr, int left, int right) {
@@ -48,60 +39,98 @@ const mergeSortString = `void mergeSort(vector<int>& arr, int left, int right) {
     }
   }`;
 
-const MergeSort = () => {
-  return (
-    <SyntaxHighlighter
-      language="cpp"
-      style={lightfair}
-      showLineNumbers
-      customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
-    >
-      {mergeSortString}
-    </SyntaxHighlighter>
-  );
+const MergeSort = ({ hoveredLine }) => {
+  return <CodeBlock hoveredLine={hoveredLine} code={mergeSortString} startingLineNumber={21} />;
 };
 
 const MergeCode = () => {
+  const [hoveredLine, setHoveredLine] = useState(null);
+
   return (
     <Grid container>
       <Grid container sx={{ align: "center", alignItems: "center" }}>
-        <Grid item lg={6} md={12} sm={12} xs={12}>
+        <Grid item lg={4} md={12} sm={12} xs={12}>
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
             }}
           >
-            <Merge />
+            <MergeSort hoveredLine={hoveredLine} />
           </Box>
         </Grid>
-        <Grid item lg={6} md={12} sm={12} xs={12}>
+        <Grid item lg={8} md={12} sm={12} xs={12} sx={{ p: 4 }}>
+          <Typography variant="h6" gutterBottom>
+            This is the code for the Merge Sort algorithm which can be implemented using two
+            functions.
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            The mergeSort function takes an array to be sorted a left index and a right index{" "}
+            <HighlightLine lineNum={21} setHoveredLine={setHoveredLine} />
+            as the parameters. This function uses <TextPopover text="RECURSION" /> to call itself
+            repeatedly until the left index is greater than or equal to the right index{" "}
+            <HighlightLine lineNum={22} setHoveredLine={setHoveredLine} />, which means the current
+            array is of size 1 and can no longer be split.
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            At each call, the middle index of the array is calculated{" "}
+            <HighlightLine lineNum={23} setHoveredLine={setHoveredLine} /> that allows for the
+            recursion to go through one half, starting with the left. After all the arrays have been
+            split into a size of 1, the merge function is called{" "}
+            <HighlightLine lineNum={26} setHoveredLine={setHoveredLine} />.
+          </Typography>
+        </Grid>
+        <Grid item lg={5} md={12} xs={12}>
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
             }}
           >
-            <MergeSort />
+            <Merge hoveredLine={hoveredLine} />
           </Box>
         </Grid>
-        <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
-          <Typography variant="h6">
-            This is the code for the merge sort algorithm. The algorithm can be implemented using
-            two functions. The mergeSort function takes in on top of the array to be sorted, a left
-            and right index.It will keep using <TextPopover text="RECURSION" /> to call itself until
-            the right index is equal to the left index, which means the current array is of size 1
-            and can no longer be split. At each call, middle value is chosen that allows for the
-            split. After all the arrays have been split in a size of 1, the merge function is
-            called. In this implementation we use an auxillary vector that stores the current values
-            of the passed in subarray (line 4), to be used later. Then we use a for loop that
-            iterates from the left index to the right index of the subarray. There are four
-            conditions we need to look out for. If i which is the first index of the left subarray
-            is greater than the middle, it means that only the right subarray remains. So just add
-            the values of the right subarray. If the j the first index of the right subarray is
-            greater than the right index means only the left subarray remains. So just add the
-            values of the left subarray. Otherwise we add the value at the i or j index which is
-            smaller.
+        <Grid item lg={7} xs={12} sx={{ p: 4 }}>
+          <Typography variant="h6" gutterBottom>
+            This merge function is where the elements will be compared and swapped. In this
+            implementation we use an auxillary array that stores the current values of the passed in
+            subarray <HighlightLine lineNum={4} setHoveredLine={setHoveredLine} />, to be used a
+            secondary array for comparisons, this gives the space complexity of O(n) as previously
+            mentioned.
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            In this function we have two pointers for the indexes of that temp array we just
+            created. i is the leftmost index, which will always be 0. j is index to the right of the
+            middle <HighlightLine lineNum={3} setHoveredLine={setHoveredLine} /> hence the + 1.
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            We use a loop that iterates from the left index to the right index of the subarray that
+            we get from the parameters <HighlightLine lineNum={1} setHoveredLine={setHoveredLine} />
+            .
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            If i which is the left index of the array is greater than the middle index, it means
+            that only the right subarray remains as we have iterated through all of the left side of
+            the temp array. So swap the value in the temp array at index j with the k index in the
+            original array.
+            <HighlightLine lineNum={8} setHoveredLine={setHoveredLine} />
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            If the j the index to the right of the middle is greater than the right index, that
+            means only the left subarray remains as we have iterated through the entire right side
+            of the temp array. So swap the value in the temp array at index i with the k index in
+            the original array. <HighlightLine lineNum={11} setHoveredLine={setHoveredLine} />
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            If neither of those conditions are met that means that we need to compare the i and j
+            indexes. If the value in the temp array at index j is less than i, we want to swap that
+            smaller value in the original array.
+            <HighlightLine lineNum={14} setHoveredLine={setHoveredLine} />. Then increase j.
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            Otherwise if the value in the temp array at index j is greater than at index i, we want
+            to swap that value at the i index instead.
+            <HighlightLine lineNum={17} setHoveredLine={setHoveredLine} /> Then increase i.
           </Typography>
         </Grid>
       </Grid>

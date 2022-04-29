@@ -69,6 +69,8 @@ const TextPopover = ({ text }) => {
           <PopUps.NestedForLoop />
         ) : text === "DIVIDE-AND-CONQUER" ? (
           <PopUps.DnC />
+        ) : text === "LINEARITHMIC" ? (
+          <PopUps.Linearithmic />
         ) : null}
       </Popover>
     </>

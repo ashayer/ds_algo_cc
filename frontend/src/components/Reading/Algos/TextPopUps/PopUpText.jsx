@@ -21,9 +21,9 @@ export const OutOfPlace = () => {
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
         <Typography>
-          Out-of-place means that the algorithm requires a auxillary data structure, or simply extra
-          space to run that is not constant. Common space complexities for out-of-place algorithms
-          are either O(n) or O(logn).
+          Out-of-place means that the algorithm requires an auxillary data structure, or simply
+          extra space to run that is not constant. Common space complexities for out-of-place
+          algorithms are either O(n) or O(logn).
         </Typography>
       </Grid>
     </Grid>
@@ -35,8 +35,22 @@ export const Quadratic = () => {
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
         <Typography>
-          Quadratic means that the time it take to sort is propotional to the square of the size of
+          Quadratic means that the time it take to sort is proportional to the square of the size of
           the list. A time complexity of O(n&#178;) is quadratic.
+        </Typography>
+      </Grid>
+    </Grid>
+  );
+};
+
+export const Linearithmic = () => {
+  return (
+    <Grid container sx={{ maxWidth: "600px", p: 3 }}>
+      <Grid item md={12}>
+        <Typography>
+          Linearithmic means that the time it take to sort is proportional to n(logn) where n is the
+          size of the list. This means that the time it takes to run the algorithm is slower than
+          quadratic.
         </Typography>
       </Grid>
     </Grid>
@@ -51,9 +65,7 @@ export const Stable = () => {
           A stable algorithm will keep the the elements of the same value in the same original
           order. Consider the example below.
         </Typography>
-        <Typography gutterBottom>
-          Imagine we are sorting the tuples below by the LETTER only.
-        </Typography>
+        <Typography>Imagine we are sorting the tuples below by the LETTER only.</Typography>
         <Typography gutterBottom>(A, 1), (C, 2), (B, 1),(C, 1)</Typography>
         <Typography>
           A stable algorithm will always give us (A, 1), (B, 1), (C, 2),(C, 1) since we care only
@@ -68,15 +80,15 @@ export const UnStable = () => {
   return (
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
-        <Typography>
-          An unstable algorithm will change the order of the elements with the same value.Consider
+        <Typography gutterBottom>
+          An unstable algorithm will change the order of the elements with the same value. Consider
           the example below.
         </Typography>
-        <Typography>Imagine we are sorting the tuples below by the letter only.</Typography>
-        <Typography>(A, 1), (C, 2), (C, 3), (B, 1),(C, 1)</Typography>
+        <Typography>Imagine we are sorting the tuples below by the LETTER only.</Typography>
+        <Typography gutterBottom>(A, 1), (C, 2), (C, 3), (B, 1),(C, 1)</Typography>
         <Typography>
-          An unstable algorithm can give us (A, 1), (B, 1), (C, 1),(C, 2) (C, 3), or (A, 1), (B, 1),
-          (C, 3),(C, 2) (C, 1). Or any other order of the C tuples.
+          An unstable algorithm can give us (A, 1), (B, 1), (C, 1),(C, 2) (C, 3) which changes the
+          original of those tuples.
         </Typography>
       </Grid>
     </Grid>

@@ -37,7 +37,7 @@ const SelectionCode = () => {
         </Grid>
         <Grid item lg={8} md={12} sm={12} xs={12} sx={{ p: 4 }}>
           <Typography variant="h6" gutterBottom>
-            This is the code for the Selection Sort Algorithm. It also utilizes a{" "}
+            This is the code for the Selection Sort algorithm. It also utilizes a{" "}
             <TextPopover text="NESTED FOR LOOP" />.
           </Typography>
           <Typography variant="h6" gutterBottom>
@@ -48,7 +48,7 @@ const SelectionCode = () => {
           <Typography variant="h6" gutterBottom>
             The inner loop is what will increment through that entire unsorted section to the right
             of the ith index to find the element with the smallest value. The index of that minimum
-            element set as J (the new minimum element) as seen on{" "}
+            element is which is the jth index is assigned to the min index as seen on{" "}
             <HighlightLine lineNum={6} setHoveredLine={setHoveredLine} />. It is possible for this
             minimum index to update multiple times as it goes through the rest of the unsorted
             section.
