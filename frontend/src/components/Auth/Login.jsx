@@ -83,6 +83,7 @@ const Login = () => {
             alignItems: "center",
             height: "30vw",
             justifyContent: "center",
+            marginTop: "20vh",
           }}
         >
           <CircularProgress size={200} thickness={1.8} sx={{ color: "white" }} />

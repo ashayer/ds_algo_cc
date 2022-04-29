@@ -11,9 +11,10 @@ import {
 import protect from "../middleware/authMiddle.js";
 const router = express.Router();
 
+//!does not properly authenticate so cannot use protect middleware
 router.post("/", registerUser);
 router.post("/login", loginUser);
-router.patch("/user/:id", updatePoints); //!does not properly authenticate so cannot use protect middleware
+router.patch("/user/:id", updatePoints);
 router.get("/users", getUsers);
 router.patch("/updateAlgo/:id", updateAlgoReading);
 router.patch("/updateData/:id", updateDataReading);
