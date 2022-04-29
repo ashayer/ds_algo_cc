@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useRef } from "react";
 import {
   Typography,
@@ -11,6 +10,7 @@ import {
   Accordion,
 } from "@mui/material";
 import { toast } from "react-toastify";
+import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
@@ -162,6 +162,7 @@ const SortingAlgorithmAccordion = ({
                     ? () => handleAccordClick(subsection.name)
                     : null
                 }
+                sx={{ borderBottom: "1px solid black" }}
               >
                 <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
                   <Typography variant="h5">{subsection.name}</Typography>
@@ -190,8 +191,13 @@ const SortingAlgorithmAccordion = ({
                   Take Quiz
                 </Button>
               ) : (
-                <Button onClick={() => handleAccordClick(index)} variant="contained">
-                  Close
+                <Button
+                  onClick={() => handleAccordClick(index)}
+                  variant="contained"
+                  color="error"
+                  sx={{ borderRadius: "0px", float: "right" }}
+                >
+                  <CloseIcon />
                 </Button>
               )}
             </Accordion>

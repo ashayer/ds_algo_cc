@@ -63,7 +63,7 @@ const StatsCard = ({ localUser }) => {
           <Button
             fullWidth
             variant="contained"
-            sx={{ borderRadius: "0px" }}
+            sx={{ borderRadius: "0px", border: "5px solid white" }}
             onClick={() => navigate("/leaderboard")}
           >
             <Typography variant="h3">LeaderBoard</Typography>

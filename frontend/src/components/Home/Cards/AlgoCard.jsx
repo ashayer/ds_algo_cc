@@ -26,7 +26,7 @@ const StatsCard = ({ calculateCompletedReadingForAlgo }) => {
           <Button
             fullWidth
             variant="contained"
-            sx={{ borderRadius: "0px" }}
+            sx={{ borderRadius: "0px", border: "5px solid white" }}
             onClick={() => navigate("/algos")}
           >
             <Typography variant="h3">Read</Typography>
@@ -36,7 +36,7 @@ const StatsCard = ({ calculateCompletedReadingForAlgo }) => {
           <Button
             fullWidth
             variant="contained"
-            sx={{ borderRadius: "0px" }}
+            sx={{ borderRadius: "0px", border: "5px solid white" }}
             onClick={() => navigate("/sortsandbox")}
           >
             <Typography variant="h3">Sandbox</Typography>

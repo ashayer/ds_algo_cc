@@ -6,7 +6,7 @@ import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextPopover from "../TextPopUps/TextPopover";
 
 const InsertionSort = () => {
-  const codeString = `void InsertionSort(vector<int> arr) {
+  const codeString = `void InsertionSort(vector<int>& arr) {
   for(int i = 1; i < arr.size(); i++) {
     for(int j = i; j > 0; j--) {
       if(arr[j] < arr[j-1]) {
@@ -31,7 +31,7 @@ const InsertionCode = () => {
   return (
     <Grid container>
       <Grid container sx={{ align: "center", alignItems: "center" }}>
-        <Grid item md={12} sm={12} xs={12}>
+        <Grid item lg={4} md={12} sm={12} xs={12}>
           <Box
             sx={{
               display: "flex",
@@ -41,7 +41,7 @@ const InsertionCode = () => {
             <InsertionSort />
           </Box>
         </Grid>
-        <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
+        <Grid item lg={8} md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 3 }}>
           <Typography variant="h6">
             This is the code for the Insertion sort algorithm. It utilizes a{" "}
             <TextPopover text="NESTED FOR LOOP" />. The outer loop (line 2) dictates the place in

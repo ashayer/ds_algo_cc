@@ -8,6 +8,7 @@ import {
   Select,
   Box,
   MenuItem,
+  Zoom,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -61,19 +62,21 @@ const GameCard = () => {
               </Select>
             </FormControl>
             {type === "static" && (
-              <FormControl sx={{ width: "200px" }}>
-                <InputLabel id="game-difficulty-select">Difficulty</InputLabel>
-                <Select
-                  labelId="game-difficulty-select"
-                  label="Difficulty"
-                  value={difficulty}
-                  onChange={handleDifficultyChange}
-                >
-                  <MenuItem value="0">Easy</MenuItem>
-                  <MenuItem value="1">Medium</MenuItem>
-                  <MenuItem value="2">Hard</MenuItem>
-                </Select>
-              </FormControl>
+              <Zoom in>
+                <FormControl sx={{ width: "200px" }}>
+                  <InputLabel id="game-difficulty-select">Difficulty</InputLabel>
+                  <Select
+                    labelId="game-difficulty-select"
+                    label="Difficulty"
+                    value={difficulty}
+                    onChange={handleDifficultyChange}
+                  >
+                    <MenuItem value="0">Easy</MenuItem>
+                    <MenuItem value="1">Medium</MenuItem>
+                    <MenuItem value="2">Hard</MenuItem>
+                  </Select>
+                </FormControl>
+              </Zoom>
             )}
             <FormControl sx={{ width: "200px" }}>
               <InputLabel id="game-length-select">Questions</InputLabel>
@@ -94,7 +97,7 @@ const GameCard = () => {
           <Button
             fullWidth
             variant="contained"
-            sx={{ borderRadius: "0px" }}
+            sx={{ borderRadius: "0px", border: "5px solid white" }}
             onClick={() => navigate("/game")}
           >
             <Typography variant="h3">Play</Typography>

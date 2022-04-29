@@ -35,8 +35,8 @@ export const Quadratic = () => {
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
         <Typography>
-          Quadratic simply means that the time it take to sort is the square of the size of the
-          list. Since it has the time complexity of n&#178; it is deemed quadratic.
+          Quadratic means that the time it take to sort is propotional to the square of the size of
+          the list. A time complexity of O(n&#178;) is quadratic.
         </Typography>
       </Grid>
     </Grid>
@@ -47,12 +47,14 @@ export const Stable = () => {
   return (
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
-        <Typography>
+        <Typography gutterBottom>
           A stable algorithm will keep the the elements of the same value in the same original
           order. Consider the example below.
         </Typography>
-        <Typography>Imagine we are sorting the tuples below by the letter only.</Typography>
-        <Typography>(A, 1), (C, 2), (B, 1),(C, 1)</Typography>
+        <Typography gutterBottom>
+          Imagine we are sorting the tuples below by the LETTER only.
+        </Typography>
+        <Typography gutterBottom>(A, 1), (C, 2), (B, 1),(C, 1)</Typography>
         <Typography>
           A stable algorithm will always give us (A, 1), (B, 1), (C, 2),(C, 1) since we care only
           about the letter. An unstable algorithm may switch the position of (C,2) (C, 1).
@@ -86,10 +88,9 @@ export const Time = () => {
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
         <Typography>
-          Time complexity simply refers to the time it takes for an algorithm to run. For sorting
+          Time complexity refers to the time it takes for an algorithm to run. For sorting
           algorithms the input can change in size, therefore the time complexity of an algorithm is
-          usually described by its WORST performing time given a size. It is typically described in
-          Big O notation.
+          usually described by its WORST performing time given an arbitrarily infinite size.
         </Typography>
       </Grid>
     </Grid>
@@ -102,8 +103,8 @@ export const Space = () => {
       <Grid item md={12}>
         <Typography>
           Space complexity refers to the amount of memory required to run a certain algorithm. For
-          in-place algorithms this is typically O(1), meaning it export constant regardless of the
-          input.
+          in-place algorithms this is typically O(1), meaning it memory usage is constant regardless
+          of the input.
         </Typography>
       </Grid>
     </Grid>
@@ -115,10 +116,9 @@ export const BigO = () => {
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
         <Typography>
-          Big O notation is a mathematical notation that refers to the behavior of an algorithm
-          under an asymptotic condition. In the case of sorting algorithm it refers to the behavior
-          of the algorithm if the input was infinity large. Since we only care about the worst cases
-          of algorithms we use Big O notation.
+          Big O notation is a mathematical notation that refers to the performance of an algorithm
+          under an upper asymptotic condition. In the case of sorting algorithms it refers to the
+          behavior of the algorithm if the input was in theory infinitely large.
         </Typography>
       </Grid>
     </Grid>
@@ -130,8 +130,8 @@ export const NestedForLoop = () => {
     <Grid container sx={{ maxWidth: "600px", p: 3 }}>
       <Grid item md={12}>
         <Typography>
-          A nested for loop is a common pattern used in programming. The inner loop with the J
-          iterator will iterate J times every time we increment I.
+          A nested for loop is a common pattern used in programming. Any sorting algorithm with this
+          will typically have a quadratic time complexity.
         </Typography>
       </Grid>
     </Grid>

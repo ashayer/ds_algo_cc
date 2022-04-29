@@ -26,7 +26,7 @@ const StatsCard = ({ calculateCompletedReadingForData }) => {
           <Button
             fullWidth
             variant="contained"
-            sx={{ borderRadius: "0px" }}
+            sx={{ borderRadius: "0px", border: "5px solid white" }}
             onClick={() => navigate("/datastructs")}
           >
             <Typography variant="h3">Read</Typography>
@@ -36,7 +36,7 @@ const StatsCard = ({ calculateCompletedReadingForData }) => {
           <Button
             fullWidth
             variant="contained"
-            sx={{ borderRadius: "0px" }}
+            sx={{ borderRadius: "0px", border: "5px solid white" }}
             onClick={() => navigate("/datasandbox")}
           >
             <Typography variant="h3">Sandbox</Typography>
