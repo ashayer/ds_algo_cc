@@ -11,7 +11,6 @@ import {
   TablePagination,
   TableRow,
   TableSortLabel,
-  Toolbar,
   Typography,
   Paper,
 } from "@mui/material";
@@ -128,21 +127,6 @@ function EnhancedTableHead(props) {
   );
 }
 
-const EnhancedTableToolbar = () => {
-  return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-      }}
-    >
-      <Typography variant="h4" id="tableTitle">
-        User Leaderboard
-      </Typography>
-    </Toolbar>
-  );
-};
-
 export default function Leaderboard() {
   const [order, setOrder] = useState("desc");
   const [orderBy, setOrderBy] = useState("points");
@@ -210,7 +194,6 @@ export default function Leaderboard() {
         ) : (
           <Grow in>
             <Paper>
-              <EnhancedTableToolbar sx={{ mt: "2vh" }} />
               <TableContainer>
                 <Table>
                   <EnhancedTableHead
