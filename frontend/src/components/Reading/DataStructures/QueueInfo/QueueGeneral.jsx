@@ -21,10 +21,10 @@ const QueueGeneral = () => {
           </Typography>
         </>
       </Grid>
-      <Grid item md={4} xs={6} sx={{ border: "1px solid black", p: 4 }}>
+      <Grid item md={4} xs={12} sx={{ border: "1px solid black", p: 4 }}>
         <Box>Diagram</Box>
       </Grid>
-      <Grid item md={4} xs={6} sx={{ border: "1px solid black", p: 4, textAlign: "center" }}>
+      <Grid item md={4} xs={12} sx={{ border: "1px solid black", p: 4, textAlign: "center" }}>
         <ComplexityTable complexityArray={["O(n)", "O(n)", "O(1)"]} />
       </Grid>
       <Grid item md={8} sx={{ border: "1px solid black", p: 4 }}>

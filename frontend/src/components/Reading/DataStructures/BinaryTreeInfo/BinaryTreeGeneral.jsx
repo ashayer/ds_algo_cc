@@ -11,11 +11,10 @@ const BinaryTreeGeneral = () => {
       <Grid item md={8} sx={{ border: "1px solid black", p: 4 }}>
         <>
           <Typography variant="h6" gutterBottom>
-            A stack is also an <TextPopover text="ABSTRACT" /> data structure to store data in a{" "}
-            <TextPopover text="LAST-IN-FIRST-OUT" /> order. This means that that the front item of
-            the stack is the most recent item added to the stack and the last item in the stack is
-            the first one that was added. That means that the <TextPopover text="METHODS" /> of the
-            structure, only affect the most recently added item.
+            A binary tree is a data structure that unsurprisally follows a similar structure to a
+            tree, except upside down. Where the branches and leaves visually grow and expand
+            downwards from the root. Similar to a linked list, every element is a node with
+            children. In the case of a binary tree, every node have exactly two children.
           </Typography>
           <Typography variant="h6">
             The operations available to a stack are to Push - add an item onto the stack Pop -
