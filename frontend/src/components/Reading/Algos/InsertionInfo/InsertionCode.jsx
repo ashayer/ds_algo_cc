@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from "react";
 import { Grid, Typography, Box } from "@mui/material/";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextPopover from "../TextPopUps/TextPopover";
+import CodeBlock from "../../CodeBlock";
+import HighlightLine from "../../HighlightLine";
 
 const InsertionSort = ({ hoveredLine }) => {
   const codeString = `void InsertionSort(vector<int>& arr) {
@@ -15,29 +15,10 @@ const InsertionSort = ({ hoveredLine }) => {
       else break;
   }
 }`;
-  return (
-    <SyntaxHighlighter
-      language="cpp"
-      style={lightfair}
-      showLineNumbers
-      customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
-      wrapLines
-      lineProps={(lineNumber) => {
-        const style = { display: "block" };
-        if (hoveredLine === lineNumber) {
-          style.backgroundColor = "#ffc58f";
-          style.fontSize = "x-large";
-        }
-        return { style };
-      }}
-    >
-      {codeString}
-    </SyntaxHighlighter>
-  );
+  return <CodeBlock hoveredLine={hoveredLine} code={codeString} />;
 };
 
 const InsertionCode = () => {
-  // eslint-disable-next-line no-unused-vars
   const [hoveredLine, setHoveredLine] = useState(null);
 
   return (
@@ -59,26 +40,19 @@ const InsertionCode = () => {
             <TextPopover text="NESTED FOR LOOP" />.
           </Typography>
           <Typography variant="h6" gutterBottom>
-            The outer loop{" "}
-            <span
-              style={{ color: "#ff7b00" }}
-              onMouseOver={() => setHoveredLine(2)}
-              onMouseLeave={() => setHoveredLine(null)}
-              onFocus={() => setHoveredLine(2)}
-            >
-              (LINE 2)
-            </span>{" "}
+            The outer loop <HighlightLine lineNum={2} setHoveredLine={setHoveredLine} />
             dictates the place in the array we are currently starting at for the inner loop. At each
             iteration all values to left of the ith index will be currently sorted where everything
             to the right is still untouched. Therefore we need to start at the 2nd element, that is
             why i=1 instead of i=0.
           </Typography>
           <Typography variant="h6">
-            The inner loop (line 3) will function as two comparison pointers where it will compare
-            the current jth element to the jth-1 element, the one directly to its left. If the value
-            of the element to the left is greater then swap elements. It will keep repeating this
-            behavior until two conditions. J reaches the first element of the list OR it finds a
-            value that is less than or equal to the current value.
+            The inner loop <HighlightLine lineNum={3} setHoveredLine={setHoveredLine} /> will
+            function as two comparison pointers where it will compare the current jth element to the
+            jth-1 element, the one directly to its left. If the value of the element to the left is
+            greater then swap elements. It will keep repeating this behavior until two conditions. J
+            reaches the first element of the list OR it finds a value that is less than or equal to
+            the current value.
           </Typography>
         </Grid>
       </Grid>
