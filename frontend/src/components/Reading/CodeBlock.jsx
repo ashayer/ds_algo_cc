@@ -19,7 +19,7 @@ const CodeBlock = ({ hoveredLine, code, startingLineNumber }) => {
         const style = { display: "block" };
         if (hoveredLine === lineNumber) {
           style.backgroundColor = "#ffc58f";
-          style.fontSize = "x-large";
+          // style.fontSize = "x-large";
         }
         return { style };
       }}
