@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, Button } from "@mui/material";
+import { Typography, Grid, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const StatsCard = ({ calculateCompletedReadingForAlgo }) => {
@@ -10,19 +10,39 @@ const StatsCard = ({ calculateCompletedReadingForAlgo }) => {
       <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
         Sorting Algorithms
       </Typography>
-      <Box sx={{ display: "flex", flexDirection: "column", minHeight: "30vh" }}>
-        <Button variant="contained" sx={{ borderRadius: "0px" }} onClick={() => navigate("/algos")}>
-          <Typography variant="h3">Read</Typography>
-        </Button>
-        {`${calculateCompletedReadingForAlgo()}% Read`}
-        <Button
-          variant="contained"
-          sx={{ borderRadius: "0px" }}
-          onClick={() => navigate("/sortsandbox")}
-        >
-          <Typography variant="h3">Go to Sandbox</Typography>
-        </Button>
-      </Box>
+      <Grid
+        container
+        sx={{
+          direction: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          minHeight: "30vh",
+        }}
+      >
+        <Grid item xs={12}>
+          <Typography>{`${calculateCompletedReadingForAlgo()}% Read`}</Typography>
+        </Grid>
+        <Grid item xs={6} md={6} sx={{ alignSelf: "end" }}>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{ borderRadius: "0px" }}
+            onClick={() => navigate("/algos")}
+          >
+            <Typography variant="h3">Read</Typography>
+          </Button>
+        </Grid>
+        <Grid item xs={6} md={6} sx={{ alignSelf: "end" }}>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{ borderRadius: "0px" }}
+            onClick={() => navigate("/sortsandbox")}
+          >
+            <Typography variant="h3">Sandbox</Typography>
+          </Button>
+        </Grid>
+      </Grid>
     </>
   );
 };

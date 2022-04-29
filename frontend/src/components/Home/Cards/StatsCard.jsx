@@ -31,9 +31,7 @@ const StatsCard = ({ localUser }) => {
         }}
       >
         <Grid item xs={12}>
-          <Typography gutterBottom variant="h5">
-            {`${localUser.name}`}
-          </Typography>
+          <Typography variant="h5">{`${localUser.name}`}</Typography>
         </Grid>
         <Grid item xs={12}>
           <TableContainer>

@@ -44,9 +44,7 @@ const GameCard = () => {
         }}
       >
         <Grid item xs={12}>
-          <Typography gutterBottom variant="h5">
-            Game Options
-          </Typography>
+          <Typography variant="h5">Game Options</Typography>
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>

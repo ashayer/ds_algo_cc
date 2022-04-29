@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, Button } from "@mui/material";
+import { Typography, Grid, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const StatsCard = ({ calculateCompletedReadingForData }) => {
@@ -10,23 +10,39 @@ const StatsCard = ({ calculateCompletedReadingForData }) => {
       <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
         Data Structures
       </Typography>
-      <Box sx={{ display: "flex", flexDirection: "column", minHeight: "30vh" }}>
-        <Button
-          variant="contained"
-          sx={{ borderRadius: "0px" }}
-          onClick={() => navigate("/datastructs")}
-        >
-          <Typography variant="h3">Read</Typography>
-        </Button>
-        {`${calculateCompletedReadingForData()}% Read`}
-        <Button
-          variant="contained"
-          sx={{ borderRadius: "0px" }}
-          onClick={() => navigate("/datasandbox")}
-        >
-          <Typography variant="h3">Go to Sandbox</Typography>
-        </Button>
-      </Box>
+      <Grid
+        container
+        sx={{
+          direction: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          minHeight: "30vh",
+        }}
+      >
+        <Grid item xs={12}>
+          <Typography>{`${calculateCompletedReadingForData()}% Read`}</Typography>
+        </Grid>
+        <Grid item xs={6} md={6} sx={{ alignSelf: "end" }}>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{ borderRadius: "0px" }}
+            onClick={() => navigate("/datastructs")}
+          >
+            <Typography variant="h3">Read</Typography>
+          </Button>
+        </Grid>
+        <Grid item xs={6} md={6} sx={{ alignSelf: "end" }}>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{ borderRadius: "0px" }}
+            onClick={() => navigate("/datasandbox")}
+          >
+            <Typography variant="h3">Sandbox</Typography>
+          </Button>
+        </Grid>
+      </Grid>
     </>
   );
 };
