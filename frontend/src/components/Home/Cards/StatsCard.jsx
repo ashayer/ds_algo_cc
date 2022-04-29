@@ -66,7 +66,7 @@ const StatsCard = ({ localUser }) => {
             sx={{ borderRadius: "0px" }}
             onClick={() => navigate("/leaderboard")}
           >
-            <Typography variant="h3">View Leader Board</Typography>
+            <Typography variant="h3">LeaderBoard</Typography>
           </Button>
         </Grid>
       </Grid>

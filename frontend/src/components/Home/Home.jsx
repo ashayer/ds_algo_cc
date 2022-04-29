@@ -59,22 +59,22 @@ const Home = () => {
         <Slide in>
           <Box maxWidth="xl" sx={{ marginLeft: "auto", marginRight: "auto" }}>
             <Grid container spacing={5} sx={{ marginTop: 1, textAlign: "center" }}>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} sm={12} md={6}>
                 <Paper elevation={4}>
                   <GameCard />
                 </Paper>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} sm={12} md={6}>
                 <Paper elevation={4}>
                   <StatsCard localUser={localUser} />
                 </Paper>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} sm={12} md={6}>
                 <Paper elevation={4}>
                   <AlgoCard calculateCompletedReadingForAlgo={calculateCompletedReadingForAlgo} />
                 </Paper>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} sm={12} md={6}>
                 <Paper elevation={4}>
                   <DataCard calculateCompletedReadingForData={calculateCompletedReadingForData} />
                 </Paper>
