@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Container, Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import axios from "axios";
@@ -31,7 +31,7 @@ const DataStructures = () => {
   };
 
   return (
-    <Container maxWidth="xl">
+    <Box>
       <Navbar page="Data Structures" />
       <Grid
         container
@@ -69,7 +69,37 @@ const DataStructures = () => {
         setSectionArray={setSectionArray}
         updateLocalUser={updateLocalUser}
       />
-    </Container>
+      <Grid
+        container
+        sx={{ justifyContent: "space-between", alignItems: "center", marginTop: "2vh" }}
+      >
+        <Button
+          onClick={prevSection}
+          variant="contained"
+          disabled={sectionNum < 1}
+          sx={{
+            visibility: `${sectionNum === 0 ? "hidden" : "visible"}`,
+          }}
+        >
+          <ArrowBackIcon />
+          {sectionNum > 0 ? `${sectionArray[sectionNum - 1].sectionName}` : null}
+        </Button>
+
+        <Button
+          onClick={nextSection}
+          variant="contained"
+          disabled={sectionNum === sectionArray.length - 1 || !sectionArray[sectionNum].completed}
+          sx={{
+            visibility: `${sectionNum === sectionArray.length - 1 ? "hidden" : "visible"}`,
+          }}
+        >
+          {sectionNum < sectionArray.length - 1
+            ? `${sectionArray[sectionNum + 1].sectionName}`
+            : null}
+          <ArrowForwardIcon />
+        </Button>
+      </Grid>
+    </Box>
   );
 };
 
