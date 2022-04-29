@@ -10,11 +10,7 @@ import {
   Slide,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Navbar/Navbar";
-
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
 
 const calculateCompletedReadingForAlgo = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
@@ -62,12 +58,12 @@ const Home = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Navbar page="Home" />
       {localUser && (
-        <Box maxWidth="xl" sx={{ marginLeft: "auto", marginRight: "auto" }}>
-          <Grid container spacing={5} sx={{ marginTop: 1, textAlign: "center" }}>
-            <Slide in>
+        <Slide in>
+          <Box maxWidth="xl" sx={{ marginLeft: "auto", marginRight: "auto" }}>
+            <Grid container spacing={5} sx={{ marginTop: 1, textAlign: "center" }}>
               <Grid item xs={12} md={6}>
                 <Paper elevation={4}>
                   <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
@@ -100,8 +96,7 @@ const Home = () => {
                   </Box>
                 </Paper>
               </Grid>
-            </Slide>
-            <Slide in>
+
               <Grid item xs={12} md={6}>
                 <Paper elevation={4}>
                   <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
@@ -156,8 +151,7 @@ const Home = () => {
                   </Box>
                 </Paper>
               </Grid>
-            </Slide>
-            <Slide in>
+
               <Grid item xs={12} md={6}>
                 <Paper elevation={4}>
                   <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
@@ -185,8 +179,7 @@ const Home = () => {
                   </Box>
                 </Paper>
               </Grid>
-            </Slide>
-            <Slide in>
+
               <Grid item xs={12} md={6}>
                 <Paper elevation={4}>
                   <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
@@ -214,11 +207,11 @@ const Home = () => {
                   </Box>
                 </Paper>
               </Grid>
-            </Slide>
-          </Grid>
-        </Box>
+            </Grid>
+          </Box>
+        </Slide>
       )}
-    </ThemeProvider>
+    </>
   );
 };
 
