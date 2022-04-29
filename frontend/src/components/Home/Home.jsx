@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Grid, Box, Slide } from "@mui/material";
+import { Grid, Box, Slide, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import GameCard from "./Cards/GameCard";
@@ -59,10 +59,26 @@ const Home = () => {
         <Slide in>
           <Box maxWidth="xl" sx={{ marginLeft: "auto", marginRight: "auto" }}>
             <Grid container spacing={5} sx={{ marginTop: 1, textAlign: "center" }}>
-              <GameCard />
-              <StatsCard localUser={localUser} />
-              <AlgoCard calculateCompletedReadingForAlgo={calculateCompletedReadingForAlgo} />
-              <DataCard calculateCompletedReadingForData={calculateCompletedReadingForData} />
+              <Grid item xs={12} md={6}>
+                <Paper elevation={4}>
+                  <GameCard />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Paper elevation={4}>
+                  <StatsCard localUser={localUser} />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Paper elevation={4}>
+                  <AlgoCard calculateCompletedReadingForAlgo={calculateCompletedReadingForAlgo} />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Paper elevation={4}>
+                  <DataCard calculateCompletedReadingForData={calculateCompletedReadingForData} />
+                </Paper>
+              </Grid>
             </Grid>
           </Box>
         </Slide>
