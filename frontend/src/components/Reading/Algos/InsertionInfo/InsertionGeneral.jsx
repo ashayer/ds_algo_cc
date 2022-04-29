@@ -44,7 +44,7 @@ const InsertionGeneral = () => {
           it just moves on to the next iteration. This also gives insertion sort the property of
           being a <TextPopover text="STABLE" /> sorting algorithm.
         </Typography>
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6">
           For the Space Complexity since it is an in-place algorithm, insertion sort has a space
           complexity of O(1).
         </Typography>
