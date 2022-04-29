@@ -7,11 +7,11 @@ import TextPopover from "../TextPopUps/TextPopover";
 const InsertionGeneral = () => {
   return (
     <Grid container>
-      <Grid item xs={12} lg={8} sx={{ p: 3, borderBottom: "1px solid black" }}>
+      <Grid item xs={12} lg={8} sx={{ p: 4, borderBottom: "1px solid black" }}>
         <Typography variant="h6" gutterBottom>
           Insertion sort is an <TextPopover text="IN-PLACE" /> sorting algorithm that functions
           similar to how one would sort a deck of cards by hand. Through each iteration it will
-          created a smaller sorted subsection of the orignial array with the values compared so far.
+          created a smaller sorted subsection of the original array with the values compared so far.
           The head of the smaller section will always be the largest value seen so far.
         </Typography>
         <Typography variant="h6" gutterBottom>
@@ -26,13 +26,13 @@ const InsertionGeneral = () => {
           well, due to the nature of its conditional swaps.
         </Typography>
       </Grid>
-      <Grid item xs={12} lg={4} sx={{ p: 3, borderBottom: "1px solid black" }}>
+      <Grid item xs={12} lg={4} sx={{ p: 4, borderBottom: "1px solid black" }}>
         <Box>Animation here from sandbox</Box>
       </Grid>
-      <Grid item xs={12} lg={4} sx={{ p: 3, textAlign: "center" }}>
+      <Grid item xs={12} lg={4} sx={{ p: 4, textAlign: "center" }}>
         <ComplexityTable timeComplexityArray={["O(n)", "O(n\u00B2)", "O(n\u00B2)"]} space="O(1)" />
       </Grid>
-      <Grid item xs={12} lg={8} sx={{ p: 3 }}>
+      <Grid item xs={12} lg={8} sx={{ p: 4 }}>
         <Typography variant="h6" gutterBottom>
           The <TextPopover text="TIME" /> and <TextPopover text="SPACE" /> complexities of Insertion
           Sort in <TextPopover text="BIG O" /> notation can be seen in the table. As you can see it

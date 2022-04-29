@@ -9,7 +9,7 @@ const CodeBlock = ({ hoveredLine, code }) => {
       language="cpp"
       style={lightfair}
       showLineNumbers
-      customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
+      customStyle={{ fontSize: "large", width: "100%" }}
       wrapLines
       lineProps={(lineNumber) => {
         const style = { display: "block" };

@@ -34,10 +34,10 @@ const InsertionCode = () => {
             <InsertionSort hoveredLine={hoveredLine} />
           </Box>
         </Grid>
-        <Grid item lg={8} md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 3 }}>
+        <Grid item lg={8} md={12} sm={12} xs={12} sx={{ p: 4 }}>
           <Typography variant="h6" gutterBottom>
             This is the code for the Insertion sort algorithm. It utilizes a{" "}
-            <TextPopover text="NESTED FOR LOOP" />.
+            <TextPopover text="NESTED FOR LOOP" /> to sort a given list.
           </Typography>
           <Typography variant="h6" gutterBottom>
             The outer loop <HighlightLine lineNum={2} setHoveredLine={setHoveredLine} />

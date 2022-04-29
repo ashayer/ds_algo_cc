@@ -1,58 +1,63 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Typography, Box } from "@mui/material/";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import CodeBlock from "../../CodeBlock";
+import HighlightLine from "../../HighlightLine";
 import TextPopover from "../TextPopUps/TextPopover";
 
-const SelectionSort = () => {
-  const codeString = `void SelectionSort(vector<int> arr) {
+const SelectionSort = ({ hoveredLine }) => {
+  const codeString = `void SelectionSort(vector<int>& arr) {
   for(int i = 0; i < arr.size(); i++) {
     int min = i;
     for(int j = i + 1; j < arr.size(); j++) {
       if(arr[j] < arr[min]) {
         min = j;
       }
-    swap(array[min], array[i]);
+    swap(arr[min], arr[i]);
   }
 }`;
-  return (
-    <SyntaxHighlighter
-      language="cpp"
-      style={lightfair}
-      showLineNumbers
-      customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
-    >
-      {codeString}
-    </SyntaxHighlighter>
-  );
+  return <CodeBlock hoveredLine={hoveredLine} code={codeString} />;
 };
 
 const SelectionCode = () => {
+  const [hoveredLine, setHoveredLine] = useState(null);
+
   return (
     <Grid container>
       <Grid container sx={{ align: "center", alignItems: "center" }}>
-        <Grid item md={12} sm={12} xs={12}>
+        <Grid item lg={4} md={12} sm={12} xs={12}>
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
             }}
           >
-            <SelectionSort />
+            <SelectionSort hoveredLine={hoveredLine} />
           </Box>
         </Grid>
-        <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
-          <Typography variant="h6">
-            This is the code for selection sort in . It also can be written using a{" "}
-            <TextPopover text="NESTED FOR LOOP" />. On (line 3) the minimum index is set as i. The
-            min will always start as the first element in the unsorted section, because of this. The
-            inner loop will increment through the entire sorted section to the right of the i index
-            to find the element with the smallest value, if the value is found then the index of the
-            minimum value is set as J (the new minimum element) as seen on (line 6). Then the
-            elements of the minimum and i indexes, will be swapped. It will repeat this loop until i
-            reaches the end of the array. The algorithm has no other break condition and must run
-            through all i*j iterations.
+        <Grid item lg={8} md={12} sm={12} xs={12} sx={{ p: 4 }}>
+          <Typography variant="h6" gutterBottom>
+            This is the code for the Selection Sort Algorithm. It also utilizes a{" "}
+            <TextPopover text="NESTED FOR LOOP" />.
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            On <HighlightLine lineNum={3} setHoveredLine={setHoveredLine} /> the minimum index is
+            set as the ith index as it will always start at each iteration as the first value in the
+            unsorted section.
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            The inner loop is what will increment through that entire unsorted section to the right
+            of the ith index to find the element with the smallest value. The index of that minimum
+            element set as J (the new minimum element) as seen on{" "}
+            <HighlightLine lineNum={6} setHoveredLine={setHoveredLine} />. It is possible for this
+            minimum index to update multiple times as it goes through the rest of the unsorted
+            section.
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            Once that minimum element index is found it will be swapped with the element at index i
+            <HighlightLine lineNum={8} setHoveredLine={setHoveredLine} />. It will repeat this loop
+            until i reaches the end of the array. The algorithm has no other break condition and
+            must run through all iterations.
           </Typography>
         </Grid>
       </Grid>
