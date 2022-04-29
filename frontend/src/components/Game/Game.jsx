@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Grid, Button, Container, Paper, Grow } from "@mui/material/";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { toast } from "react-toastify";
-import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import questionHandler from "../../Algorithms/handler";
 import algorithmInfoArray from "../../Algorithms/infoArray";
@@ -32,9 +31,6 @@ const updatePoints = async (
 
   return response.data;
 };
-
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
 
 //! countdown timer causing memory leak
 let highestStreak = 0;
@@ -227,85 +223,77 @@ const Game = () => {
   }, [createQuestion]);
 
   return gameStarted ? (
-    <ThemeProvider theme={theme}>
-      <Grow in>
-        <Grid container>
-          <Paper sx={{ width: "100vw" }}>
-            <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
-              <Grid item md={3} xs={10}>
-                <UserStatsTable localUser={localUser} />
-              </Grid>
-              <Grid
-                item
-                md={7}
-                xs={12}
-                order={{ xs: 3, sm: 3, md: 2 }}
-                sx={{ textAlign: "center" }}
-              >
-                <Question question={question} />
-              </Grid>
-              <Grid
-                item
-                md={2}
-                xs={2}
-                sx={{
-                  textAlign: "center",
-                  alignItems: "center",
-                  display: "flex",
-                  flexDirection: "column",
-                  padding: "15px",
-                }}
-                order={{ xs: 2, sm: 2, md: 3 }}
-              >
-                <CountdownTimer />
-                <Button
-                  variant="contained"
-                  sx={{
-                    marginTop: "15px",
-                  }}
-                  onClick={endGame}
-                >
-                  END GAME
-                </Button>
-              </Grid>
+    <Grow in>
+      <Grid container>
+        <Paper sx={{ width: "100vw" }}>
+          <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
+            <Grid item md={3} xs={10}>
+              <UserStatsTable localUser={localUser} />
             </Grid>
-          </Paper>
-          <Paper
-            sx={{
-              width: "100vw",
-              margin: "10px 0",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Container>
-              <Content
-                content={content}
-                contentObject={contentObject}
-                questionType={questionType}
-                questionTopic={questionTopic}
-                object={object}
-              />
-            </Container>
-          </Paper>
-
-          <Paper sx={{ width: "100vw" }}>
-            <Answers
-              answers={answers}
-              startGame={startGame}
+            <Grid item md={7} xs={12} order={{ xs: 3, sm: 3, md: 2 }} sx={{ textAlign: "center" }}>
+              <Question question={question} />
+            </Grid>
+            <Grid
+              item
+              md={2}
+              xs={2}
+              sx={{
+                textAlign: "center",
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column",
+                padding: "15px",
+              }}
+              order={{ xs: 2, sm: 2, md: 3 }}
+            >
+              <CountdownTimer />
+              <Button
+                variant="contained"
+                sx={{
+                  marginTop: "15px",
+                }}
+                onClick={endGame}
+              >
+                END GAME
+              </Button>
+            </Grid>
+          </Grid>
+        </Paper>
+        <Paper
+          sx={{
+            width: "100vw",
+            margin: "10px 0",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Container>
+            <Content
+              content={content}
+              contentObject={contentObject}
               questionType={questionType}
-              questionStartTime={questionStartTime}
-              isHighestStreak={isHighestStreak}
-              checkLineOrder={checkLineOrder}
+              questionTopic={questionTopic}
+              object={object}
             />
-          </Paper>
-        </Grid>
-      </Grow>
-    </ThemeProvider>
+          </Container>
+        </Paper>
+
+        <Paper sx={{ width: "100vw" }}>
+          <Answers
+            answers={answers}
+            startGame={startGame}
+            questionType={questionType}
+            questionStartTime={questionStartTime}
+            isHighestStreak={isHighestStreak}
+            checkLineOrder={checkLineOrder}
+          />
+        </Paper>
+      </Grid>
+    </Grow>
   ) : (
-    <ThemeProvider theme={theme}>
+    <>
       <Navbar page="Game" />
       <Container
         maxWidth="xl"
@@ -329,7 +317,7 @@ const Game = () => {
           START GAME
         </Button>
       </Container>
-    </ThemeProvider>
+    </>
   );
 };
 

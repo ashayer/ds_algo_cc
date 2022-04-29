@@ -3,11 +3,7 @@
 
 import React, { useEffect } from "react";
 import { Grid, Typography, Container, Box } from "@mui/material/";
-import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
 
 const Content = ({ content, contentObject, questionTopic, questionType }) => {
   const ContentBars = () => {
@@ -181,7 +177,7 @@ const Content = ({ content, contentObject, questionTopic, questionType }) => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <Box>
       {questionType === 0 ? (
         <ContentBars />
       ) : questionType === 1 || questionType === 2 ? (
@@ -195,7 +191,7 @@ const Content = ({ content, contentObject, questionTopic, questionType }) => {
       ) : questionType === 6 ? (
         <ContentDragSwap />
       ) : null}
-    </ThemeProvider>
+    </Box>
   );
 };
 

@@ -13,16 +13,12 @@ import {
   Slider,
 } from "@mui/material";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Navbar/Navbar";
 import sortArrayInsertion from "./AlgoGenerators/insertionGen";
 import sortArraySelection from "./AlgoGenerators/selectionGen";
 import sortArrayMerge from "./AlgoGenerators/mergeGen";
 
 let pseudoCodeStringArray = [];
-
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
 
 const SortingSandbox = () => {
   const [algorithm, setAlgorithm] = useState(3);
@@ -107,7 +103,7 @@ const SortingSandbox = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Navbar page="Sorting Algorithm Sandbox" />
       <Box>
         <AppBar
@@ -243,7 +239,7 @@ const SortingSandbox = () => {
           </Grid>
         </Grid>
       </Box>
-    </ThemeProvider>
+    </>
   );
 };
 
