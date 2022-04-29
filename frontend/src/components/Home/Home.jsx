@@ -63,9 +63,9 @@ const Home = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Navbar page="Home" />
       {localUser && (
         <Box maxWidth="xl" sx={{ marginLeft: "auto", marginRight: "auto" }}>
-          <Navbar page="Home" />
           <Grid container spacing={5} sx={{ marginTop: 1, textAlign: "center" }}>
             <Slide in>
               <Grid item xs={12} md={6}>
