@@ -1,58 +1,17 @@
-export const insertionCodeQuiz = [
-  {
-    question: "Which of the following is true about insertion sort?",
-    type: 0,
-    options: [
-      { answer: "The elements to the left of the ith iterator are sorted", correct: true },
-      { answer: "The element to the right of the ith iterator are sorted", correct: false },
-      { answer: "The inner loop breaks if the entire array is sorted", correct: false },
-      { answer: "The outer loop starts at the first element", correct: false },
-    ],
-  },
-  {
-    question: "What are the conditions that will end the inner for loop with the J iterator",
-    type: 1,
-    options: [
-      { answer: "J reaches the first element", correct: true },
-      { answer: "J becomes 0", correct: true },
-      { answer: "The list is sorted", correct: false },
-      { answer: "The value at j-1 is less than or greater than the value at j", correct: true },
-    ],
-  },
-  {
-    question: "What is the equivalent while loop for the inner j loop of insertion sort",
-    type: 0,
-    options: [
-      { answer: "while(j > 0)", correct: false },
-      { answer: "while(j > 1)", correct: false },
-      { answer: "while(j < i)", correct: false },
-      { answer: "while(j > -1)", correct: true },
-    ],
-  },
-  {
-    question: "The jth and jth-1 values are swapped in the algorithm",
-    type: 0,
-    options: [
-      { answer: "true", correct: true },
-      { answer: "false", correct: false },
-    ],
-  },
-];
-
 export const insertionGeneralQuiz = [
   {
-    question: "Which of the following is NOT true about insertion sort",
+    question: "Which of the following is NOT true about Insertion Sort",
     type: 0,
     options: [
-      { answer: "Insertion sort has a best case of n", correct: false },
+      { answer: "Insertion sort has an average time complexity of n\u00B2", correct: false },
       { answer: "Insertion sort is stable and in-place", correct: false },
-      { answer: "Insertion sort has a best case of n\u00B2", correct: true },
-      { answer: "Insertion sort is efficient on smaller datasets", correct: false },
+      { answer: "Insertion sort has a best case of n", correct: false },
+      { answer: "Insertion sort is efficient on all datasets", correct: true },
     ],
   },
   {
     question:
-      "What would be the output of insertion sort if we sorted the tuples by their letter. " +
+      "What would be the result of sorting the tuples by their letter? " +
       "(C,1) (B,3) (A,2) (A,1) (B,1)",
     type: 0,
     options: [
@@ -63,21 +22,62 @@ export const insertionGeneralQuiz = [
     ],
   },
   {
-    question: "Insertion Sort is in-place but unstable",
+    question: "Insertion Sort is in-place but Unstable",
     type: 0,
     options: [
-      { answer: "true", correct: false },
-      { answer: "false", correct: true },
+      { answer: "True", correct: false },
+      { answer: "False", correct: true },
     ],
   },
   {
-    question: "Check all that apply to insertion sort",
+    question: "Check all that apply to Insertion Sort",
     type: 1,
     options: [
       { answer: "Has a space complexity of O(1)", correct: true },
-      { answer: "Has a space tune of O(n\u00B2)", correct: true },
-      { answer: "Sorts a list in-place", correct: true },
+      { answer: "Efficient on small datasets", correct: true },
+      { answer: "Sorts in-place", correct: true },
       { answer: "Will maintain the order of the original list", correct: true },
+    ],
+  },
+];
+
+export const insertionCodeQuiz = [
+  {
+    question: "Which of the following is true about Insertion Sort?",
+    type: 0,
+    options: [
+      { answer: "The elements to the left of the ith iterator are sorted", correct: true },
+      { answer: "The element to the right of the ith iterator are sorted", correct: false },
+      { answer: "The inner loop breaks if the entire array is sorted", correct: false },
+      { answer: "The outer loop starts at the first element", correct: false },
+    ],
+  },
+  {
+    question: "What are the conditions that will end the inner for loop?",
+    type: 1,
+    options: [
+      { answer: "J reaches the first element", correct: true },
+      { answer: "J becomes 0", correct: true },
+      { answer: "The list is sorted", correct: false },
+      { answer: "The value at j-1 is less than or equal to the value at j", correct: true },
+    ],
+  },
+  {
+    question: "What is the equivalent WHILE loop for the inner loop?",
+    type: 0,
+    options: [
+      { answer: "while(j > 0)", correct: false },
+      { answer: "while(j > 1)", correct: false },
+      { answer: "while(j < i)", correct: false },
+      { answer: "while(j > -1)", correct: true },
+    ],
+  },
+  {
+    question: "The ith and jth values are swapped in the algorithm.",
+    type: 0,
+    options: [
+      { answer: "True", correct: false },
+      { answer: "False", correct: true },
     ],
   },
 ];

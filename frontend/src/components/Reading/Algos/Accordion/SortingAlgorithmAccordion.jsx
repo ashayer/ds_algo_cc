@@ -28,14 +28,14 @@ const SortingAlgorithmAccordion = ({
   updateLocalUser,
 }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
+  const subsectionIndexRef = useRef(1);
   const handleOpen = () => {
     userAnswers = [false, false, false, false];
     checkboxQuestion = [false, false, false, false];
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
-  const subsectionIndexRef = useRef(0);
   function handleAccordClick(name) {
     if (currentSubSection === name) setCurrentSubSection("");
     if (currentSubSection !== name) setCurrentSubSection(name);
@@ -65,10 +65,10 @@ const SortingAlgorithmAccordion = ({
       return totalCorrect;
     });
     //! change to 1
-    if (totalCorrect / 4 !== 0) {
+    if (totalCorrect / 4 !== 1) {
       toast.error(`Must get 100% correct to proceed. You got ${(totalCorrect / 4) * 100}%`, {
         position: "bottom-center",
-        autoClose: 2000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
@@ -100,7 +100,7 @@ const SortingAlgorithmAccordion = ({
             transform: "translate(-50%, -50%)",
             overflow: "auto",
             backgroundColor: "white",
-            height: "85vh",
+            height: "90vh",
             width: "90vw",
             outline: "none",
             display: "flex",
@@ -123,6 +123,11 @@ const SortingAlgorithmAccordion = ({
           >
             X
           </Button>
+          <Typography variant="h3">
+            {subsectionIndexRef.current
+              ? `${sectionArray[sectionNum].sectionName} Code Quiz`
+              : `${sectionArray[sectionNum].sectionName} General Quiz`}
+          </Typography>
 
           <QuizModal
             userAnswers={userAnswers}
