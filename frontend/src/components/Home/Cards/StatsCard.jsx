@@ -11,41 +11,46 @@ const StatsCard = ({ localUser }) => {
         <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
           Stats
         </Typography>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", minHeight: "30vh" }}>
           <Typography gutterBottom variant="h5">
             {`${localUser.name}`}
           </Typography>
-          <table>
-            <tbody>
-              <tr>
-                <td>Points</td>
-                <td>{`${localUser.points}`}</td>
-              </tr>
-              <tr>
-                <td>Games Played</td>
-                <td>{`${localUser.gamesPlayed}`}</td>
-              </tr>
-              <tr>
-                <td>Highest Streak</td>
-                <td>{`${localUser.streak}`}</td>
-              </tr>
-              <tr>
-                <td>Total Correct</td>
-                <td>{`${localUser.numCorrect}`}</td>
-              </tr>
-              <tr>
-                <td>Total Wrong</td>
-                <td>{`${localUser.numWrong}`}</td>
-              </tr>
-              <tr>
-                <td>Response Time</td>
-                <td>{`${localUser.responseTime}`}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <Button onClick={() => navigate("/leaderboard")}>
-            <Typography variant="h2">View Leader Board</Typography>
+          <Box sx={{ border: "1px solid black" }}>
+            <table>
+              <tbody>
+                <tr>
+                  <td>Points</td>
+                  <td>{`${localUser.points}`}</td>
+                </tr>
+                <tr>
+                  <td>Games Played</td>
+                  <td>{`${localUser.gamesPlayed}`}</td>
+                </tr>
+                <tr>
+                  <td>Highest Streak</td>
+                  <td>{`${localUser.streak}`}</td>
+                </tr>
+                <tr>
+                  <td>Total Correct</td>
+                  <td>{`${localUser.numCorrect}`}</td>
+                </tr>
+                <tr>
+                  <td>Total Wrong</td>
+                  <td>{`${localUser.numWrong}`}</td>
+                </tr>
+                <tr>
+                  <td>Response Time</td>
+                  <td>{`${localUser.responseTime}`}</td>
+                </tr>
+              </tbody>
+            </table>
+          </Box>
+          <Button
+            variant="contained"
+            sx={{ borderRadius: "0px" }}
+            onClick={() => navigate("/leaderboard")}
+          >
+            <Typography variant="h3">View Leader Board</Typography>
           </Button>
         </Box>
       </Paper>

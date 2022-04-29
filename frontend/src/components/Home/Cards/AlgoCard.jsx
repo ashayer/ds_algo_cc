@@ -11,14 +11,21 @@ const StatsCard = ({ calculateCompletedReadingForAlgo }) => {
         <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
           Sorting Algorithms
         </Typography>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Button onClick={() => navigate("/algos")}>
-            <Typography variant="h2">Read</Typography>
+        <Box sx={{ display: "flex", flexDirection: "column", minHeight: "30vh" }}>
+          <Button
+            variant="contained"
+            sx={{ borderRadius: "0px" }}
+            onClick={() => navigate("/algos")}
+          >
+            <Typography variant="h3">Read</Typography>
           </Button>
           {`${calculateCompletedReadingForAlgo()}% Read`}
-
-          <Button sx={{ minHeight: "30vh" }} onClick={() => navigate("/sortsandbox")}>
-            <Typography variant="h2">Go to Sandbox</Typography>
+          <Button
+            variant="contained"
+            sx={{ borderRadius: "0px" }}
+            onClick={() => navigate("/sortsandbox")}
+          >
+            <Typography variant="h3">Go to Sandbox</Typography>
           </Button>
         </Box>
       </Paper>

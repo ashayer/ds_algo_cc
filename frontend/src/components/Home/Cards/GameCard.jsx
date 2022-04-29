@@ -10,8 +10,11 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const GameCard = () => {
+  const navigate = useNavigate();
+
   const [age, setAge] = useState("");
 
   const handleChange = (event) => {
@@ -43,7 +46,11 @@ const GameCard = () => {
               </Select>
             </FormControl>
           </Box>
-          <Button variant="contained" sx={{ borderRadius: "0px" }}>
+          <Button
+            variant="contained"
+            sx={{ borderRadius: "0px" }}
+            onClick={() => navigate("/game")}
+          >
             <Typography variant="h3">Play</Typography>
           </Button>
         </Box>

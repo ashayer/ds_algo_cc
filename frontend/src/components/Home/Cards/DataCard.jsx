@@ -11,13 +11,21 @@ const StatsCard = ({ calculateCompletedReadingForData }) => {
         <Typography variant="h3" sx={{ borderBottom: "1px solid black" }}>
           Data Structures
         </Typography>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Button onClick={() => navigate("/datastructs")}>
-            <Typography variant="h2">Read</Typography>
+        <Box sx={{ display: "flex", flexDirection: "column", minHeight: "30vh" }}>
+          <Button
+            variant="contained"
+            sx={{ borderRadius: "0px" }}
+            onClick={() => navigate("/datastructs")}
+          >
+            <Typography variant="h3">Read</Typography>
           </Button>
           {`${calculateCompletedReadingForData()}% Read`}
-          <Button sx={{ minHeight: "30vh" }} onClick={() => navigate("/datasandbox")}>
-            <Typography variant="h2">Go to Sandbox</Typography>
+          <Button
+            variant="contained"
+            sx={{ borderRadius: "0px" }}
+            onClick={() => navigate("/datasandbox")}
+          >
+            <Typography variant="h3">Go to Sandbox</Typography>
           </Button>
         </Box>
       </Paper>
