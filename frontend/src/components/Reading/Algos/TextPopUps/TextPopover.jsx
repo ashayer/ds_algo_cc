@@ -71,6 +71,8 @@ const TextPopover = ({ text }) => {
           <PopUps.DnC />
         ) : text === "LINEARITHMIC" ? (
           <PopUps.Linearithmic />
+        ) : text === "RECURSION" ? (
+          <PopUps.Recursion />
         ) : null}
       </Popover>
     </>

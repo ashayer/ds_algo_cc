@@ -100,8 +100,8 @@ const MergeCode = () => {
           </Typography>
           <Typography variant="h6" gutterBottom>
             In this function we have two pointers for the indexes of that temp array we just
-            created. i is the leftmost index, which will always be 0. j is index to the right of the
-            middle <HighlightLine lineNum={3} setHoveredLine={setHoveredLine} /> hence the + 1.
+            created. i is the leftmost index. j is index to the right of the middle{" "}
+            <HighlightLine lineNum={3} setHoveredLine={setHoveredLine} /> hence the + 1.
           </Typography>
           <Typography variant="h6" gutterBottom>
             We use a loop that iterates from the left index to the right index of the subarray that
