@@ -52,7 +52,6 @@ const GameCard = () => {
               <InputLabel id="game-type-select">Type</InputLabel>
               <Select
                 labelId="game-type-select"
-                id="game-type-select"
                 value={type}
                 label="Type"
                 onChange={handleTypeChange}
@@ -66,9 +65,8 @@ const GameCard = () => {
                 <InputLabel id="game-difficulty-select">Difficulty</InputLabel>
                 <Select
                   labelId="game-difficulty-select"
-                  id="game-difficulty-select"
+                  label="Difficulty"
                   value={difficulty}
-                  label="difficulty"
                   onChange={handleDifficultyChange}
                 >
                   <MenuItem value="0">Easy</MenuItem>
@@ -81,9 +79,8 @@ const GameCard = () => {
               <InputLabel id="game-length-select">Questions</InputLabel>
               <Select
                 labelId="game-length-select"
-                id="game-length-select"
                 value={gameLength}
-                label="Length"
+                label="Questions"
                 onChange={handleLengthChange}
               >
                 <MenuItem value="0">Endless</MenuItem>
