@@ -11,7 +11,7 @@ const API_URL = "/api/users/";
 
 const DataStructures = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
-  const [sectionNum, setSectionNum] = useState(1);
+  const [sectionNum, setSectionNum] = useState(2);
   const [sectionArray, setSectionArray] = useState(localUser.dataReading);
 
   const nextSection = () => {
@@ -33,36 +33,6 @@ const DataStructures = () => {
   return (
     <Box>
       <Navbar page="Data Structures" />
-      <Grid
-        container
-        sx={{ justifyContent: "space-between", alignItems: "center", marginTop: "2vh" }}
-      >
-        <Button
-          onClick={prevSection}
-          variant="contained"
-          disabled={sectionNum < 1}
-          sx={{
-            visibility: `${sectionNum === 0 ? "hidden" : "visible"}`,
-          }}
-        >
-          <ArrowBackIcon />
-          {sectionNum > 0 ? `${sectionArray[sectionNum - 1].sectionName}` : null}
-        </Button>
-
-        <Button
-          onClick={nextSection}
-          variant="contained"
-          disabled={sectionNum === sectionArray.length - 1 || !sectionArray[sectionNum].completed}
-          sx={{
-            visibility: `${sectionNum === sectionArray.length - 1 ? "hidden" : "visible"}`,
-          }}
-        >
-          {sectionNum < sectionArray.length - 1
-            ? `${sectionArray[sectionNum + 1].sectionName}`
-            : null}
-          <ArrowForwardIcon />
-        </Button>
-      </Grid>
       <DataStructureAccordion
         sectionNum={sectionNum}
         sectionArray={sectionArray}
