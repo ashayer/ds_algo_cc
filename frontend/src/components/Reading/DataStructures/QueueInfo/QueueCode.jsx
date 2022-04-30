@@ -8,40 +8,40 @@ import HighlightLine from "../../HighlightLine";
 const Queue = ({ hoveredLine }) => {
   const codeString = `class Queue {
   public:
-   int items[SIZE];
-   int front, rear;
+    int items[SIZE];
+    int front, rear;
 
-  Queue() {
-     front = -1;
-     rear = -1;
-   }
-
-  bool isEmpty() {
-     return (front < 0);
-  }
-
-  bool isFull() {
-    return (rear == SIZE - 1);
-  }
-
-  int peek() {
-    if(isEmpty()) return -1;
-    else return items[front];
-  }
-
-  void enQueue(int element) {
-    if (isEmpty()) front = 0;
-    items[rear++] = element;
-  }
-
-  void deQueue() {
-    if (isEmpty()) return;
-    if (front >= rear) {
+    Queue() {
       front = -1;
       rear = -1;
     }
-    else front++;
-  }
+
+    bool isEmpty() {
+      return (front < 0);
+    }
+
+    bool isFull() {
+      return (rear == SIZE - 1);
+    }
+
+    int peek() {
+      if(isEmpty()) return -1;
+      else return items[front];
+    }
+
+    void enQueue(int element) {
+      if (isEmpty()) front = 0;
+      items[rear++] = element;
+    }
+
+    void deQueue() {
+      if (isEmpty()) return;
+      if (front >= rear) {
+        front = -1;
+        rear = -1;
+      }
+      else front++;
+    }
 };`;
   return <CodeBlock hoveredLine={hoveredLine} code={codeString} />;
 };
@@ -64,9 +64,9 @@ const QueueCode = () => {
         </Grid>
         <Grid item lg={9} md={8} sm={12} xs={6} sx={{ p: 4 }}>
           <Typography variant="h6" gutterBottom>
-            This is the code to a simplified implementation the queue data structure with some basic
-            methods. The <TextPopover text="METHODS" /> as previously mentioned are to enqueue{" "}
-            <HighlightLine lineNum={24} setHoveredLine={setHoveredLine} />, dequeue{" "}
+            This is the code to a simplified implementation the queue data structure with a class
+            with some basic methods. The <TextPopover text="METHODS" /> as previously mentioned are
+            to enqueue <HighlightLine lineNum={24} setHoveredLine={setHoveredLine} />, dequeue{" "}
             <HighlightLine lineNum={29} setHoveredLine={setHoveredLine} />, check if the queue is
             empty <HighlightLine lineNum={11} setHoveredLine={setHoveredLine} /> or full{" "}
             <HighlightLine lineNum={15} setHoveredLine={setHoveredLine} />

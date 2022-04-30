@@ -15,7 +15,7 @@ const QueueGeneral = () => {
           access to using the <TextPopover text="METHODS" /> of the structure.
         </Typography>
         <Typography variant="h6" gutterBottom>
-          The common operations available to a queue dat structure are the following.
+          The common operations available to a queue data structure are the following.
         </Typography>
         <Typography variant="h6" gutterBottom>
           Enqueue - add an element to the end of the queue
@@ -24,7 +24,7 @@ const QueueGeneral = () => {
           Dequeue - remove the element in the front of the queue
         </Typography>
         <Typography variant="h6" gutterBottom>
-          IsEmpty/IsFull - check if queue is empty or full
+          IsEmpty/IsFull - check if the queue is empty or full
         </Typography>
         <Typography variant="h6">Peek - get the value at the front of the queue</Typography>
       </Grid>

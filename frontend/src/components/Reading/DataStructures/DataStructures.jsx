@@ -11,7 +11,7 @@ const API_URL = "/api/users/";
 
 const DataStructures = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
-  const [sectionNum, setSectionNum] = useState(0);
+  const [sectionNum, setSectionNum] = useState(1);
   const [sectionArray, setSectionArray] = useState(localUser.dataReading);
 
   const nextSection = () => {

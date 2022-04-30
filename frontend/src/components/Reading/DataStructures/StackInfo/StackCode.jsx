@@ -1,14 +1,15 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Typography, Box } from "@mui/material/";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import TextPopover from "../TextPopUps/TextPopover";
+import CodeBlock from "../../CodeBlock";
+import HighlightLine from "../../HighlightLine";
 
-const Stack = () => {
+const Stack = ({ hoveredLine }) => {
   const codeString = `class Stack {
   public:
     int items[SIZE], top;
+
     Stack() { 
       top = -1; 
     }
@@ -16,80 +17,57 @@ const Stack = () => {
     bool isEmpty() {
       return (top < 0);
     }
-};`;
-  return (
-    <SyntaxHighlighter
-      language="cpp"
-      style={lightfair}
-      showLineNumbers
-      customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
-    >
-      {codeString}
-    </SyntaxHighlighter>
-  );
-};
 
-const Stack2 = () => {
-  const codeString2 = `void push(int x) {
-    if(top < SIZE) {
-      items[++top] = x;
-    } 
-  }
-  
-  int pop() {
-      if(isEmpty()) {
-        return -1
-      }
-      else {
-        int x = items[top--];
-        return x;
-      }
-  }
-`;
-  return (
-    <SyntaxHighlighter
-      language="cpp"
-      style={lightfair}
-      showLineNumbers
-      startingLineNumber={18}
-      customStyle={{ fontSize: "large", border: "1px solid black", width: "100%" }}
-    >
-      {codeString2}
-    </SyntaxHighlighter>
-  );
+    void push(int x) {
+      if(top < SIZE - 1) items[++top] = x;
+    }
+
+    int pop() {
+        if(isEmpty()) return -1
+        else {
+          int x = items[top--];
+          return x;
+        }
+    }
+};`;
+
+  return <CodeBlock hoveredLine={hoveredLine} code={codeString} />;
 };
 
 const StackCode = () => {
+  const [hoveredLine, setHoveredLine] = useState(null);
+
   return (
     <Grid container>
       <Grid container sx={{ align: "center", alignItems: "center" }}>
-        <Grid item lg={6} md={12} sm={12} xs={12}>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
             }}
           >
-            <Stack />
+            <Stack hoveredLine={hoveredLine} />
           </Box>
         </Grid>
-        <Grid item lg={6} md={12} sm={12} xs={12}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Stack2 />
-          </Box>
-        </Grid>
-        <Grid item md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
+        <Grid item lg={9} md={8} sm={12} xs={6} sx={{ p: 4 }}>
+          <Typography variant="h6" gutterBottom>
+            This is the code to implement the Stack data structure with a class. The{" "}
+            <TextPopover text="METHODS" /> as previously mentioned are to push an element{" "}
+            <HighlightLine lineNum={13} setHoveredLine={setHoveredLine} />, pop the topmost element{" "}
+            <HighlightLine lineNum={17} setHoveredLine={setHoveredLine} /> and to check if the stack
+            is empty <HighlightLine lineNum={9} setHoveredLine={setHoveredLine} />.
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            On
+            <HighlightLine lineNum={3} setHoveredLine={setHoveredLine} /> we are creating the array,
+            and only the top pointer to give the array the behavior of the Stack, since we can only
+            alter the topmost element.
+          </Typography>
           <Typography variant="h6">
-            This is the code to implement the Stack data structure class. The{" "}
-            <TextPopover text="METHODS" /> as previously mentioned are to push and pop an element.
-            Additionally we have another method to check if the Stack is empty on line [][][][]. On
-            line 3 and line 4 we are creating the array, and only the top pointer to give the array
-            the behavior of the Stack, since we only alter the topmost element.
+            Just like the queue implementation an index of -1 means the stack is empty. And since we
+            are using a static size again, we have a limit to the amount of items that can be
+            pushed.
           </Typography>
         </Grid>
       </Grid>
