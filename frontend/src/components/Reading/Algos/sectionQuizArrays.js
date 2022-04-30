@@ -84,16 +84,6 @@ export const insertionCodeQuiz = [
 
 export const selectionGeneralQuiz = [
   {
-    question: "Which of the following is NOT true about selection sort",
-    type: 0,
-    options: [
-      { answer: "Selection sort has a best case of n", correct: false },
-      { answer: "Selection sort is stable and in-place", correct: false },
-      { answer: "Selection sort has a best case of n\u00B2", correct: true },
-      { answer: "Selection sort is efficient on smaller datasets", correct: false },
-    ],
-  },
-  {
     question:
       "What would be the output of Selection sort if we sorted the tuples by their letter. " +
       "(C,1) (B,3) (A,2) (A,1) (B,1)",
@@ -109,25 +99,35 @@ export const selectionGeneralQuiz = [
     question: "Selection Sort is in-place but unstable",
     type: 0,
     options: [
-      { answer: "true", correct: false },
-      { answer: "false", correct: true },
+      { answer: "True", correct: true },
+      { answer: "False", correct: false },
     ],
   },
   {
-    question: "Check all that apply to Selection sort",
+    question: "Check all that apply to Selection Sort",
     type: 1,
     options: [
       { answer: "Has a space complexity of O(1)", correct: true },
-      { answer: "Has a space tune of O(n\u00B2)", correct: true },
-      { answer: "Sorts a list in-place", correct: true },
-      { answer: "Will maintain the order of the original list", correct: true },
+      { answer: "Has a space complexity of O(n\u00B2)", correct: false },
+      { answer: "More efficient that Insertion Sort", correct: false },
+      { answer: "Will maintain the order of the original list", correct: false },
+    ],
+  },
+  {
+    question: "Which of the following is true about Selection Sort",
+    type: 0,
+    options: [
+      { answer: "Selection sort has a best case of n\u00B2", correct: true },
+      { answer: "Selection sort has a best case of n", correct: false },
+      { answer: "Selection sort is stable and in-place", correct: false },
+      { answer: "Selection sort swaps the ith and jth indexes", correct: false },
     ],
   },
 ];
 
 export const selectionCodeQuiz = [
   {
-    question: "Which of the following is true about selection sort?",
+    question: "Which of the following is true about Selection Sort?",
     type: 0,
     options: [
       { answer: "The elements to the left of the ith iterator are sorted", correct: true },
