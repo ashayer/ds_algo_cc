@@ -10,7 +10,7 @@ import {
   Radio,
 } from "@mui/material";
 
-import * as quiz from "./sectionQuizArrays";
+import * as quiz from "./algoQuizArrays";
 
 const getGeneralArray = (sectionNum) => {
   switch (sectionNum) {

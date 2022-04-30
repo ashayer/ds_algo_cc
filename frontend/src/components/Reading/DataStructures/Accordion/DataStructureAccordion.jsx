@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { toast } from "react-toastify";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CloseIcon from "@mui/icons-material/Close";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import GeneralAccordionSection from "./GeneralAccordionSection";
@@ -23,14 +24,14 @@ let checkboxQuestion = [false, false, false, false];
 
 const DataStructureAccordion = ({ sectionNum, sectionArray, setSectionArray, updateLocalUser }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
+  const subsectionIndexRef = useRef(1);
   const handleOpen = () => {
     userAnswers = [false, false, false, false];
     checkboxQuestion = [false, false, false, false];
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
-  const subsectionIndexRef = useRef(0);
   function handleAccordClick(name) {
     if (currentSubSection === name) setCurrentSubSection("");
     if (currentSubSection !== name) setCurrentSubSection(name);
@@ -95,7 +96,7 @@ const DataStructureAccordion = ({ sectionNum, sectionArray, setSectionArray, upd
             transform: "translate(-50%, -50%)",
             overflow: "auto",
             backgroundColor: "white",
-            height: "85vh",
+            height: "90vh",
             width: "90vw",
             outline: "none",
             display: "flex",
@@ -118,6 +119,11 @@ const DataStructureAccordion = ({ sectionNum, sectionArray, setSectionArray, upd
           >
             X
           </Button>
+          <Typography variant="h3">
+            {subsectionIndexRef.current
+              ? `${sectionArray[sectionNum].sectionName} Code Quiz`
+              : `${sectionArray[sectionNum].sectionName} General Quiz`}
+          </Typography>
 
           <QuizModal
             userAnswers={userAnswers}
@@ -185,8 +191,13 @@ const DataStructureAccordion = ({ sectionNum, sectionArray, setSectionArray, upd
                   Take Quiz
                 </Button>
               ) : (
-                <Button onClick={() => handleAccordClick(index)} variant="contained">
-                  Close
+                <Button
+                  onClick={() => handleAccordClick(index)}
+                  variant="contained"
+                  color="error"
+                  sx={{ borderRadius: "0px", float: "right" }}
+                >
+                  <CloseIcon />
                 </Button>
               )}
             </Accordion>

@@ -10,18 +10,18 @@ import {
   Radio,
 } from "@mui/material";
 
-import * as quiz from "./sectionQuizArrays";
+import * as quiz from "./structureQuizArrays";
 
 const getGeneralArray = (sectionNum) => {
   switch (sectionNum) {
     case 0:
-      return quiz.insertionGeneralQuiz;
+      return quiz.queueGeneralQuiz;
     case 1:
-      return quiz.selectionGeneralQuiz;
+      return quiz.stackGeneralQuiz;
     case 2:
-      return quiz.mergeGeneralQuiz;
+      return quiz.linkedListGeneralQuiz;
     case 3:
-      return quiz.quickGeneralQuiz;
+      return quiz.binaryTreeGeneralQuiz;
     default:
       return null;
   }
@@ -30,13 +30,13 @@ const getGeneralArray = (sectionNum) => {
 const getCodeArray = (sectionNum) => {
   switch (sectionNum) {
     case 0:
-      return quiz.insertionCodeQuiz;
+      return quiz.queueCodeQuiz;
     case 1:
-      return quiz.selectionCodeQuiz;
+      return quiz.stackCodeQuiz;
     case 2:
-      return quiz.mergeCodeQuiz;
+      return quiz.linkedListCodeQuiz;
     case 3:
-      return quiz.quickCodeQuiz;
+      return quiz.binaryTreeCodeQuiz;
     default:
       return null;
   }
@@ -67,11 +67,12 @@ const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum 
   };
 
   return (
-    <Grid container sx={{ p: 1, justifyContent: "center" }}>
+    <Grid container sx={{ justifyContent: "center", textAlign: "center" }}>
       {questionArray.map((question, index) => (
         <Grid
           item
           xs={12}
+          sm={12}
           md={5}
           key={index}
           sx={{
@@ -81,8 +82,10 @@ const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum 
             m: 1,
           }}
         >
-          <Typography>{question.question}</Typography>
-          <FormControl>
+          <Typography variant="h6" sx={{ borderBottom: "1px solid black" }}>
+            {question.question}
+          </Typography>
+          <FormControl sx={{ marginTop: 2 }}>
             {question.type ? (
               <FormGroup>
                 {question.options.map((option, optionIndex) => (
@@ -92,14 +95,15 @@ const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum 
                     control={
                       <Checkbox onChange={(e) => answerQuestionCheckBox(e)} name={`${index}`} />
                     }
-                    label={`${option.answer}`}
+                    label={<Typography variant="h6">{option.answer}</Typography>}
                     sx={{
                       marginLeft: 0,
                       p: 1,
                       "&:hover": {
                         backgroundColor: "#a3bcd6",
                       },
-                      borderRadius: "15px",
+                      backgroundColor: option.correct ? "#85f279" : "#f29979",
+                      borderRadius: "10px",
                       transition: "all 0.15s ease",
                     }}
                   />
@@ -112,14 +116,15 @@ const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum 
                     key={optionIndex}
                     value={optionIndex}
                     control={<Radio />}
-                    label={`${option.answer}`}
+                    label={<Typography variant="h6">{option.answer}</Typography>}
                     sx={{
                       marginLeft: 0,
                       p: 1,
                       "&:hover": {
                         backgroundColor: "#a3bcd6",
                       },
-                      borderRadius: "15px",
+                      backgroundColor: option.correct ? "#85f279" : "#f29979",
+                      borderRadius: "10px",
                       transition: "all 0.15s ease",
                     }}
                   />
