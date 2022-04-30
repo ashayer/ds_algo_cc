@@ -28,8 +28,8 @@ const SortingAlgorithmAccordion = ({
   updateLocalUser,
 }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
-  const [open, setOpen] = useState(true);
-  const subsectionIndexRef = useRef(1);
+  const [open, setOpen] = useState(false);
+  const subsectionIndexRef = useRef(0);
   const handleOpen = () => {
     userAnswers = [false, false, false, false];
     checkboxQuestion = [false, false, false, false];

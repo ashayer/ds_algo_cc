@@ -57,6 +57,10 @@ const TextPopover = ({ text }) => {
           <PopUps.FIFO />
         ) : text === "METHODS" ? (
           <PopUps.Methods />
+        ) : text === "LAST-IN-FIRST-OUT" ? (
+          <PopUps.LIFO />
+        ) : text === "STATIC" ? (
+          <PopUps.Static />
         ) : null}
       </Popover>
     </>
