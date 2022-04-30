@@ -67,7 +67,7 @@ const StackCode = () => {
           <Typography variant="h6">
             Just like the queue implementation an index of -1 means the stack is empty. And since we
             are using a static size again, we have a limit to the amount of items that can be
-            pushed.
+            pushed. If you try to add too many items, it is called a stack overflow.
           </Typography>
         </Grid>
       </Grid>

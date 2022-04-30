@@ -83,84 +83,83 @@ export const queueCodeQuiz = [
 
 export const stackGeneralQuiz = [
   {
-    question: "Which of the following is NOT true about selection sort",
+    question: "Which of the following is true about Stacks?",
     type: 0,
     options: [
-      { answer: "Selection sort has a best case of n", correct: false },
-      { answer: "Selection sort is stable and in-place", correct: false },
-      { answer: "Selection sort has a best case of n\u00B2", correct: true },
-      { answer: "Selection sort is efficient on smaller datasets", correct: false },
+      { answer: "All methods have a constant run time", correct: false },
+      { answer: "You have access to the first element pushed", correct: false },
+      { answer: "You can only add elements to the top", correct: true },
+      { answer: "The bottommost element can be removed at anytime", correct: false },
     ],
   },
   {
-    question:
-      "What would be the output of Selection sort if we sorted the tuples by their letter. " +
-      "(C,1) (B,3) (A,2) (A,1) (B,1)",
+    question: "What does adding too many elements cause?",
     type: 0,
     options: [
-      { answer: "(A,1) (A,2) (B,1) (B,3) (C,1)", correct: false },
-      { answer: "(A,2) (A,1) (B,3) (B,1) (C,1)", correct: true },
-      { answer: "(A,2) (A,1) (B,1) (B,3) (C,1)", correct: false },
-      { answer: "(A,1) (B,1) (C,1) (A,2) (B,3) ", correct: false },
+      { answer: "Memory Leak", correct: false },
+      { answer: "Program Crash", correct: false },
+      { answer: "Nothing", correct: false },
+      { answer: "Stack Overflow", correct: true },
     ],
   },
   {
-    question: "Selection Sort is in-place but unstable",
+    question: "The most recent element to be inserted will be the last element to be removed.",
     type: 0,
     options: [
-      { answer: "true", correct: false },
-      { answer: "false", correct: true },
+      { answer: "True", correct: false },
+      { answer: "False", correct: true },
     ],
   },
   {
-    question: "Check all that apply to Selection sort",
+    question: "Check all that apply to Stacks",
     type: 1,
     options: [
-      { answer: "Has a space complexity of O(1)", correct: true },
-      { answer: "Has a space tune of O(n\u00B2)", correct: true },
-      { answer: "Sorts a list in-place", correct: true },
-      { answer: "Will maintain the order of the original list", correct: true },
+      { answer: "Follows a FIFO order", correct: false },
+      { answer: "You can add an element to the middle in-place", correct: false },
+      { answer: "Has index to all elements", correct: false },
+      { answer: "A top index value of -1 means the stack is empty", correct: true },
     ],
   },
 ];
 
 export const stackCodeQuiz = [
   {
-    question: "Which of the following is true about selection sort?",
+    question: "What are the values of the top index in a full stack?",
     type: 0,
     options: [
-      { answer: "The elements to the left of the ith iterator are sorted", correct: true },
-      { answer: "The element to the right of the ith iterator are sorted", correct: false },
-      { answer: "The inner loop breaks if the entire array is sorted", correct: false },
-      { answer: "The outer loop starts at the first element", correct: false },
+      { answer: "Top = -1", correct: false },
+      { answer: "Top = 0", correct: false },
+      { answer: "Top = number of elements", correct: false },
+      { answer: "Top = number of elements - 1", correct: true },
     ],
   },
   {
-    question: "What are the conditions that will end the inner for loop with the J iterator",
+    question:
+      "What would the top element be after the following operations and initial Stack? [7,3,1] Pop() Pop() Push(1) Pop() Push(2) Pop()",
+    type: 0,
+    options: [
+      { answer: "2", correct: false },
+      { answer: "3", correct: false },
+      { answer: "1", correct: false },
+      { answer: "7", correct: true },
+    ],
+  },
+  {
+    question: "In a stack of size 11, the top index would have a value of 10",
+    type: 0,
+    options: [
+      { answer: "True", correct: true },
+      { answer: "False", correct: false },
+    ],
+  },
+  {
+    question: "Which set of operations cause a stack overflow on an empty stack of size 3",
     type: 1,
     options: [
-      { answer: "J reaches the first element", correct: true },
-      { answer: "J becomes 0", correct: true },
-      { answer: "The list is sorted", correct: false },
-      { answer: "The value at j-1 is less than or greater than the value at j", correct: true },
-    ],
-  },
-  {
-    question: "What is the equivalent while loop for the inner j loop of Selection sort",
-    type: 0,
-    options: [
-      { answer: "while(j > 0)", correct: false },
-      { answer: "while(j > 1)", correct: false },
-      { answer: "while(j < i)", correct: false },
-      { answer: "while(j > -1)", correct: true },
-    ],
-  },
-  {
-    question: "The jth and jth-1 values are swapped in the algorithm",
-    type: 0,
-    options: [
-      { answer: "true", correct: true },
-      { answer: "false", correct: false },
+      { answer: "Push() Push(1) Pop() Push(6) Pop() Push(5) Pop()", correct: false },
+      { answer: "Pop() Pop() Push(9) Push(4) Push(0) Pop()", correct: false },
+      { answer: "Pop() Push(8) Push(6) Pop() Push(2) Push(4) Push(1) Pop()", correct: true },
+      { answer: "Pop() Push(3) Push(4) Pop() Pop() Push(2)", correct: false },
     ],
   },
 ];
