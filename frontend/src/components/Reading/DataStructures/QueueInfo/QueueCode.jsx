@@ -47,7 +47,7 @@ const Queue = ({ hoveredLine }) => {
 };
 
 const QueueCode = () => {
-  const [hoveredLine, setHoveredLine] = useState(null);
+  const [hoveredLine, setHoveredLine] = useState([]);
 
   return (
     <Grid container>

@@ -17,7 +17,7 @@ const CodeBlock = ({ hoveredLine, code, startingLineNumber }) => {
       startingLineNumber={startingLineNumber}
       lineProps={(lineNumber) => {
         const style = { display: "block" };
-        if (hoveredLine === lineNumber) {
+        if (hoveredLine.includes(lineNumber)) {
           style.backgroundColor = "#ffc58f";
           // style.fontSize = "x-large";
         }

@@ -20,10 +20,7 @@ const ComplexityTable = ({ complexityArray }) => {
           <TableHead>
             <TableRow>
               <TableCell align="center">
-                <Typography variant="h6">Access</Typography>
-              </TableCell>
-              <TableCell align="center">
-                <Typography variant="h6">Search</Typography>
+                <Typography variant="h6">Access/Search</Typography>
               </TableCell>
               <TableCell align="center">
                 <Typography variant="h6">Insert/Delete</Typography>

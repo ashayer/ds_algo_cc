@@ -6,10 +6,10 @@ const HighlightLine = ({ lineNum, setHoveredLine }) => {
     <span
       style={{ color: "#ff7b00" }}
       onMouseOver={() => setHoveredLine(lineNum)}
-      onMouseLeave={() => setHoveredLine(null)}
+      onMouseLeave={() => setHoveredLine([])}
       onFocus={() => setHoveredLine(lineNum)}
     >
-      {` (LINE ${lineNum}) `}
+      {` (LINE ${lineNum[0]}) `}
     </span>
   );
 };
