@@ -63,6 +63,8 @@ const TextPopover = ({ text }) => {
           <PopUps.Static />
         ) : text === "INDEXING" ? (
           <PopUps.Indexing />
+        ) : text === "RECURSION" ? (
+          <PopUps.Recursion />
         ) : null}
       </Popover>
     </>

@@ -106,3 +106,20 @@ export const Indexing = () => {
     </Grid>
   );
 };
+
+export const Recursion = () => {
+  return (
+    <Grid container sx={{ maxWidth: "600px", p: 3 }}>
+      <Grid item md={12}>
+        <Typography gutterBottom>
+          Recursion refers to the behavior of a function, which that function calls itself after a
+          series of steps until a condition is met.
+        </Typography>
+        <Typography>
+          Recursion is typically used when the same series of steps need to be executed repeatedly
+          that update values used in the next recursive call.
+        </Typography>
+      </Grid>
+    </Grid>
+  );
+};
