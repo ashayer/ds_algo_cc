@@ -26,7 +26,7 @@ const BinaryTreeGeneral = () => {
         <Box>Diagram</Box>
       </Grid>
       <Grid item md={4} xs={6} sx={{ border: "1px solid black", p: 4, textAlign: "center" }}>
-        <ComplexityTable complexityArray={["O(n)", "O(n)", "O(1)"]} />
+        <ComplexityTable complexityArray={["O(n)", "O(1)"]} />
       </Grid>
       <Grid item md={8} sx={{ border: "1px solid black", p: 4 }}>
         <Typography variant="h6">

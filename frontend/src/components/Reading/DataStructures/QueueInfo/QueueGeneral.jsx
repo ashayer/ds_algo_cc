@@ -32,20 +32,21 @@ const QueueGeneral = () => {
         <Box>Diagram</Box>
       </Grid>
       <Grid item xs={12} lg={4} sx={{ p: 4, textAlign: "center" }}>
-        <ComplexityTable complexityArray={["O(n)", "O(n)", "O(1)"]} />
+        <ComplexityTable complexityArray={["O(n)", "O(1)"]} />
       </Grid>
       <Grid item xs={12} lg={8} sx={{ p: 4 }}>
         <Typography variant="h6" gutterBottom>
-          The <TextPopover text="TIME" /> complexities for common operations are shown here. Since
-          insert and delete operations only affect the front or tail of the queue the insert/delete
-          have a complexity of O(1).
+          The <TextPopover text="TIME" /> complexities for common operations are shown here. The
+          time complexities for a queue is a bit more conditional.
         </Typography>
         <Typography variant="h6" gutterBottom>
-          We can immediately insert or delete items as that is all we have access to with our
-          pointers. However, to access or change the last element in the array for example, we have
-          to go through every element before it, since a queue does not have indexing.
+          We can immediately insert elements to the end and delete items from the front as that is
+          all we have access to with our pointers. However, to access or change the last element or
+          any element in between for example, we have to go through every element before it, since a
+          queue does not have <TextPopover text="INDEXING" /> . In that case the time complexity
+          becomes O(n).
         </Typography>
-        <Typography variant="h6">
+        <Typography variant="h6" gutterBottom>
           For any operations that affect elements that are not the front or tail we have to dequeue
           all the elements and store them in another queue until we have access to the one we want
           and enqueue all the items back into the original array.

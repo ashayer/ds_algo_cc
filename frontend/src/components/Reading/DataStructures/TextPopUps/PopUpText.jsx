@@ -87,3 +87,22 @@ export const Static = () => {
     </Grid>
   );
 };
+
+export const Indexing = () => {
+  return (
+    <Grid container sx={{ maxWidth: "600px", p: 3 }}>
+      <Grid item md={12}>
+        <Typography gutterBottom>
+          Indexing refers to the ability of a data structure to provide access to any element in the
+          structure given an index. Typically list are zero indexed, meaning the first element has
+          an index of 0.
+        </Typography>
+        <Typography gutterBottom>Consider the example below with an array of [7,2,5].</Typography>
+        <Typography gutterBottom>You can access each element with its respective index.</Typography>
+        <Typography gutterBottom>array[0] = 7</Typography>
+        <Typography gutterBottom>array[1] = 2</Typography>
+        <Typography>array[2] = 5</Typography>
+      </Grid>
+    </Grid>
+  );
+};

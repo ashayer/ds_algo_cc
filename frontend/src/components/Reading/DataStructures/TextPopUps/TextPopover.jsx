@@ -61,6 +61,8 @@ const TextPopover = ({ text }) => {
           <PopUps.LIFO />
         ) : text === "STATIC" ? (
           <PopUps.Static />
+        ) : text === "INDEXING" ? (
+          <PopUps.Indexing />
         ) : null}
       </Popover>
     </>

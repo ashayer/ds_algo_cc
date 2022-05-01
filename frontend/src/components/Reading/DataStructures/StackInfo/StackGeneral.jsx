@@ -33,7 +33,7 @@ const StackGeneral = () => {
         <Box>Diagram</Box>
       </Grid>
       <Grid item xs={12} lg={4} sx={{ p: 4, textAlign: "center" }}>
-        <ComplexityTable complexityArray={["O(n)", "O(n)", "O(1)"]} />
+        <ComplexityTable complexityArray={["O(n)", "O(1)"]} />
       </Grid>
       <Grid item xs={12} lg={8} sx={{ p: 4 }}>
         <Typography variant="h6" gutterBottom>
@@ -42,8 +42,10 @@ const StackGeneral = () => {
           for all operations.
         </Typography>
         <Typography variant="h6" gutterBottom>
-          To access the bottommost (first one pushed) element we have to pop off all the ones on top
-          and store them temporarily in another stack, giving access/search a O(n) time complexity.
+          Just like with a queue to access items that are not immediately available the time
+          complexity changes. To access the bottommost element we have to pop off all the ones on
+          top and store them temporarily in another stack, giving access/search a O(n) time
+          complexity.
         </Typography>
         <Typography variant="h6">
           Otherwise we can only immediately access the top most element. So to remove or delete an
