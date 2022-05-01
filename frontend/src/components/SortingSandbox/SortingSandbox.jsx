@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
@@ -12,22 +11,23 @@ import {
   MenuItem,
   Slider,
 } from "@mui/material";
-import SyntaxHighlighter from "react-syntax-highlighter";
 import Navbar from "../Navbar/Navbar";
 import sortArrayInsertion from "./AlgoGenerators/insertionGen";
 import sortArraySelection from "./AlgoGenerators/selectionGen";
 import sortArrayMerge from "./AlgoGenerators/mergeGen";
+import CodeBlock from "../Reading/CodeBlock";
 
 let pseudoCodeStringArray = [];
 
 const SortingSandbox = () => {
-  const [algorithm, setAlgorithm] = useState(3);
+  const [algorithm, setAlgorithm] = useState(1);
   const arraySize = useRef(10);
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
   const [sortHistoryArray, setSortHistoryArray] = useState([[{}]]);
   const [codeHighlight, setCodeHighlight] = useState([]);
   const [step, setStep] = useState(0);
+
   const createRandomArray = () => {
     setStep(0);
     const tempArray = [];
@@ -56,6 +56,7 @@ const SortingSandbox = () => {
       pseudoCodeStringArray = code;
       setSortHistoryArray(tempArray);
       setCodeHighlight(tempCodeArray);
+      console.log(tempArray.length);
     } else if (algorithm === 2) {
       const [tempArray, tempCodeArray, code] = sortArraySelection(arrayElements);
       pseudoCodeStringArray = code;
@@ -85,7 +86,8 @@ const SortingSandbox = () => {
     createRandomArray();
   }, []);
 
-  const handleChange = (e) => {
+  const handleAlgoChange = (e) => {
+    createRandomArray();
     setAlgorithm(e.target.value);
   };
 
@@ -125,7 +127,7 @@ const SortingSandbox = () => {
               id="demo-simple-select"
               value={algorithm}
               label="Algorithm"
-              onChange={handleChange}
+              onChange={handleAlgoChange}
             >
               <MenuItem value={1}>Insertion Sort</MenuItem>
               <MenuItem value={2}>Selection Sort</MenuItem>
@@ -192,10 +194,10 @@ const SortingSandbox = () => {
             ))}
           </Grid>
         </Box>
-        <Button variant="contained" onClick={prevStep}>
+        <Button variant="contained" onClick={prevStep} disabled={sortHistoryArray.length === 1}>
           Prev Step
         </Button>
-        <Button variant="contained" onClick={nextStep}>
+        <Button variant="contained" onClick={nextStep} disabled={sortHistoryArray.length === 1}>
           Next Step
         </Button>
         <Typography>
@@ -222,20 +224,7 @@ const SortingSandbox = () => {
           }}
         >
           <Grid item xs={12} md={3}>
-            {pseudoCodeStringArray.map((line, index) => (
-              <Typography
-                key={index}
-                variant="h5"
-                style={{ whiteSpace: "break-spaces" }}
-                sx={{
-                  textAlign: "left",
-                  backgroundColor: codeHighlight[step] === index ? "red" : "white",
-                  marginTop: "0.5vh",
-                }}
-              >
-                {line}
-              </Typography>
-            ))}
+            <CodeBlock hoveredLine={codeHighlight} code={pseudoCodeStringArray} />
           </Grid>
         </Grid>
       </Box>
@@ -244,8 +233,3 @@ const SortingSandbox = () => {
 };
 
 export default SortingSandbox;
-
-/*
-    create an async function the loops forever
-    set the current list of elements to the generators next value
-*/

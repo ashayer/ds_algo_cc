@@ -1,10 +1,20 @@
-const Line1 = "1 for (int i = 1; i < arr.len; i++)\n";
-const Line2 = "2   for (int j = i; j > 0; j--)\n";
-const Line3 = "3     if (arr[j] < arr[j-1])\n";
-const Line4 = "4       swap (arr[j],arr[j-1])\n";
-const Line5 = "5     else break;    ";
+// const Line1 = "1 for (int i = 1; i < arr.len; i++)\n";
+// const Line2 = "2   for (int j = i; j > 0; j--)\n";
+// const Line3 = "3     if (arr[j] < arr[j-1])\n";
+// const Line4 = "4       swap (arr[j],arr[j-1])\n";
+// const Line5 = "5     else break;    ";
 
-const pseudoCodeStringArray = [Line1, Line2, Line3, Line4, Line5];
+// const pseudoCodeStringArray = [Line1, Line2, Line3, Line4, Line5];
+
+const codeString = `void InsertionSort(vector<int>& arr) {
+  for(int i = 1; i < arr.size(); i++) {
+    for(int j = i; j > 0; j--) {
+      if(arr[j] < arr[j-1]) {
+        swap(arr[j], arr[j-1]);
+      }
+      else break;
+  }
+}`;
 
 const sortArrayInsertion = (arrayElements) => {
   const tempArray = [];
@@ -45,7 +55,7 @@ const sortArrayInsertion = (arrayElements) => {
   tempCodeArray.push(1);
   tempArray.push(JSON.parse(JSON.stringify(arr)));
 
-  return [tempArray, tempCodeArray, pseudoCodeStringArray];
+  return [tempArray, tempCodeArray, codeString];
 };
 
 export default sortArrayInsertion;
