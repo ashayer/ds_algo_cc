@@ -19,7 +19,7 @@ const InsertionSort = ({ hoveredLine }) => {
 };
 
 const InsertionCode = () => {
-  const [hoveredLine, setHoveredLine] = useState(null);
+  const [hoveredLine, setHoveredLine] = useState([]);
 
   return (
     <Grid container>
@@ -40,14 +40,14 @@ const InsertionCode = () => {
             <TextPopover text="NESTED FOR LOOP" /> to sort a given list.
           </Typography>
           <Typography variant="h6" gutterBottom>
-            The outer loop <HighlightLine lineNum={2} setHoveredLine={setHoveredLine} />
+            The outer loop <HighlightLine lineNum={[2]} setHoveredLine={setHoveredLine} />
             dictates the place in the array we are currently starting at for the inner loop. At each
             iteration all values to left of the ith index will be currently sorted where everything
             to the right is still untouched. Therefore we need to start at the 2nd element, that is
             why i=1 instead of i=0.
           </Typography>
           <Typography variant="h6">
-            The inner loop <HighlightLine lineNum={3} setHoveredLine={setHoveredLine} /> will
+            The inner loop <HighlightLine lineNum={[3]} setHoveredLine={setHoveredLine} /> will
             function as two comparison pointers where it will compare the current jth element to the
             jth-1 element, the one directly to its left. If the value of the element to the left is
             greater then swap elements. It will keep repeating this behavior until two conditions. J

@@ -35,7 +35,7 @@ const Stack = ({ hoveredLine }) => {
 };
 
 const StackCode = () => {
-  const [hoveredLine, setHoveredLine] = useState(null);
+  const [hoveredLine, setHoveredLine] = useState([]);
 
   return (
     <Grid container>
@@ -54,15 +54,15 @@ const StackCode = () => {
           <Typography variant="h6" gutterBottom>
             This is the code to implement the Stack data structure with a class. The{" "}
             <TextPopover text="METHODS" /> as previously mentioned are to push an element{" "}
-            <HighlightLine lineNum={13} setHoveredLine={setHoveredLine} />, pop the topmost element{" "}
-            <HighlightLine lineNum={17} setHoveredLine={setHoveredLine} /> and to check if the stack
-            is empty <HighlightLine lineNum={9} setHoveredLine={setHoveredLine} />.
+            <HighlightLine lineNum={[13]} setHoveredLine={setHoveredLine} />, pop the topmost
+            element <HighlightLine lineNum={[17]} setHoveredLine={setHoveredLine} /> and to check if
+            the stack is empty <HighlightLine lineNum={[9]} setHoveredLine={setHoveredLine} />.
           </Typography>
           <Typography variant="h6" gutterBottom>
             On
-            <HighlightLine lineNum={3} setHoveredLine={setHoveredLine} /> we are creating the array,
-            and only the top pointer to give the array the behavior of the Stack, since we can only
-            alter the topmost element.
+            <HighlightLine lineNum={[3]} setHoveredLine={setHoveredLine} /> we are creating the
+            array, and only the top pointer to give the array the behavior of the Stack, since we
+            can only alter the topmost element.
           </Typography>
           <Typography variant="h6">
             Just like the queue implementation an index of -1 means the stack is empty. And since we

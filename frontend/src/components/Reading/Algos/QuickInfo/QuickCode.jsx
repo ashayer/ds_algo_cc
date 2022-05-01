@@ -34,7 +34,7 @@ const QuickSort = ({ hoveredLine }) => {
 };
 
 const QuickCode = () => {
-  const [hoveredLine, setHoveredLine] = useState(null);
+  const [hoveredLine, setHoveredLine] = useState([]);
 
   return (
     <Grid container>
@@ -58,7 +58,7 @@ const QuickCode = () => {
           </Typography>
           <Typography variant="h6">
             Instead of a middle index, we calculate a pivot{" "}
-            <HighlightLine lineNum={14} setHoveredLine={setHoveredLine} /> which functions as the
+            <HighlightLine lineNum={[14]} setHoveredLine={setHoveredLine} /> which functions as the
             center for the next two sub-lists to be created. This pivot index is found using the
             second partition function.
           </Typography>
@@ -76,21 +76,21 @@ const QuickCode = () => {
         <Grid item lg={8} md={12} sm={12} xs={12} sx={{ p: 4 }}>
           <Typography variant="h6" gutterBottom>
             As mentioned previously we use the left most as the index{" "}
-            <HighlightLine lineNum={2} setHoveredLine={setHoveredLine} />
-            <HighlightLine lineNum={3} setHoveredLine={setHoveredLine} /> for the pivot.
+            <HighlightLine lineNum={[2]} setHoveredLine={setHoveredLine} />
+            <HighlightLine lineNum={[3]} setHoveredLine={setHoveredLine} /> for the pivot.
           </Typography>
           <Typography variant="h6" gutterBottom>
             When then loop from the left to the right index of the current array. At each iteration
             we check if the value at index i is less than the pivotValue which is the leftmost
             element. If it is less than the pivotValue we swap that element at i with the element at
-            pivotIndex + 1 <HighlightLine lineNum={6} setHoveredLine={setHoveredLine} />. It is
+            pivotIndex + 1 <HighlightLine lineNum={[6]} setHoveredLine={setHoveredLine} />. It is
             important to increment the pivotIndex, before swapping.
           </Typography>
           <Typography variant="h6" gutterBottom>
             At the end of that loop we swap the element at the left index with the element at the
             pivotIndex. The resulting array, will have all elements less than pivotValue to the left
             of the pivotIndex, and all elements greater to the right. We also now have the new
-            pivotIndex. <HighlightLine lineNum={10} setHoveredLine={setHoveredLine} />
+            pivotIndex. <HighlightLine lineNum={[10]} setHoveredLine={setHoveredLine} />
           </Typography>
         </Grid>
       </Grid>

@@ -98,22 +98,22 @@ const LinkedListCode = () => {
           <Typography variant="h6" gutterBottom>
             Here is the implementation and some basic initial operations for both a Singly and
             Doubly Linked List. On
-            <HighlightLine lineNum={[2, 3, 4, 5, 6]} setHoveredLine={setHoveredLine} /> you have the
-            class for a node in a SinglyLinkedList. The only values there are the value and a
+            <HighlightLine lineNum={[2, 3, 4, 5, 6]} setHoveredLine={setHoveredLine} /> you have
+            the class for a node in a SinglyLinkedList. The only values there are the value and a
             pointer to the next node.
           </Typography>
           <Typography variant="h6" gutterBottom>
             On <HighlightLine lineNum={[9, 10, 11, 12]} setHoveredLine={setHoveredLine} /> we
             created each node. We then set a value to each of the nodes{" "}
-            <HighlightLine lineNum={[14, 15, 16]} setHoveredLine={setHoveredLine} />. Then we point
-            the node to the next node respectively. As you can see on{" "}
+            <HighlightLine lineNum={[14, 15, 16]} setHoveredLine={setHoveredLine} />. Then we
+            point the node to the next node respectively. As you can see on{" "}
             <HighlightLine lineNum={[20]} setHoveredLine={setHoveredLine} />, the last node is
             linked to null. Finally we set the head node to the first one.
           </Typography>
           <Typography variant="h6" gutterBottom>
             For the Doubly Linked List is the mostly the same except in the class on{" "}
-            <HighlightLine lineNum={[27, 28, 29, 30, 31]} setHoveredLine={setHoveredLine} /> we have
-            an extra value for the pointer for the previous node.
+            <HighlightLine lineNum={[27, 28, 29, 30, 31]} setHoveredLine={setHoveredLine} /> we
+            have an extra value for the pointer for the previous node.
           </Typography>
           <Typography variant="h6" gutterBottom>
             Furthermore, when we are linked the nodes we now have to linked the previous as well.{" "}
