@@ -226,7 +226,7 @@ export const linkedListCodeQuiz = [
       { answer: "You only need the pointer of the node to delete in a DLL", correct: true },
       { answer: "You can traverse backwards in a CLL", correct: true },
       { answer: "A CLL is more efficient than a DLL", correct: false },
-      { answer: "A node in DLL has 3 pieces of information", correct: true },
+      { answer: "A node in a DLL has 3 pieces of information", correct: true },
     ],
   },
   {
@@ -251,84 +251,82 @@ export const linkedListCodeQuiz = [
 
 export const binaryTreeGeneralQuiz = [
   {
-    question: "QUIQUICCUQICUQICUQIQC",
+    question: "Which of the following indicate a leaf node?",
     type: 0,
     options: [
-      { answer: "Quick sort has a best case of n", correct: false },
-      { answer: "Quick sort is stable and in-place", correct: false },
-      { answer: "Quick sort has a best case of n\u00B2", correct: true },
-      { answer: "Quick sort is efficient on smaller datasets", correct: false },
+      { answer: "Two null children", correct: true },
+      { answer: "One null child", correct: false },
+      { answer: "Smallest value in the tree", correct: false },
+      { answer: "Value of 0", correct: false },
     ],
   },
   {
-    question:
-      "What would be the output of Quick sort if we sorted the tuples by their letter. " +
-      "(C,1) (B,3) (A,2) (A,1) (B,1)",
+    question: "Which of the following is true about a BST",
     type: 0,
     options: [
-      { answer: "(A,1) (A,2) (B,1) (B,3) (C,1)", correct: false },
-      { answer: "(A,2) (A,1) (B,3) (B,1) (C,1)", correct: true },
-      { answer: "(A,2) (A,1) (B,1) (B,3) (C,1)", correct: false },
-      { answer: "(A,1) (B,1) (C,1) (A,2) (B,3) ", correct: false },
+      { answer: "The left child of a node will always be smaller", correct: true },
+      { answer: "The root value is the median value of all nodes", correct: false },
+      { answer: "The children of a node can NOT be null", correct: false },
+      { answer: "Constant time to delete the root node", correct: false },
     ],
   },
   {
-    question: "Quick Sort is in-place but unstable",
+    question: "The root node is the smallest value in a BST",
     type: 0,
     options: [
-      { answer: "true", correct: false },
-      { answer: "false", correct: true },
+      { answer: "True", correct: false },
+      { answer: "False", correct: true },
     ],
   },
   {
-    question: "Check all that apply to Quick sort",
+    question: "Which of the following are false?",
     type: 1,
     options: [
-      { answer: "Has a space complexity of O(1)", correct: true },
-      { answer: "Has a space tune of O(n\u00B2)", correct: true },
-      { answer: "Sorts a list in-place", correct: true },
-      { answer: "Will maintain the order of the original list", correct: true },
+      { answer: "Searching in a BST is slower than a linked list", correct: true },
+      { answer: "Searching and deleting a node takes the same time", correct: false },
+      { answer: "Duplicates are allowed in a BST", correct: false },
+      { answer: "Takes O(n) to delete the furthest down node", correct: false },
     ],
   },
 ];
 
 export const binaryTreeCodeQuiz = [
   {
-    question: "QUIQUICCUQICUQICUQIQC",
+    question: "If the node you are searching for is greater than the root",
     type: 0,
     options: [
-      { answer: "The elements to the left of the ith iterator are sorted", correct: true },
-      { answer: "The element to the right of the ith iterator are sorted", correct: false },
-      { answer: "The inner loop breaks if the entire array is sorted", correct: false },
-      { answer: "The outer loop starts at the first element", correct: false },
+      { answer: "Traverse left", correct: false },
+      { answer: "Return the node", correct: false },
+      { answer: "Traverse right", correct: true },
+      { answer: "The node does not exist", correct: false },
     ],
   },
   {
-    question: "What are the conditions that will end the inner for loop with the J iterator",
+    question: "What conditions need to be accounted for when deleting",
     type: 1,
     options: [
-      { answer: "J reaches the first element", correct: true },
-      { answer: "J becomes 0", correct: true },
-      { answer: "The list is sorted", correct: false },
-      { answer: "The value at j-1 is less than or greater than the value at j", correct: true },
+      { answer: "No children", correct: true },
+      { answer: "1 NULL child", correct: true },
+      { answer: "2 Children", correct: true },
+      { answer: "Negative value", correct: false },
     ],
   },
   {
-    question: "What would the following C++ code output.",
+    question: "When deleting a node with two children",
     type: 0,
     options: [
-      { answer: "while(j > 0)", correct: false },
-      { answer: "while(j > 1)", correct: false },
-      { answer: "while(j < i)", correct: false },
-      { answer: "while(j > -1)", correct: true },
+      { answer: "It can be replaced by the right child", correct: false },
+      { answer: "It can be replaced by the left child", correct: false },
+      { answer: "It can be replaced by the leftmost child in the right subtree", correct: true },
+      { answer: "It cannot be deleted", correct: false },
     ],
   },
   {
-    question: "The jth and jth-1 values are swapped in the algorithm",
+    question: "A new nodes children are initialized to NULL",
     type: 0,
     options: [
-      { answer: "true", correct: true },
-      { answer: "false", correct: false },
+      { answer: "True", correct: true },
+      { answer: "False", correct: false },
     ],
   },
 ];
