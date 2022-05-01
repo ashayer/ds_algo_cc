@@ -166,84 +166,85 @@ export const stackCodeQuiz = [
 
 export const linkedListGeneralQuiz = [
   {
-    question: "MERGEMRMGERMGEMERMGE",
+    question: "In order to delete a node in a SLL you need what?",
     type: 0,
     options: [
-      { answer: "Merge sort has a best case of n", correct: false },
-      { answer: "Merge sort is stable and in-place", correct: false },
-      { answer: "Merge sort has a best case of n\u00B2", correct: true },
-      { answer: "Merge sort is efficient on smaller datasets", correct: false },
+      { answer: "The pointer to the node you want to delete", correct: false },
+      { answer: "Value of the node", correct: false },
+      { answer: "Value of the node and the pointer to the node", correct: false },
+      {
+        answer: "The value and pointers of the prev node and the node itself",
+        correct: true,
+      },
     ],
   },
   {
-    question:
-      "What would be the output of Merge sort if we sorted the tuples by their letter. " +
-      "(C,1) (B,3) (A,2) (A,1) (B,1)",
+    question: "Why is pointing to NULL important?",
     type: 0,
     options: [
-      { answer: "(A,1) (A,2) (B,1) (B,3) (C,1)", correct: false },
-      { answer: "(A,2) (A,1) (B,3) (B,1) (C,1)", correct: true },
-      { answer: "(A,2) (A,1) (B,1) (B,3) (C,1)", correct: false },
-      { answer: "(A,1) (B,1) (C,1) (A,2) (B,3) ", correct: false },
+      { answer: "It determines the start of the list", correct: false },
+      { answer: "It indicates the beginning or starting node", correct: true },
+      { answer: "You can only insert into a NULL value", correct: false },
+      { answer: "Its not", correct: false },
     ],
   },
   {
-    question: "Merge Sort is in-place but unstable",
+    question: "You can traverse backwards in a Singly-Linked-List",
     type: 0,
     options: [
-      { answer: "true", correct: false },
-      { answer: "false", correct: true },
+      { answer: "True", correct: false },
+      { answer: "False", correct: true },
     ],
   },
   {
-    question: "Check all that apply to Merge sort",
+    question: "Check all that apply to Linked Lists",
     type: 1,
     options: [
-      { answer: "Has a space complexity of O(1)", correct: true },
-      { answer: "Has a space tune of O(n\u00B2)", correct: true },
-      { answer: "Sorts a list in-place", correct: true },
-      { answer: "Will maintain the order of the original list", correct: true },
+      { answer: "Can immediately access any node in the list", correct: false },
+      { answer: "Deleting is constant time if you know the pointer of the node", correct: true },
+      { answer: "You have to reconnect all the nodes when you delete", correct: false },
+      { answer: "Search is faster than in an array", correct: false },
     ],
   },
 ];
 
 export const linkedListCodeQuiz = [
   {
-    question: "MERGEMRMGERMGEMERMGE",
+    question: "What is the output of the C++ code using the code in the section? std::cout << one;",
     type: 0,
     options: [
-      { answer: "The elements to the left of the ith iterator are sorted", correct: true },
-      { answer: "The element to the right of the ith iterator are sorted", correct: false },
-      { answer: "The inner loop breaks if the entire array is sorted", correct: false },
-      { answer: "The outer loop starts at the first element", correct: false },
+      { answer: "1", correct: false },
+      { answer: "NULL", correct: false },
+      { answer: "The address of the node", correct: true },
+      { answer: "one", correct: false },
     ],
   },
   {
-    question: "What are the conditions that will end the inner for loop with the J iterator",
+    question: "Which of the following are true?",
     type: 1,
     options: [
-      { answer: "J reaches the first element", correct: true },
-      { answer: "J becomes 0", correct: true },
-      { answer: "The list is sorted", correct: false },
-      { answer: "The value at j-1 is less than or greater than the value at j", correct: true },
+      { answer: "You only need the pointer of the node to delete in a DLL", correct: true },
+      { answer: "You can traverse backwards in a CLL", correct: true },
+      { answer: "A CLL is more efficient than a DLL", correct: false },
+      { answer: "A node in DLL has 3 pieces of information", correct: true },
     ],
   },
   {
-    question: "What is the equivalent while loop for the inner j loop of Merge sort",
+    question: "The first node is indicated by what?",
     type: 0,
     options: [
-      { answer: "while(j > 0)", correct: false },
-      { answer: "while(j > 1)", correct: false },
-      { answer: "while(j < i)", correct: false },
-      { answer: "while(j > -1)", correct: true },
+      { answer: "A prev pointer to NULL", correct: false },
+      { answer: "The smallest value in the list", correct: false },
+      { answer: "A next pointer of NULL", correct: false },
+      { answer: "A value of 0", correct: true },
     ],
   },
   {
-    question: "The jth and jth-1 values are swapped in the algorithm",
+    question: "A circular linked list requires 3 pointers",
     type: 0,
     options: [
-      { answer: "true", correct: true },
-      { answer: "false", correct: false },
+      { answer: "True", correct: true },
+      { answer: "False", correct: false },
     ],
   },
 ];
@@ -313,7 +314,7 @@ export const binaryTreeCodeQuiz = [
     ],
   },
   {
-    question: "What is the equivalent while loop for the inner j loop of Quick sort",
+    question: "What would the following C++ code output.",
     type: 0,
     options: [
       { answer: "while(j > 0)", correct: false },

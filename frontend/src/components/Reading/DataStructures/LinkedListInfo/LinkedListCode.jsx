@@ -94,7 +94,7 @@ const LinkedListCode = () => {
             <DoublyLinkedListClass hoveredLine={hoveredLine} />
           </Box>
         </Grid>
-        <Grid item lg={6} md={12} sm={12} xs={12} sx={{ border: "1px solid black", p: 4 }}>
+        <Grid item lg={6} md={12} sm={12} xs={12} sx={{ p: 4 }}>
           <Typography variant="h6" gutterBottom>
             Here is the implementation and some basic initial operations for both a Singly and
             Doubly Linked List. On

@@ -24,7 +24,7 @@ let checkboxQuestion = [false, false, false, false];
 
 const DataStructureAccordion = ({ sectionNum, sectionArray, setSectionArray, updateLocalUser }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const subsectionIndexRef = useRef(1);
   const handleOpen = () => {
     userAnswers = [false, false, false, false];

@@ -21,19 +21,19 @@ const LinkedListGeneral = () => {
           to iterate through all nodes.
         </Typography>
         <Typography variant="h6" gutterBottom>
-          The most basic Linked List is called a Singly-Linked-List, where each node is connected to
-          the next one only. The last node is connected to a NULL terminator to indicate the end of
-          the list. This version has no link to the front of the list.
+          The most basic Linked List is called a Singly-Linked-List (SLL), where each node is
+          connected to the next one only. The last node is connected to a NULL terminator to
+          indicate the end of the list. This version has no link to the front of the list.
         </Typography>
         <Typography variant="h6" gutterBottom>
-          To improve the performance and usability a Doubly-Linked-List includes a second link to
-          the previous node. So at each node you have two links, one to the next node and one to the
-          previous. In this version the first node has a previous linked to a NULL terminator to
-          indicate the start of the list.
+          To improve the usability a Doubly-Linked-List (DLL) includes a second link to the previous
+          node. So at each node you have two links, one to the next node and one to the previous. In
+          this version the first node has a previous linked to a NULL terminator to indicate the
+          start of the list.
         </Typography>
         <Typography variant="h6">
-          Finally a Circular-Linked-List includes a special link from the last node to the first.
-          This can also be doubly where the first node will also linked back to the last.
+          Finally a Circular-Linked-List (CLL) includes a special link from the last node to the
+          first. This can also be doubly where the first node will also linked back to the last.
         </Typography>
       </Grid>
       <Grid item xs={12} lg={4} sx={{ p: 4, borderBottom: "1px solid black" }}>
