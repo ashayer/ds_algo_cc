@@ -18,3 +18,24 @@ export const selectionString = `void SelectionSort(vector<int>& arr) {
       swap(arr[min], arr[i]);
     }
 }`;
+
+export const mergeString = `void merge(vector<int>& arr, int left, int middle, int right) {
+  int i = left;
+  int j = middle + 1;
+  vector<int> temp = arr;
+
+  for(int k = left; k <= right; k++) {
+      if(i > middle){
+          arr[k] = temp[j++];
+      }
+      else if(j > right){
+          arr[k] = temp[i++];
+      }
+      else if(temp[j] < temp[i]){
+          arr[k] = temp[j++];
+      }
+      else { // temp[j] > temp[i]
+          arr[k] = temp[i++];
+      }
+  }
+}`;

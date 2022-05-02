@@ -1,21 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Box,
-  Typography,
-  Grid,
-  Button,
-  AppBar,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Slider,
-} from "@mui/material";
+import { Box, Typography, Grid, Button, Slider } from "@mui/material";
 import Navbar from "../Navbar/Navbar";
 import sortArrayInsertion from "./AlgoGenerators/insertionGen";
 import sortArraySelection from "./AlgoGenerators/selectionGen";
 import sortArrayMerge from "./AlgoGenerators/mergeGen";
 import CodeBlock from "../Reading/CodeBlock";
+import SortOptions from "./SortOptions";
 import * as codeString from "./AlgoGenerators/AlgoStrings";
 
 const InsertionStepLabels = ({ varLabelArray, idx }) => {
@@ -37,7 +27,7 @@ const SelectionStepLabels = ({ varLabelArray, idx }) => {
 };
 
 const SortingSandbox = () => {
-  const [algorithm, setAlgorithm] = useState(1);
+  const [algorithm, setAlgorithm] = useState(2);
   const arraySize = useRef(10);
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
@@ -46,7 +36,7 @@ const SortingSandbox = () => {
 
   const [codeHighlight, setCodeHighlight] = useState([]);
   const [step, setStep] = useState(0);
-  const [pseudoCodeString, setPseudoCodeString] = useState(codeString.selectionString);
+  const [pseudoCodeString, setPseudoCodeString] = useState(codeString.mergeString);
 
   const createRandomArray = () => {
     setStep(0);
@@ -131,64 +121,16 @@ const SortingSandbox = () => {
   return (
     <>
       <Navbar page="Sorting Algorithm Sandbox" />
+      <SortOptions
+        algorithm={algorithm}
+        handleAlgoChange={handleAlgoChange}
+        createRandomArray={createRandomArray}
+        arraySize={arraySize}
+        handleSizeSliderChange={handleSizeSliderChange}
+        sortArrayWithCurrentAlgorithm={sortArrayWithCurrentAlgorithm}
+      />
       <Box>
-        <AppBar
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            paddingLeft: "15px",
-            backgroundColor: "white",
-            mt: "2vh",
-          }}
-          position="static"
-        >
-          <FormControl sx={{ width: "15vw" }}>
-            <InputLabel id="demo-simple-select-label">Algorithm</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={algorithm}
-              label="Algorithm"
-              onChange={handleAlgoChange}
-            >
-              <MenuItem value={0}>Insertion Sort</MenuItem>
-              <MenuItem value={1}>Selection Sort</MenuItem>
-              <MenuItem value={2}>Merge Sort</MenuItem>
-              {/*
-              <MenuItem value={4}>Quick Sort</MenuItem> */}
-            </Select>
-          </FormControl>
-          <Button
-            variant="contained"
-            onClick={() => {
-              createRandomArray();
-            }}
-          >
-            {`Generate New Random Array of Size ${arraySize.current}`}
-          </Button>
-          <Slider
-            defaultValue={10}
-            onChangeCommitted={(e, value) => {
-              handleSizeSliderChange(e, value);
-            }}
-            valueLabelDisplay="auto"
-            step={1}
-            min={5}
-            max={15}
-            sx={{ width: "15vw" }}
-          />
-          <Button
-            variant="contained"
-            onClick={() => {
-              sortArrayWithCurrentAlgorithm();
-            }}
-          >
-            Sort
-          </Button>
-        </AppBar>
-        <Box sx={{ border: "2px solid black", mt: "2vh" }}>
+        <Box sx={{ border: "2px solid black", mt: "2vh", width: "75%" }}>
           <Grid
             container
             sx={{
