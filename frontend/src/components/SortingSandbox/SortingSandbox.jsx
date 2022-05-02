@@ -93,6 +93,8 @@ const SortingSandbox = () => {
   const handleAlgoChange = (e) => {
     createRandomArray();
     setAlgorithm(e.target.value);
+    setVarLabelArray([[{}]]);
+
     if (e.target.value === 0) {
       setPseudoCodeString(codeString.insertionString);
     } else if (e.target.value === 1) {
