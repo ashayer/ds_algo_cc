@@ -40,7 +40,7 @@ const sortArrayMerge = (arrayElements) => {
       arr[a].color = "pink";
     }
     for (let k = left; k <= right; k += 1) {
-      pushToArrays(left, left, right, i, j, subArray, [6]);
+      pushToArrays(k, left, right, i, j, subArray, [6]);
       if (i > middle) {
         pushToArrays(k, left, right, i, j, subArray, [7]);
         arr[k].value = subArray[j].value;
@@ -88,6 +88,9 @@ const sortArrayMerge = (arrayElements) => {
   pushToArrays(arr.length - 1, 0, arr.length - 1, 0, 0, [], [1]);
 
   mergeSort(arr, 0, arr.length - 1);
+  for (let a = 0; a < arr.length; a += 1) {
+    arr[a].color = "green";
+  }
   pushToArrays(arr.length - 1, 0, arr.length - 1, 0, 0, [], [1]);
 
   return [tempArray, tempCodeArray, varLabelArray, varSubLabelArray, tempSubArray];
