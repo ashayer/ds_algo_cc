@@ -27,8 +27,17 @@ const InsertionStepLabels = ({ varLabelArray, idx }) => {
   ));
 };
 
+const SelectionStepLabels = ({ varLabelArray, idx }) => {
+  const test = varLabelArray.filter((o) => o.index === idx);
+  return test.map((object, index) => (
+    <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
+      {object.label}
+    </Typography>
+  ));
+};
+
 const SortingSandbox = () => {
-  const [algorithm, setAlgorithm] = useState(0);
+  const [algorithm, setAlgorithm] = useState(1);
   const arraySize = useRef(10);
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
@@ -37,7 +46,7 @@ const SortingSandbox = () => {
 
   const [codeHighlight, setCodeHighlight] = useState([]);
   const [step, setStep] = useState(0);
-  const [pseudoCodeString, setPseudoCodeString] = useState(codeString.insertionString);
+  const [pseudoCodeString, setPseudoCodeString] = useState(codeString.selectionString);
 
   const createRandomArray = () => {
     setStep(0);
@@ -68,13 +77,15 @@ const SortingSandbox = () => {
       setCodeHighlight(tempCodeArray);
       setVarLabelArray(tempVarLabelArray);
     } else if (algorithm === 1) {
-      const [tempArray, tempCodeArray] = sortArraySelection(arrayElements);
+      const [tempArray, tempCodeArray, tempVarLabelArray] = sortArraySelection(arrayElements);
       setSortHistoryArray(tempArray);
       setCodeHighlight(tempCodeArray);
+      setVarLabelArray(tempVarLabelArray);
     } else if (algorithm === 2) {
-      const [tempArray, tempCodeArray] = sortArrayMerge(arrayElements);
+      const [tempArray, tempCodeArray, tempVarLabelArray] = sortArrayMerge(arrayElements);
       setSortHistoryArray(tempArray);
       setCodeHighlight(tempCodeArray);
+      setVarLabelArray(tempVarLabelArray);
     }
   };
 
@@ -96,7 +107,6 @@ const SortingSandbox = () => {
 
   const handleAlgoChange = (e) => {
     createRandomArray();
-    console.log(e.target.value);
     setAlgorithm(e.target.value);
     if (e.target.value === 0) {
       setPseudoCodeString(codeString.insertionString);
@@ -195,7 +205,7 @@ const SortingSandbox = () => {
                 {algorithm === 0 ? (
                   <InsertionStepLabels varLabelArray={varLabelArray[step]} idx={idx} />
                 ) : algorithm === 1 ? (
-                  "sel"
+                  <SelectionStepLabels varLabelArray={varLabelArray[step]} idx={idx} />
                 ) : (
                   "mer"
                 )}
