@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Typography, Grid, Button, Slider } from "@mui/material";
+import { Grid } from "@mui/material";
 import Navbar from "../Navbar/Navbar";
 import sortArrayInsertion from "./AlgoGenerators/insertionGen";
 import sortArraySelection from "./AlgoGenerators/selectionGen";
@@ -111,6 +111,11 @@ const SortingSandbox = () => {
         arraySize={arraySize}
         handleSizeSliderChange={handleSizeSliderChange}
         sortArrayWithCurrentAlgorithm={sortArrayWithCurrentAlgorithm}
+        prevStep={prevStep}
+        nextStep={nextStep}
+        sortHistoryArray={sortHistoryArray}
+        step={step}
+        handleHistorySliderChange={handleHistorySliderChange}
       />
       <Grid container>
         <ArrayBars
@@ -131,34 +136,6 @@ const SortingSandbox = () => {
           }}
         >
           <CodeBlock hoveredLine={codeHighlight[step]} code={pseudoCodeString} />
-        </Grid>
-        <Grid item>
-          <Button variant="contained" onClick={prevStep} disabled={sortHistoryArray.length === 1}>
-            Prev Step
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button variant="contained" onClick={nextStep} disabled={sortHistoryArray.length === 1}>
-            Next Step
-          </Button>
-        </Grid>
-        <Grid item textAlign="center">
-          <Typography gutterBottom>
-            {sortHistoryArray.length > 1
-              ? `Step ${step} of ${sortHistoryArray.length - 1}`
-              : "Press Sort"}
-          </Typography>
-          <Slider
-            value={step}
-            onChange={(e, value) => {
-              handleHistorySliderChange(e, value);
-            }}
-            valueLabelDisplay="auto"
-            step={1}
-            min={0}
-            max={sortHistoryArray.length - 1}
-            sx={{ width: "15vw" }}
-          />
         </Grid>
       </Grid>
     </>

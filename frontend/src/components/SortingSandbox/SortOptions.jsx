@@ -17,6 +17,11 @@ const SortOptions = ({
   arraySize,
   handleSizeSliderChange,
   sortArrayWithCurrentAlgorithm,
+  prevStep,
+  nextStep,
+  sortHistoryArray,
+  step,
+  handleHistorySliderChange,
 }) => {
   return (
     <Grid
@@ -71,14 +76,42 @@ const SortOptions = ({
           sx={{ width: "15vw" }}
         />
       </Grid>
-      <Button
-        variant="contained"
-        onClick={() => {
-          sortArrayWithCurrentAlgorithm();
-        }}
-      >
-        <Typography>CREATE STEPS</Typography>
-      </Button>
+      <Grid item>
+        <Button
+          variant="contained"
+          onClick={() => {
+            sortArrayWithCurrentAlgorithm();
+          }}
+        >
+          <Typography>CREATE STEPS</Typography>
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button variant="contained" onClick={prevStep} disabled={sortHistoryArray.length === 1}>
+          Prev Step
+        </Button>
+        <Button variant="contained" onClick={nextStep} disabled={sortHistoryArray.length === 1}>
+          Next Step
+        </Button>
+      </Grid>
+      <Grid item textAlign="center">
+        <Typography gutterBottom>
+          {sortHistoryArray.length > 1
+            ? `Step ${step} of ${sortHistoryArray.length - 1}`
+            : "Press Sort"}
+        </Typography>
+        <Slider
+          value={step}
+          onChange={(e, value) => {
+            handleHistorySliderChange(e, value);
+          }}
+          valueLabelDisplay="auto"
+          step={1}
+          min={0}
+          max={sortHistoryArray.length - 1}
+          sx={{ width: "15vw" }}
+        />
+      </Grid>
     </Grid>
   );
 };
