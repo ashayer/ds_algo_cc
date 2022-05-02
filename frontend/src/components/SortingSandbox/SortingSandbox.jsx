@@ -1,30 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Box, Typography, Grid, Button, Slider } from "@mui/material";
+import { Typography, Grid, Button, Slider } from "@mui/material";
 import Navbar from "../Navbar/Navbar";
 import sortArrayInsertion from "./AlgoGenerators/insertionGen";
 import sortArraySelection from "./AlgoGenerators/selectionGen";
 import sortArrayMerge from "./AlgoGenerators/mergeGen";
 import CodeBlock from "../Reading/CodeBlock";
 import SortOptions from "./SortOptions";
+import ArrayBars from "./ArrayBars";
 import * as codeString from "./AlgoGenerators/AlgoStrings";
-
-const InsertionStepLabels = ({ varLabelArray, idx }) => {
-  const test = varLabelArray.filter((o) => o.index === idx);
-  return test.map((object, index) => (
-    <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
-      {object.label}
-    </Typography>
-  ));
-};
-
-const SelectionStepLabels = ({ varLabelArray, idx }) => {
-  const test = varLabelArray.filter((o) => o.index === idx);
-  return test.map((object, index) => (
-    <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
-      {object.label}
-    </Typography>
-  ));
-};
 
 const SortingSandbox = () => {
   const [algorithm, setAlgorithm] = useState(2);
@@ -129,80 +112,55 @@ const SortingSandbox = () => {
         handleSizeSliderChange={handleSizeSliderChange}
         sortArrayWithCurrentAlgorithm={sortArrayWithCurrentAlgorithm}
       />
-      <Box>
-        <Box sx={{ border: "2px solid black", mt: "2vh", width: "75%" }}>
-          <Grid
-            container
-            sx={{
-              position: "relative",
-              justifyContent: "space-evenly",
-            }}
-          >
-            {sortHistoryArray[step].map((element, idx) => (
-              <Grid
-                item
-                key={idx}
-                sx={{ height: "35vh", width: "6vw", textAlign: "center", color: "white" }}
-              >
-                {algorithm === 0 ? (
-                  <InsertionStepLabels varLabelArray={varLabelArray[step]} idx={idx} />
-                ) : algorithm === 1 ? (
-                  <SelectionStepLabels varLabelArray={varLabelArray[step]} idx={idx} />
-                ) : (
-                  "mer"
-                )}
-                <Box
-                  sx={{
-                    height: `${(element.value * 80) / arrayMax}%`,
-                    backgroundColor: element.color,
-                    position: "absolute",
-                    bottom: "0",
-                    borderRadius: "5px 5px 0px 0px",
-                    transition: "all 0.15s ease",
-                  }}
-                >
-                  <Typography variant="h4" sx={{ width: "6vw" }}>
-                    {`${element.value}`}
-                  </Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-        <Button variant="contained" onClick={prevStep} disabled={sortHistoryArray.length === 1}>
-          Prev Step
-        </Button>
-        <Button variant="contained" onClick={nextStep} disabled={sortHistoryArray.length === 1}>
-          Next Step
-        </Button>
-        <Typography>
-          {sortHistoryArray.length > 1
-            ? `Step ${step} of ${sortHistoryArray.length - 1}`
-            : "Press Sort"}
-        </Typography>
-        <Slider
-          value={step}
-          onChange={(e, value) => {
-            handleHistorySliderChange(e, value);
-          }}
-          valueLabelDisplay="auto"
-          step={1}
-          min={0}
-          max={sortHistoryArray.length - 1}
-          sx={{ width: "15vw" }}
+      <Grid container>
+        <ArrayBars
+          algorithm={algorithm}
+          sortHistoryArray={sortHistoryArray}
+          step={step}
+          varLabelArray={varLabelArray}
+          arrayMax={arrayMax}
         />
         <Grid
-          container
+          item
+          lg={3.8}
+          md={6}
+          xs={6}
           sx={{
             display: "flex",
-            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <Grid item xs={12} md={3}>
-            <CodeBlock hoveredLine={codeHighlight[step]} code={pseudoCodeString} />
-          </Grid>
+          <CodeBlock hoveredLine={codeHighlight[step]} code={pseudoCodeString} />
         </Grid>
-      </Box>
+        <Grid item>
+          <Button variant="contained" onClick={prevStep} disabled={sortHistoryArray.length === 1}>
+            Prev Step
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button variant="contained" onClick={nextStep} disabled={sortHistoryArray.length === 1}>
+            Next Step
+          </Button>
+        </Grid>
+        <Grid item textAlign="center">
+          <Typography gutterBottom>
+            {sortHistoryArray.length > 1
+              ? `Step ${step} of ${sortHistoryArray.length - 1}`
+              : "Press Sort"}
+          </Typography>
+          <Slider
+            value={step}
+            onChange={(e, value) => {
+              handleHistorySliderChange(e, value);
+            }}
+            valueLabelDisplay="auto"
+            step={1}
+            min={0}
+            max={sortHistoryArray.length - 1}
+            sx={{ width: "15vw" }}
+          />
+        </Grid>
+      </Grid>
     </>
   );
 };
