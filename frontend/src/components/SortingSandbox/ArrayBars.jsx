@@ -2,8 +2,8 @@ import React from "react";
 import { Grid, Typography, Box } from "@mui/material";
 
 const InsertionStepLabels = ({ varLabelArray, idx }) => {
-  const test = varLabelArray.filter((o) => o.index === idx);
-  return test.map((object, index) => (
+  const indexArray = varLabelArray.filter((o) => o.index === idx);
+  return indexArray.map((object, index) => (
     <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
       {object.label}
     </Typography>
@@ -11,8 +11,17 @@ const InsertionStepLabels = ({ varLabelArray, idx }) => {
 };
 
 const SelectionStepLabels = ({ varLabelArray, idx }) => {
-  const test = varLabelArray.filter((o) => o.index === idx);
-  return test.map((object, index) => (
+  const indexArray = varLabelArray.filter((o) => o.index === idx);
+  return indexArray.map((object, index) => (
+    <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
+      {object.label}
+    </Typography>
+  ));
+};
+
+const MergeStepLabels = ({ varLabelArray, idx }) => {
+  const indexArray = varLabelArray.filter((o) => o.index === idx);
+  return indexArray.map((object, index) => (
     <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
       {object.label}
     </Typography>
@@ -22,10 +31,7 @@ const SelectionStepLabels = ({ varLabelArray, idx }) => {
 const ArrayBars = ({ algorithm, sortHistoryArray, step, varLabelArray, arrayMax }) => {
   return (
     <Grid
-      item
       container
-      lg={8}
-      md={6}
       sx={{
         position: "relative",
         justifyContent: "space-evenly",
@@ -42,9 +48,11 @@ const ArrayBars = ({ algorithm, sortHistoryArray, step, varLabelArray, arrayMax 
             <InsertionStepLabels varLabelArray={varLabelArray[step]} idx={idx} />
           ) : algorithm === 1 ? (
             <SelectionStepLabels varLabelArray={varLabelArray[step]} idx={idx} />
-          ) : (
-            "mer"
-          )}
+          ) : algorithm === 2 ? (
+            <MergeStepLabels varLabelArray={varLabelArray[step]} idx={idx} />
+          ) : algorithm === 3 ? (
+            "qui"
+          ) : null}
 
           <Box
             sx={{

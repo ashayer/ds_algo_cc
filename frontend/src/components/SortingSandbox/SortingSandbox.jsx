@@ -7,6 +7,7 @@ import sortArrayMerge from "./AlgoGenerators/mergeGen";
 import CodeBlock from "../Reading/CodeBlock";
 import SortOptions from "./SortOptions";
 import ArrayBars from "./ArrayBars";
+import SubArrayBars from "./SubArrayBars";
 import * as codeString from "./AlgoGenerators/AlgoStrings";
 
 const SortingSandbox = () => {
@@ -15,7 +16,10 @@ const SortingSandbox = () => {
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
   const [sortHistoryArray, setSortHistoryArray] = useState([[{}]]);
+  const [sortHistorySubArray, setSortHistorySubArray] = useState([[{}]]);
   const [varLabelArray, setVarLabelArray] = useState([[{}]]);
+  const [varLabelSubArray, setVarLabelSubArray] = useState([[{}]]);
+
   const [codeHighlight, setCodeHighlight] = useState([]);
   const [step, setStep] = useState(0);
   const [pseudoCodeString, setPseudoCodeString] = useState(codeString.mergeString);
@@ -27,7 +31,7 @@ const SortingSandbox = () => {
 
     for (let i = 0; i < arraySize.current; i += 1) {
       const elementObject = {
-        value: Math.floor(Math.random() * (99 - 10) + 10),
+        value: Math.floor(Math.random() * (80 - 15) + 15),
         color: "blue",
       };
       tempArray.push(elementObject);
@@ -54,10 +58,13 @@ const SortingSandbox = () => {
       setCodeHighlight(tempCodeArray);
       setVarLabelArray(tempVarLabelArray);
     } else if (algorithm === 2) {
-      const [tempArray, tempCodeArray, tempVarLabelArray] = sortArrayMerge(arrayElements);
+      const [tempArray, tempCodeArray, tempVarLabelArray, tempVarLabelSubArray, tempSubArray] =
+        sortArrayMerge(arrayElements);
       setSortHistoryArray(tempArray);
       setCodeHighlight(tempCodeArray);
       setVarLabelArray(tempVarLabelArray);
+      setVarLabelSubArray(tempVarLabelSubArray);
+      setSortHistorySubArray(tempSubArray);
     }
   };
 
@@ -117,13 +124,15 @@ const SortingSandbox = () => {
         handleHistorySliderChange={handleHistorySliderChange}
       />
       <Grid container>
-        <ArrayBars
-          algorithm={algorithm}
-          sortHistoryArray={sortHistoryArray}
-          step={step}
-          varLabelArray={varLabelArray}
-          arrayMax={arrayMax}
-        />
+        <Grid item lg={8} md={6} xs={12}>
+          <ArrayBars
+            algorithm={algorithm}
+            sortHistoryArray={sortHistoryArray}
+            step={step}
+            varLabelArray={varLabelArray}
+            arrayMax={arrayMax}
+          />
+        </Grid>
         <Grid
           item
           lg={4}
@@ -136,6 +145,17 @@ const SortingSandbox = () => {
         >
           <CodeBlock hoveredLine={codeHighlight[step]} code={pseudoCodeString} />
         </Grid>
+        {algorithm > 1 && !(sortHistoryArray.length === 1) && (
+          <Grid item lg={8} md={6} xs={12}>
+            <SubArrayBars
+              algorithm={algorithm}
+              sortHistorySubArray={sortHistorySubArray}
+              step={step}
+              varLabelSubArray={varLabelSubArray}
+              arrayMax={arrayMax}
+            />
+          </Grid>
+        )}
       </Grid>
     </>
   );
