@@ -4,6 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import sortArrayInsertion from "./AlgoGenerators/insertionGen";
 import sortArraySelection from "./AlgoGenerators/selectionGen";
 import sortArrayMerge from "./AlgoGenerators/mergeGen";
+import sortArrayQuick from "./AlgoGenerators/quickGen";
 import CodeBlock from "../Reading/CodeBlock";
 import SortOptions from "./SortOptions";
 import ArrayBars from "./ArrayBars";
@@ -11,7 +12,7 @@ import SubArrayBars from "./SubArrayBars";
 import * as codeString from "./AlgoGenerators/AlgoStrings";
 
 const SortingSandbox = () => {
-  const [algorithm, setAlgorithm] = useState(2);
+  const [algorithm, setAlgorithm] = useState(3);
   const arraySize = useRef(10);
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
@@ -19,10 +20,10 @@ const SortingSandbox = () => {
   const [sortHistorySubArray, setSortHistorySubArray] = useState([[{}]]);
   const [varLabelArray, setVarLabelArray] = useState([[{}]]);
   const [varLabelSubArray, setVarLabelSubArray] = useState([[{}]]);
-
   const [codeHighlight, setCodeHighlight] = useState([]);
   const [step, setStep] = useState(0);
-  const [pseudoCodeString, setPseudoCodeString] = useState(codeString.mergeString);
+  //! change to insertion
+  const [pseudoCodeString, setPseudoCodeString] = useState(codeString.quickString);
 
   const createRandomArray = () => {
     setStep(0);
@@ -65,6 +66,11 @@ const SortingSandbox = () => {
       setVarLabelArray(tempVarLabelArray);
       setVarLabelSubArray(tempVarLabelSubArray);
       setSortHistorySubArray(tempSubArray);
+    } else {
+      const [tempArray, tempCodeArray, tempVarLabelArray] = sortArrayQuick(arrayElements);
+      setSortHistoryArray(tempArray);
+      setCodeHighlight(tempCodeArray);
+      setVarLabelArray(tempVarLabelArray);
     }
   };
 
@@ -91,6 +97,10 @@ const SortingSandbox = () => {
       setPseudoCodeString(codeString.insertionString);
     } else if (e.target.value === 1) {
       setPseudoCodeString(codeString.selectionString);
+    } else if (e.target.value === 2) {
+      setPseudoCodeString(codeString.mergeString);
+    } else {
+      setPseudoCodeString(codeString.quickString);
     }
   };
 
@@ -145,7 +155,7 @@ const SortingSandbox = () => {
         >
           <CodeBlock hoveredLine={codeHighlight[step]} code={pseudoCodeString} />
         </Grid>
-        {algorithm > 1 && !(sortHistoryArray.length === 1) && (
+        {algorithm === 2 && !(sortHistoryArray.length === 1) && (
           <Grid item lg={8} md={6} xs={12}>
             <SubArrayBars
               algorithm={algorithm}

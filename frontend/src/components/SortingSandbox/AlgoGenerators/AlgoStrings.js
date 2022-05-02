@@ -39,3 +39,16 @@ export const mergeString = `void merge(vector<int>& arr, int left, int middle, i
       }
   }
 }`;
+
+export const quickString = `int partition(vector<int>& arr, int left, int right){
+  int pivotValue = arr[left]; 
+  int pivotIndex = left;
+  for(int i = left + 1; i<=right;i++){
+      if(arr[i] < pivotValue){
+          pivotIndex++;
+          swap(arr[i], arr[pivotIndex]);
+      }
+  }
+  swap(arr[left], arr[pivotIndex]);
+  return pivotIndex;
+}`;

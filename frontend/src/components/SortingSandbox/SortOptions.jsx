@@ -52,8 +52,9 @@ const SortOptions = ({
             <MenuItem value={2}>
               <Typography>MERGE</Typography>
             </MenuItem>
-            {/*
-        <MenuItem value={4}>Quick Sort</MenuItem> */}
+            <MenuItem value={3}>
+              <Typography>QUICK</Typography>
+            </MenuItem>
           </Select>
         </FormControl>
       </Grid>

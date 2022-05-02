@@ -1,25 +1,7 @@
 import React from "react";
 import { Grid, Typography, Box } from "@mui/material";
 
-const InsertionStepLabels = ({ varLabelArray, idx }) => {
-  const indexArray = varLabelArray.filter((o) => o.index === idx);
-  return indexArray.map((object, index) => (
-    <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
-      {object.label}
-    </Typography>
-  ));
-};
-
-const SelectionStepLabels = ({ varLabelArray, idx }) => {
-  const indexArray = varLabelArray.filter((o) => o.index === idx);
-  return indexArray.map((object, index) => (
-    <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
-      {object.label}
-    </Typography>
-  ));
-};
-
-const MergeStepLabels = ({ varLabelArray, idx }) => {
+const StepLabels = ({ varLabelArray, idx }) => {
   const indexArray = varLabelArray.filter((o) => o.index === idx);
   return indexArray.map((object, index) => (
     <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
@@ -42,21 +24,18 @@ const ArrayBars = ({ algorithm, sortHistoryArray, step, varLabelArray, arrayMax 
         <Grid
           item
           key={idx}
-          sx={{ height: "35vh", width: "6vw", textAlign: "center", color: "white" }}
+          sx={{
+            height: "35vh",
+            width: "6vw",
+            textAlign: "center",
+            color: "white",
+          }}
         >
-          {algorithm === 0 ? (
-            <InsertionStepLabels varLabelArray={varLabelArray[step]} idx={idx} />
-          ) : algorithm === 1 ? (
-            <SelectionStepLabels varLabelArray={varLabelArray[step]} idx={idx} />
-          ) : algorithm === 2 ? (
-            <MergeStepLabels varLabelArray={varLabelArray[step]} idx={idx} />
-          ) : algorithm === 3 ? (
-            "qui"
-          ) : null}
+          <StepLabels varLabelArray={varLabelArray[step]} idx={idx} />
 
           <Box
             sx={{
-              height: `${(element.value * 80) / arrayMax}%`,
+              height: `${(element.value * `${algorithm === 3 ? 65 : 80}`) / arrayMax}%`,
               backgroundColor: element.color,
               position: "absolute",
               bottom: "0",
