@@ -37,7 +37,7 @@ const sortArrayMerge = (arrayElements) => {
     let j = middle + 1;
     const subArray = JSON.parse(JSON.stringify(arr));
     for (let a = left; a <= right; a += 1) {
-      arr[a].color = "pink";
+      arr[a].color = "purple";
     }
     for (let k = left; k <= right; k += 1) {
       pushToArrays(k, left, right, i, j, subArray, [6]);
