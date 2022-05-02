@@ -16,17 +16,28 @@ import sortArrayInsertion from "./AlgoGenerators/insertionGen";
 import sortArraySelection from "./AlgoGenerators/selectionGen";
 import sortArrayMerge from "./AlgoGenerators/mergeGen";
 import CodeBlock from "../Reading/CodeBlock";
+import * as codeString from "./AlgoGenerators/AlgoStrings";
 
-let pseudoCodeStringArray = [];
+const InsertionStepLabels = ({ varLabelArray, idx }) => {
+  const test = varLabelArray.filter((o) => o.index === idx);
+  return test.map((object, index) => (
+    <Typography variant="h6" sx={{ width: "6vw" }} key={index}>
+      {object.label}
+    </Typography>
+  ));
+};
 
 const SortingSandbox = () => {
-  const [algorithm, setAlgorithm] = useState(1);
+  const [algorithm, setAlgorithm] = useState(0);
   const arraySize = useRef(10);
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
   const [sortHistoryArray, setSortHistoryArray] = useState([[{}]]);
+  const [varLabelArray, setVarLabelArray] = useState([[{}]]);
+
   const [codeHighlight, setCodeHighlight] = useState([]);
   const [step, setStep] = useState(0);
+  const [pseudoCodeString, setPseudoCodeString] = useState(codeString.insertionString);
 
   const createRandomArray = () => {
     setStep(0);
@@ -51,20 +62,17 @@ const SortingSandbox = () => {
   };
 
   const sortArrayWithCurrentAlgorithm = () => {
-    if (algorithm === 1) {
-      const [tempArray, tempCodeArray, code] = sortArrayInsertion(arrayElements);
-      pseudoCodeStringArray = code;
+    if (algorithm === 0) {
+      const [tempArray, tempCodeArray, tempVarLabelArray] = sortArrayInsertion(arrayElements);
       setSortHistoryArray(tempArray);
       setCodeHighlight(tempCodeArray);
-      console.log(tempArray.length);
+      setVarLabelArray(tempVarLabelArray);
+    } else if (algorithm === 1) {
+      const [tempArray, tempCodeArray] = sortArraySelection(arrayElements);
+      setSortHistoryArray(tempArray);
+      setCodeHighlight(tempCodeArray);
     } else if (algorithm === 2) {
-      const [tempArray, tempCodeArray, code] = sortArraySelection(arrayElements);
-      pseudoCodeStringArray = code;
-      setSortHistoryArray(tempArray);
-      setCodeHighlight(tempCodeArray);
-    } else if (algorithm === 3) {
-      const [tempArray, tempCodeArray, code] = sortArrayMerge(arrayElements);
-      pseudoCodeStringArray = code;
+      const [tempArray, tempCodeArray] = sortArrayMerge(arrayElements);
       setSortHistoryArray(tempArray);
       setCodeHighlight(tempCodeArray);
     }
@@ -88,7 +96,13 @@ const SortingSandbox = () => {
 
   const handleAlgoChange = (e) => {
     createRandomArray();
+    console.log(e.target.value);
     setAlgorithm(e.target.value);
+    if (e.target.value === 0) {
+      setPseudoCodeString(codeString.insertionString);
+    } else if (e.target.value === 1) {
+      setPseudoCodeString(codeString.selectionString);
+    }
   };
 
   const handleSizeSliderChange = (e, value) => {
@@ -129,9 +143,9 @@ const SortingSandbox = () => {
               label="Algorithm"
               onChange={handleAlgoChange}
             >
-              <MenuItem value={1}>Insertion Sort</MenuItem>
-              <MenuItem value={2}>Selection Sort</MenuItem>
-              <MenuItem value={3}>Merge Sort</MenuItem>
+              <MenuItem value={0}>Insertion Sort</MenuItem>
+              <MenuItem value={1}>Selection Sort</MenuItem>
+              <MenuItem value={2}>Merge Sort</MenuItem>
               {/*
               <MenuItem value={4}>Quick Sort</MenuItem> */}
             </Select>
@@ -173,16 +187,25 @@ const SortingSandbox = () => {
             }}
           >
             {sortHistoryArray[step].map((element, idx) => (
-              <Grid item key={idx} sx={{ height: "35vh", width: "6vw" }}>
+              <Grid
+                item
+                key={idx}
+                sx={{ height: "35vh", width: "6vw", textAlign: "center", color: "white" }}
+              >
+                {algorithm === 0 ? (
+                  <InsertionStepLabels varLabelArray={varLabelArray[step]} idx={idx} />
+                ) : algorithm === 1 ? (
+                  "sel"
+                ) : (
+                  "mer"
+                )}
                 <Box
                   sx={{
-                    height: `${(element.value * 100) / arrayMax}%`,
+                    height: `${(element.value * 80) / arrayMax}%`,
                     backgroundColor: element.color,
-                    color: "white",
                     position: "absolute",
                     bottom: "0",
                     borderRadius: "5px 5px 0px 0px",
-                    textAlign: "center",
                     transition: "all 0.15s ease",
                   }}
                 >
@@ -224,7 +247,7 @@ const SortingSandbox = () => {
           }}
         >
           <Grid item xs={12} md={3}>
-            <CodeBlock hoveredLine={codeHighlight} code={pseudoCodeStringArray} />
+            <CodeBlock hoveredLine={codeHighlight[step]} code={pseudoCodeString} />
           </Grid>
         </Grid>
       </Box>
