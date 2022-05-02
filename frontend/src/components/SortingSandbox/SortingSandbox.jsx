@@ -16,7 +16,6 @@ const SortingSandbox = () => {
   const [arrayMax, setArrayMax] = useState(1);
   const [sortHistoryArray, setSortHistoryArray] = useState([[{}]]);
   const [varLabelArray, setVarLabelArray] = useState([[{}]]);
-
   const [codeHighlight, setCodeHighlight] = useState([]);
   const [step, setStep] = useState(0);
   const [pseudoCodeString, setPseudoCodeString] = useState(codeString.mergeString);
@@ -127,12 +126,12 @@ const SortingSandbox = () => {
         />
         <Grid
           item
-          lg={3.8}
+          lg={4}
           md={6}
-          xs={6}
+          xs={12}
           sx={{
             display: "flex",
-            alignItems: "center",
+            alignItems: "end",
           }}
         >
           <CodeBlock hoveredLine={codeHighlight[step]} code={pseudoCodeString} />

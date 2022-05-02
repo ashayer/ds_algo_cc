@@ -12,6 +12,7 @@ const CodeBlock = ({ hoveredLine, code, startingLineNumber }) => {
       customStyle={{
         fontSize: "large",
         width: "100%",
+        margin: 0,
       }}
       wrapLines
       startingLineNumber={startingLineNumber}

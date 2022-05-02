@@ -14,7 +14,6 @@ const SortOptions = ({
   algorithm,
   handleAlgoChange,
   createRandomArray,
-  arraySize,
   handleSizeSliderChange,
   sortArrayWithCurrentAlgorithm,
   prevStep,
@@ -30,11 +29,11 @@ const SortOptions = ({
         justifyContent: "space-around",
         alignItems: "center",
         backgroundColor: "white",
-        mt: "2vh",
+        mt: 1,
         p: 1,
       }}
     >
-      <Grid item>
+      <Grid item lg={1} sx={{}}>
         <FormControl>
           <InputLabel id="algo-select-label">Algorithm</InputLabel>
           <Select
@@ -44,39 +43,45 @@ const SortOptions = ({
             label="Algorithm"
             onChange={handleAlgoChange}
           >
-            <MenuItem value={0}>Insertion Sort</MenuItem>
-            <MenuItem value={1}>Selection Sort</MenuItem>
-            <MenuItem value={2}>Merge Sort</MenuItem>
+            <MenuItem value={0}>
+              <Typography>INSERTION</Typography>
+            </MenuItem>
+            <MenuItem value={1}>
+              <Typography>SELECTION</Typography>
+            </MenuItem>
+            <MenuItem value={2}>
+              <Typography>MERGE</Typography>
+            </MenuItem>
             {/*
         <MenuItem value={4}>Quick Sort</MenuItem> */}
           </Select>
         </FormControl>
       </Grid>
-      <Grid item>
+      <Grid item sx={{}}>
         <Button
           variant="contained"
           onClick={() => {
             createRandomArray();
           }}
         >
-          <Typography>{`Generate New Random Array of Size ${arraySize.current}`}</Typography>
+          <Typography>MAKE NEW ARRAY</Typography>
         </Button>
       </Grid>
-      <Grid item textAlign="center">
-        <Typography>Array Size</Typography>
+      <Grid item textAlign="center" sx={{}}>
+        <Typography>ARRAY SIZE</Typography>
         <Slider
           defaultValue={10}
           onChangeCommitted={(e, value) => {
             handleSizeSliderChange(e, value);
           }}
-          valueLabelDisplay="auto"
+          valueLabelDisplay="on"
           step={1}
           min={5}
           max={10}
           sx={{ width: "15vw" }}
         />
       </Grid>
-      <Grid item>
+      <Grid item sx={{}}>
         <Button
           variant="contained"
           onClick={() => {
@@ -86,19 +91,19 @@ const SortOptions = ({
           <Typography>CREATE STEPS</Typography>
         </Button>
       </Grid>
-      <Grid item>
+      <Grid item sx={{}}>
         <Button variant="contained" onClick={prevStep} disabled={sortHistoryArray.length === 1}>
-          Prev Step
+          <Typography>PREV STEP</Typography>
         </Button>
         <Button variant="contained" onClick={nextStep} disabled={sortHistoryArray.length === 1}>
-          Next Step
+          <Typography>NEXT STEP</Typography>
         </Button>
       </Grid>
-      <Grid item textAlign="center">
+      <Grid item textAlign="center" sx={{}}>
         <Typography gutterBottom>
           {sortHistoryArray.length > 1
-            ? `Step ${step} of ${sortHistoryArray.length - 1}`
-            : "Press Sort"}
+            ? `STEP ${step} OF ${sortHistoryArray.length - 1}`
+            : "PRESS SORT"}
         </Typography>
         <Slider
           value={step}

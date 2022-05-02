@@ -62,7 +62,13 @@ const GameCard = () => {
               </Select>
             </FormControl>
             {type === "static" && (
-              <Zoom in>
+              <Zoom
+                in
+                easing={{
+                  enter: "cubic-bezier(0, 2, .5, 1)",
+                  exit: "linear",
+                }}
+              >
                 <FormControl sx={{ width: "200px" }}>
                   <InputLabel id="game-difficulty-select">Difficulty</InputLabel>
                   <Select

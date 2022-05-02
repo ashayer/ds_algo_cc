@@ -25,7 +25,7 @@ const ArrayBars = ({ algorithm, sortHistoryArray, step, varLabelArray, arrayMax 
       item
       container
       lg={8}
-      md={8}
+      md={6}
       sx={{
         position: "relative",
         justifyContent: "space-evenly",
@@ -45,6 +45,7 @@ const ArrayBars = ({ algorithm, sortHistoryArray, step, varLabelArray, arrayMax 
           ) : (
             "mer"
           )}
+
           <Box
             sx={{
               height: `${(element.value * 80) / arrayMax}%`,
