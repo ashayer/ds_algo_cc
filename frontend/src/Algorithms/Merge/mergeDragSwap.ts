@@ -1,11 +1,11 @@
 import { shuffle } from "d3-array";
 
-function generateCorrectSwapArray(swaps, originalArray) {
+function generateCorrectSwapArray(swaps: number, originalArray: number[]) {
   let currentSwaps = 0;
   const unsortedArray = originalArray.slice();
-  let swapSorted = [];
+  let swapSorted: any = [];
 
-  const mergeCorrectSwap = (left, right) => {
+  const mergeCorrectSwap = (left: number[], right: number[]) => {
     const arr = [];
 
     // Break out of loop if any one of the array gets empty
@@ -45,7 +45,7 @@ function generateCorrectSwapArray(swaps, originalArray) {
     return [...arr, ...left, ...right];
   };
 
-  const mergeSortCorrectSwap = (array) => {
+  const mergeSortCorrectSwap = (array: number[]): any => {
     let half = array.length / 2;
     if (array.length % 2 === 1) {
       // ensure the left half is larger on odd splits
@@ -63,12 +63,19 @@ function generateCorrectSwapArray(swaps, originalArray) {
   mergeSortCorrectSwap(unsortedArray);
   // console.log(swapSorted);
 
-  return swapSorted;
+  const unsortedArrayObject = [];
+  for (let i = 0; i < swapSorted.length; i += 1) {
+    unsortedArrayObject.push({
+      lineContent: originalArray[i],
+      correctIdx: swapSorted.findIndex((element: number) => element === originalArray[i]),
+    });
+  }
+  return unsortedArrayObject;
 }
 
 let swapCounter = 0;
 
-function merge(left, right) {
+function merge(left: number[], right: number[]) {
   const arr = [];
 
   // Break out of loop if any one of the array gets empty
@@ -87,7 +94,7 @@ function merge(left, right) {
   return [...arr, ...left, ...right];
 }
 
-function mergeSort(array) {
+function mergeSort(array: number[]): any {
   let half = array.length / 2;
   if (array.length % 2 === 1) {
     // ensure the left half is larger on odd splits
@@ -98,11 +105,11 @@ function mergeSort(array) {
     return array;
   }
 
-  const left = array.splice(0, half); // left is first half of array, array becomes second half
-  return merge(mergeSort(left, swapCounter), mergeSort(array, swapCounter));
+  const left: number[] = array.splice(0, half); // left is first half of array, array becomes second half
+  return merge(mergeSort(left), mergeSort(array));
 }
 
-function mergeSortCaller(array) {
+function mergeSortCaller(array: number[]) {
   const unsortedArray = array.slice();
 
   swapCounter = 0;
@@ -117,7 +124,7 @@ function mergeSortCaller(array) {
   return sortedArrayObject;
 }
 
-function generateSwap() {
+function generateDragSwap() {
   let arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]); // array with values that are used
   // returned sorted object with swaps, the sorted array, and original unsorted array
   let sortedArrayObject = mergeSortCaller(arrayToBeSorted);
@@ -134,22 +141,15 @@ function generateSwap() {
     Math.random() * (sortedArrayObject.swaps + 1 - 3) + 3,
   );
 
-  const rightAnswer = generateCorrectSwapArray(correctSwapNumber, sortedArrayObject.arrayUnsorted);
-  const wrongAnswers = []; // array to hold the 3 wrongly swapped array
-
-  for (let i = 0; i < 3; i += 1) {
-    wrongAnswers[i] = shuffle([2, 3, 5, 8, 6, 7]);
-    while (wrongAnswers[i] === rightAnswer) {
-      wrongAnswers[i] = shuffle([2, 3, 5, 8, 6, 7]);
-    }
-  }
-  // console.log(wrongAnswers);
-  // console.log(rightAnswer);
+  const originalObject = generateCorrectSwapArray(
+    correctSwapNumber,
+    sortedArrayObject.arrayUnsorted,
+  );
 
   const answers = {
-    right: rightAnswer,
-    wrong: wrongAnswers,
-    original: sortedArrayObject.arrayUnsorted,
+    right: "Right",
+    wrong: ["Wrong", "Wrong", "Wrong"],
+    original: originalObject,
     swaps: correctSwapNumber,
   };
 
@@ -176,4 +176,4 @@ function generateSwap() {
 //   console.log(swapCounterArray);
 // }
 
-export default generateSwap;
+export default generateDragSwap;

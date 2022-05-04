@@ -1,6 +1,6 @@
-import insertionSortHandler from "./Insertion/insertionSort";
+import insertionSortHandler from "./Insertion/insertionSort.ts";
 import selectionSortHandler from "./Selection/selectionSort";
-import mergeSortHandler from "./Merge/mergeSort";
+import mergeSortHandler from "./Merge/mergeSort.ts";
 import quickSortHandler from "./Quick/quickSort";
 
 function questionHandler(randomTopic, randomType) {

@@ -6,7 +6,7 @@ import generateArrayTime from "./mergeArrayTime";
 import generateDragCode from "./mergeDragCode";
 import generateDragSwap from "./mergeDragSwap";
 
-function mergeSortHandler(randomType) {
+function mergeSortHandler(randomType: number) {
   switch (randomType) {
     case 0:
       return generateSwap();

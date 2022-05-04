@@ -2,7 +2,7 @@ import { shuffle } from "d3-array";
 // generate an array that satisfies the best or worst time complexity of merge sort
 // since both are nlogn just display a shuffled array or sorted array 30% of the time
 
-const checkArraySorted = (array) => {
+const checkArraySorted = (array: number[]) => {
   for (let i = 0; i < array.length - 1; i += 1) {
     if (array[i] > array[i + 1]) {
       return false;
