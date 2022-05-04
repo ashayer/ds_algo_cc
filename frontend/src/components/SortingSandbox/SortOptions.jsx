@@ -104,7 +104,7 @@ const SortOptions = ({
         <Typography gutterBottom>
           {sortHistoryArray.length > 1
             ? `STEP ${step} OF ${sortHistoryArray.length - 1}`
-            : "PRESS CREATE STEPS"}
+            : "PRESS SORT"}
         </Typography>
         <Slider
           value={step}
