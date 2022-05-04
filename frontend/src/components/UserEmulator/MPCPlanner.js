@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 class Node {
   constructor(value, left, middle, right, id) {
     this.value = value;
@@ -40,7 +39,7 @@ let userModel = {};
 let x = 0;
 
 const calculatePercentage = (array) => {
-  let totalQuestions = globalDepth;
+  const totalQuestions = globalDepth;
   let totalCorrect = 0;
   for (let i = 0; i < globalDepth; i += 1) {
     //! change this to calulcate based on the threshold and model values instead of just less than 3
