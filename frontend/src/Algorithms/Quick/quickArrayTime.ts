@@ -4,7 +4,7 @@ import { shuffle } from "d3-array";
 // if best then show shuffled array
 // otherwise generate a sorted array in ascending or descending order
 
-const checkArraySorted = (array) => {
+const checkArraySorted = (array: number[]) => {
   for (let i = 0; i < array.length - 1; i += 1) {
     if (array[i] > array[i + 1]) {
       return false;

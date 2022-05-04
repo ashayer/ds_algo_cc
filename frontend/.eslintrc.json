@@ -8,13 +8,15 @@
     "ecmaFeatures": {
       "jsx": true
     },
+    "project": ["./frontend/tsconfig.json"],
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "import"],
   "rules": {
     "linebreak-style": ["error", "windows"],
-    "quotes": ["error", "double"],
+    "quotes": "off",
+    "@typescript-eslint/quotes": ["error", "double"],
     "react/function-component-definition": "off",
     "no-underscore-dangle": ["error", { "allow": ["_id"] }],
     "object-curly-newline": "off",
