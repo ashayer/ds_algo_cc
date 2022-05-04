@@ -1,9 +1,9 @@
-import insertionSortHandler from "./Insertion/insertionSort.ts";
+import insertionSortHandler from "./Insertion/insertionSort";
 import selectionSortHandler from "./Selection/selectionSort";
-import mergeSortHandler from "./Merge/mergeSort.ts";
+import mergeSortHandler from "./Merge/mergeSort";
 import quickSortHandler from "./Quick/quickSort";
 
-function questionHandler(randomTopic, randomType) {
+function questionHandler(randomTopic: number, randomType: number) {
   switch (randomTopic) {
     case 0:
       return insertionSortHandler(randomType);
