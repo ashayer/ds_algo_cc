@@ -1,9 +1,9 @@
 import { shuffle } from "d3-array";
 
-function generateCorrectSwapArray(swaps, originalArray) {
+function generateCorrectSwapArray(swaps: number, originalArray: number[]) {
   const array = originalArray.slice();
   let currentSwaps = 0;
-  let swapSorted = [];
+  let swapSorted: number[] = [];
   for (let i = 0; i < array.length; i += 1) {
     let min = i;
     for (let j = i + 1; j < array.length; j += 1) {
@@ -22,13 +22,13 @@ function generateCorrectSwapArray(swaps, originalArray) {
   return swapSorted;
 }
 
-function generateWrongSwapArrays(swapArray, originalArray) {
+function generateWrongSwapArrays(swapArray: number[], originalArray: number[]) {
   const wrongSwapSorted = [];
   for (let k = 0; k < 3; k += 1) {
     const wrongSwap = swapArray[k];
     const array = originalArray.slice();
     let currentSwaps = 0;
-    let swapSorted = [];
+    let swapSorted: number[] = [];
     if (wrongSwap === 0) {
       swapSorted = array.slice();
       wrongSwapSorted[k] = swapSorted;
@@ -54,7 +54,7 @@ function generateWrongSwapArrays(swapArray, originalArray) {
   return wrongSwapSorted;
 }
 
-function selectionSort(array) {
+function selectionSort(array: number[]) {
   const unSortedArray = array.slice();
   let swapCounter = 0;
   for (let i = 0; i < array.length; i += 1) {
@@ -89,7 +89,7 @@ function generateSwap() {
   }
 
   const correctSwapNumber = Math.floor(Math.random() * (sortedArrayObject.swaps + 1 - 1) + 1);
-  const wrongSwaps = [];
+  const wrongSwaps: number[] = [];
   for (let i = 0; i < 3; i += 1) {
     let wrongSwapNumber = Math.floor(Math.random() * (sortedArrayObject.swaps + 1 - 0) + 0);
     while (wrongSwapNumber === correctSwapNumber || wrongSwaps.includes(wrongSwapNumber)) {
@@ -97,11 +97,7 @@ function generateSwap() {
     }
     wrongSwaps[i] = wrongSwapNumber;
   }
-  const rightAnswer = generateCorrectSwapArray(
-    correctSwapNumber,
-    sortedArrayObject.arrayUnsorted,
-    sortedArrayObject.swaps,
-  );
+  const rightAnswer = generateCorrectSwapArray(correctSwapNumber, sortedArrayObject.arrayUnsorted);
   const wrongAnswers = generateWrongSwapArrays(wrongSwaps, sortedArrayObject.arrayUnsorted);
   const answers = {
     right: rightAnswer,

@@ -1,9 +1,9 @@
 import { shuffle } from "d3-array";
 
-function generateCorrectSwapArray(swaps, originalArray) {
+function generateCorrectSwapArray(swaps: number, originalArray: number[]) {
   const array = originalArray.slice();
   let currentSwaps = 0;
-  let swapSorted = [];
+  let swapSorted: number[] = [];
   for (let i = 0; i < array.length; i += 1) {
     for (let j = i; j > 0; j -= 1) {
       if (array[j] < array[j - 1]) {
@@ -25,7 +25,7 @@ function generateCorrectSwapArray(swaps, originalArray) {
   return unsortedArrayObject;
 }
 
-function insertionSort(array) {
+function insertionSort(array: number[]) {
   const currentArray = array;
   const unSortedArray = array.slice();
   let swapCounter = 0;

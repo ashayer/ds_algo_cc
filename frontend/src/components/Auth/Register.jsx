@@ -124,7 +124,6 @@ const Register = () => {
             display: "flex",
             flexDirection: "column",
             marginTop: "15vh",
-            border: "1px solid black",
             alignContent: "center",
           }}
           disableGutters

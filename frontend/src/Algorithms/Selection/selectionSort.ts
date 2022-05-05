@@ -6,7 +6,7 @@ import generateArrayTime from "./selectionArrayTime";
 import generateDragCode from "./selectionDragCode";
 import generateDragSwap from "./selectionDragSwap";
 
-function selectionSortHandler(randomType) {
+function selectionSortHandler(randomType: number) {
   switch (randomType) {
     case 0:
       return generateSwap();
