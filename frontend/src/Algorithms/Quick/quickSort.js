@@ -6,7 +6,7 @@ import generateArrayTime from "./quickArrayTime";
 import generateDragCode from "./quickDragCode";
 import generateDragSwap from "./quickDragSwap";
 
-function quickSortHandler(randomType: number) {
+function quickSortHandler(randomType) {
   switch (randomType) {
     case 0:
       return generateSwap();

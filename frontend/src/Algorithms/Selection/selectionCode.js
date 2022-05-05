@@ -3,7 +3,7 @@ import { shuffle } from "d3-array";
 // get the character number in string or make its own variable
 // generate similar answers with minor incorrect changes
 // put correct string into answer.right and three wrong string into answer.wrong
-function generateEmptyLine(string: string, lineNum: number) {
+function generateEmptyLine(string, lineNum) {
   let emptyString = lineNum.toString();
   for (let i = 0; i < string.length; i += 1) {
     emptyString = `${emptyString} `;

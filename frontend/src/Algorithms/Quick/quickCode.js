@@ -5,7 +5,7 @@ import { shuffle } from "d3-array";
 // put correct string into answer.right and three wrong string into answer.wrong
 
 //! may need to create separate function for
-function generateEmptyLine(string: string, lineNum: number) {
+function generateEmptyLine(string, lineNum) {
   let emptyString = lineNum.toString();
   for (let i = 0; i < string.length; i += 1) {
     emptyString = `${emptyString} `;

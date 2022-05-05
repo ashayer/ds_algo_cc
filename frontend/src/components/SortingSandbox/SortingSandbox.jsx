@@ -12,7 +12,7 @@ import SubArrayBars from "./SubArrayBars";
 import * as codeString from "./AlgoGenerators/AlgoStrings";
 
 const SortingSandbox = () => {
-  const [algorithm, setAlgorithm] = useState(3);
+  const [algorithm, setAlgorithm] = useState(0);
   const arraySize = useRef(10);
   const [arrayElements, setArrayElements] = useState([]);
   const [arrayMax, setArrayMax] = useState(1);
@@ -22,8 +22,7 @@ const SortingSandbox = () => {
   const [varLabelSubArray, setVarLabelSubArray] = useState([[{}]]);
   const [codeHighlight, setCodeHighlight] = useState([]);
   const [step, setStep] = useState(0);
-  //! change to insertion
-  const [pseudoCodeString, setPseudoCodeString] = useState(codeString.quickString);
+  const [pseudoCodeString, setPseudoCodeString] = useState(codeString.insertionString);
 
   const createRandomArray = () => {
     setStep(0);

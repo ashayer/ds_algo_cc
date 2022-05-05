@@ -1,8 +1,8 @@
 import { shuffle } from "d3-array";
-// generate an array that satisfies the best or worst time complexity of selection sort
-// since both are n^2 just display a shuffled array or sorted array 30% of the time
+// generate an array that satisfies the best or worst time complexity of merge sort
+// since both are nlogn just display a shuffled array or sorted array 30% of the time
 
-const checkArraySorted = (array: number[]) => {
+const checkArraySorted = (array) => {
   for (let i = 0; i < array.length - 1; i += 1) {
     if (array[i] > array[i + 1]) {
       return false;
@@ -14,8 +14,8 @@ const checkArraySorted = (array: number[]) => {
 function generateArrayTime() {
   const isSorted = Math.random() < 0.3;
 
-  const rightAnswer = "n\u00B2";
-  const wrongAnswers = shuffle(["logn", "nlogn", "n"]);
+  const rightAnswer = "nlogn";
+  const wrongAnswers = shuffle(["logn", "n", "n\u00B2"]);
   let shuffledArray = shuffle([2, 3, 5, 8, 6, 7]);
   while (checkArraySorted(shuffledArray)) {
     shuffledArray = shuffle([2, 3, 5, 8, 6, 7]);

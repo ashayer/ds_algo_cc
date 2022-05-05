@@ -1,12 +1,12 @@
 import { shuffle } from "d3-array";
 
-function generateCorrectSwapArray(swaps: number, originalArray: number[]) {
+function generateCorrectSwapArray(swaps, originalArray) {
   let currentSwaps = 0;
   const unsortedArray = originalArray.slice();
-  let swapSorted: number[] = [];
+  let swapSorted = [];
   let alreadySliced = false;
 
-  const partitionCorrectSwap = (array: number[], start: number, end: number) => {
+  const partitionCorrectSwap = (array, start, end) => {
     const arr = array;
     const pivot = arr[start];
     let pivotIndex = start;
@@ -38,7 +38,7 @@ function generateCorrectSwapArray(swaps: number, originalArray: number[]) {
     return pivotIndex;
   };
 
-  const quickSortCorrectSwap = (arr: number[], start: number, end: number) => {
+  const quickSortCorrectSwap = (arr, start, end) => {
     // Base case or terminating case
     if (start < end) {
       // Returns pivotIndex
@@ -52,18 +52,11 @@ function generateCorrectSwapArray(swaps: number, originalArray: number[]) {
 
   quickSortCorrectSwap(unsortedArray, 0, unsortedArray.length - 1);
 
-  const unsortedArrayObject = [];
-  for (let i = 0; i < swapSorted.length; i += 1) {
-    unsortedArrayObject.push({
-      lineContent: originalArray[i],
-      correctIdx: swapSorted.findIndex((element) => element === originalArray[i]),
-    });
-  }
-  return unsortedArrayObject;
+  return swapSorted;
 }
 
 let swapCounter = 0;
-function partition(array: number[], start: number, end: number) {
+function partition(array, start, end) {
   const arr = array;
   const pivot = arr[start];
   let pivotIndex = start;
@@ -84,7 +77,7 @@ function partition(array: number[], start: number, end: number) {
 
   return pivotIndex;
 }
-function quickSort(arr: number[], start: number, end: number) {
+function quickSort(arr, start, end) {
   // Base case or terminating case
   if (start < end) {
     // Returns pivotIndex
@@ -96,7 +89,7 @@ function quickSort(arr: number[], start: number, end: number) {
   }
 }
 
-function quickSortCaller(array: number[]) {
+function quickSortCaller(array) {
   const unsortedArray = array.slice();
 
   swapCounter = 0;
@@ -111,7 +104,7 @@ function quickSortCaller(array: number[]) {
   return sortedArrayObject;
 }
 
-function generateDragSwap() {
+function generateSwap() {
   let arrayToBeSorted = shuffle([2, 3, 5, 8, 6, 7]); // array with values that are used
   // returned sorted object with swaps, the sorted array, and original unsorted array
   let sortedArrayObject = quickSortCaller(arrayToBeSorted);
@@ -125,15 +118,20 @@ function generateDragSwap() {
     Math.random() * (sortedArrayObject.swaps + 1 - 2) + 2,
   );
 
-  const originalObject = generateCorrectSwapArray(
-    correctSwapNumber,
-    sortedArrayObject.arrayUnsorted,
-  );
+  const rightAnswer = generateCorrectSwapArray(correctSwapNumber, sortedArrayObject.arrayUnsorted);
+  const wrongAnswers = []; // array to hold the 3 wrongly swapped array
+
+  for (let i = 0; i < 3; i += 1) {
+    wrongAnswers[i] = shuffle([2, 3, 5, 8, 6, 7]);
+    while (wrongAnswers[i] === rightAnswer) {
+      wrongAnswers[i] = shuffle([2, 3, 5, 8, 6, 7]);
+    }
+  }
 
   const answers = {
-    right: "Right",
-    wrong: ["Wrong", "Wrong", "Wrong"],
-    original: originalObject,
+    right: rightAnswer,
+    wrong: wrongAnswers,
+    original: sortedArrayObject.arrayUnsorted,
     swaps: correctSwapNumber,
   };
 
@@ -159,4 +157,4 @@ function generateDragSwap() {
 //   console.log(swapCounterArray);
 // }
 
-export default generateDragSwap;
+export default generateSwap;

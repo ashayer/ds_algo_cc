@@ -1,6 +1,6 @@
 import { shuffle } from "d3-array";
 
-function generateEmptyLine(string: string, lineNum: number) {
+function generateEmptyLine(string, lineNum) {
   let emptyString = lineNum.toString();
   for (let i = 0; i < string.length; i += 1) {
     emptyString = `${emptyString} `;
@@ -36,11 +36,19 @@ function generateCode() {
     },
     {
       right: Line3,
-      wrong: ["if(arr[i] < arr[j-1])", "if(arr[j] < arr[i-1])", "if(arr[i] > arr[j-1])"],
+      wrong: [
+        "if(arr[i] < arr[j-1])",
+        "if(arr[j] < arr[i-1])",
+        "if(arr[i] > arr[j-1])",
+      ],
     },
     {
       right: Line4,
-      wrong: ["swap(arr[i],arr[i-1])", "swap(arr[j],arr[i-1])", "swap(arr[i],arr[j-1])"],
+      wrong: [
+        "swap(arr[i],arr[i-1])",
+        "swap(arr[j],arr[i-1])",
+        "swap(arr[i],arr[j-1])",
+      ],
     },
   ];
 

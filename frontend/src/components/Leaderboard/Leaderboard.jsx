@@ -161,7 +161,7 @@ export default function Leaderboard() {
       );
     }
     setRows(tempUserRows);
-    // setIsloading(false);
+    setIsloading(false);
   };
 
   useEffect(() => {
@@ -186,7 +186,6 @@ export default function Leaderboard() {
               alignItems: "center",
               height: "30vw",
               justifyContent: "center",
-              mt: 10,
             }}
           >
             <CircularProgress size={200} thickness={1.8} sx={{ color: "white" }} />
