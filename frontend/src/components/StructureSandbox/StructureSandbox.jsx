@@ -7,7 +7,7 @@ import LinkedListDisplay from "./Structures/LinkedListDisplay";
 import BinaryTreeDisplay from "./Structures/BinaryTreeDisplay";
 
 const SortingSandbox = () => {
-  const [dataStructure, setDataStructures] = useState(1);
+  const [dataStructure, setDataStructures] = useState(3);
 
   const handleStructureChange = (e) => {
     setDataStructures(e.target.value);
