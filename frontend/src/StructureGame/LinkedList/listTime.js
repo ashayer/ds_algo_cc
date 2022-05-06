@@ -7,10 +7,10 @@ function generateTime() {
   let answers;
   switch (randomText) {
     case 0:
-      questionText = "Time complexity to remove last node in a SLL?";
+      questionText = "Time complexity to remove last node in a SLL without given a pointer?";
       answers = {
         right: "n",
-        wrong: shuffle(["n", "logn", "nlogn"]),
+        wrong: shuffle(["1", "logn", "nlogn"]),
         questionText,
       };
       break;

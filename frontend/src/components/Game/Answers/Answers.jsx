@@ -12,7 +12,7 @@ const Answers = ({
   isAlgo,
 }) => {
   const calculatePoints = () => {
-    const localUser = JSON.parse(sessionStorage.getItem("user"));
+    const localUser = JSON.parse(sessionStorage.getItem("gamestats"));
 
     // if streak over 3 then add 10 to (streak - 3) * 1.67
     let updatePointsBy = 0;
@@ -38,12 +38,12 @@ const Answers = ({
     });
     const calculatedResponseTime = questionEndTime - questionStartTime;
     const updatePointsBy = calculatePoints();
-    const localUser = JSON.parse(sessionStorage.getItem("user"));
+    const localUser = JSON.parse(sessionStorage.getItem("gamestats"));
     localUser.points += updatePointsBy;
     localUser.numCorrect += 1;
     localUser.streak += 1;
     localUser.responseTime += calculatedResponseTime;
-    sessionStorage.setItem("user", JSON.stringify(localUser));
+    sessionStorage.setItem("gamestats", JSON.stringify(localUser));
 
     isHighestStreak();
 
@@ -62,11 +62,11 @@ const Answers = ({
       progress: undefined,
     });
     const calculatedResponseTime = questionEndTime - questionStartTime;
-    const localUser = JSON.parse(sessionStorage.getItem("user"));
+    const localUser = JSON.parse(sessionStorage.getItem("gamestats"));
     localUser.numWrong += 1;
     localUser.streak = 0;
     localUser.responseTime += calculatedResponseTime;
-    sessionStorage.setItem("user", JSON.stringify(localUser));
+    sessionStorage.setItem("gamestats", JSON.stringify(localUser));
 
     startGame();
   };

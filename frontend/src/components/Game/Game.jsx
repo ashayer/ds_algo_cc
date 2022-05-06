@@ -23,6 +23,7 @@ const updatePoints = async (
   userNumWrong,
   userStreak,
 ) => {
+  //! games played
   const response = await axios.patch(`${API_URL}user/${userId}`, {
     points: userPoints,
     responseTime: userResponseTime,
@@ -41,6 +42,8 @@ const Game = () => {
   const questionStartTime = new Date();
 
   const localUser = JSON.parse(sessionStorage.getItem("user"));
+  const sessionGameStats = JSON.parse(sessionStorage.getItem("gamestats"));
+
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState("");
   const [content, setContent] = useState([]);
@@ -55,14 +58,16 @@ const Game = () => {
   const [isAlgo, setIsAlgo] = useState(Math.random() > 0.5);
   const endGame = () => {
     const totalQuestions = localUser.numCorrect + localUser.numWrong;
-    const averageResponseTime = Math.floor(localUser.responseTime / totalQuestions);
-
+    const averageResponseTime = Math.floor(sessionGameStats.responseTime / totalQuestions);
+    const lifeTimeAverage = Math.floor(
+      (localUser.responseTime + averageResponseTime) / localUser.gamesPlayed,
+    );
     updatePoints(
       localUser._id,
-      localUser.points,
-      averageResponseTime,
-      localUser.numCorrect,
-      localUser.numWrong,
+      localUser.points + sessionGameStats.points,
+      lifeTimeAverage,
+      localUser.numCorrect + sessionGameStats.numCorrect,
+      localUser.numWrong + sessionGameStats.numWrong,
       highestStreak,
     );
     setGameStarted(false);
@@ -138,16 +143,16 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    const tempIsAlgo = true; // !  change to 0.5
-    // const tempIsAlgo = Math.random() > 0.5; // !  change to 0.5
+    // const tempIsAlgo = true; // !  change to 0.5
+    const tempIsAlgo = Math.random() > 0.5; // !  change to 0.5
 
     setIsAlgo(tempIsAlgo);
 
     // if question is for sorting algorithms
     if (tempIsAlgo) {
       const topicIndex = Math.floor(Math.random() * 4);
-      // const typeIndex = Math.floor(Math.random() * 7);
-      const typeIndex = 5;
+      const typeIndex = Math.floor(Math.random() * 7);
+      // const typeIndex = 5;
 
       setQuestionTopic(algorithmInfoArray[topicIndex].name);
       const gameObject = questionHandlerSort(topicIndex, typeIndex);
@@ -190,10 +195,14 @@ const Game = () => {
     createRandomGame();
     if (!gameStarted) {
       highestStreak = 0;
-      localUser.numCorrect = 0;
-      localUser.numWrong = 0;
-      localUser.streak = 0;
-      localUser.responseTime = 0;
+      const gameStats = {
+        numCorrect: 0,
+        numWrong: 0,
+        responseTime: 0,
+        streak: 0,
+        points: 0,
+      };
+      sessionStorage.setItem("gamestats", JSON.stringify(gameStats));
       sessionStorage.setItem("user", JSON.stringify(localUser));
       setGameStarted(true);
     }
@@ -218,10 +227,10 @@ const Game = () => {
     });
     const calculatedResponseTime = questionEndTime - questionStartTime;
 
-    localUser.numWrong += 1;
-    localUser.streak = 0;
-    localUser.responseTime += calculatedResponseTime;
-    sessionStorage.setItem("user", JSON.stringify(localUser));
+    sessionGameStats.numWrong += 1;
+    sessionGameStats.streak = 0;
+    sessionGameStats.responseTime += calculatedResponseTime;
+    sessionStorage.setItem("gamestats", JSON.stringify(localUser));
     createRandomGame();
   };
 
