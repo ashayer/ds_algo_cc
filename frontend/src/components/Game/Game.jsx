@@ -284,7 +284,7 @@ const Game = () => {
         <Paper sx={{ width: "100vw" }}>
           <Grid container sx={{ justifyContent: "space-between", alignItems: "center" }}>
             <Grid item md={3} xs={10}>
-              <UserStatsTable localUser={localUser} />
+              <UserStatsTable localUser={sessionGameStats} />
             </Grid>
             <Grid item md={7} xs={12} order={{ xs: 3, sm: 3, md: 2 }} sx={{ textAlign: "center" }}>
               <Question question={question} />
