@@ -92,6 +92,7 @@ export const updatePoints = asyncHandler(async (req, res) => {
     streak: req.body.streak,
     numCorrect: req.body.numCorrect,
     numWrong: req.body.numWrong,
+    gamesPlayed: req.body.gamesPlayed,
   });
 
   if (update) {

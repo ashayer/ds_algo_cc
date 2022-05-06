@@ -22,6 +22,7 @@ const updatePoints = async (
   userNumCorrect,
   userNumWrong,
   userStreak,
+  userGamesPlayed,
 ) => {
   //! games played
   const response = await axios.patch(`${API_URL}user/${userId}`, {
@@ -30,6 +31,7 @@ const updatePoints = async (
     streak: userStreak,
     numCorrect: userNumCorrect,
     numWrong: userNumWrong,
+    gamesPlayed: userGamesPlayed,
   });
 
   return response.data;
@@ -57,19 +59,28 @@ const Game = () => {
   const contentObject = useRef([{}]);
   const [isAlgo, setIsAlgo] = useState(Math.random() > 0.5);
   const endGame = () => {
-    const totalQuestions = localUser.numCorrect + localUser.numWrong;
+    const totalQuestions = sessionGameStats.numCorrect + sessionGameStats.numWrong;
     const averageResponseTime = Math.floor(sessionGameStats.responseTime / totalQuestions);
+    localUser.gamesPlayed += 1;
     const lifeTimeAverage = Math.floor(
       (localUser.responseTime + averageResponseTime) / localUser.gamesPlayed,
     );
+    localUser.points += sessionGameStats.points;
+    localUser.numCorrect += sessionGameStats.numCorrect;
+    localUser.numWrong += sessionGameStats.numWrong;
+    localUser.responseTime = lifeTimeAverage;
+    sessionStorage.setItem("user", JSON.stringify(localUser));
+
     updatePoints(
       localUser._id,
-      localUser.points + sessionGameStats.points,
+      localUser.points,
       lifeTimeAverage,
-      localUser.numCorrect + sessionGameStats.numCorrect,
-      localUser.numWrong + sessionGameStats.numWrong,
+      localUser.numCorrect,
+      localUser.numWrong,
       highestStreak,
+      localUser.gamesPlayed,
     );
+
     setGameStarted(false);
   };
 
@@ -143,8 +154,8 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    // const tempIsAlgo = true; // !  change to 0.5
-    const tempIsAlgo = Math.random() > 0.5; // !  change to 0.5
+    const tempIsAlgo = false; // !  change to 0.5
+    // const tempIsAlgo = Math.random() > 0.5; // !  change to 0.5
 
     setIsAlgo(tempIsAlgo);
 
@@ -230,7 +241,7 @@ const Game = () => {
     sessionGameStats.numWrong += 1;
     sessionGameStats.streak = 0;
     sessionGameStats.responseTime += calculatedResponseTime;
-    sessionStorage.setItem("gamestats", JSON.stringify(localUser));
+    sessionStorage.setItem("gamestats", JSON.stringify(sessionGameStats));
     createRandomGame();
   };
 
