@@ -8,10 +8,46 @@ import { shuffle } from "d3-array";
  4. time to add node to a leaf
 */
 function generateTime() {
-  const answers = {
-    right: "logn",
-    wrong: shuffle(["n", "nlogn", "1"]),
-  };
+  const randomText = Math.floor(Math.random() * 4);
+
+  let questionText = "";
+  let answers;
+  switch (randomText) {
+    case 0:
+      questionText = "Time complexity to delete head of a queue";
+      answers = {
+        right: "1",
+        wrong: shuffle(["n", "logn", "nlogn"]),
+        questionText,
+      };
+      break;
+    case 1:
+      questionText = "Time complexity to delete tail of a queue";
+      answers = {
+        right: "n",
+        wrong: shuffle(["1", "logn", "nlogn"]),
+        questionText,
+      };
+      break;
+    case 2:
+      questionText = "What is the time it takes to add a node in a BST?";
+      answers = {
+        right: "n\u00B2",
+        wrong: shuffle(["n", "logn", "nlogn"]),
+        questionText,
+      };
+      break;
+    case 3:
+      questionText = "What is the time it takes to add a LEAF node in a BST?";
+      answers = {
+        right: "n\u00B2",
+        wrong: shuffle(["n", "logn", "nlogn"]),
+        questionText,
+      };
+      break;
+    default:
+      break;
+  }
 
   return answers;
 }

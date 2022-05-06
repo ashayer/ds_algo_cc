@@ -7,7 +7,7 @@ function generateTime() {
   let answers;
   switch (randomText) {
     case 0:
-      questionText = "Time complexity to delete head of queue";
+      questionText = "Time complexity to delete head of a queue";
       answers = {
         right: "1",
         wrong: shuffle(["n", "logn", "nlogn"]),
@@ -15,25 +15,25 @@ function generateTime() {
       };
       break;
     case 1:
-      questionText = "What is the time it takes to delete any node in a BST?";
+      questionText = "Time complexity to delete tail of a queue";
       answers = {
-        right: "n\u00B2",
-        wrong: shuffle(["n", "logn", "nlogn"]),
+        right: "n",
+        wrong: shuffle(["1", "logn", "nlogn"]),
         questionText,
       };
       break;
     case 2:
-      questionText = "What is the time it takes to add a node in a BST?";
+      questionText = "Time complexity to dequeue";
       answers = {
-        right: "n\u00B2",
+        right: "1",
         wrong: shuffle(["n", "logn", "nlogn"]),
         questionText,
       };
       break;
     case 3:
-      questionText = "What is the time it takes to add a LEAF node in a BST?";
+      questionText = "Time complexity to enqueue";
       answers = {
-        right: "n\u00B2",
+        right: "1",
         wrong: shuffle(["n", "logn", "nlogn"]),
         questionText,
       };
