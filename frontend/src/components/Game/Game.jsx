@@ -3,7 +3,8 @@ import { Grid, Button, Container, Paper, Grow } from "@mui/material/";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { toast } from "react-toastify";
 import axios from "axios";
-import questionHandler from "../../Algorithms/handler";
+import questionHandlerSort from "../../Algorithms/handler";
+import questionHandlerGame from "../../StructureGame/handler";
 import algorithmInfoArray from "../../Algorithms/infoArray";
 import Navbar from "../Navbar/Navbar";
 import Answers from "./Answers/Answers";
@@ -32,7 +33,6 @@ const updatePoints = async (
   return response.data;
 };
 
-//! countdown timer causing memory leak
 let highestStreak = 0;
 const Game = () => {
   const timeLeft = 1;
@@ -126,28 +126,47 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
+    const isAlgo = Math.random() > 0.5;
+    // if question is for sorting algorithms
+    if (isAlgo) {
+      const topicIndex = Math.floor(Math.random() * 4);
+      const typeIndex = Math.floor(Math.random() * 7);
 
-    const topicIndex = Math.floor(Math.random() * 4);
-    const typeIndex = Math.floor(Math.random() * 7);
-
-    // const topicIndex = Math.floor(Math.random() * 4);
-    // const typeIndex = 6;
-
-    setQuestionTopic(algorithmInfoArray[topicIndex].name);
-    const gameObject = questionHandler(topicIndex, typeIndex);
-    const answerOptions = [];
-    let wrongIndex = 0;
-    for (let i = 0; i < 4; i += 1) {
-      if (i === correctIndex) {
-        answerOptions[i] = [true, gameObject.right];
-      } else {
-        answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
-        wrongIndex += 1;
+      setQuestionTopic(algorithmInfoArray[topicIndex].name);
+      const gameObject = questionHandlerSort(topicIndex, typeIndex);
+      const answerOptions = [];
+      let wrongIndex = 0;
+      for (let i = 0; i < 4; i += 1) {
+        if (i === correctIndex) {
+          answerOptions[i] = [true, gameObject.right];
+        } else {
+          answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
+          wrongIndex += 1;
+        }
       }
+      setQuestionType(typeIndex);
+      setAnswers(answerOptions);
+      setObject(gameObject);
+    } else {
+      const topicIndex = Math.floor(Math.random() * 4);
+      const typeIndex = Math.floor(Math.random() * 7);
+
+      setQuestionTopic(algorithmInfoArray[topicIndex].name);
+      const gameObject = questionHandlerGame(topicIndex, typeIndex);
+      const answerOptions = [];
+      let wrongIndex = 0;
+      for (let i = 0; i < 4; i += 1) {
+        if (i === correctIndex) {
+          answerOptions[i] = [true, gameObject.right];
+        } else {
+          answerOptions[i] = [false, gameObject.wrong[wrongIndex]];
+          wrongIndex += 1;
+        }
+      }
+      setQuestionType(typeIndex);
+      setAnswers(answerOptions);
+      setObject(gameObject);
     }
-    setQuestionType(typeIndex);
-    setAnswers(answerOptions);
-    setObject(gameObject);
   };
 
   const startGame = () => {

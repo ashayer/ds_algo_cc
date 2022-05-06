@@ -3,7 +3,7 @@ import selectionSortHandler from "./Selection/selectionSort";
 import mergeSortHandler from "./Merge/mergeSort";
 import quickSortHandler from "./Quick/quickSort";
 
-function questionHandler(randomTopic, randomType) {
+function questionHandlerSort(randomTopic, randomType) {
   switch (randomTopic) {
     case 0:
       return insertionSortHandler(randomType);
@@ -18,4 +18,4 @@ function questionHandler(randomTopic, randomType) {
   }
 }
 
-export default questionHandler;
+export default questionHandlerSort;
