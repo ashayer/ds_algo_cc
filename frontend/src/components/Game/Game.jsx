@@ -138,14 +138,16 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    const tempIsAlgo = Math.random() > 0.5;
-    setIsAlgo(tempIsAlgo); // !  change to 0.5
-    // isAlgo = false; //!  change to 0.5
+    const tempIsAlgo = true; // !  change to 0.5
+    // const tempIsAlgo = Math.random() > 0.5; // !  change to 0.5
+
+    setIsAlgo(tempIsAlgo);
 
     // if question is for sorting algorithms
     if (tempIsAlgo) {
       const topicIndex = Math.floor(Math.random() * 4);
-      const typeIndex = Math.floor(Math.random() * 7);
+      // const typeIndex = Math.floor(Math.random() * 7);
+      const typeIndex = 5;
 
       setQuestionTopic(algorithmInfoArray[topicIndex].name);
       const gameObject = questionHandlerSort(topicIndex, typeIndex);

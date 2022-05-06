@@ -93,7 +93,13 @@ const Content = ({ content, contentObject, questionTopic, questionType, isAlgo }
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="1">
             {(provided) => (
-              <Box maxWidth="sm" {...provided.droppableProps} ref={provided.innerRef}>
+              <Box
+                direction="column"
+                maxWidth="sm"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                sx={{ justifyContent: "center", border: "1px solid black" }}
+              >
                 {contentObject.current?.map((value, idx) => (
                   <Draggable draggableId={idx.toString()} index={idx} key={idx}>
                     {(provided) => (
@@ -104,11 +110,9 @@ const Content = ({ content, contentObject, questionTopic, questionType, isAlgo }
                         variant="h5"
                         sx={{
                           backgroundColor: "white",
-                          margin: "10px",
                           "&:hover": {
                             color: "red",
                           },
-                          transition: "all 0.2s ease",
                         }}
                       >
                         {`${value.lineContent}`}
