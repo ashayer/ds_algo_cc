@@ -92,7 +92,6 @@ const QueueDisplay = () => {
         sx={{
           alignItems: "center",
           mt: 1,
-          p: 1,
           justifyContent: "start",
           width: "95w",
           marginLeft: "auto",
@@ -103,7 +102,7 @@ const QueueDisplay = () => {
           <Grid
             item
             key={generateKey(idx)}
-            lg={1}
+            xs={1.2}
             sx={{
               border: "1px solid black",
               height: "20vh",
@@ -119,7 +118,7 @@ const QueueDisplay = () => {
             ) : (
               <Typography variant="h3">{"\u00A0"}</Typography>
             )}
-            <Typography variant="h3">{idx}</Typography>
+            <Typography variant="h5">{idx}</Typography>
           </Grid>
         ))}
       </Grid>
