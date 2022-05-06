@@ -1,6 +1,6 @@
 import generateTime from "./treeTime";
 
-function quickSortHandler(randomType) {
+function treeHandler(randomType) {
   switch (randomType) {
     case 0:
       return generateTime();
@@ -9,4 +9,4 @@ function quickSortHandler(randomType) {
   }
 }
 
-export default quickSortHandler;
+export default treeHandler;

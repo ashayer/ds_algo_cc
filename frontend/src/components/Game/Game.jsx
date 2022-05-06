@@ -4,11 +4,12 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { toast } from "react-toastify";
 import axios from "axios";
 import questionHandlerSort from "../../Algorithms/handler";
-import questionHandlerGame from "../../StructureGame/handler";
+import questionHandlerStructure from "../../StructureGame/handler";
 import algorithmInfoArray from "../../Algorithms/infoArray";
 import Navbar from "../Navbar/Navbar";
 import Answers from "./Answers/Answers";
 import Content from "./Content/Content";
+// import createQuestionText from "./Question/dataStructureTime";
 import Question from "./Question/Question";
 import UserStatsTable from "./UserStatsTable/UserStatsTable";
 
@@ -46,11 +47,12 @@ const Game = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [questionTopic, setQuestionTopic] = useState("");
   const [questionType, setQuestionType] = useState(0);
+  // const [questionTopicNum, setQuestionTopicNum] = useState(0);
   const [timer, setTimer] = useState(timeLeft);
   const [object, setObject] = useState({}); // ! change name to something more descriptive
   // const [contentObject, setContentObject] = useState([{}]);
   const contentObject = useRef([{}]);
-
+  const isAlgo = useRef(false);
   const endGame = () => {
     const totalQuestions = localUser.numCorrect + localUser.numWrong;
     const averageResponseTime = Math.floor(localUser.responseTime / totalQuestions);
@@ -66,69 +68,81 @@ const Game = () => {
     setGameStarted(false);
   };
 
-  const createQuestion = useCallback(() => {
-    switch (questionType) {
-      case 0:
-        setTimer(30);
-        setContent(object.original);
-        if (questionTopic === "Quick") {
-          setQuestion(
-            `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps using leftmost as pivot`,
-          );
-        } else {
-          setQuestion(
-            `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps`,
-          );
-        }
-        break;
-      case 1:
-        setTimer(15);
-        setContent([questionTopic]);
-        setQuestion("What is the time complexity of the algorithm below?");
-        break;
-      case 2:
-        setTimer(15);
-        setContent([questionTopic]);
-        setQuestion("What is the space complexity of the algorithm below?");
-        break;
-      case 3:
-        setTimer(20);
-        setContent([object.original]);
-        setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
-        break;
-      case 4:
-        setTimer(15);
-        setContent(object.original);
-        setQuestion(`What is the time complexity using ${questionTopic} sort to sort the array`);
-        break;
-      case 5:
-        setTimer(25);
-        // setContentObject(object.original);
-        contentObject.current = object.original;
-        setQuestion(`Move pseudo-code into correct order for ${questionTopic} sort`);
-        break;
-      case 6:
-        setTimer(35);
-        contentObject.current = object.original;
+  const createQuestionAlgo = useCallback(() => {
+    if (isAlgo.current) {
+      switch (questionType) {
+        case 0:
+          setTimer(30);
+          setContent(object.original);
+          if (questionTopic === "Quick") {
+            setQuestion(
+              `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps using leftmost as pivot`,
+            );
+          } else {
+            setQuestion(
+              `Using ${questionTopic} sort, what is the state of the array after ${object?.swaps} swaps`,
+            );
+          }
+          break;
+        case 1:
+          setTimer(15);
+          setContent([questionTopic]);
+          setQuestion("What is the time complexity of the algorithm below?");
+          break;
+        case 2:
+          setTimer(15);
+          setContent([questionTopic]);
+          setQuestion("What is the space complexity of the algorithm below?");
+          break;
+        case 3:
+          setTimer(20);
+          setContent([object.original]);
+          setQuestion(`Fill in the missing pseudo-code of ${questionTopic} sort`);
+          break;
+        case 4:
+          setTimer(15);
+          setContent(object.original);
+          setQuestion(`What is the time complexity using ${questionTopic} sort to sort the array`);
+          break;
+        case 5:
+          setTimer(25);
+          // setContentObject(object.original);
+          contentObject.current = object.original;
+          setQuestion(`Move pseudo-code into correct order for ${questionTopic} sort`);
+          break;
+        case 6:
+          setTimer(35);
+          contentObject.current = object.original;
 
-        if (questionTopic === "Quick") {
-          setQuestion(`Using ${questionTopic} sort move the array 
-            into the state after ${object?.swaps} swaps using left most as pivot`);
-        } else {
-          setQuestion(`Using ${questionTopic} sort move the array 
-            into the state after ${object?.swaps} swaps`);
-        }
-        break;
-      default:
-        break;
+          if (questionTopic === "Quick") {
+            setQuestion(`Using ${questionTopic} sort move the array 
+              into the state after ${object?.swaps} swaps using left most as pivot`);
+          } else {
+            setQuestion(`Using ${questionTopic} sort move the array 
+              into the state after ${object?.swaps} swaps`);
+          }
+          break;
+        default:
+          break;
+      }
+    } else {
+      switch (questionType) {
+        case 0:
+          setTimer(15);
+          break;
+        default:
+          break;
+      }
     }
-  }, [object.original, questionTopic, questionType]);
+  }, [object.original, questionTopic, questionType, isAlgo]);
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    const isAlgo = Math.random() > 0.5;
+    // const isAlgo.current = Math.random() > 0.5; // !  change to 0.5
+    isAlgo.current = false; //!  change to 0.5
+
     // if question is for sorting algorithms
-    if (isAlgo) {
+    if (isAlgo.current) {
       const topicIndex = Math.floor(Math.random() * 4);
       const typeIndex = Math.floor(Math.random() * 7);
 
@@ -148,11 +162,10 @@ const Game = () => {
       setAnswers(answerOptions);
       setObject(gameObject);
     } else {
-      const topicIndex = Math.floor(Math.random() * 4);
-      const typeIndex = Math.floor(Math.random() * 7);
-
-      setQuestionTopic(algorithmInfoArray[topicIndex].name);
-      const gameObject = questionHandlerGame(topicIndex, typeIndex);
+      const topicIndex = 0;
+      const typeIndex = 0;
+      // setQuestionTopicNum(topicIndex);
+      const gameObject = questionHandlerStructure(topicIndex, typeIndex);
       const answerOptions = [];
       let wrongIndex = 0;
       for (let i = 0; i < 4; i += 1) {
@@ -163,6 +176,7 @@ const Game = () => {
           wrongIndex += 1;
         }
       }
+      setQuestion(gameObject?.questionText);
       setQuestionType(typeIndex);
       setAnswers(answerOptions);
       setObject(gameObject);
@@ -238,8 +252,8 @@ const Game = () => {
   };
 
   useEffect(() => {
-    createQuestion();
-  }, [createQuestion]);
+    createQuestionAlgo();
+  }, [createQuestionAlgo]);
 
   return gameStarted ? (
     <Grow in>
@@ -295,6 +309,7 @@ const Game = () => {
               questionType={questionType}
               questionTopic={questionTopic}
               object={object}
+              isAlgo={isAlgo}
             />
           </Container>
         </Paper>
@@ -307,6 +322,7 @@ const Game = () => {
             questionStartTime={questionStartTime}
             isHighestStreak={isHighestStreak}
             checkLineOrder={checkLineOrder}
+            isAlgo={isAlgo}
           />
         </Paper>
       </Grid>

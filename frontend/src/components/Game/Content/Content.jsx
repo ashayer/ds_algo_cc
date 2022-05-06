@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { Grid, Typography, Container, Box } from "@mui/material/";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-const Content = ({ content, contentObject, questionTopic, questionType }) => {
+const Content = ({ content, contentObject, questionTopic, questionType, isAlgo }) => {
   const ContentBars = () => {
     return (
       <Grid container sx={{ position: "relative", justifyContent: "center" }}>
@@ -178,8 +178,21 @@ const Content = ({ content, contentObject, questionTopic, questionType }) => {
 
   return (
     <Box>
-      {questionType === 0 ? (
+      {isAlgo.current && questionType === 0 ? (
         <ContentBars />
+      ) : questionType === 1 || questionType === 2 ? (
+        <ContentText />
+      ) : questionType === 3 ? (
+        <ContentCode />
+      ) : questionType === 4 ? (
+        <ContentBars />
+      ) : questionType === 5 ? (
+        <ContentDragCode />
+      ) : questionType === 6 ? (
+        <ContentDragSwap />
+      ) : null}
+      {!isAlgo.current && questionType === 0 ? (
+        <ContentText />
       ) : questionType === 1 || questionType === 2 ? (
         <ContentText />
       ) : questionType === 3 ? (

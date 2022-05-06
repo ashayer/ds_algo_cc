@@ -9,6 +9,7 @@ const Answers = ({
   questionStartTime,
   isHighestStreak,
   checkLineOrder,
+  isAlgo,
 }) => {
   const calculatePoints = () => {
     const localUser = JSON.parse(sessionStorage.getItem("user"));
@@ -194,8 +195,19 @@ const Answers = ({
 
   return (
     <Grid container sx={{ align: "center", justifyContent: "center", alignContent: "center" }}>
-      {questionType === 0 ? (
+      {isAlgo.current && questionType === 0 ? (
         <AnswerBars />
+      ) : questionType > 0 && questionType < 4 ? (
+        <AnswerText />
+      ) : questionType === 4 ? (
+        <AnswerText />
+      ) : questionType === 5 ? (
+        <AnswerDragCode />
+      ) : questionType === 6 ? (
+        <AnswerDragSwap />
+      ) : null}
+      {!isAlgo.current && questionType === 0 ? (
+        <AnswerText />
       ) : questionType > 0 && questionType < 4 ? (
         <AnswerText />
       ) : questionType === 4 ? (

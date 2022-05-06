@@ -1,6 +1,6 @@
 import generateTime from "./queueTime";
 
-function insertionSortHandler(randomType) {
+function queueHandler(randomType) {
   switch (randomType) {
     case 0:
       return generateTime();
@@ -9,4 +9,4 @@ function insertionSortHandler(randomType) {
   }
 }
 
-export default insertionSortHandler;
+export default queueHandler;
