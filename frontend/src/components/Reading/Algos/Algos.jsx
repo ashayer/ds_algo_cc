@@ -12,6 +12,7 @@ const Algos = () => {
   const localUser = JSON.parse(sessionStorage.getItem("user"));
   const [sectionNum, setSectionNum] = useState(0); //! change to 0
   const [sectionArray, setSectionArray] = useState(localUser.algoReading);
+  const [isLoading, setIsLoading] = useState(false);
 
   const nextSection = () => {
     if (sectionNum < sectionArray.length - 1) setSectionNum(sectionNum + 1);
@@ -22,11 +23,17 @@ const Algos = () => {
   };
 
   const updateLocalUser = async (array) => {
-    await axios.patch(`${API_URL}updateAlgo/${localUser._id}`, {
-      algoReading: array,
-    });
-    localUser.algoReading = array;
-    sessionStorage.setItem("user", JSON.stringify(localUser));
+    try {
+      const response = await axios.patch(`${API_URL}updateAlgo/${localUser._id}`, {
+        algoReading: array,
+      });
+      localUser.algoReading = array;
+      sessionStorage.setItem("user", JSON.stringify(localUser));
+      return response;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   };
 
   return (
@@ -37,6 +44,8 @@ const Algos = () => {
         sectionArray={sectionArray}
         setSectionArray={setSectionArray}
         updateLocalUser={updateLocalUser}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
       <Grid
         container

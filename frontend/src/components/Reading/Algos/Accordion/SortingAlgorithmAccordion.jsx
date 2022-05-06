@@ -8,6 +8,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Accordion,
+  CircularProgress,
 } from "@mui/material";
 import { toast } from "react-toastify";
 import CloseIcon from "@mui/icons-material/Close";
@@ -26,6 +27,8 @@ const SortingAlgorithmAccordion = ({
   sectionArray,
   setSectionArray,
   updateLocalUser,
+  isLoading,
+  setIsLoading,
 }) => {
   const [currentSubSection, setCurrentSubSection] = useState("");
   const [open, setOpen] = useState(false);
@@ -42,6 +45,7 @@ const SortingAlgorithmAccordion = ({
   }
 
   const completedAccordion = async (index) => {
+    setIsLoading(true);
     sectionArray[sectionNum].subsections[index].completed = true;
     const newSectionArrays = sectionArray.slice();
     setSectionArray(newSectionArrays);
@@ -51,9 +55,21 @@ const SortingAlgorithmAccordion = ({
       const temp = sectionArray.slice();
       setSectionArray(temp);
     }
+    // eslint-disable-next-line no-promise-executor-return
+    await new Promise((r) => setTimeout(r, 1500));
+    setIsLoading(false);
     updateLocalUser(sectionArray);
     handleAccordClick(sectionArray[sectionNum].subsections[index].name);
     handleClose();
+    toast.success("Passed!", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const checkAnswers = () => {
@@ -76,15 +92,6 @@ const SortingAlgorithmAccordion = ({
         progress: undefined,
       });
     } else {
-      toast.success("Passed!", {
-        position: "bottom-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
       completedAccordion(subsectionIndexRef.current);
     }
   };
@@ -136,9 +143,13 @@ const SortingAlgorithmAccordion = ({
             sectionNum={sectionNum}
           />
 
-          <Button onClick={() => checkAnswers()} variant="contained">
-            Submit
-          </Button>
+          {isLoading ? (
+            <CircularProgress />
+          ) : (
+            <Button onClick={() => checkAnswers()} variant="contained">
+              Submit
+            </Button>
+          )}
         </Box>
       </Modal>
 
