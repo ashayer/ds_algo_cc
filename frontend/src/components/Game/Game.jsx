@@ -52,7 +52,7 @@ const Game = () => {
   const [object, setObject] = useState({}); // ! change name to something more descriptive
   // const [contentObject, setContentObject] = useState([{}]);
   const contentObject = useRef([{}]);
-  const isAlgo = useRef(false);
+  const [isAlgo, setIsAlgo] = useState(Math.random() > 0.5);
   const endGame = () => {
     const totalQuestions = localUser.numCorrect + localUser.numWrong;
     const averageResponseTime = Math.floor(localUser.responseTime / totalQuestions);
@@ -69,7 +69,7 @@ const Game = () => {
   };
 
   const createQuestionAlgo = useCallback(() => {
-    if (isAlgo.current) {
+    if (isAlgo) {
       switch (questionType) {
         case 0:
           setTimer(30);
@@ -138,11 +138,12 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    // const isAlgo.current = Math.random() > 0.5; // !  change to 0.5
-    isAlgo.current = false; //!  change to 0.5
+    const tempIsAlgo = Math.random() > 0.5;
+    setIsAlgo(tempIsAlgo); // !  change to 0.5
+    // isAlgo = false; //!  change to 0.5
 
     // if question is for sorting algorithms
-    if (isAlgo.current) {
+    if (tempIsAlgo) {
       const topicIndex = Math.floor(Math.random() * 4);
       const typeIndex = Math.floor(Math.random() * 7);
 
@@ -162,7 +163,7 @@ const Game = () => {
       setAnswers(answerOptions);
       setObject(gameObject);
     } else {
-      const topicIndex = 0;
+      const topicIndex = 2;
       const typeIndex = 0;
       // setQuestionTopicNum(topicIndex);
       const gameObject = questionHandlerStructure(topicIndex, typeIndex);

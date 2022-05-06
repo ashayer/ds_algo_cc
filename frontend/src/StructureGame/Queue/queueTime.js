@@ -7,7 +7,7 @@ function generateTime() {
   let answers;
   switch (randomText) {
     case 0:
-      questionText = "Time complexity to delete head of a queue";
+      questionText = "Time complexity to delete head of a queue?";
       answers = {
         right: "1",
         wrong: shuffle(["n", "logn", "nlogn"]),
@@ -15,7 +15,7 @@ function generateTime() {
       };
       break;
     case 1:
-      questionText = "Time complexity to delete tail of a queue";
+      questionText = "Time complexity to delete tail of a queue?";
       answers = {
         right: "n",
         wrong: shuffle(["1", "logn", "nlogn"]),
@@ -23,7 +23,7 @@ function generateTime() {
       };
       break;
     case 2:
-      questionText = "Time complexity to dequeue";
+      questionText = "Time complexity to dequeue?";
       answers = {
         right: "1",
         wrong: shuffle(["n", "logn", "nlogn"]),
@@ -31,7 +31,7 @@ function generateTime() {
       };
       break;
     case 3:
-      questionText = "Time complexity to enqueue";
+      questionText = "Time complexity to enqueue?";
       answers = {
         right: "1",
         wrong: shuffle(["n", "logn", "nlogn"]),

@@ -176,36 +176,43 @@ const Content = ({ content, contentObject, questionTopic, questionType, isAlgo }
     );
   };
 
-  return (
-    <Box>
-      {isAlgo.current && questionType === 0 ? (
-        <ContentBars />
-      ) : questionType === 1 || questionType === 2 ? (
-        <ContentText />
-      ) : questionType === 3 ? (
-        <ContentCode />
-      ) : questionType === 4 ? (
-        <ContentBars />
-      ) : questionType === 5 ? (
-        <ContentDragCode />
-      ) : questionType === 6 ? (
-        <ContentDragSwap />
-      ) : null}
-      {!isAlgo.current && questionType === 0 ? (
-        <ContentText />
-      ) : questionType === 1 || questionType === 2 ? (
-        <ContentText />
-      ) : questionType === 3 ? (
-        <ContentCode />
-      ) : questionType === 4 ? (
-        <ContentBars />
-      ) : questionType === 5 ? (
-        <ContentDragCode />
-      ) : questionType === 6 ? (
-        <ContentDragSwap />
-      ) : null}
-    </Box>
-  );
+  if (isAlgo) {
+    return (
+      <Box>
+        {questionType === 0 ? (
+          <ContentBars />
+        ) : questionType === 1 || questionType === 2 ? (
+          <ContentText />
+        ) : questionType === 3 ? (
+          <ContentCode />
+        ) : questionType === 4 ? (
+          <ContentBars />
+        ) : questionType === 5 ? (
+          <ContentDragCode />
+        ) : questionType === 6 ? (
+          <ContentDragSwap />
+        ) : null}
+      </Box>
+    );
+  }
+  // return (
+  //   <Box>
+  //     {questionType === 0 ? (
+  //       <ContentText />
+  //     ) : questionType === 1 || questionType === 2 ? (
+  //       <ContentText />
+  //     ) : questionType === 3 ? (
+  //       <ContentCode />
+  //     ) : questionType === 4 ? (
+  //       <ContentBars />
+  //     ) : questionType === 5 ? (
+  //       <ContentDragCode />
+  //     ) : questionType === 6 ? (
+  //       <ContentDragSwap />
+  //     ) : null}
+  //   </Box>
+  // );
+  return null;
 };
 
 export default Content;

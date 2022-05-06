@@ -1,40 +1,32 @@
 import { shuffle } from "d3-array";
 
 function generateTime() {
-  const randomText = Math.floor(Math.random() * 4);
+  const randomText = Math.floor(Math.random() * 3);
 
   let questionText = "";
   let answers;
   switch (randomText) {
     case 0:
-      questionText = "Time complexity to delete head of a queue";
+      questionText = "Time complexity to remove last node in a SLL?";
+      answers = {
+        right: "n",
+        wrong: shuffle(["n", "logn", "nlogn"]),
+        questionText,
+      };
+      break;
+    case 1:
+      questionText = "Time complexity to remove a node knowing its pointer in a DLL?";
       answers = {
         right: "1",
         wrong: shuffle(["n", "logn", "nlogn"]),
         questionText,
       };
       break;
-    case 1:
-      questionText = "Time complexity to delete tail of a queue";
+    case 2:
+      questionText = "Time complexity to search for a node in a SLL";
       answers = {
         right: "n",
         wrong: shuffle(["1", "logn", "nlogn"]),
-        questionText,
-      };
-      break;
-    case 2:
-      questionText = "What is the time it takes to add a node in a BST?";
-      answers = {
-        right: "n\u00B2",
-        wrong: shuffle(["n", "logn", "nlogn"]),
-        questionText,
-      };
-      break;
-    case 3:
-      questionText = "What is the time it takes to add a LEAF node in a BST?";
-      answers = {
-        right: "n\u00B2",
-        wrong: shuffle(["n", "logn", "nlogn"]),
         questionText,
       };
       break;

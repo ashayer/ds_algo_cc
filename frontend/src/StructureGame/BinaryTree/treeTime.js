@@ -1,53 +1,33 @@
 import { shuffle } from "d3-array";
-/*
- ask question about the time complexity of various operations of binary tree
 
- 1. time it takes to delete root node
- 2. time it takes to remove any node
- 3. time to add node to root
- 4. time to add node to a leaf
-*/
 function generateTime() {
   const randomText = Math.floor(Math.random() * 4);
 
   let questionText = "";
-  let answers;
   switch (randomText) {
     case 0:
-      questionText = "Time complexity to delete head of a queue";
-      answers = {
-        right: "1",
-        wrong: shuffle(["n", "logn", "nlogn"]),
-        questionText,
-      };
+      questionText = "Time complexity to delete root node of a BST?";
+
       break;
     case 1:
-      questionText = "Time complexity to delete tail of a queue";
-      answers = {
-        right: "n",
-        wrong: shuffle(["1", "logn", "nlogn"]),
-        questionText,
-      };
+      questionText = "Time complexity to remove any node in a BST?";
+
       break;
     case 2:
-      questionText = "What is the time it takes to add a node in a BST?";
-      answers = {
-        right: "n\u00B2",
-        wrong: shuffle(["n", "logn", "nlogn"]),
-        questionText,
-      };
+      questionText = "Time complexity to add a node in a BST?";
+
       break;
     case 3:
-      questionText = "What is the time it takes to add a LEAF node in a BST?";
-      answers = {
-        right: "n\u00B2",
-        wrong: shuffle(["n", "logn", "nlogn"]),
-        questionText,
-      };
+      questionText = "Time complexity to add a LEAF node in a BST?";
       break;
     default:
       break;
   }
+  const answers = {
+    right: "logn",
+    wrong: shuffle(["n", "logn", "nlogn"]),
+    questionText,
+  };
 
   return answers;
 }
