@@ -102,7 +102,7 @@ const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum 
                       "&:hover": {
                         backgroundColor: "#a3bcd6",
                       },
-                      backgroundColor: option.correct ? "#85f279" : "#f29979",
+                      // backgroundColor: option.correct ? "#85f279" : "#f29979",
                       borderRadius: "10px",
                       transition: "all 0.15s ease",
                     }}
@@ -123,7 +123,7 @@ const QuizModal = ({ userAnswers, checkboxQuestion, subsectionIndex, sectionNum 
                       "&:hover": {
                         backgroundColor: "#a3bcd6",
                       },
-                      backgroundColor: option.correct ? "#85f279" : "#f29979",
+                      // backgroundColor: option.correct ? "#85f279" : "#f29979",
                       borderRadius: "10px",
                       transition: "all 0.15s ease",
                     }}
