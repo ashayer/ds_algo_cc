@@ -35,16 +35,19 @@ let arrayOfArray = [];
 let stateTotal = 0;
 let stateCorrect = 0;
 let denominator = 0;
-// eslint-disable-next-line no-unused-vars
 let userModel = {};
-let x = 0;
+let x = 0; //! percent correct goal
 
 const calculatePercentage = (array) => {
   let totalQuestions = globalDepth;
   let totalCorrect = 0;
   for (let i = 0; i < globalDepth; i += 1) {
     //! change this to calulcate based on the threshold and model values instead of just less than 3
-    if (array[i] < 3) {
+    if (array[i] === 1 && userModel.one > 0.5) {
+      totalCorrect += 1;
+    } else if (array[i] === 2 && userModel.two > 0.5) {
+      totalCorrect += 1;
+    } else if (array[i] === 3 && userModel.three > 0.5) {
       totalCorrect += 1;
     }
   }
@@ -56,6 +59,7 @@ const calculatePercentage = (array) => {
     return true;
   } else if (parseFloat(x.toFixed(1)) < 0) {
     if (totalCorrect / totalQuestions === 0) {
+      console.log(totalCorrect);
       return true;
     }
   }
@@ -102,10 +106,18 @@ const MPCHandler = (correct, total, currentModel) => {
   stateTotal = total;
   denominator = stateTotal + globalDepth;
   x = (0.75 * denominator - stateCorrect) / globalDepth;
+
   userModel = currentModel;
+  if (userModel.one < 0.5 && userModel.two < 0.5 && userModel.three < 0.5) {
+    console.log("Crashing cause less");
+    return [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  }
+  if (userModel.one > 0.5 && userModel.two > 0.5 && userModel.three > 0.5) {
+    console.log("Crashing cause greater");
+    return [3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+  }
   const planningTree = createTree(globalDepth, 0);
   dfs(planningTree);
-
   const idealPath = arrayOfArray[Math.floor(Math.random() * arrayOfArray.length)];
   return idealPath;
 };

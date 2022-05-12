@@ -8,6 +8,7 @@ import {
   Select,
   Box,
   MenuItem,
+  // eslint-disable-next-line no-unused-vars
   Zoom,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -15,17 +16,22 @@ import { useNavigate } from "react-router-dom";
 const GameCard = () => {
   const navigate = useNavigate();
 
-  const [type, setType] = useState("adaptive");
+  // const [type, setType] = useState("adaptive");
+  const [type, setType] = useState("a");
+  // eslint-disable-next-line no-unused-vars
   const [difficulty, setDifficulty] = useState("1");
+  // eslint-disable-next-line no-unused-vars
   const [gameLength, setGameLength] = useState("0");
   const handleTypeChange = (e) => {
     setType(e.target.value);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleDifficultyChange = (e) => {
     setDifficulty(e.target.value);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleLengthChange = (e) => {
     setGameLength(e.target.value);
   };
@@ -51,7 +57,7 @@ const GameCard = () => {
           <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
             <FormControl sx={{ width: "200px" }}>
               <InputLabel id="game-type-select">Type</InputLabel>
-              <Select
+              {/* <Select
                 labelId="game-type-select"
                 value={type}
                 label="Type"
@@ -59,9 +65,19 @@ const GameCard = () => {
               >
                 <MenuItem value="adaptive">Adaptive</MenuItem>
                 <MenuItem value="static">Static</MenuItem>
+              </Select> */}
+              <Select
+                labelId="game-type-select"
+                value={type}
+                label="Type"
+                onChange={handleTypeChange}
+              >
+                <MenuItem value="a">A</MenuItem>
+                <MenuItem value="b">B</MenuItem>
+                <MenuItem value="c">C</MenuItem>
               </Select>
             </FormControl>
-            {type === "static" && (
+            {/* {type === "static" && (
               <Zoom
                 in
                 easing={{
@@ -83,8 +99,8 @@ const GameCard = () => {
                   </Select>
                 </FormControl>
               </Zoom>
-            )}
-            <FormControl sx={{ width: "200px" }}>
+            )} */}
+            {/* <FormControl sx={{ width: "200px" }}>
               <InputLabel id="game-length-select">Questions</InputLabel>
               <Select
                 labelId="game-length-select"
@@ -96,7 +112,7 @@ const GameCard = () => {
                 <MenuItem value="20">20</MenuItem>
                 <MenuItem value="40">40</MenuItem>
               </Select>
-            </FormControl>
+            </FormControl> */}
           </Box>
         </Grid>
         <Grid item xs={12} sx={{ alignSelf: "end" }}>

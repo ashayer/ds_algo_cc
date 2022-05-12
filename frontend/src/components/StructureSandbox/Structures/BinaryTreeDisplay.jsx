@@ -51,7 +51,7 @@ const BinaryTreeDisplay = () => {
           justifyContent: "space-evenly",
         }}
       >
-        <BinarySearchTree data={[2, 1, 3]} ref={ref} treeStyles={{ nodeShadow: "0" }} />
+        <BinarySearchTree data={[1, 2, 3]} ref={ref} treeStyles={{ nodeShadow: "0" }} />
       </Grid>
     </>
   );

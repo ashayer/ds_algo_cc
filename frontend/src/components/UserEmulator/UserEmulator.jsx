@@ -43,16 +43,16 @@ const optionsForQuestionLevelCount = {
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 Chart.register(CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend);
-const learningRate = 0.15;
+const learningRate = 0.075;
 const UserEmulator = () => {
   const [batch, setBatch] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState();
   const [totalCorrect, setTotalCorrect] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [userModel, setUserModel] = useState({
-    one: 0.9,
-    two: 0.75,
-    three: 0.45,
+    one: 0.67,
+    two: 0.49,
+    three: 0.38,
   });
 
   const [totalWrongPerLevel, setTotalWrongPerLevel] = useState([0, 0, 0]);
@@ -71,7 +71,7 @@ const UserEmulator = () => {
     setPercentCorrectArray(percentCorrectArray);
     const path = MPCHandler(totalCorrect, totalQuestions, userModel);
     setBatch(path);
-    setCurrentQuestion(path[0]);
+    setCurrentQuestion(path[Math.floor(Math.random() * 10)]);
   };
 
   const answerQuestion = (isCorrect) => {
