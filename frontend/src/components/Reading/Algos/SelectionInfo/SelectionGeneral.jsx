@@ -25,7 +25,7 @@ const SelectionGeneral = () => {
         </Typography>
       </Grid>
       <Grid item xs={12} lg={4} sx={{ p: 4, borderBottom: "1px solid black" }}>
-        <Box>Animation here from sandbox</Box>
+        <Box>&nbsp;</Box>
       </Grid>
       <Grid item xs={12} lg={4} sx={{ p: 4, textAlign: "center" }}>
         <ComplexityTable
