@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 
 const StructureOptions = ({ handleStructureChange, dataStructure }) => {
+  const localUser = JSON.parse(sessionStorage.getItem("user"));
+
   return (
     <Grid
       container
@@ -35,13 +37,13 @@ const StructureOptions = ({ handleStructureChange, dataStructure }) => {
             <MenuItem value={0}>
               <Typography>Queue</Typography>
             </MenuItem>
-            <MenuItem value={1}>
+            <MenuItem value={1} disabled={!localUser.dataReading[1].completed}>
               <Typography>Stack</Typography>
             </MenuItem>
-            <MenuItem value={2}>
+            <MenuItem value={2} disabled={!localUser.dataReading[2].completed}>
               <Typography>Linked List</Typography>
             </MenuItem>
-            <MenuItem value={3}>
+            <MenuItem value={3} disabled={!localUser.dataReading[3].completed}>
               <Typography>Binary Tree</Typography>
             </MenuItem>
           </Select>

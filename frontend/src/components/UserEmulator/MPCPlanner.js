@@ -118,7 +118,8 @@ const MPCHandler = (correct, total, currentModel) => {
   }
   const planningTree = createTree(globalDepth, 0);
   dfs(planningTree);
-  const idealPath = arrayOfArray[Math.floor(Math.random() * arrayOfArray.length)];
+   const idealPath = arrayOfArray[Math.floor(Math.random() * arrayOfArray.length)];
+  // const idealPath = arrayOfArray[Math.floor(arrayOfArray.length / 2)];
   return idealPath;
 };
 

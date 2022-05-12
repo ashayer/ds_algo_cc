@@ -154,8 +154,8 @@ const Game = () => {
 
   const createRandomGame = () => {
     const correctIndex = Math.floor(Math.random() * 4);
-    const tempIsAlgo = false; // !  change to 0.5
-    // const tempIsAlgo = Math.random() > 0.5; // !  change to 0.5
+    // const tempIsAlgo = false;
+    const tempIsAlgo = Math.random() > 0.5;
 
     setIsAlgo(tempIsAlgo);
 

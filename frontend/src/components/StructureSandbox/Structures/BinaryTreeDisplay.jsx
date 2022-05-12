@@ -27,31 +27,42 @@ const BinaryTreeDisplay = () => {
 
   return (
     <>
-      <input
-        type="number"
-        onChange={(elem) => setInsertValue(parseInt(elem.currentTarget.value, 10))}
-      />
-      <Button variant="contained" onClick={() => insert(insertValue)}>
-        Insert
-      </Button>
-      <input
-        type="number"
-        onChange={(elem) => setRemoveValue(parseInt(elem.currentTarget.value, 10))}
-      />
-      <Button variant="contained" onClick={() => remove(removeValue)}>
-        Remove
-      </Button>
+      <Grid container sx={{ justifyContent: "center", p: 2 }}>
+        <Grid item>
+          <input
+            type="number"
+            onChange={(elem) => setInsertValue(parseInt(elem.currentTarget.value, 10))}
+            style={{ padding: 10, fontSize: "1rem" }}
+          />
+          <Button
+            variant="contained"
+            sx={{ padding: 1.5, mr: 2 }}
+            onClick={() => insert(insertValue)}
+          >
+            <Typography>Insert</Typography>
+          </Button>
+        </Grid>
+        <Grid item>
+          <input
+            type="number"
+            onChange={(elem) => setRemoveValue(parseInt(elem.currentTarget.value, 10))}
+            style={{ padding: 10, fontSize: "1rem" }}
+          />
+          <Button variant="contained" sx={{ padding: 1.5 }} onClick={() => remove(removeValue)}>
+            <Typography>Remove</Typography>
+          </Button>
+        </Grid>
+      </Grid>
 
       <Grid
         container
         sx={{
           mt: 2,
-          border: "1px solid black",
           textAlign: "center",
           justifyContent: "space-evenly",
         }}
       >
-        <BinarySearchTree data={[1, 2, 3]} ref={ref} treeStyles={{ nodeShadow: "0" }} />
+        <BinarySearchTree data={[6, 3, 9]} ref={ref} treeStyles={{ nodeShadow: "0" }} />
       </Grid>
     </>
   );

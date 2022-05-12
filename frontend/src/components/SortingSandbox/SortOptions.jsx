@@ -22,6 +22,7 @@ const SortOptions = ({
   step,
   handleHistorySliderChange,
 }) => {
+  const localUser = JSON.parse(sessionStorage.getItem("user"));
   return (
     <Grid
       container
@@ -46,13 +47,13 @@ const SortOptions = ({
             <MenuItem value={0}>
               <Typography>INSERTION</Typography>
             </MenuItem>
-            <MenuItem value={1}>
+            <MenuItem value={1} disabled={!localUser.algoReading[1].completed}>
               <Typography>SELECTION</Typography>
             </MenuItem>
-            <MenuItem value={2}>
+            <MenuItem value={2} disabled={!localUser.algoReading[2].completed}>
               <Typography>MERGE</Typography>
             </MenuItem>
-            <MenuItem value={3}>
+            <MenuItem value={3} disabled={!localUser.algoReading[3].completed}>
               <Typography>QUICK</Typography>
             </MenuItem>
           </Select>
